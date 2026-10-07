@@ -66,15 +66,15 @@
     "semantic_hash": ""
   },
   "src/app/layout.tsx": {
-    "mtime": 1791401857.917812,
-    "seen": 1791401874.5919988,
-    "ast_hash": "4319a3f1ef952291c93835e9af11fc17",
+    "mtime": 1791405803.0886283,
+    "seen": 1791405951.8905332,
+    "ast_hash": "a3f1b6ac195f6437d793e85d136953ea",
     "semantic_hash": ""
   },
   "src/app/page.tsx": {
-    "mtime": 1791395412.290339,
-    "seen": 1791395463.127414,
-    "ast_hash": "f0ed110d5b34ad0b8f0f84e49cc2c80a",
+    "mtime": 1791405894.7185574,
+    "seen": 1791405951.8905358,
+    "ast_hash": "4576287fc411d741763e322eab75cbb7",
     "semantic_hash": ""
   },
   "tailwind.config.ts": {
@@ -96,15 +96,15 @@
     "semantic_hash": ""
   },
   "src/app/login/page.tsx": {
-    "mtime": 1791404322.650905,
-    "seen": 1791404423.0402496,
-    "ast_hash": "599b57e55b9ca6f71a594dba5907f6dd",
+    "mtime": 1791405883.7965102,
+    "seen": 1791405951.8905342,
+    "ast_hash": "c03f77fd6b77f1cd8ed5bca86e8ce687",
     "semantic_hash": ""
   },
   "src/app/onboarding/page.tsx": {
-    "mtime": 1791404660.918202,
-    "seen": 1791404723.301291,
-    "ast_hash": "aee3d713ddd0600f0b46b1bf8bf78c94",
+    "mtime": 1791405915.129341,
+    "seen": 1791405951.890535,
+    "ast_hash": "f3623486545989d38d8e3d71800b5dd5",
     "semantic_hash": ""
   },
   "next-env.d.ts": {
@@ -144,9 +144,9 @@
     "semantic_hash": ""
   },
   "src/lib/store.tsx": {
-    "mtime": 1791400535.5673769,
-    "seen": 1791400583.1788964,
-    "ast_hash": "8a20b08a830566fc268f785470dcc0d9",
+    "mtime": 1791405871.713545,
+    "seen": 1791405951.8905454,
+    "ast_hash": "9ec0f68fdf6ad67bfb504323a561b35f",
     "semantic_hash": ""
   },
   "public/manifest.json": {
@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "src/app/dashboard/layout.tsx": {
-    "mtime": 1791401425.2357948,
-    "seen": 1791401448.7410095,
-    "ast_hash": "225bb011a7e1f9554d89799ffefe46da",
+    "mtime": 1791405652.1184306,
+    "seen": 1791405951.8905296,
+    "ast_hash": "aea9fd2fb95a21c862adf906a87d348c",
     "semantic_hash": ""
   },
   "src/components/ui/Button.tsx": {
@@ -186,9 +186,9 @@
     "semantic_hash": ""
   },
   "src/lib/repositories/expense-repository.ts": {
-    "mtime": 1791402060.4894435,
-    "seen": 1791403033.3345122,
-    "ast_hash": "be500fe651051ddc8e44a45d39c29ace",
+    "mtime": 1791405604.9308763,
+    "seen": 1791405951.8905444,
+    "ast_hash": "542b2d2f6f06e7a75a536efb5aafe43d",
     "semantic_hash": ""
   },
   "src/app/budget/layout.tsx": {
@@ -261,6 +261,30 @@
     "mtime": 1791404033.662686,
     "seen": 1791404423.0402834,
     "ast_hash": "21bddf681cbed99d8cdf2f2ff791fce7",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/expenses/page.tsx": {
+    "mtime": 1791405694.9944277,
+    "seen": 1791405951.8905277,
+    "ast_hash": "9a94c9e5695e173ff3c8cd060c147cea",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/settings/page.tsx": {
+    "mtime": 1791405932.0621076,
+    "seen": 1791405951.890532,
+    "ast_hash": "ecaf8615aabbd65279689b5b5407d86b",
+    "semantic_hash": ""
+  },
+  "src/components/providers/ServiceWorkerRegistrar.tsx": {
+    "mtime": 1791405754.364998,
+    "seen": 1791405951.890537,
+    "ast_hash": "918265de69ff7f49c9a846755f1108b4",
+    "semantic_hash": ""
+  },
+  "src/components/ui/BottomNav.tsx": {
+    "mtime": 1791405644.4645376,
+    "seen": 1791405951.8905377,
+    "ast_hash": "ef89c191bc79120e7533af0f5aad7376",
     "semantic_hash": ""
   }
 }

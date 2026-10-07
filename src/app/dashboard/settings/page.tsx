@@ -19,10 +19,10 @@ export default function SettingsPage() {
   }
 
   return (
-    <main className="min-h-screen bg-surface pb-24 max-w-xl mx-auto px-gutter">
-      <div className="pt-16 pb-6 flex flex-col">
+    <main className="min-h-screen bg-surface pb-24 md:pb-space-xl max-w-xl mx-auto md:max-w-none px-gutter md:px-space-xl">
+      <div className="pt-16 md:pt-space-xl pb-6 flex flex-col">
         <div className="mb-space-md">
-          <h1 className="text-headline-lg-mobile text-on-surface font-bold tracking-tight">
+          <h1 className="text-headline-lg-mobile md:text-headline-xl text-on-surface font-bold tracking-tight">
             Ajustes ⚙️
           </h1>
           <p className="text-body-sm text-text-secondary mt-0.5">
@@ -30,7 +30,7 @@ export default function SettingsPage() {
           </p>
         </div>
 
-        <div className="space-y-space-lg">
+        <div className="space-y-space-lg md:grid md:grid-cols-2 md:gap-space-lg md:space-y-0">
           <section className="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm">
             <h3 className="text-label-lg text-on-surface font-semibold mb-space-sm flex items-center gap-2">
               💰 Presupuesto mensual
@@ -121,7 +121,9 @@ export default function SettingsPage() {
               </div>
             </div>
           </section>
+        </div>
 
+        <div className="mt-space-lg">
           <button
             onClick={() => {
               if (confirm('¿Borrar todos los datos? Esta acción no se puede deshacer.')) {

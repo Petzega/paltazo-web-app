@@ -108,7 +108,6 @@ Tokens en `tailwind.config.ts` + `src/app/globals.css`:
 
 ## Pendientes
 
-- [ ] Responsive desktop (sidebar + tabla + panel lateral) — ver `docs/design/paltazo_web_desing_fix.md`
 - [ ] Migrar Supabase + autenticación real
 - [ ] Edge Function `check-budget` con alertas 80/100/101%
 - [ ] Notificaciones push
