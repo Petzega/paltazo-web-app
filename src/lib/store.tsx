@@ -7,8 +7,13 @@ import type { Expense, Budget } from '@/types'
 interface AppState {
   expenses: Expense[]
   budget: Budget
+  isLoggedIn: boolean
   addExpense: (expense: Omit<Expense, 'id' | 'createdAt'>) => Promise<void>
+  updateExpense: (id: string, changes: Partial<Expense>) => Promise<void>
+  deleteExpense: (id: string) => Promise<void>
   setBudget: (monthlyLimit: number) => Promise<void>
+  login: () => void
+  logout: () => void
   isLoading: boolean
 }
 
@@ -26,9 +31,12 @@ const DEFAULT_BUDGET: Budget = {
 export function AppProvider({ children }: { children: ReactNode }) {
   const [expenses, setExpenses] = useState<Expense[]>([])
   const [budget, setBudgetState] = useState<Budget>(DEFAULT_BUDGET)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+    setIsLoggedIn(localStorage.getItem('paltazo_logged_in') === 'true')
+
     const load = async () => {
       try {
         const [expensesData, budgetData] = await Promise.all([
@@ -53,6 +61,17 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setExpenses((prev) => [newExpense, ...prev])
   }
 
+  const updateExpense = async (id: string, changes: Partial<Expense>) => {
+    await expenseRepo.update(id, changes)
+    const allExpenses = await expenseRepo.getAll(DEFAULT_USER_ID)
+    setExpenses(allExpenses)
+  }
+
+  const deleteExpense = async (id: string) => {
+    await expenseRepo.delete(id)
+    setExpenses((prev) => prev.filter((e) => e.id !== id))
+  }
+
   const setBudget = async (monthlyLimit: number) => {
     const updated: Budget = {
       ...budget,
@@ -63,10 +82,20 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setBudgetState(updated)
   }
 
+  const login = () => {
+    localStorage.setItem('paltazo_logged_in', 'true')
+    setIsLoggedIn(true)
+  }
+
+  const logout = () => {
+    localStorage.removeItem('paltazo_logged_in')
+    setIsLoggedIn(false)
+  }
+
   if (isLoading) return null
 
   return (
-    <AppContext.Provider value={{ expenses, budget, addExpense, setBudget, isLoading }}>
+    <AppContext.Provider value={{ expenses, budget, isLoggedIn, addExpense, updateExpense, deleteExpense, setBudget, login, logout, isLoading }}>
       {children}
     </AppContext.Provider>
   )

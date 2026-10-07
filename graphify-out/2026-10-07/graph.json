@@ -197,8 +197,8 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 23,
-      "community_name": "index.ts",
+      "community": 19,
+      "community_name": "budget/page.tsx",
       "file_type": "code",
       "norm_label": "categoryinfo",
       "source_file": "src/lib/categories.ts",
@@ -210,8 +210,8 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 23,
-      "community_name": "index.ts",
+      "community": 19,
+      "community_name": "budget/page.tsx",
       "file_type": "code",
       "norm_label": "budgetalert",
       "source_file": "src/types/index.ts",
@@ -223,8 +223,8 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 23,
-      "community_name": "index.ts",
+      "community": 19,
+      "community_name": "budget/page.tsx",
       "file_type": "code",
       "norm_label": "budgetalertlevel",
       "source_file": "src/types/index.ts",
@@ -236,8 +236,8 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 23,
-      "community_name": "index.ts",
+      "community": 19,
+      "community_name": "budget/page.tsx",
       "file_type": "code",
       "norm_label": "expensecategory",
       "source_file": "src/types/index.ts",
@@ -388,6 +388,30 @@
       "source_location": "L10"
     },
     {
+      "id": "src_app_dashboard_add_expense_page_addexpensepage",
+      "label": "AddExpensePage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "budget/page.tsx",
+      "file_type": "code",
+      "norm_label": "addexpensepage()",
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "source_location": "L9"
+    },
+    {
+      "id": "src_app_dashboard_page_dashboardpage",
+      "label": "DashboardPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "budget/page.tsx",
+      "file_type": "code",
+      "norm_label": "dashboardpage()",
+      "source_file": "src/app/dashboard/page.tsx",
+      "source_location": "L7"
+    },
+    {
       "id": "src_app_login_page_loginpage",
       "label": "LoginPage()",
       "_callable": true,
@@ -409,7 +433,7 @@
       "file_type": "code",
       "norm_label": "onboardingpage()",
       "source_file": "src/app/onboarding/page.tsx",
-      "source_location": "L6"
+      "source_location": "L7"
     },
     {
       "id": "src_components_ui_button_button",
@@ -448,48 +472,12 @@
       "source_location": "L8"
     },
     {
-      "id": "src_app_dashboard_layout_dashboardlayout",
-      "label": "DashboardLayout()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 22,
-      "community_name": "dashboard/layout.tsx",
-      "file_type": "code",
-      "norm_label": "dashboardlayout()",
-      "source_file": "src/app/dashboard/layout.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_app_dashboard_add_expense_page_addexpensepage",
-      "label": "AddExpensePage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "index.ts",
-      "file_type": "code",
-      "norm_label": "addexpensepage()",
-      "source_file": "src/app/dashboard/add-expense/page.tsx",
-      "source_location": "L9"
-    },
-    {
-      "id": "src_app_dashboard_page_dashboardpage",
-      "label": "DashboardPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "index.ts",
-      "file_type": "code",
-      "norm_label": "dashboardpage()",
-      "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L7"
-    },
-    {
       "id": "src_lib_categories_getcategoryinfo",
       "label": "getCategoryInfo()",
       "_callable": true,
       "_origin": "ast",
-      "community": 23,
-      "community_name": "index.ts",
+      "community": 19,
+      "community_name": "budget/page.tsx",
       "file_type": "code",
       "norm_label": "getcategoryinfo()",
       "source_file": "src/lib/categories.ts",
@@ -500,12 +488,24 @@
       "label": "useAppState()",
       "_callable": true,
       "_origin": "ast",
-      "community": 23,
-      "community_name": "index.ts",
+      "community": 19,
+      "community_name": "budget/page.tsx",
       "file_type": "code",
       "norm_label": "useappstate()",
       "source_file": "src/lib/store.tsx",
       "source_location": "L75"
+    },
+    {
+      "id": "src_app_dashboard_layout_dashboardlayout",
+      "label": "DashboardLayout()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "dashboard/layout.tsx",
+      "file_type": "code",
+      "norm_label": "dashboardlayout()",
+      "source_file": "src/app/dashboard/layout.tsx",
+      "source_location": "L1"
     },
     {
       "id": "opencode_plugins_graphify_graphifyplugin",
@@ -1422,6 +1422,28 @@
       "source_location": "L1"
     },
     {
+      "id": "src_app_dashboard_add_expense_page",
+      "label": "add-expense/page.tsx",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "budget/page.tsx",
+      "file_type": "code",
+      "norm_label": "add-expense/page.tsx",
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_app_dashboard_page",
+      "label": "dashboard/page.tsx",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "budget/page.tsx",
+      "file_type": "code",
+      "norm_label": "dashboard/page.tsx",
+      "source_file": "src/app/dashboard/page.tsx",
+      "source_location": "L1"
+    },
+    {
       "id": "src_app_login_page",
       "label": "login/page.tsx",
       "_origin": "ast",
@@ -1485,6 +1507,39 @@
       "file_type": "code",
       "norm_label": "input.tsx",
       "source_file": "src/components/ui/Input.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_lib_categories",
+      "label": "categories.ts",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "budget/page.tsx",
+      "file_type": "code",
+      "norm_label": "categories.ts",
+      "source_file": "src/lib/categories.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_lib_categories_expense_categories",
+      "label": "EXPENSE_CATEGORIES",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "budget/page.tsx",
+      "file_type": "code",
+      "norm_label": "expense_categories",
+      "source_file": "src/lib/categories.ts",
+      "source_location": "L10"
+    },
+    {
+      "id": "src_types_index",
+      "label": "index.ts",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "budget/page.tsx",
+      "file_type": "code",
+      "norm_label": "index.ts",
+      "source_file": "src/types/index.ts",
       "source_location": "L1"
     },
     {
@@ -1673,61 +1728,6 @@
       "file_type": "code",
       "norm_label": "dashboard/layout.tsx",
       "source_file": "src/app/dashboard/layout.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_app_dashboard_add_expense_page",
-      "label": "add-expense/page.tsx",
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "index.ts",
-      "file_type": "code",
-      "norm_label": "add-expense/page.tsx",
-      "source_file": "src/app/dashboard/add-expense/page.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_app_dashboard_page",
-      "label": "dashboard/page.tsx",
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "index.ts",
-      "file_type": "code",
-      "norm_label": "dashboard/page.tsx",
-      "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_lib_categories",
-      "label": "categories.ts",
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "index.ts",
-      "file_type": "code",
-      "norm_label": "categories.ts",
-      "source_file": "src/lib/categories.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_lib_categories_expense_categories",
-      "label": "EXPENSE_CATEGORIES",
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "index.ts",
-      "file_type": "code",
-      "norm_label": "expense_categories",
-      "source_file": "src/lib/categories.ts",
-      "source_location": "L10"
-    },
-    {
-      "id": "src_types_index",
-      "label": "index.ts",
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "index.ts",
-      "file_type": "code",
-      "norm_label": "index.ts",
-      "source_file": "src/types/index.ts",
       "source_location": "L1"
     },
     {
@@ -2606,7 +2606,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L187",
+      "source_location": "L246",
       "weight": 1.0
     },
     {
@@ -2618,6 +2618,18 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/page.tsx",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_onboarding_page_onboardingpage",
+      "target": "src_lib_store_useappstate",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app/onboarding/page.tsx",
       "source_location": "L9",
       "weight": 1.0
     },
@@ -2995,7 +3007,7 @@
     },
     {
       "source": "src_app_onboarding_page",
-      "target": "src_components_ui_button_button",
+      "target": "src_lib_store_useappstate",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -3003,6 +3015,18 @@
       "context": "import",
       "source_file": "src/app/onboarding/page.tsx",
       "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_onboarding_page",
+      "target": "src_components_ui_button_button",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/onboarding/page.tsx",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -3442,7 +3466,7 @@
     },
     {
       "source": "src_app_onboarding_page",
-      "target": "src_components_ui_button",
+      "target": "src_lib_store",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -3450,6 +3474,18 @@
       "context": "import",
       "source_file": "src/app/onboarding/page.tsx",
       "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_onboarding_page",
+      "target": "src_components_ui_button",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/onboarding/page.tsx",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -4237,7 +4273,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/onboarding/page.tsx",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0
     },
     {

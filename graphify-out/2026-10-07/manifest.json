@@ -90,9 +90,9 @@
     "semantic_hash": ""
   },
   "src/app/dashboard/page.tsx": {
-    "mtime": 1791404217.700197,
-    "seen": 1791404423.040247,
-    "ast_hash": "e635a581390a96f612d3a85d57ea5c53",
+    "mtime": 1791404633.8140488,
+    "seen": 1791404723.3012874,
+    "ast_hash": "d7a755cb446be15e3cd11f619560e7da",
     "semantic_hash": ""
   },
   "src/app/login/page.tsx": {
@@ -102,9 +102,9 @@
     "semantic_hash": ""
   },
   "src/app/onboarding/page.tsx": {
-    "mtime": 1791404283.9731784,
-    "seen": 1791404423.0402505,
-    "ast_hash": "fa65b700ca7860eb0789b6dbdb19c540",
+    "mtime": 1791404660.918202,
+    "seen": 1791404723.301291,
+    "ast_hash": "aee3d713ddd0600f0b46b1bf8bf78c94",
     "semantic_hash": ""
   },
   "next-env.d.ts": {
@@ -114,9 +114,9 @@
     "semantic_hash": ""
   },
   "src/app/dashboard/add-expense/page.tsx": {
-    "mtime": 1791404260.2710724,
-    "seen": 1791404423.0402443,
-    "ast_hash": "908452c0f78ddac5c052cd7571db6209",
+    "mtime": 1791404703.4040523,
+    "seen": 1791404723.3012846,
+    "ast_hash": "18ed2b4cd2ccc516d534d997248b3f59",
     "semantic_hash": ""
   },
   "src/lib/categories.ts": {

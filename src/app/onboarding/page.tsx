@@ -1,12 +1,17 @@
 'use client'
 
+import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAppState } from '@/lib/store'
 import { Button } from '@/components/ui/Button'
 
 export default function OnboardingPage() {
   const router = useRouter()
-  const { expenses, budget } = useAppState()
+  const { expenses, budget, isLoggedIn } = useAppState()
+
+  useEffect(() => {
+    if (isLoggedIn) router.replace('/dashboard')
+  }, [isLoggedIn, router])
 
   const now = new Date()
   const currentMonth = now.getMonth()

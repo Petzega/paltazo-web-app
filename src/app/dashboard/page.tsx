@@ -179,14 +179,14 @@ export default function DashboardPage() {
 
           <div className="grid grid-cols-2 gap-space-sm mt-space-md">
             <button
-              onClick={() => router.push('/budget')}
+              onClick={() => router.push('/dashboard/expenses')}
               className="w-full py-2.5 px-3 rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface text-label-md flex items-center justify-center gap-1.5 transition-colors active:scale-95"
             >
               <span className="text-primary text-[18px]">📊</span>
               Ver reporte
             </button>
             <button
-              onClick={() => router.push('/budget')}
+              onClick={() => router.push('/dashboard/settings')}
               className="w-full py-2.5 px-3 rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface text-label-md flex items-center justify-center gap-1.5 transition-colors active:scale-95"
             >
               <span className="text-secondary text-[18px]">⚙️</span>

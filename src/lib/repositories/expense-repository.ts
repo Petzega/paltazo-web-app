@@ -12,6 +12,7 @@ function generateId(): string {
 export interface ExpenseRepository {
   getAll(userId: string): Promise<Expense[]>
   add(expense: Omit<Expense, 'id' | 'createdAt'>): Promise<Expense>
+  update(id: string, changes: Partial<Expense>): Promise<void>
   delete(id: string): Promise<void>
 }
 
@@ -41,6 +42,10 @@ export const expenseRepo: ExpenseRepository = {
 
   async delete(id) {
     await db.expenses.delete(id)
+  },
+
+  async update(id, changes) {
+    await db.expenses.update(id, changes)
   },
 }
 

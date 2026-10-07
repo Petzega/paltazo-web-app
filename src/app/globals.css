@@ -36,3 +36,7 @@ body {
   color: var(--color-on-surface);
   font-family: 'Inter', sans-serif;
 }
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}

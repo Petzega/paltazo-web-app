@@ -3,13 +3,16 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
+import { useAppState } from '@/lib/store'
 
 export default function LoginPage() {
   const router = useRouter()
+  const { login } = useAppState()
   const [mode, setMode] = useState<'login' | 'register'>('login')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    login()
     router.push('/dashboard')
   }
 
