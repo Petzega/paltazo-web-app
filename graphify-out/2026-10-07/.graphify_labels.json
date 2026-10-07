@@ -1,6 +1,6 @@
 {
   "0": "Supabase (MVP Backend)",
-  "1": "Frontend Agent",
+  "1": "app/layout.tsx",
   "2": "Paltazo Application",
   "3": "Paltazo Design Tokens",
   "4": "Graphify Knowledge Graph",
@@ -12,9 +12,16 @@
   "10": "TypeScript (Strict Mode)",
   "11": "package.json",
   "12": "compilerOptions",
-  "13": "layout.tsx",
-  "14": "devDependencies",
-  "15": "scripts",
+  "13": "store.tsx",
+  "14": "budget/layout.tsx",
+  "15": "devDependencies",
   "16": "page.tsx",
-  "17": "postcss.config.mjs"
+  "17": "postcss.config.mjs",
+  "18": "manifest.json",
+  "19": "budget/page.tsx",
+  "20": "Paltazo Web App - Guía de Desarrollo",
+  "21": "next-env.d.ts",
+  "22": "dashboard/layout.tsx",
+  "23": "index.ts",
+  "24": "Paltazo Design System"
 }

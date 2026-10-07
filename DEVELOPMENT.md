@@ -48,15 +48,38 @@ npm run lint
 ```
 paltazo-web-app/
 ├── src/
-│   └── app/           # Rutas y páginas Next.js
-│       ├── layout.tsx # Layout principal
-│       ├── page.tsx   # Página inicial
-│       ├── onboarding/
-│       ├── login/
-│       └── dashboard/
-├── tailwind.config.ts # Configuración Tailwind + design tokens
-└── package.json       # Dependencias
+│   ├── app/                # Rutas Next.js
+│   │   ├── layout.tsx      # Root con AppProvider
+│   │   ├── onboarding/     # Bienvenida
+│   │   ├── login/          # Autenticación
+│   │   ├── dashboard/      # Resumen + gastos
+│   │   │   └── add-expense/  # Agregar gasto
+│   │   └── budget/         # Configurar presupuesto
+│   ├── lib/
+│   │   ├── store.tsx       # Context + localStorage
+│   │   └── categories.ts   # Categorías MVP
+│   └── types/
+│       └── index.ts        # TypeScript interfaces
+├── tailwind.config.ts      # Design tokens
+└── package.json
 ```
+
+## Estado de datos
+
+- **BD local**: IndexedDB vía Dexie.js (`src/lib/db.ts`)
+- **Repository pattern**: `src/lib/repositories/expense-repository.ts`
+- **API pública**: React Context (`src/lib/store.tsx`)
+- **Usuario mock**: `userId: 'default'`
+
+### Migración a Supabase (próximo paso)
+
+1. Instalar `@supabase/supabase-js`
+2. Crear `src/lib/supabase.ts` con cliente
+3. Implementar `SupabaseExpenseRepository` con la misma interfaz
+4. Cambiar el import en `store.tsx` de `expense-repository` a `supabase-repository`
+5. Configurar `.env.local` con `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+
+La interfaz `Repository` permite migrar sin tocar el store ni las páginas.
 
 ## Design System
 
@@ -68,8 +91,8 @@ Tokens configurados en `tailwind.config.ts`:
 
 ## Próximos pasos
 
-- [ ] Implementar pantalla agregar gasto
-- [ ] Configurar Supabase para autenticación
-- [ ] Configurar Dexie.js para storage offline
-- [ ] Implementar TanStack Query para sincronización
-- [ ] Agregar PWA manifest y service worker
+- [ ] Migrar localStorage → Supabase + Dexie.js
+- [ ] Autenticación real (Supabase Auth)
+- [ ] Implementar PWA manifest + service worker
+- [ ] Responsive desktop (dashboard web, modal add-expense)
+- [ ] Edge Function `check-budget` con alertas 80/100/101%

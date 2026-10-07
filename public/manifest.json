@@ -1,0 +1,22 @@
+{
+  "name": "Paltazo - Control de Gastos",
+  "short_name": "Paltazo",
+  "description": "Detecta el paltazo antes de que te detecte a ti",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#F9FAF7",
+  "theme_color": "#42690e",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

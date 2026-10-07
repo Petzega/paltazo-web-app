@@ -11,6 +11,7 @@
 - Prefiere comandos, búsquedas y validaciones limitados al área afectada.
 - La salida de comandos debe mantenerse mínima; RTK comprime automáticamente la salida de shell.
 - No ejecutes builds, suites de prueba completas ni linters globales sin necesidad o autorización explícita.
+- Cuando utilices la integración MCP de Stitch, tienes estrictamente prohibido usar WebFetch para intentar descargar imágenes de Google. Basa tu análisis de diseño únicamente en el DOM/JSON devuelto por el proxy y en los assets locales.
 
 ## Cambio seguro y minimalismo
 
