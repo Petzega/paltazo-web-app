@@ -88,23 +88,5 @@
     "seen": 1791395463.1274161,
     "ast_hash": "db4f01e8aa6a92de90491a5c0689c4c7",
     "semantic_hash": ""
-  },
-  "src/app/dashboard/page.tsx": {
-    "mtime": 1791396086.8348193,
-    "seen": 1791396107.3618867,
-    "ast_hash": "7d35f8e8afa4b60ffdf1d8a15207a714",
-    "semantic_hash": ""
-  },
-  "src/app/login/page.tsx": {
-    "mtime": 1791396070.708382,
-    "seen": 1791396107.3618898,
-    "ast_hash": "f3013cdfa56ae6cf453d7c79663c4c3d",
-    "semantic_hash": ""
-  },
-  "src/app/onboarding/page.tsx": {
-    "mtime": 1791396060.3434238,
-    "seen": 1791396107.3618908,
-    "ast_hash": "0478496964f8947daad2accdbfd15258",
-    "semantic_hash": ""
   }
 }

@@ -73,42 +73,6 @@
       "source_location": "L1"
     },
     {
-      "id": "src_app_dashboard_page_dashboardpage",
-      "label": "DashboardPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 18,
-      "community_name": "ref_next_navigation",
-      "file_type": "code",
-      "norm_label": "dashboardpage()",
-      "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L5"
-    },
-    {
-      "id": "src_app_login_page_loginpage",
-      "label": "LoginPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 18,
-      "community_name": "ref_next_navigation",
-      "file_type": "code",
-      "norm_label": "loginpage()",
-      "source_file": "src/app/login/page.tsx",
-      "source_location": "L5"
-    },
-    {
-      "id": "src_app_onboarding_page_onboardingpage",
-      "label": "OnboardingPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 18,
-      "community_name": "ref_next_navigation",
-      "file_type": "code",
-      "norm_label": "onboardingpage()",
-      "source_file": "src/app/onboarding/page.tsx",
-      "source_location": "L5"
-    },
-    {
       "id": "opencode_plugins_graphify_graphifyplugin",
       "label": "GraphifyPlugin()",
       "_callable": true,
@@ -771,12 +735,12 @@
     },
     {
       "id": "src_app_page",
-      "label": "app/page.tsx",
+      "label": "page.tsx",
       "_origin": "ast",
       "community": 16,
       "community_name": "page.tsx",
       "file_type": "code",
-      "norm_label": "app/page.tsx",
+      "norm_label": "page.tsx",
       "source_file": "src/app/page.tsx",
       "source_location": "L1"
     },
@@ -789,39 +753,6 @@
       "file_type": "code",
       "norm_label": "postcss.config.mjs",
       "source_file": "postcss.config.mjs",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_app_dashboard_page",
-      "label": "dashboard/page.tsx",
-      "_origin": "ast",
-      "community": 18,
-      "community_name": "ref_next_navigation",
-      "file_type": "code",
-      "norm_label": "dashboard/page.tsx",
-      "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_app_login_page",
-      "label": "login/page.tsx",
-      "_origin": "ast",
-      "community": 18,
-      "community_name": "ref_next_navigation",
-      "file_type": "code",
-      "norm_label": "login/page.tsx",
-      "source_file": "src/app/login/page.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_app_onboarding_page",
-      "label": "onboarding/page.tsx",
-      "_origin": "ast",
-      "community": 18,
-      "community_name": "ref_next_navigation",
-      "file_type": "code",
-      "norm_label": "onboarding/page.tsx",
-      "source_file": "src/app/onboarding/page.tsx",
       "source_location": "L1"
     },
     {
@@ -1557,7 +1488,6 @@
     {
       "id": "ref_next_font_google",
       "label": "ref_next_font_google",
-      "_origin": "semantic",
       "community": 13,
       "community_name": "layout.tsx",
       "external": true,
@@ -1569,7 +1499,6 @@
     {
       "id": "src_app_globals",
       "label": "src_app_globals",
-      "_origin": "semantic",
       "community": 13,
       "community_name": "layout.tsx",
       "external": true,
@@ -1581,7 +1510,6 @@
     {
       "id": "ref_fs",
       "label": "ref_fs",
-      "_origin": "semantic",
       "community": 6,
       "community_name": "graphify.js",
       "external": true,
@@ -1593,23 +1521,11 @@
     {
       "id": "ref_path",
       "label": "ref_path",
-      "_origin": "semantic",
       "community": 6,
       "community_name": "graphify.js",
       "external": true,
       "file_type": "concept",
       "norm_label": "ref_path",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "ref_next_navigation",
-      "label": "ref_next_navigation",
-      "community": 18,
-      "community_name": "ref_next_navigation",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "ref_next_navigation",
       "source_file": "",
       "type": "external"
     }
@@ -1773,18 +1689,6 @@
       "weight": 1.0
     },
     {
-      "source": "src_app_dashboard_page",
-      "target": "ref_next_navigation",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L3",
-      "weight": 1.0
-    },
-    {
       "source": "src_app_layout",
       "target": "ref_next",
       "relation": "imports_from",
@@ -1818,30 +1722,6 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/app/layout.tsx",
-      "source_location": "L3",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_login_page",
-      "target": "ref_next_navigation",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/app/login/page.tsx",
-      "source_location": "L3",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_onboarding_page",
-      "target": "ref_next_navigation",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/app/onboarding/page.tsx",
       "source_location": "L3",
       "weight": 1.0
     },
@@ -2134,17 +2014,6 @@
       "weight": 1.0
     },
     {
-      "source": "src_app_dashboard_page",
-      "target": "src_app_dashboard_page_dashboardpage",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L5",
-      "weight": 1.0
-    },
-    {
       "source": "src_app_layout",
       "target": "src_app_layout_viewport",
       "relation": "contains",
@@ -2186,28 +2055,6 @@
       "confidence_score": 1.0,
       "source_file": "src/app/layout.tsx",
       "source_location": "L7",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_login_page",
-      "target": "src_app_login_page_loginpage",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/login/page.tsx",
-      "source_location": "L5",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_onboarding_page",
-      "target": "src_app_onboarding_page_onboardingpage",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/onboarding/page.tsx",
-      "source_location": "L5",
       "weight": 1.0
     },
     {

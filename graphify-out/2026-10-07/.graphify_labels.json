@@ -1,0 +1,20 @@
+{
+  "0": "Supabase (MVP Backend)",
+  "1": "Frontend Agent",
+  "2": "Paltazo Application",
+  "3": "Paltazo Design Tokens",
+  "4": "Graphify Knowledge Graph",
+  "5": "opencode.json",
+  "6": "graphify.js",
+  "7": "Paltazo Folder Structure",
+  "8": "shadcn/ui / Radix UI",
+  "9": "Tailwind CSS",
+  "10": "TypeScript (Strict Mode)",
+  "11": "package.json",
+  "12": "compilerOptions",
+  "13": "layout.tsx",
+  "14": "devDependencies",
+  "15": "scripts",
+  "16": "page.tsx",
+  "17": "postcss.config.mjs"
+}
