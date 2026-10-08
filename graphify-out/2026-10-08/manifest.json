@@ -96,9 +96,9 @@
     "semantic_hash": ""
   },
   "src/app/login/page.tsx": {
-    "mtime": 1791432180.0992534,
-    "seen": 1791432238.2691345,
-    "ast_hash": "a598d94829f34f6935ecc7aaf805891f",
+    "mtime": 1791432866.7145314,
+    "seen": 1791432895.0737572,
+    "ast_hash": "a416bcf55162f083777faca6eed68d82",
     "semantic_hash": ""
   },
   "src/app/onboarding/page.tsx": {
@@ -315,6 +315,18 @@
     "mtime": 1791432193.1821852,
     "seen": 1791432238.269152,
     "ast_hash": "5fd431f734f3800ac580abe36c20d6be",
+    "semantic_hash": ""
+  },
+  "src/lib/supabase/server.ts": {
+    "mtime": 1791432884.5058062,
+    "seen": 1791432895.074044,
+    "ast_hash": "de8ece116d44d7d78130145f82c8e8a9",
+    "semantic_hash": ""
+  },
+  "src/middleware.ts": {
+    "mtime": 1791432861.8004556,
+    "seen": 1791432895.0740452,
+    "ast_hash": "795f93192e962a5395b04417dac9345b",
     "semantic_hash": ""
   }
 }

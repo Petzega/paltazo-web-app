@@ -17,7 +17,7 @@ export async function signUp(email: string, password: string, displayName?: stri
 }
 
 export async function signOut() {
-  const { error } = await supabase.auth.signOut()
+  const { error } = await supabase.auth.signOut({ scope: 'global' })
   return { error }
 }
 
@@ -29,6 +29,13 @@ export async function getUser() {
 export async function getSession() {
   const { data: { session } } = await supabase.auth.getSession()
   return session
+}
+
+export async function resetPassword(email: string) {
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${window.location.origin}/login`,
+  })
+  return { error }
 }
 
 export function onAuthStateChange(callback: (userId: string | null) => void) {

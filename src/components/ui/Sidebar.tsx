@@ -1,6 +1,7 @@
 'use client'
 
 import { usePathname, useRouter } from 'next/navigation'
+import { signOut } from '@/lib/supabase/auth'
 
 const links = [
   { label: 'Inicio', icon: '🏠', path: '/dashboard' },
@@ -39,9 +40,15 @@ export function Sidebar() {
         })}
       </nav>
 
-      <div className="pt-space-md border-t border-surface-container-high mt-space-md">
-        <p className="text-body-sm text-text-secondary">Paltazo v1.0.0</p>
-        <p className="text-body-sm text-text-secondary">Offline-first PWA 🌿</p>
+      <div className="pt-space-md border-t border-surface-container-high mt-space-md flex flex-col gap-space-xs">
+        <button
+          onClick={async () => { await signOut(); window.location.href = '/login' }}
+          className="flex items-center gap-3 px-4 py-3 rounded-xl text-left text-text-secondary hover:bg-danger/10 hover:text-danger transition-colors"
+        >
+          <span className="text-[22px]">🚪</span>
+          <span className="text-label-lg">Cerrar sesión</span>
+        </button>
+        <p className="text-body-sm text-text-secondary px-4">Paltazo v1.0.0</p>
       </div>
     </div>
   )

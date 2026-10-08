@@ -1,11 +1,12 @@
-# Paltazo - Bitácora de Avance
+# Paltazo — Bitácora de Avance
 
-## Estado actual del proyecto
+## Estado del proyecto (2026-10-08)
 
 **Stack:** Next.js 15 + TypeScript + Tailwind CSS + Supabase
-**Framework auth:** `@supabase/ssr` con `createBrowserClient` (recomendado para Next.js 15 App Router)
-**PWA:** Completada (manifest + service worker)
-**Responsive:** Desktop completado
+**PWA:** ✅ Completada
+**Auth:** ✅ Supabase Auth con middleware de protección
+**RLS:** ✅ 9 policies verificadas
+**Estado general:** MVP funcional con autenticación y RLS. Pendiente: verificar flujo de datos completo, Edge Function de alertas, notificaciones push, y fix del bug de logout.
 
 ---
 
@@ -13,7 +14,7 @@
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://pwosqcamfrepotaxrpbc.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGc...  # Copiar "Publishable Key" del dashboard Supabase
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon key del dashboard Supabase>
 ```
 
 > **Importante:** La variable se llama `NEXT_PUBLIC_SUPABASE_ANON_KEY`, aunque en el dashboard Supabase aparece como "Publishable Key" o "anon key". Son lo mismo.
@@ -37,7 +38,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGc...  # Copiar "Publishable Key" del dashboa
 | `id` | UUID (PK, default gen_random_uuid()) | ID del gasto |
 | `user_id` | UUID (FK → auth.users) | ID del usuario |
 | `amount` | NUMERIC(10,2) | Monto del gasto |
-| `category` | TEXT | Categoría (food, transport, services, entertainment, other) |
+| `category` | TEXT | food, transport, services, entertainment, other |
 | `description` | TEXT (nullable) | Descripción |
 | `date` | DATE | Fecha del gasto |
 | `created_at` | TIMESTAMPTZ | Fecha de creación |
@@ -49,9 +50,34 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGc...  # Copiar "Publishable Key" del dashboa
 | `id` | UUID (PK) | ID de la alerta |
 | `user_id` | UUID (FK → auth.users) | ID del usuario |
 | `expense_id` | UUID (FK → expenses) | ID del gasto que generó la alerta |
-| `level` | TEXT | Nivel: warning, critical, exceeded |
+| `level` | TEXT | warning, critical, exceeded |
 | `percentage` | NUMERIC(5,2) | Porcentaje del presupuesto usado |
 | `created_at` | TIMESTAMPTZ | Fecha de creación |
+
+### Trigger: `on_auth_user_created`
+Función `public.handle_new_user()` (SECURITY DEFINER) que inserta automáticamente un perfil en `public.profiles` cuando se crea un usuario en `auth.users`. Ver sección "Error 2" para el SQL exacto.
+
+---
+
+## Archivos clave
+
+| Archivo | Descripción |
+|---------|-------------|
+| `src/lib/supabase/client.ts` | Cliente browser (createBrowserClient) |
+| `src/lib/supabase/server.ts` | Cliente server (createServerClient, async) |
+| `src/lib/supabase/auth.ts` | signIn, signUp, signOut, resetPassword, onAuthStateChange |
+| `src/lib/supabase/repositories.ts` | CRUD: getExpenses, addExpense, updateExpense, deleteExpense, getBudget, upsertBudget |
+| `src/lib/store.tsx` | Context global (Auth + Datos). Carga datos en onAuthStateChange |
+| `src/middleware.ts` | Protección de rutas. Redirige a /login sin sesión, a / si ya autenticado |
+| `src/app/login/page.tsx` | 4 modos: login, register, reset, new-password |
+| `src/app/dashboard/layout.tsx` | Sidebar + BottomNav |
+| `src/components/ui/Sidebar.tsx` | Sidebar desktop + botón logout |
+| `src/components/ui/BottomNav.tsx` | Navegación móvil |
+| `src/app/dashboard/settings/page.tsx` | Presupuesto, acerca de, sección logout |
+| `public/sw.js` | Service worker (cache-first) |
+| `public/manifest.json` | PWA manifest |
+| `supabase/schema.sql` | Esquema SQL completo (referencia) |
+| `.env.local` | Credenciales Supabase (no commitear) |
 
 ---
 
@@ -59,35 +85,24 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGc...  # Copiar "Publishable Key" del dashboa
 
 ### Error 1: `login is not a function` en `src/app/login/page.tsx:14`
 
-**Causa:** El store.tsx fue actualizado para usar Supabase (eliminando `login()` mock), pero el `login/page.tsx` seguía llamando `login()` del store. Adicionalmente, caché de Next.js mantenía el código antiguo.
+**Causa:** store.tsx actualizado a Supabase (eliminado `login()` mock) pero login/page.tsx seguía llamándolo. Caché Next.js mantenía código antiguo.
 
 **Solución:**
-1. Actualizar `src/app/login/page.tsx` para usar `signIn()` y `signUp()` directamente desde `@/lib/supabase/auth`
-2. Limpiar caché de Next.js:
-```bash
-Remove-Item -Recurse -Force .next
-npm run dev
-```
+1. Actualizar `src/app/login/page.tsx` → usar `signIn()` y `signUp()` de `@/lib/supabase/auth`
+2. Limpiar caché: `rm -rf .next && npm run dev`
 
 ---
 
 ### Error 2: `Database error saving new user` (HTTP 500 en `/auth/v1/signup`)
 
-**Causa:** El trigger `handle_new_user()` en Supabase fallaba al intentar insertar en la tabla `profiles`. Posibles causas:
-- Schema `public` no especificado en la función
-- Restricción UNIQUE en `profiles.id` causando conflicto
-- Falta de `ON CONFLICT` en el INSERT
+**Causa:** Trigger `handle_new_user()` fallaba al insertar en `profiles`.
 
-**Solución (aplicada, verificar que esté ejecutada):**
-
-Ejecutar este SQL en **Supabase Dashboard → SQL Editor**:
+**Solución** — Ejecutar en **Supabase Dashboard → SQL Editor**:
 
 ```sql
--- 1. Limpiar trigger y función existentes
 DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
 DROP FUNCTION IF EXISTS handle_new_user() CASCADE;
 
--- 2. Crear función corregida
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS TRIGGER
 SET search_path = public
@@ -114,96 +129,91 @@ EXCEPTION
 END;
 $$;
 
--- 3. Recrear trigger
 CREATE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW
   EXECUTE FUNCTION public.handle_new_user();
 ```
 
-**Diferencias clave de la versión corregida:**
-- `SET search_path = public` → evita problemas de búsqueda de tablas
-- `ON CONFLICT (id) DO NOTHING` → no falla si ya existe el perfil
-- `public.handle_new_user()` → especifica schema explícitamente
-- `EXCEPTION WHEN OTHERS` → captura errores inesperados sin bloquear el registro
-
 ---
 
 ### Error 3: `Uncaught SyntaxError: Invalid or unexpected token (at layout.js:728:29)`
 
-**Causa:** Caché corrupto de Next.js (build anterior con código incompatible).
+**Causa:** Caché corrupto de Next.js.
 
-**Solución:**
-```bash
-Remove-Item -Recurse -Force .next
-npm run dev
-```
+**Solución:** `rm -rf .next && npm run dev`
 
 ---
 
 ### Error 4: `relation "pg_log" does not exist` en Supabase
 
-**Causa:** Supabase no expone `pg_log` directamente desde el SQL Editor. Los logs reales están en **Dashboard → Logs → Database**.
+**Causa:** Supabase no expone `pg_log` desde SQL Editor. Logs reales en **Dashboard → Logs → Database**.
 
-**Solución:** Usar solo los queries de diagnóstico compatibles (ver sección "Diagnóstico").
+---
+
+### Bug 5: Middleware no redirige después de logout (2026-10-08)
+
+**Síntoma:** Después de `signOut()` + `router.push('/login')`, el usuario puede navegar a `/dashboard` sin sesión. `curl` sin cookies sí recibe redirect 307 → `/login`.
+
+**Causa probable:** Las cookies de sesión de Supabase persisten en el navegador tras `signOut()` con navegación client-side. El middleware lee cookies del request, y Next.js las mantiene cached tras client navigation.
+
+**Workarounds aplicados:**
+1. `signOut({ scope: 'global' })` — cierra sesión en todos los dispositivos
+2. `window.location.href = '/login'` en lugar de `router.push('/login')` — fuerza recarga completa del navegador
+
+**Estado:** Pendiente de confirmación. Si persiste, crear endpoint `/api/auth/logout` que limpie cookies server-side antes de redirigir.
 
 ---
 
 ## Diagnóstico de Supabase (queries útiles)
 
 ```sql
--- Verificar que el trigger existe
+-- Verificar trigger
 SELECT tgname, tgenabled FROM pg_trigger WHERE tgname = 'on_auth_user_created';
 
--- Verificar que la función existe
+-- Verificar función
 SELECT proname, pronamespace::regnamespace FROM pg_proc WHERE proname = 'handle_new_user';
 
--- Ver restricciones de la tabla profiles
+-- Ver restricciones de profiles
 SELECT conname, contype, pg_get_constraintdef(oid)
-FROM pg_constraint
-WHERE conrelid = 'profiles'::regclass;
+FROM pg_constraint WHERE conrelid = 'profiles'::regclass;
 
--- Insert manual para probar la tabla (verifica que funciona sin trigger)
+-- Insert manual para probar tabla
 INSERT INTO public.profiles (id, display_name, monthly_budget, currency)
 VALUES (gen_random_uuid(), 'test', 1000.00, 'S/');
+
+-- Verificar RLS habilitado
+SELECT tablename, rowsecurity FROM pg_tables
+WHERE schemaname = 'public' AND tablename IN ('profiles', 'expenses', 'budget_alerts');
+
+-- Verificar policies
+SELECT policyname, tablename, cmd FROM pg_policies
+WHERE schemaname = 'public' ORDER BY tablename;
 ```
 
 ---
 
-## Flujo de autenticación actual
+## Pendientes y estado
 
-```
-1. Usuario → /login → ingresa email/password
-2. Frontend → supabase.auth.signUp() o signInWithPassword()
-3. Supabase Auth → crea usuario en auth.users
-4. Trigger on_auth_user_created → inserta fila en profiles
-5. Store (onAuthStateChange) → detecta sesión activa
-6. Store → carga expenses y budget desde Supabase
-7. App → renderiza dashboard con datos reales
-```
+### Completados ✅
 
----
+- [x] Error 500 en signup — Trigger `handle_new_user()` corregido
+- [x] PWA completa — manifest + service worker (cache-first)
+- [x] Iconos PWA — `icon-192.png`, `icon-512.png`
+- [x] Recuperación de contraseña — Flujo completo: reset email → hash recovery → update password
+- [x] Protección de rutas con middleware — `src/middleware.ts` redirige a `/login` sin sesión
+- [x] RLS verificado — 9 policies activas (3 profiles, 4 expenses, 2 budget_alerts)
+- [x] Botón logout en Sidebar y Settings
 
-## Archivos clave de Supabase
+### En progreso 🔄
 
-| Archivo | Descripción |
-|---------|-------------|
-| `src/lib/supabase/client.ts` | Cliente browser de Supabase (createBrowserClient) |
-| `src/lib/supabase/auth.ts` | Funciones: signIn, signUp, signOut, getUser, getSession, onAuthStateChange |
-| `src/lib/supabase/repositories.ts` | CRUD: getExpenses, addExpense, updateExpense, deleteExpense, getBudget, upsertBudget |
-| `src/lib/store.tsx` | Context global, usa Supabase auth + repositorios |
-| `src/app/login/page.tsx` | Login/registro real con Supabase |
-| `supabase/schema.sql` | Esquema original (referencia) |
+- [ ] **Fix middleware post-logout** — Confirmar que `window.location.href` + `scope: global` resuelve el bug de sesión persistente. Si no, crear endpoint `/api/auth/logout` server-side.
 
----
+### Pendientes 📋
 
-## Pendientes confirmados
-
-- [ ] **Resolver error 500 en signup** → Ejecutar SQL del Error 2 (trigger corregido)
-- [ ] **Verificar que datos viajan correctamente** → Login → agregar gasto → revisar tabla `expenses` en Supabase
-- [ ] **Edge Function `check-budget`** → Alertas automáticas al 80/100/101%
-- [ ] **Notificaciones push** → Para alertas de presupuesto
-- [ ] **Recuperación de contraseña** → "¿Olvidaste tu clave?" actualmente no funcional
+- [ ] **Verificar flujo de datos completo** → Login → agregar gasto → revisar tabla `expenses` en Supabase. Confirmar que los datos viajan del frontend al backend correctamente.
+- [ ] **Edge Function `check-budget`** → Alertas automáticas al 80/100/101% del presupuesto. Debe ejecutarse tras cada INSERT en `expenses`. Niveles: warning (80%), critical (100%), exceeded (101%).
+- [ ] **Notificaciones push** → Para alertas de presupuesto. Requiere: suscripción del usuario, permisos del navegador, envío desde Edge Function.
 
 ---
 
@@ -216,13 +226,16 @@ npm run dev
 # Typecheck
 npm run typecheck
 
+# Linter
+npm run lint
+
 # Build producción
 npm run build
 
-# Limpiar caché Next.js (cuando haya errores raros)
-Remove-Item -Recurse -Force .next
+# Limpiar caché Next.js
+rm -rf .next
 
-# Actualizar grafo de conocimiento
+# Actualizar grafo de conocimiento (post-cambio de código)
 graphify update .
 ```
 
@@ -232,7 +245,10 @@ graphify update .
 
 1. Clonar repositorio
 2. `npm install`
-3. Crear `.env.local` con las credenciales de Supabase (ver sección "Configuración de entorno")
-4. Verificar que el trigger `handle_new_user()` esté creado en Supabase (ejecutar SQL del Error 2 si no)
-5. `npm run dev`
-6. Probar registro → debe crear fila en `profiles` automáticamente
+3. Copiar `.env.local.example` → `.env.local` y editar con credenciales de Supabase
+4. Verificar que el trigger `handle_new_user()` esté creado (ejecutar SQL del Error 2 si no)
+5. Verificar RLS activo (ejecutar queries de la sección "Diagnóstico")
+6. `npm run dev`
+7. Probar registro → debe crear fila en `profiles` automáticamente
+8. Probar agregar gasto → verificar tabla `expenses` en Supabase Dashboard
+9. **Bug conocido:** Si el logout no redirige correctamente, revisar Bug 5 arriba

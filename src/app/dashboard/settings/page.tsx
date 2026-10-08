@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAppState } from '@/lib/store'
+import { signOut } from '@/lib/supabase/auth'
 
 export default function SettingsPage() {
   const router = useRouter()
@@ -117,9 +118,24 @@ export default function SettingsPage() {
               </div>
               <div className="flex justify-between">
                 <span>Almacenamiento</span>
-                <span className="text-label-md text-on-surface">IndexedDB (Dexie.js)</span>
+                <span className="text-label-md text-on-surface">Supabase + IndexedDB</span>
               </div>
             </div>
+          </section>
+
+          <section className="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm">
+            <h3 className="text-label-lg text-on-surface font-semibold mb-space-sm flex items-center gap-2">
+              🚪 Sesión
+            </h3>
+            <button
+              onClick={async () => {
+                await signOut()
+                window.location.href = '/login'
+              }}
+              className="w-full py-3 rounded-xl bg-danger/10 text-danger text-label-lg font-semibold hover:bg-danger/20 transition-colors"
+            >
+              Cerrar sesión
+            </button>
           </section>
         </div>
 

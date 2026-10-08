@@ -1,43 +1,55 @@
-# Paltazo Web App - Guía de Desarrollo
+# Paltazo Web App — Guía de Desarrollo
+
+> Aplicación PWA de control de gastos personales. Stack: Next.js 15 + TypeScript + Tailwind CSS + Supabase.
 
 ## Requisitos
 
-- Node.js 20.x o superior
-- npm 10.x o superior
+- Node.js 20.x+
+- npm 10.x+
 
-## Instalación
+## Instalación y arranque
 
 ```bash
 npm install
-```
-
-## Desarrollo
-
-```bash
+cp .env.local.example .env.local   # Editar con credenciales reales
 npm run dev
 ```
 
-Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
+Abre `http://localhost:3000`.
 
-## Rutas disponibles
+## Credenciales
 
-- `/` — Redirect a `/onboarding` o `/dashboard` según sesión
-- `/onboarding` — Pantalla de bienvenida
-- `/login` — Autenticación (mock, sin backend)
-- `/dashboard` — Resumen de gastos (Inicio)
-- `/dashboard/add-expense` — Agregar gasto
-- `/dashboard/expenses` — Historial de gastos (editar/eliminar)
-- `/dashboard/settings` — Ajustes (presupuesto, about, borrar datos)
-- `/budget` — Configurar presupuesto (legacy)
+Archivo `.env.local`:
 
-## Comandos
-
-```bash
-npm run build        # Build de producción
-npm start            # Servidor de producción
-npm run typecheck    # Verificar tipos TypeScript
-npm run lint         # Ejecutar linter
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://pwosqcamfrepotaxrpbc.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon key del dashboard Supabase>
 ```
+
+> La variable se llama `ANON_KEY` aunque en el dashboard aparece como "Publishable Key". Son lo mismo.
+
+## Rutas
+
+| Ruta | Descripción | Protegida |
+|------|-------------|-----------|
+| `/` | Redirect a `/dashboard` o `/onboarding` según sesión | — |
+| `/onboarding` | Pantalla de bienvenida | No |
+| `/login` | Login, registro, recuperación de contraseña | No |
+| `/dashboard` | Inicio (resumen mensual) | Sí |
+| `/dashboard/add-expense` | Formulario de nuevo gasto | Sí |
+| `/dashboard/expenses` | Historial, editar, eliminar | Sí |
+| `/dashboard/settings` | Presupuesto, acerca de, logout | Sí |
+| `/budget` | Legacy (no usar) | — |
+
+## Protección de rutas
+
+`src/middleware.ts` — ejecuta en cada request del servidor.
+
+- **Sin sesión** → redirige a `/login`
+- **Con sesión en `/login`** → redirige a `/`
+- **Públicas:** `/`, `/login`, `/onboarding`
+
+⚠️ **BUG CONOCIDO (2026-10-08):** Después de `signOut()` + `router.push('/login')`, el middleware NO redirige al volver a `/dashboard`. El redirect 307 funciona con curl (sin cookies) pero falla con cliente logueado. Causa probable: cookies de Supabase persisten tras client-side signOut. Workaround en curso: usar `window.location.href = '/login'` + `scope: 'global'` en signOut. Ver BITACORA.md para detalles y estado.
 
 ## Estructura del proyecto
 
@@ -47,77 +59,129 @@ paltazo-web-app/
 │   ├── app/
 │   │   ├── layout.tsx              # Root: metadata + SW + AppProvider
 │   │   ├── page.tsx                # Redirect según sesión
+│   │   ├── globals.css             # Design tokens
+│   │   ├── middleware.ts           # Protección de rutas
 │   │   ├── onboarding/             # Bienvenida
-│   │   ├── login/                  # Auth mock
+│   │   ├── login/page.tsx          # Auth (login/register/reset/new-password)
 │   │   ├── dashboard/
-│   │   │   ├── layout.tsx          # Bottom navigation
-│   │   │   ├── page.tsx            # Resumen (Inicio)
+│   │   │   ├── layout.tsx          # Sidebar + BottomNav
+│   │   │   ├── page.tsx            # Resumen mensual
 │   │   │   ├── add-expense/        # Agregar gasto
-│   │   │   ├── expenses/           # Historial + editar/eliminar
-│   │   │   └── settings/           # Ajustes
-│   │   └── budget/                 # Presupuesto (legacy)
+│   │   │   ├── expenses/           # Historial
+│   │   │   └── settings/           # Ajustes + logout
+│   │   └── budget/                 # Legacy (ignorar)
 │   ├── components/
-│   │   ├── ui/                     # Button, Card, Input, BottomNav
-│   │   └── providers/              # ServiceWorkerRegistrar
+│   │   ├── ui/
+│   │   │   ├── Button.tsx
+│   │   │   ├── BottomNav.tsx
+│   │   │   ├── Sidebar.tsx         # Con botón logout
+│   │   │   ── ...
+│   │   └── providers/
+│   │       └── ServiceWorkerRegistrar.tsx
 │   ├── lib/
-│   │   ├── store.tsx               # Context + sesión + Dexie
+│   │   ├── store.tsx               # Context global (Auth + Datos)
 │   │   ├── categories.ts           # Categorías MVP
-│   │   ├── db.ts                   # Dexie.js (IndexedDB)
-│   │   └── repositories/           # Repository pattern
+│   │   ├── db.ts                   # Dexie.js (IndexedDB) — legacy
+│   │   └── supabase/
+│   │       ├── client.ts           # createBrowserClient
+│   │       ├── server.ts           # createServerClient (async)
+│   │       ├── auth.ts             # signIn, signUp, signOut, resetPassword, onAuthStateChange
+│   │       └── repositories.ts     # CRUD: expenses + budget
 │   └── types/
-│       └── index.ts                # TypeScript interfaces
+│       └── index.ts
 ├── public/
-│   ├── sw.js                       # Service worker
-│   ├── manifest.json               # PWA manifest
-│   └── icons/                      # PWA icons
-├── docs/                           # Especificación y diseño
-├── stitch/                         # Diseño de referencia (4 pantallas)
-└── tailwind.config.ts              # Design tokens
+│   ├── sw.js                       # Service worker (cache-first)
+│   ├── manifest.json               # PWA
+│   └── icons/
+├── supabase/
+│   └── schema.sql                  # Esquema SQL (referencia)
+── docs/                           # Specs y diseño
+── stitch/                         # Diseño de referencia
+├── tailwind.config.ts              # Design tokens
+├── BITACORA.md                     # Log de errores y soluciones
+├── DEVELOPMENT.md                  # Este archivo
+└── AGENTS.md                       # Reglas para agentes AI
 ```
 
 ## Estado de datos
 
-- **BD local**: IndexedDB vía Dexie.js (`src/lib/db.ts`) — legacy, reemplazado por Supabase
-- **BD cloud**: Supabase (PostgreSQL) — producción
-- **Repository pattern**: `src/lib/supabase/repositories.ts` (getExpenses, addExpense, updateExpense, deleteExpense, getBudget, upsertBudget)
-- **API pública**: React Context (`src/lib/store.tsx`)
-- **Autenticación**: Supabase Auth (`src/lib/supabase/auth.ts`)
-- **Sesión**: Supabase session (persistente)
+| Capa | Tecnología | Estado |
+|------|-----------|--------|
+| Auth | Supabase Auth (`@supabase/ssr`) | ✅ Producción |
+| Datos | Supabase PostgreSQL | ✅ Producción |
+| Local | Dexie.js (IndexedDB) | ⚠️ Legacy, no se usa |
+| Repository | `src/lib/supabase/repositories.ts` | ✅ Producción |
+| Context | `src/lib/store.tsx` (React Context) | ✅ Producción |
 
-## Bitácora
+## Autenticación
 
-Ver `BITACORA.md` para:
-- Errores encontrados y soluciones aplicadas
-- Queries SQL para diagnosticar Supabase
-- Instrucciones para continuar en otro equipo
+Flujo completo:
+
+```
+1. Usuario → /login → email + password
+2. signIn/signUp → Supabase Auth
+3. Trigger on_auth_user_created → INSERT en profiles
+4. store.tsx (onAuthStateChange) → detecta sesión
+5. store.tsx → carga expenses + budget desde Supabase
+6. App → renderiza dashboard con datos reales
+```
+
+Recuperación de contraseña:
+
+```
+1. Login → "¿Olvidaste tu clave?" → modo reset
+2. Email → Supabase envía link de recuperación
+3. Link contiene hash con token → useEffect detecta ?type=recovery
+4. Modo new-password → 2 campos (nueva + confirmar)
+5. supabase.auth.updateUser({ password }) → actualiza
+6. Redirect a login
+```
+
+Logout: `signOut({ scope: 'global' })` + `window.location.href = '/login'` (fuerza recarga completa para que el middleware detecte el cambio de sesión).
+
+## Row Level Security (RLS)
+
+Verificado en Supabase. 9 policies activas:
+
+| Tabla | Policies |
+|-------|----------|
+| profiles | SELECT, INSERT, UPDATE (propio) |
+| expenses | SELECT, INSERT, UPDATE, DELETE (propio) |
+| budget_alerts | SELECT, INSERT (propio) |
+
+Todas filtran por `auth.uid() = user_id`.
 
 ## PWA
 
 - Manifest: `public/manifest.json`
 - Service worker: `public/sw.js` (cache-first con network fallback)
+- Iconos: `public/icon-192.png`, `public/icon-512.png`
 - Registro: `src/components/providers/ServiceWorkerRegistrar.tsx`
-
-### Migración a Supabase (próximo paso)
-
-1. Instalar `@supabase/supabase-js`
-2. Crear `src/lib/supabase.ts` con cliente
-3. Implementar `SupabaseExpenseRepository` con la misma interfaz
-4. Cambiar el import en `store.tsx` de `expense-repository` a `supabase-repository`
-5. Configurar `.env.local` con `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 
 ## Design System
 
 Tokens en `tailwind.config.ts` + `src/app/globals.css`:
-- Colores: primary (#42690e), primary-container (#8fbc5a), secondary, tertiary, surface
-- Tipografía: Inter con variantes headline, body, label
-- Espaciado: gutter, space-xs/sm/md/lg/xl
-- Border radius: sm, DEFAULT, md, lg, xl, full
-- Umbrales de alerta: 80% (warning), 100% (critical), 101% (exceeded)
+
+- **Colores:** primary (#42690e), primary-container (#8fbc5a), secondary, tertiary, surface
+- **Tipografía:** Inter (headline, body, label)
+- **Espaciado:** gutter, space-xs/sm/md/lg/xl
+- **Border radius:** sm, DEFAULT, md, lg, xl, full
+- **Alertas:** 80% warning, 100% critical, 101% exceeded
+
+## Comandos
+
+```bash
+npm run dev          # Desarrollo
+npm run build        # Build producción
+npm start            # Servidor producción
+npm run typecheck    # Verificar tipos TypeScript
+npm run lint         # Linter
+graphify update .    # Actualizar grafo de conocimiento (post-cambio de código)
+```
 
 ## Pendientes
 
-- [ ] **Resolver error 500 en signup** → Ver BITACORA.md (Error 2, trigger corregido)
-- [ ] **Verificar que datos viajan correctamente** → Login → agregar gasto → revisar tabla `expenses`
-- [ ] Edge Function `check-budget` con alertas 80/100/101%
-- [ ] Notificaciones push
-- [ ] Recuperación de contraseña funcional
+- [ ] **Verificar flujo de datos** → Login → agregar gasto → verificar tabla `expenses` en Supabase
+- [ ] **Edge Function `check-budget`** → Alertas automáticas al 80/100/101% del presupuesto
+- [ ] **Notificaciones push** → Para alertas de presupuesto
+- [ ] **Fix middleware post-logout** → Confirmar que `window.location.href = '/login'` + `scope: 'global'` resuelve el bug de sesión persistente. Si no, crear endpoint `/api/auth/logout` server-side.

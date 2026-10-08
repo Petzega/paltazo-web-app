@@ -22,6 +22,7 @@
   "20": "Paltazo Web App - Guía de Desarrollo",
   "21": "next-env.d.ts",
   "22": "dashboard/layout.tsx",
-  "23": "devDependencies",
-  "24": "Paltazo Design System"
+  "23": "@supabase/ssr",
+  "24": "Paltazo Design System",
+  "25": "scripts"
 }

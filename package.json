@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:supabase": "npx tsx test-supabase.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
