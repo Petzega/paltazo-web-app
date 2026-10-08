@@ -54,9 +54,9 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1791400505.092303,
-    "seen": 1791400583.1788754,
-    "ast_hash": "0e7cee7083db96c48efde002f5e6b0b2",
+    "mtime": 1791413234.0208914,
+    "seen": 1791414146.793442,
+    "ast_hash": "4f03765b84adcbaa89dadb2321ae1a8b",
     "semantic_hash": ""
   },
   "postcss.config.mjs": {
@@ -96,9 +96,9 @@
     "semantic_hash": ""
   },
   "src/app/login/page.tsx": {
-    "mtime": 1791405883.7965102,
-    "seen": 1791405951.8905342,
-    "ast_hash": "c03f77fd6b77f1cd8ed5bca86e8ce687",
+    "mtime": 1791414006.1308699,
+    "seen": 1791414146.7945871,
+    "ast_hash": "90c9a691f3a236125770cb74f9061ce9",
     "semantic_hash": ""
   },
   "src/app/onboarding/page.tsx": {
@@ -132,9 +132,9 @@
     "semantic_hash": ""
   },
   "DEVELOPMENT.md": {
-    "mtime": 1791406011.3173754,
-    "seen": 1791408329.87984,
-    "ast_hash": "1931d64847f71bb870c471e9c584882e",
+    "mtime": 1791408363.4095805,
+    "seen": 1791414146.7963526,
+    "ast_hash": "392315fdf91c86254e4929f86dac001d",
     "semantic_hash": ""
   },
   "src/app/budget/page.tsx": {
@@ -144,9 +144,9 @@
     "semantic_hash": ""
   },
   "src/lib/store.tsx": {
-    "mtime": 1791405871.713545,
-    "seen": 1791405951.8905454,
-    "ast_hash": "9ec0f68fdf6ad67bfb504323a561b35f",
+    "mtime": 1791413956.9113693,
+    "seen": 1791414146.7958608,
+    "ast_hash": "a58ee95159556dcfd12116a8c3e012fd",
     "semantic_hash": ""
   },
   "public/manifest.json": {
@@ -186,9 +186,9 @@
     "semantic_hash": ""
   },
   "src/lib/repositories/expense-repository.ts": {
-    "mtime": 1791405604.9308763,
-    "seen": 1791405951.8905444,
-    "ast_hash": "542b2d2f6f06e7a75a536efb5aafe43d",
+    "mtime": 1791414032.980563,
+    "seen": 1791414146.7958589,
+    "ast_hash": "393d5b5bb87638124e01f9937cff0697",
     "semantic_hash": ""
   },
   "src/app/budget/layout.tsx": {
@@ -270,9 +270,9 @@
     "semantic_hash": ""
   },
   "src/app/dashboard/settings/page.tsx": {
-    "mtime": 1791408295.9323215,
-    "seen": 1791408329.879812,
-    "ast_hash": "d79b4b0c7ca1edf503251c6160bef0ff",
+    "mtime": 1791414118.7046194,
+    "seen": 1791414146.794453,
+    "ast_hash": "7a34cb8503f127342128406135e14e75",
     "semantic_hash": ""
   },
   "src/components/providers/ServiceWorkerRegistrar.tsx": {
@@ -291,6 +291,24 @@
     "mtime": 1791407976.3834164,
     "seen": 1791408329.8798277,
     "ast_hash": "ccf751b9b3a3a76238b1b543c9798bdd",
+    "semantic_hash": ""
+  },
+  "src/lib/supabase/auth.ts": {
+    "mtime": 1791413799.0544434,
+    "seen": 1791414146.7958624,
+    "ast_hash": "b4c243be4a453ef126c2be40ec99076f",
+    "semantic_hash": ""
+  },
+  "src/lib/supabase/client.ts": {
+    "mtime": 1791413209.367607,
+    "seen": 1791414146.7958639,
+    "ast_hash": "4cb5739c1e33353d8f9d66c1737df2d1",
+    "semantic_hash": ""
+  },
+  "src/lib/supabase/repositories.ts": {
+    "mtime": 1791414069.4722435,
+    "seen": 1791414146.795865,
+    "ast_hash": "d6c295c0d2c25e2fa86a40357f8a4d46",
     "semantic_hash": ""
   }
 }

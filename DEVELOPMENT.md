@@ -77,11 +77,19 @@ paltazo-web-app/
 
 ## Estado de datos
 
-- **BD local**: IndexedDB vía Dexie.js (`src/lib/db.ts`)
-- **Repository pattern**: `src/lib/repositories/expense-repository.ts` (getAll, add, update, delete)
+- **BD local**: IndexedDB vía Dexie.js (`src/lib/db.ts`) — legacy, reemplazado por Supabase
+- **BD cloud**: Supabase (PostgreSQL) — producción
+- **Repository pattern**: `src/lib/supabase/repositories.ts` (getExpenses, addExpense, updateExpense, deleteExpense, getBudget, upsertBudget)
 - **API pública**: React Context (`src/lib/store.tsx`)
-- **Usuario mock**: `userId: 'default'`
-- **Sesión**: `localStorage` (`paltazo_logged_in`)
+- **Autenticación**: Supabase Auth (`src/lib/supabase/auth.ts`)
+- **Sesión**: Supabase session (persistente)
+
+## Bitácora
+
+Ver `BITACORA.md` para:
+- Errores encontrados y soluciones aplicadas
+- Queries SQL para diagnosticar Supabase
+- Instrucciones para continuar en otro equipo
 
 ## PWA
 
@@ -108,6 +116,8 @@ Tokens en `tailwind.config.ts` + `src/app/globals.css`:
 
 ## Pendientes
 
-- [ ] Migrar Supabase + autenticación real
+- [ ] **Resolver error 500 en signup** → Ver BITACORA.md (Error 2, trigger corregido)
+- [ ] **Verificar que datos viajan correctamente** → Login → agregar gasto → revisar tabla `expenses`
 - [ ] Edge Function `check-budget` con alertas 80/100/101%
 - [ ] Notificaciones push
+- [ ] Recuperación de contraseña funcional

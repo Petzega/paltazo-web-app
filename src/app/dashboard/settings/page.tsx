@@ -125,10 +125,9 @@ export default function SettingsPage() {
 
         <div className="mt-space-lg">
           <button
-            onClick={() => {
+            onClick={async () => {
               if (confirm('¿Borrar todos los datos? Esta acción no se puede deshacer.')) {
-                logout()
-                localStorage.clear()
+                await logout()
                 window.location.href = '/onboarding'
               }
             }}

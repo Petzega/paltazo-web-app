@@ -3,20 +3,42 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
-import { useAppState } from '@/lib/store'
+import { signIn, signUp } from '@/lib/supabase/auth'
 
 export default function LoginPage() {
   const router = useRouter()
-  const { login } = useAppState()
   const [mode, setMode] = useState<'login' | 'register'>('login')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [name, setName] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    login()
-    router.push('/dashboard')
+    setError('')
+    setLoading(true)
+
+    try {
+      if (mode === 'login') {
+        const { error: authError } = await signIn(email, password)
+        if (authError) throw authError
+      } else {
+        const { error: authError } = await signUp(email, password, name)
+        if (authError) throw authError
+      }
+      router.push('/dashboard')
+    } catch (err: any) {
+      setError(err.message || 'Error de autenticación')
+    } finally {
+      setLoading(false)
+    }
   }
 
-  const toggleMode = () => setMode(mode === 'login' ? 'register' : 'login')
+  const toggleMode = () => {
+    setMode(mode === 'login' ? 'register' : 'login')
+    setError('')
+  }
 
   return (
     <main className="min-h-screen flex flex-col bg-surface max-w-xl mx-auto px-gutter">
@@ -59,6 +81,11 @@ export default function LoginPage() {
       </div>
 
       <div className="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+        {error && (
+          <div className="p-space-sm rounded-xl bg-danger/10 text-danger text-label-md">
+            {error}
+          </div>
+        )}
         <form onSubmit={handleSubmit} className="flex flex-col gap-space-md">
           {mode === 'register' && (
             <div className="flex flex-col gap-1.5">
@@ -72,6 +99,8 @@ export default function LoginPage() {
                 <input
                   id="input-name"
                   placeholder="Ej. Lucas Silva"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className="w-full h-12 pl-11 pr-4 bg-surface-container rounded-xl text-body-md text-on-surface placeholder:text-text-secondary outline-none focus:bg-surface-container-high transition-colors"
                   type="text"
                 />
@@ -91,6 +120,8 @@ export default function LoginPage() {
                 id="input-email"
                 placeholder="ejemplo@correo.pe"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full h-12 pl-11 pr-4 bg-surface-container rounded-xl text-body-md text-on-surface placeholder:text-text-secondary outline-none focus:bg-surface-container-high transition-colors"
                 type="email"
               />
@@ -116,6 +147,8 @@ export default function LoginPage() {
                 id="input-password"
                 placeholder="Mínimo 6 caracteres"
                 required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full h-12 pl-11 pr-4 bg-surface-container rounded-xl text-body-md text-on-surface placeholder:text-text-secondary outline-none focus:bg-surface-container-high transition-colors"
                 type="password"
               />
@@ -125,9 +158,10 @@ export default function LoginPage() {
           <Button
             type="submit"
             fullWidth
-            className="h-12 mt-space-xs rounded-full bg-primary-container text-on-primary text-label-lg shadow-sm flex items-center justify-center gap-space-xs hover:opacity-95 active:scale-[0.99] transition-all"
+            disabled={loading}
+            className="h-12 mt-space-xs rounded-full bg-primary-container text-on-primary text-label-lg shadow-sm flex items-center justify-center gap-space-xs hover:opacity-95 active:scale-[0.99] transition-all disabled:opacity-50"
           >
-            {mode === 'login' ? 'Ingresar' : 'Crear cuenta'} →
+            {loading ? '⏳' : (mode === 'login' ? 'Ingresar' : 'Crear cuenta')} →
           </Button>
         </form>
 

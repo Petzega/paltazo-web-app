@@ -1,28 +1,27 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
-import { expenseRepo, budgetRepo } from '@/lib/repositories/expense-repository'
+import * as db from '@/lib/supabase/repositories'
+import { onAuthStateChange, signOut } from '@/lib/supabase/auth'
 import type { Expense, Budget } from '@/types'
 
 interface AppState {
   expenses: Expense[]
   budget: Budget
   isLoggedIn: boolean
+  userId: string | null
   addExpense: (expense: Omit<Expense, 'id' | 'createdAt'>) => Promise<void>
   updateExpense: (id: string, changes: Partial<Expense>) => Promise<void>
   deleteExpense: (id: string) => Promise<void>
   setBudget: (monthlyLimit: number) => Promise<void>
-  login: () => void
-  logout: () => void
+  logout: () => Promise<void>
   isLoading: boolean
 }
 
 const AppContext = createContext<AppState | undefined>(undefined)
 
-const DEFAULT_USER_ID = 'default'
-
 const DEFAULT_BUDGET: Budget = {
-  userId: DEFAULT_USER_ID,
+  userId: '',
   monthlyLimit: 500,
   currency: 'S/',
   updatedAt: new Date().toISOString(),
@@ -31,71 +30,74 @@ const DEFAULT_BUDGET: Budget = {
 export function AppProvider({ children }: { children: ReactNode }) {
   const [expenses, setExpenses] = useState<Expense[]>([])
   const [budget, setBudgetState] = useState<Budget>(DEFAULT_BUDGET)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [userId, setUserId] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    setIsLoggedIn(localStorage.getItem('paltazo_logged_in') === 'true')
-
-    const load = async () => {
-      try {
-        const [expensesData, budgetData] = await Promise.all([
-          expenseRepo.getAll(DEFAULT_USER_ID),
-          budgetRepo.get(DEFAULT_USER_ID),
-        ])
-
-        setExpenses(expensesData)
-        if (budgetData) setBudgetState(budgetData)
-      } catch (err) {
-        console.error('Failed to load from IndexedDB', err)
-      } finally {
+    const { data: { subscription } } = onAuthStateChange(async (id) => {
+      setUserId(id)
+      if (id) {
+        try {
+          const [expensesData, budgetData] = await Promise.all([
+            db.getExpenses(id),
+            db.getBudget(id),
+          ])
+          setExpenses(expensesData)
+          if (budgetData) setBudgetState(budgetData)
+        } catch (err) {
+          console.error('Failed to load from Supabase', err)
+        } finally {
+          setIsLoading(false)
+        }
+      } else {
+        setExpenses([])
+        setBudgetState(DEFAULT_BUDGET)
         setIsLoading(false)
       }
-    }
-
-    load()
+    })
+    return () => subscription.unsubscribe()
   }, [])
 
   const addExpense = async (expense: Omit<Expense, 'id' | 'createdAt'>) => {
-    const newExpense = await expenseRepo.add(expense)
+    if (!userId) return
+    const newExpense = await db.addExpense({ ...expense, userId })
     setExpenses((prev) => [newExpense, ...prev])
   }
 
   const updateExpense = async (id: string, changes: Partial<Expense>) => {
-    await expenseRepo.update(id, changes)
-    const allExpenses = await expenseRepo.getAll(DEFAULT_USER_ID)
+    if (!userId) return
+    await db.updateExpense(id, changes)
+    const allExpenses = await db.getExpenses(userId)
     setExpenses(allExpenses)
   }
 
   const deleteExpense = async (id: string) => {
-    await expenseRepo.delete(id)
+    await db.deleteExpense(id)
     setExpenses((prev) => prev.filter((e) => e.id !== id))
   }
 
   const setBudget = async (monthlyLimit: number) => {
+    if (!userId) return
     const updated: Budget = {
       ...budget,
+      userId,
       monthlyLimit,
       updatedAt: new Date().toISOString(),
     }
-    await budgetRepo.upsert(updated)
+    await db.upsertBudget(updated)
     setBudgetState(updated)
   }
 
-  const login = () => {
-    localStorage.setItem('paltazo_logged_in', 'true')
-    setIsLoggedIn(true)
-  }
-
-  const logout = () => {
-    localStorage.removeItem('paltazo_logged_in')
-    setIsLoggedIn(false)
+  const logout = async () => {
+    await signOut()
+    setUserId(null)
+    setExpenses([])
   }
 
   if (isLoading) return null
 
   return (
-    <AppContext.Provider value={{ expenses, budget, isLoggedIn, addExpense, updateExpense, deleteExpense, setBudget, login, logout, isLoading }}>
+    <AppContext.Provider value={{ expenses, budget, isLoggedIn: !!userId, userId, addExpense, updateExpense, deleteExpense, setBudget, logout, isLoading }}>
       {children}
     </AppContext.Provider>
   )
