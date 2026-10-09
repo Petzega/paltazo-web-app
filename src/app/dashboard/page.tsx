@@ -84,10 +84,36 @@ export default function DashboardPage() {
 
   const todayStr = now.toISOString().split('T')[0]
   const [selectedDate, setSelectedDate] = useState(todayStr)
+  const [selectedBarDate, setSelectedBarDate] = useState(todayStr)
   const [calendarMonth, setCalendarMonth] = useState(now.getMonth())
   const [calendarYear, setCalendarYear] = useState(now.getFullYear())
 
   const daysWithExpenses = new Set(expenses.map((e) => e.date))
+
+  const last7Days = Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(now)
+    d.setDate(d.getDate() - (6 - i))
+    const ds = d.toISOString().split('T')[0]
+    const dayExpenses = expenses.filter((e) => e.date === ds)
+    const dayNames = ['D', 'L', 'M', 'X', 'J', 'V', 'S']
+    const dayName = dayNames[d.getDay()]
+    return {
+      date: ds,
+      day: d.getDate(),
+      dayName,
+      count: dayExpenses.length
+    }
+  })
+
+  const maxBarCount = Math.max(...last7Days.map(d => d.count), 1)
+
+  const selectedBarDateExpenses = expenses
+    .filter((exp) => exp.date === selectedBarDate)
+    .sort((a, b) => {
+      const timeA = a.createdAt ? new Date(a.createdAt).getTime() : 0
+      const timeB = b.createdAt ? new Date(b.createdAt).getTime() : 0
+      return timeB - timeA
+    })
 
   const selectedDayExpenses = expenses
     .filter((exp) => exp.date === selectedDate)
@@ -393,12 +419,69 @@ export default function DashboardPage() {
           </div>
         </div>
 
+        <div className="mb-space-lg p-space-lg rounded-2xl bg-surface-container-low shadow-sm">
+          <h2 className="text-label-lg font-semibold text-on-surface mb-4">Actividad de los últimos 7 días</h2>
+          <div className="flex items-end justify-between gap-2 h-32">
+            {last7Days.map((day) => {
+              const isSelected = day.date === selectedBarDate
+              const isToday = day.date === todayStr
+              const height = day.count > 0 ? (day.count / maxBarCount) * 100 : 8
+              
+              return (
+                <button
+                  key={day.date}
+                  onClick={() => setSelectedBarDate(day.date)}
+                  className="flex-1 flex flex-col items-center gap-2 group"
+                >
+                  <div className="w-full flex flex-col items-center justify-end h-24">
+                    {day.count > 0 && (
+                      <span className="text-label-sm text-on-surface font-semibold mb-1">{day.count}</span>
+                    )}
+                    <div
+                      className={`w-full max-w-[40px] rounded-t-lg transition-all duration-200 ${
+                        isSelected
+                          ? 'bg-primary'
+                          : isToday
+                          ? 'bg-secondary'
+                          : day.count > 0
+                          ? 'bg-surface-container-highest group-hover:bg-secondary'
+                          : 'bg-surface-container-high'
+                      }`}
+                      style={{ height: `${height}%` }}
+                    />
+                  </div>
+                  <div className="flex flex-col items-center gap-0.5">
+                    <span className={`text-label-sm font-medium ${
+                      isSelected ? 'text-primary' : isToday ? 'text-secondary' : 'text-on-surface-variant'
+                    }`}>
+                      {day.dayName}
+                    </span>
+                    <span className={`text-label-xs ${
+                      isSelected ? 'text-primary' : 'text-text-secondary'
+                    }`}>
+                      {day.day}
+                    </span>
+                  </div>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
         <div className="flex flex-col">
           <div className="flex items-center justify-between mb-space-sm">
             <div className="flex items-center gap-2">
-              <h2 className="text-headline-sm text-on-surface font-bold">Gastos recientes</h2>
+              <h2 className="text-headline-sm text-on-surface font-bold">
+                Gastos registrados para el día{' '}
+                {new Date(selectedBarDate + 'T12:00:00').toLocaleDateString('es-PE', { 
+                  weekday: 'long', 
+                  day: 'numeric', 
+                  month: 'numeric', 
+                  year: 'numeric' 
+                })}
+              </h2>
               <span className="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm">
-                {monthlyExpenses.length}
+                {selectedBarDateExpenses.length}
               </span>
             </div>
             <button
@@ -409,17 +492,19 @@ export default function DashboardPage() {
             </button>
           </div>
 
-          {monthlyExpenses.length === 0 ? (
-            <p className="text-body-md text-on-surface-variant text-center py-space-xl">
-              No hay gastos registrados este mes
-            </p>
+          {selectedBarDateExpenses.length === 0 ? (
+            <div className="text-center py-space-xl">
+              <span className="text-5xl mb-3 block opacity-50">📭</span>
+              <p className="text-body-md text-on-surface-variant">
+                No hay gastos registrados para este día
+              </p>
+            </div>
           ) : (
             <>
               <div className="hidden md:block overflow-hidden rounded-2xl bg-surface-container-lowest shadow-sm">
                 <table className="w-full">
                   <thead>
                     <tr className="border-b border-surface-container-high">
-                      <th className="text-left text-label-sm text-text-secondary font-semibold px-4 py-3">Fecha</th>
                       <th className="text-left text-label-sm text-text-secondary font-semibold px-4 py-3">Categoría</th>
                       <th className="text-left text-label-sm text-text-secondary font-semibold px-4 py-3">Descripción</th>
                       <th className="text-right text-label-sm text-text-secondary font-semibold px-4 py-3">Monto</th>
@@ -427,13 +512,10 @@ export default function DashboardPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {monthlyExpenses.slice(0, 8).map((expense) => {
+                    {selectedBarDateExpenses.map((expense) => {
                       const catInfo = getCategoryInfo(expense.category)
                       return (
                         <tr key={expense.id} className="border-b border-surface-container-last hover:bg-surface-container-low transition-colors last:border-0">
-                          <td className="px-4 py-3 text-body-md text-on-surface">
-                            {new Date(expense.date).toLocaleDateString('es-PE')}
-                          </td>
                           <td className="px-4 py-3">
                             <span className="inline-flex items-center gap-1.5 text-label-md text-on-surface">
                               <span className="text-[16px]">{catInfo.icon}</span>
@@ -462,7 +544,7 @@ export default function DashboardPage() {
               </div>
 
               <div className="md:hidden space-y-space-xs">
-                {monthlyExpenses.map((expense) => {
+                {selectedBarDateExpenses.map((expense) => {
                   const catInfo = getCategoryInfo(expense.category)
                   return (
                     <div
@@ -486,9 +568,6 @@ export default function DashboardPage() {
                           <div className="flex items-center gap-2 mt-0.5">
                             <span className="text-label-sm px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant">
                               {catInfo.label}
-                            </span>
-                            <span className="text-body-sm text-text-secondary">
-                              {new Date(expense.date).toLocaleDateString('es-PE')}
                             </span>
                           </div>
                         </div>

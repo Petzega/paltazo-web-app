@@ -8,7 +8,12 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test:supabase": "npx tsx test-supabase.ts"
+    "test:supabase": "npx tsx test-supabase.ts",
+    "supabase:start": "supabase start",
+    "supabase:stop": "supabase stop",
+    "supabase:reset": "supabase db reset",
+    "supabase:push": "supabase db push",
+    "supabase:studio": "supabase studio"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

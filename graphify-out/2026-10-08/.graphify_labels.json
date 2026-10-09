@@ -1,7 +1,7 @@
 {
-  "0": "Supabase (MVP Backend)",
+  "0": "Paltazo Application",
   "1": "app/layout.tsx",
-  "2": "Paltazo Application",
+  "2": "dashboard/page.tsx",
   "3": "Paltazo Design Tokens",
   "4": "Graphify Knowledge Graph",
   "5": "opencode.json",
@@ -21,7 +21,6 @@
   "19": "store.tsx",
   "20": "Paltazo Web App — Guía de Desarrollo",
   "21": "next-env.d.ts",
-  "22": "signOut",
   "23": "@supabase/ssr",
   "24": "Paltazo Design System",
   "25": "Supabase Local — Guía de Desarrollo"

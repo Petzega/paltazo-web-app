@@ -1,7 +1,7 @@
 # Graph Report - paltazo-web-app  (2026-10-08)
 
 ## Corpus Check
-- 51 files · ~25,755 words
+- 51 files · ~26,018 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 6 file(s) not represented in the graph (top: .example 2, (none) 2, .css 1)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c9eddbb3`
+- Built from commit: `0b9150ee`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -50,7 +50,7 @@
 7. `Expense` - 11 edges
 8. `Paltazo — Bitácora de Avance` - 11 edges
 9. `Budget` - 9 edges
-10. `Supabase (MVP Backend)` - 8 edges
+10. `Paltazo Application` - 8 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Bug 5: Middleware no redirige después de logout (2026-10-08)` --references--> `signOut()`  [INFERRED]

@@ -4301,7 +4301,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L315",
+      "source_location": "L341",
       "weight": 1.0
     },
     {
@@ -4313,7 +4313,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L318",
+      "source_location": "L344",
       "weight": 1.0
     },
     {
@@ -4325,7 +4325,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L320",
+      "source_location": "L346",
       "weight": 1.0
     },
     {
@@ -4349,7 +4349,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L367",
+      "source_location": "L393",
       "weight": 1.0
     },
     {
@@ -9660,5 +9660,5 @@
       "source_file": "docs/stack_tecnologico_paltazo.md"
     }
   ],
-  "built_at_commit": "c9eddbb39edd9ad2d05df7214451c749ae08eaa9"
+  "built_at_commit": "0b9150ee9fee59d4d62bd3f71f3e187309a0c29d"
 }
