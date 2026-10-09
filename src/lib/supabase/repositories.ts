@@ -8,6 +8,7 @@ interface SupabaseExpenseRow {
   id: string
   user_id: string
   amount: string | number
+  currency: string
   category: string
   description: string | null
   date: string
@@ -34,6 +35,7 @@ export async function getExpenses(userId: string): Promise<Expense[]> {
     id: row.id,
     userId: row.user_id,
     amount: Number(row.amount),
+    currency: row.currency,
     category: row.category as Expense['category'],
     description: row.description ?? undefined,
     date: row.date,
@@ -50,6 +52,7 @@ export async function addExpense(expense: Omit<Expense, 'id' | 'createdAt' | 'sy
       id: generateId(),
       user_id: expense.userId,
       amount: expense.amount,
+      currency: expense.currency,
       category: expense.category,
       description: expense.description ?? null,
       date: expense.date,
@@ -64,6 +67,7 @@ export async function addExpense(expense: Omit<Expense, 'id' | 'createdAt' | 'sy
     id: data.id,
     userId: data.user_id,
     amount: Number(data.amount),
+    currency: data.currency,
     category: data.category,
     description: data.description ?? undefined,
     date: data.date,
@@ -75,6 +79,7 @@ export async function addExpense(expense: Omit<Expense, 'id' | 'createdAt' | 'sy
 export async function updateExpense(id: string, changes: Partial<Expense>) {
   const payload: Record<string, unknown> = { synced_at: new Date().toISOString() }
   if (changes.amount !== undefined) payload.amount = changes.amount
+  if (changes.currency !== undefined) payload.currency = changes.currency
   if (changes.category !== undefined) payload.category = changes.category
   if (changes.description !== undefined) payload.description = changes.description
   if (changes.date !== undefined) payload.date = changes.date

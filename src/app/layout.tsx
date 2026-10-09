@@ -9,7 +9,6 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Paltazo - Control de Gastos',
   description: 'Detecta el paltazo antes de que te detecte a ti',
-  manifest: '/manifest.json',
   icons: {
     icon: [
       { url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },

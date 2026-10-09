@@ -6,18 +6,45 @@
 
 - Node.js 20.x+
 - npm 10.x+
+- **Supabase Local:** Ver `supabase/LOCAL_SETUP.md` (Docker + Supabase CLI)
 
 ## Instalación y arranque
 
+### 1. Instalación básica
+
 ```bash
 npm install
-cp .env.local.example .env.local   # Editar con credenciales reales
+cp .env.local.example .env.local   # Editar con credenciales reales (cloud)
+```
+
+### 2. Desarrollo con Supabase Local
+
+```bash
+# Ver requisitos y comandos completos:
+# → supabase/LOCAL_SETUP.md
+
+# Iniciar Supabase local
+supabase start
+
+# Usar variables de entorno local
+cp .env.development.local.example .env.development.local
 npm run dev
 ```
 
 Abre `http://localhost:3000`.
 
 ## Credenciales
+
+### Local (Supabase en Docker)
+
+Archivo `.env.development.local`:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_<TU_ANON_KEY_LOCAL>
+```
+
+### Producción (Supabase Cloud)
 
 Archivo `.env.local`:
 
@@ -93,8 +120,13 @@ paltazo-web-app/
 │   ├── sw.js                       # Service worker (cache-first)
 │   ├── manifest.json               # PWA
 │   └── icons/
-├── supabase/
-│   └── schema.sql                  # Esquema SQL (referencia)
+── supabase/
+│   ├── config.toml                   # Configuración de servicios locales
+│   ├── LOCAL_SETUP.md                # **Guía completa de Supabase Local**
+│   ├── migrations/                   # Migraciones SQL versionadas
+│   │   ├── 20261008182458_create_schema.sql
+│   │   ── 20261008190000_add_currency_to_expenses.sql
+│   └── schema.sql                    # Esquema SQL (referencia)
 ── docs/                           # Specs y diseño
 ── stitch/                         # Diseño de referencia
 ├── tailwind.config.ts              # Design tokens
@@ -170,6 +202,7 @@ Tokens en `tailwind.config.ts` + `src/app/globals.css`:
 
 ## Comandos
 
+### Desarrollo
 ```bash
 npm run dev          # Desarrollo
 npm run build        # Build producción
@@ -178,6 +211,17 @@ npm run typecheck    # Verificar tipos TypeScript
 npm run lint         # Linter
 graphify update .    # Actualizar grafo de conocimiento (post-cambio de código)
 ```
+
+### Supabase Local
+```bash
+supabase start                  # Iniciar servicios (Docker)
+supabase stop                   # Detener (datos persisten)
+supabase db reset               # Reset completo
+supabase migration up           # Aplicar migraciones pendientes
+supabase db psql                # Abrir psql local
+```
+
+Ver `supabase/LOCAL_SETUP.md` para guía completa.
 
 ## Pendientes
 

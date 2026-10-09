@@ -17,6 +17,10 @@ out/
 .env.test.local
 .env.production.local
 
+# Supabase
+supabase/.temp/
+supabase/.branches/
+
 # Build
 dist/
 build/

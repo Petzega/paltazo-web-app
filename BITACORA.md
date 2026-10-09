@@ -6,11 +6,27 @@
 **PWA:** ✅ Completada
 **Auth:** ✅ Supabase Auth con middleware de protección
 **RLS:** ✅ 9 policies verificadas
-**Estado general:** MVP funcional con autenticación y RLS. Pendiente: verificar flujo de datos completo, Edge Function de alertas, notificaciones push, y fix del bug de logout.
+**Supabase Local:** ✅ Docker + CLI configurado (Windows/Linux)
+**Estado general:** MVP funcional con autenticación, RLS y desarrollo local. Pendiente: verificar flujo de datos completo, Edge Function de alertas, notificaciones push, y fix del bug de logout.
 
 ---
 
-## Configuración de entorno (.env.local)
+## Configuración de entorno
+
+### Local (Supabase en Docker)
+
+Archivo `.env.development.local`:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_<TU_ANON_KEY_LOCAL>
+```
+
+**Guía completa:** Ver `supabase/LOCAL_SETUP.md`
+
+### Cloud (Supabase producción)
+
+Archivo `.env.local`:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://pwosqcamfrepotaxrpbc.supabase.co
@@ -38,6 +54,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon key del dashboard Supabase>
 | `id` | UUID (PK, default gen_random_uuid()) | ID del gasto |
 | `user_id` | UUID (FK → auth.users) | ID del usuario |
 | `amount` | NUMERIC(10,2) | Monto del gasto |
+| `currency` | TEXT | Moneda (S/, $) |
 | `category` | TEXT | food, transport, services, entertainment, other |
 | `description` | TEXT (nullable) | Descripción |
 | `date` | DATE | Fecha del gasto |
@@ -77,7 +94,9 @@ Función `public.handle_new_user()` (SECURITY DEFINER) que inserta automáticame
 | `public/sw.js` | Service worker (cache-first) |
 | `public/manifest.json` | PWA manifest |
 | `supabase/schema.sql` | Esquema SQL completo (referencia) |
-| `.env.local` | Credenciales Supabase (no commitear) |
+| `supabase/LOCAL_SETUP.md` | **Guía completa de Supabase Local (Docker)** |
+| `.env.local` | Credenciales Supabase cloud (no commitear) |
+| `.env.development.local` | Credenciales Supabase local (no commitear) |
 
 ---
 
@@ -165,6 +184,29 @@ CREATE TRIGGER on_auth_user_created
 
 ---
 
+### Bug 6: Vector (analytics) no arranca en Windows (2026-10-08)
+
+**Síntoma:** Contenedor `supabase_vector_paltazo-web-app` en loop de restart (status: `Restarting (0)`).
+
+**Causa:** Vector intenta conectarse al socket de Docker Desktop en `192.168.65.254:2375` pero falla con `Connection refused`. Esto es un problema conocido de Docker Desktop en Windows.
+
+**Impacto:** No afecta desarrollo. Solo desactiva la sección de Analytics del Studio local.
+
+**Solución:** Desactivar analytics en `supabase/config.toml`:
+
+```toml
+[analytics]
+enabled = false
+```
+
+Luego:
+```bash
+supabase stop
+supabase start
+```
+
+---
+
 ## Diagnóstico de Supabase (queries útiles)
 
 ```sql
@@ -204,6 +246,7 @@ WHERE schemaname = 'public' ORDER BY tablename;
 - [x] Protección de rutas con middleware — `src/middleware.ts` redirige a `/login` sin sesión
 - [x] RLS verificado — 9 policies activas (3 profiles, 4 expenses, 2 budget_alerts)
 - [x] Botón logout en Sidebar y Settings
+- [x] **Supabase Local** — Configuración completa para desarrollo con Docker (Windows/Linux)
 
 ### En progreso 🔄
 
@@ -217,26 +260,54 @@ WHERE schemaname = 'public' ORDER BY tablename;
 
 ---
 
+## Migraciones de Base de Datos
+
+### 20261008182458_create_schema.sql
+
+Creación inicial de todas las tablas, RLS y triggers:
+- `profiles` (con trigger automático desde `auth.users`)
+- `expenses`
+- `budget_alerts`
+- 9 policies de RLS
+- Trigger `on_auth_user_created`
+
+### 20261008190000_add_currency_to_expenses.sql
+
+Agrega columna `currency` a la tabla `expenses`:
+
+```sql
+ALTER TABLE expenses ADD COLUMN IF NOT EXISTS currency TEXT NOT NULL DEFAULT 'S/';
+```
+
+---
+
 ## Comandos útiles
 
+### Desarrollo
 ```bash
-# Desarrollo
 npm run dev
-
-# Typecheck
 npm run typecheck
-
-# Linter
 npm run lint
-
-# Build producción
 npm run build
+rm -rf .next                    # Limpiar caché Next.js
+graphify update .               # Actualizar grafo de conocimiento (post-cambio de código)
+```
 
-# Limpiar caché Next.js
-rm -rf .next
+### Supabase Local
+```bash
+supabase start                  # Iniciar todos los servicios
+supabase stop                   # Detener (datos persisten)
+supabase db reset               # Reset completo (borra datos locales)
+supabase migration up           # Aplicar migraciones pendientes
+supabase migration new nombre   # Crear nueva migración
+supabase db psql                # Abrir psql conectado a la DB local
+```
 
-# Actualizar grafo de conocimiento (post-cambio de código)
-graphify update .
+### Docker
+```bash
+docker ps -a --filter name=supabase          # Ver contenedores
+docker logs supabase_db_paltazo-web-app      # Ver logs
+docker volume ls --filter label=com.supabase.cli.project=paltazo-web-app  # Ver backups
 ```
 
 ---
@@ -245,10 +316,15 @@ graphify update .
 
 1. Clonar repositorio
 2. `npm install`
-3. Copiar `.env.local.example` → `.env.local` y editar con credenciales de Supabase
-4. Verificar que el trigger `handle_new_user()` esté creado (ejecutar SQL del Error 2 si no)
-5. Verificar RLS activo (ejecutar queries de la sección "Diagnóstico")
-6. `npm run dev`
-7. Probar registro → debe crear fila en `profiles` automáticamente
-8. Probar agregar gasto → verificar tabla `expenses` en Supabase Dashboard
-9. **Bug conocido:** Si el logout no redirige correctamente, revisar Bug 5 arriba
+3. **Supabase Local (recomendado para desarrollo):**
+   - Ver `supabase/LOCAL_SETUP.md` para requisitos (Docker + Supabase CLI)
+   - `supabase start` (levanta todos los servicios)
+   - `cp .env.development.local.example .env.development.local`
+4. **Supabase Cloud (alternativa):**
+   - Copiar `.env.local.example` → `.env.local` y editar con credenciales reales
+5. Verificar que el trigger `handle_new_user()` esté creado (ejecutar SQL del Error 2 si no)
+6. Verificar RLS activo (ejecutar queries de la sección "Diagnóstico")
+7. `npm run dev`
+8. Probar registro → debe crear fila en `profiles` automáticamente
+9. Probar agregar gasto → verificar tabla `expenses` en Supabase Dashboard
+10. **Bug conocido:** Si el logout no redirige correctamente, revisar Bug 5 arriba

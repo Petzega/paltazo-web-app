@@ -1,8 +1,8 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
+import { createContext, useContext, useEffect, useState, useCallback, ReactNode } from 'react'
 import * as db from '@/lib/supabase/repositories'
-import { onAuthStateChange, signOut } from '@/lib/supabase/auth'
+import { onAuthStateChange, getSession, signOut } from '@/lib/supabase/auth'
 import type { Expense, Budget } from '@/types'
 
 interface AppState {
@@ -27,40 +27,51 @@ const DEFAULT_BUDGET: Budget = {
   updatedAt: new Date().toISOString(),
 }
 
+async function loadUserData(id: string) {
+  const [expensesData, budgetData] = await Promise.all([
+    db.getExpenses(id),
+    db.getBudget(id),
+  ])
+  return { expenses: expensesData, budget: budgetData }
+}
+
 export function AppProvider({ children }: { children: ReactNode }) {
   const [expenses, setExpenses] = useState<Expense[]>([])
   const [budget, setBudgetState] = useState<Budget>(DEFAULT_BUDGET)
   const [userId, setUserId] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
+  const applySession = useCallback((id: string | null) => {
+    setUserId(id)
+    if (id) {
+      loadUserData(id)
+        .then(({ expenses: e, budget: b }) => {
+          setExpenses(e)
+          if (b) setBudgetState(b)
+        })
+        .catch((err) => console.error('Failed to load from Supabase', err))
+        .finally(() => setIsLoading(false))
+    } else {
+      setExpenses([])
+      setBudgetState(DEFAULT_BUDGET)
+      setIsLoading(false)
+    }
+  }, [])
+
   useEffect(() => {
-    const { data: { subscription } } = onAuthStateChange(async (id) => {
-      setUserId(id)
-      if (id) {
-        try {
-          const [expensesData, budgetData] = await Promise.all([
-            db.getExpenses(id),
-            db.getBudget(id),
-          ])
-          setExpenses(expensesData)
-          if (budgetData) setBudgetState(budgetData)
-        } catch (err) {
-          console.error('Failed to load from Supabase', err)
-        } finally {
-          setIsLoading(false)
-        }
-      } else {
-        setExpenses([])
-        setBudgetState(DEFAULT_BUDGET)
-        setIsLoading(false)
-      }
+    getSession().then((session) => {
+      applySession(session?.user?.id ?? null)
+    })
+
+    const { data: { subscription } } = onAuthStateChange((id) => {
+      applySession(id)
     })
     return () => subscription.unsubscribe()
-  }, [])
+  }, [applySession])
 
   const addExpense = async (expense: Omit<Expense, 'id' | 'createdAt'>) => {
     if (!userId) return
-    const newExpense = await db.addExpense({ ...expense, userId })
+    const newExpense = await db.addExpense({ ...expense, userId, currency: expense.currency || budget.currency })
     setExpenses((prev) => [newExpense, ...prev])
   }
 

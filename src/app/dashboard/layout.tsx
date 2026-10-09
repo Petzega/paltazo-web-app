@@ -1,8 +1,10 @@
 import { Sidebar } from '@/components/ui/Sidebar'
 import { BottomNav } from '@/components/ui/BottomNav'
+import { AuthGuard } from '@/components/ui/AuthGuard'
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
+    <AuthGuard>
     <div className="min-h-screen flex flex-col md:flex-row relative">
       <aside className="hidden md:block md:w-64 md:min-h-screen md:sticky md:top-0 shrink-0 bg-surface-container-low border-r border-surface-container-high">
         <Sidebar />
@@ -12,5 +14,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </div>
       <BottomNav />
     </div>
+    </AuthGuard>
   )
 }

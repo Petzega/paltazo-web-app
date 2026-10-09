@@ -124,7 +124,7 @@
       "file_type": "code",
       "norm_label": "supabaseprofilerow",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L18"
+      "source_location": "L19"
     },
     {
       "id": "src_types_index_budget",
@@ -137,33 +137,7 @@
       "file_type": "code",
       "norm_label": "budget",
       "source_file": "src/types/index.ts",
-      "source_location": "L21"
-    },
-    {
-      "id": "src_types_index_budgetalert",
-      "label": "BudgetAlert",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "repositories.ts",
-      "file_type": "code",
-      "norm_label": "budgetalert",
-      "source_file": "src/types/index.ts",
-      "source_location": "L28"
-    },
-    {
-      "id": "src_types_index_budgetalertlevel",
-      "label": "BudgetAlertLevel",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "repositories.ts",
-      "file_type": "code",
-      "norm_label": "budgetalertlevel",
-      "source_file": "src/types/index.ts",
-      "source_location": "L8"
+      "source_location": "L22"
     },
     {
       "id": "src_types_index_expense",
@@ -189,7 +163,7 @@
       "file_type": "code",
       "norm_label": "profile",
       "source_file": "src/types/index.ts",
-      "source_location": "L37"
+      "source_location": "L38"
     },
     {
       "id": "src_components_ui_button_buttonprops",
@@ -198,7 +172,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "buttonprops",
       "source_file": "src/components/ui/Button.tsx",
@@ -211,7 +185,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "variant",
       "source_file": "src/components/ui/Button.tsx",
@@ -224,7 +198,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "cardprops",
       "source_file": "src/components/ui/Card.tsx",
@@ -237,7 +211,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "inputprops",
       "source_file": "src/components/ui/Input.tsx",
@@ -250,11 +224,37 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "categoryinfo",
       "source_file": "src/lib/categories.ts",
       "source_location": "L3"
+    },
+    {
+      "id": "src_types_index_budgetalert",
+      "label": "BudgetAlert",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "useAppState",
+      "file_type": "code",
+      "norm_label": "budgetalert",
+      "source_file": "src/types/index.ts",
+      "source_location": "L29"
+    },
+    {
+      "id": "src_types_index_budgetalertlevel",
+      "label": "BudgetAlertLevel",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "useAppState",
+      "file_type": "code",
+      "norm_label": "budgetalertlevel",
+      "source_file": "src/types/index.ts",
+      "source_location": "L8"
     },
     {
       "id": "src_types_index_expensecategory",
@@ -263,7 +263,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "expensecategory",
       "source_file": "src/types/index.ts",
@@ -279,7 +279,7 @@
       "file_type": "code",
       "norm_label": "rootlayout()",
       "source_file": "src/app/layout.tsx",
-      "source_location": "L29"
+      "source_location": "L28"
     },
     {
       "id": "src_components_providers_serviceworkerregistrar_serviceworkerregistrar",
@@ -399,7 +399,7 @@
       "file_type": "code",
       "norm_label": "addexpense()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L45"
+      "source_location": "L47"
     },
     {
       "id": "src_lib_supabase_repositories_deleteexpense",
@@ -411,7 +411,7 @@
       "file_type": "code",
       "norm_label": "deleteexpense()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L86"
+      "source_location": "L91"
     },
     {
       "id": "src_lib_supabase_repositories_getbudget",
@@ -423,7 +423,7 @@
       "file_type": "code",
       "norm_label": "getbudget()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L91"
+      "source_location": "L96"
     },
     {
       "id": "src_lib_supabase_repositories_getexpenses",
@@ -435,7 +435,7 @@
       "file_type": "code",
       "norm_label": "getexpenses()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L25"
+      "source_location": "L26"
     },
     {
       "id": "src_lib_supabase_repositories_updateexpense",
@@ -447,7 +447,7 @@
       "file_type": "code",
       "norm_label": "updateexpense()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L75"
+      "source_location": "L79"
     },
     {
       "id": "src_lib_supabase_repositories_upsertbudget",
@@ -459,7 +459,7 @@
       "file_type": "code",
       "norm_label": "upsertbudget()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L110"
+      "source_location": "L115"
     },
     {
       "id": "src_app_budget_layout_budgetlayout",
@@ -474,12 +474,24 @@
       "source_location": "L1"
     },
     {
+      "id": "src_app_dashboard_settings_page_settingspage",
+      "label": "SettingsPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "store.tsx",
+      "file_type": "code",
+      "norm_label": "settingspage()",
+      "source_file": "src/app/dashboard/settings/page.tsx",
+      "source_location": "L8"
+    },
+    {
       "id": "src_app_login_page_loginpage",
       "label": "LoginPage()",
       "_callable": true,
       "_origin": "ast",
       "community": 15,
-      "community_name": "auth.ts",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "loginpage()",
       "source_file": "src/app/login/page.tsx",
@@ -491,9 +503,21 @@
       "_callable": true,
       "_origin": "ast",
       "community": 15,
-      "community_name": "auth.ts",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "appprovider()",
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L38"
+    },
+    {
+      "id": "src_lib_store_loaduserdata",
+      "label": "loadUserData()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "store.tsx",
+      "file_type": "code",
+      "norm_label": "loaduserdata()",
       "source_file": "src/lib/store.tsx",
       "source_location": "L30"
     },
@@ -503,7 +527,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 15,
-      "community_name": "auth.ts",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "getsession()",
       "source_file": "src/lib/supabase/auth.ts",
@@ -515,7 +539,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 15,
-      "community_name": "auth.ts",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "getuser()",
       "source_file": "src/lib/supabase/auth.ts",
@@ -527,7 +551,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 15,
-      "community_name": "auth.ts",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "onauthstatechange()",
       "source_file": "src/lib/supabase/auth.ts",
@@ -539,7 +563,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 15,
-      "community_name": "auth.ts",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "resetpassword()",
       "source_file": "src/lib/supabase/auth.ts",
@@ -551,7 +575,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 15,
-      "community_name": "auth.ts",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "signin()",
       "source_file": "src/lib/supabase/auth.ts",
@@ -563,7 +587,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 15,
-      "community_name": "auth.ts",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "signout()",
       "source_file": "src/lib/supabase/auth.ts",
@@ -575,7 +599,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 15,
-      "community_name": "auth.ts",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "signup()",
       "source_file": "src/lib/supabase/auth.ts",
@@ -587,7 +611,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 15,
-      "community_name": "auth.ts",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "createclient()",
       "source_file": "src/lib/supabase/client.ts",
@@ -599,7 +623,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "budgetpage()",
       "source_file": "src/app/budget/page.tsx",
@@ -611,11 +635,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "addexpensepage()",
       "source_file": "src/app/dashboard/add-expense/page.tsx",
-      "source_location": "L9"
+      "source_location": "L27"
+    },
+    {
+      "id": "src_app_dashboard_add_expense_page_formatamount",
+      "label": "formatAmount()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "useAppState",
+      "file_type": "code",
+      "norm_label": "formatamount()",
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "source_location": "L19"
     },
     {
       "id": "src_app_dashboard_expenses_page_expensespage",
@@ -623,7 +659,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "expensespage()",
       "source_file": "src/app/dashboard/expenses/page.tsx",
@@ -635,22 +671,10 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "dashboardpage()",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L7"
-    },
-    {
-      "id": "src_app_dashboard_settings_page_settingspage",
-      "label": "SettingsPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "settingspage()",
-      "source_file": "src/app/dashboard/settings/page.tsx",
       "source_location": "L7"
     },
     {
@@ -659,7 +683,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "onboardingpage()",
       "source_file": "src/app/onboarding/page.tsx",
@@ -671,10 +695,22 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "home()",
       "source_file": "src/app/page.tsx",
+      "source_location": "L7"
+    },
+    {
+      "id": "src_components_ui_authguard_authguard",
+      "label": "AuthGuard()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "useAppState",
+      "file_type": "code",
+      "norm_label": "authguard()",
+      "source_file": "src/components/ui/AuthGuard.tsx",
       "source_location": "L7"
     },
     {
@@ -683,7 +719,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "button()",
       "source_file": "src/components/ui/Button.tsx",
@@ -695,7 +731,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "card()",
       "source_file": "src/components/ui/Card.tsx",
@@ -707,7 +743,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "input()",
       "source_file": "src/components/ui/Input.tsx",
@@ -719,7 +755,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "getcategoryinfo()",
       "source_file": "src/lib/categories.ts",
@@ -731,11 +767,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "useappstate()",
       "source_file": "src/lib/store.tsx",
-      "source_location": "L106"
+      "source_location": "L117"
     },
     {
       "id": "src_app_dashboard_layout_dashboardlayout",
@@ -747,7 +783,7 @@
       "file_type": "code",
       "norm_label": "dashboardlayout()",
       "source_file": "src/app/dashboard/layout.tsx",
-      "source_location": "L4"
+      "source_location": "L5"
     },
     {
       "id": "src_components_ui_bottomnav_bottomnav",
@@ -771,7 +807,7 @@
       "file_type": "code",
       "norm_label": "sidebar()",
       "source_file": "src/components/ui/Sidebar.tsx",
-      "source_location": "L11"
+      "source_location": "L12"
     },
     {
       "id": "src_lib_supabase_server_createclient",
@@ -873,7 +909,7 @@
       "file_type": "code",
       "norm_label": "viewport",
       "source_file": "src/app/layout.tsx",
-      "source_location": "L21"
+      "source_location": "L20"
     },
     {
       "id": "src_components_providers_serviceworkerregistrar",
@@ -1138,17 +1174,6 @@
       "norm_label": "autoprefixer",
       "source_file": "package.json",
       "source_location": "L25"
-    },
-    {
-      "id": "ref_dexie",
-      "label": "dexie",
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "package.json",
-      "file_type": "concept",
-      "norm_label": "dexie",
-      "source_file": "package.json",
-      "source_location": "L16"
     },
     {
       "id": "ref_postcss",
@@ -1525,15 +1550,15 @@
       "source_location": "L5"
     },
     {
-      "id": "src_types_index",
-      "label": "index.ts",
+      "id": "ref_dexie",
+      "label": "dexie",
       "_origin": "ast",
       "community": 13,
       "community_name": "repositories.ts",
-      "file_type": "code",
-      "norm_label": "index.ts",
-      "source_file": "src/types/index.ts",
-      "source_location": "L1"
+      "file_type": "concept",
+      "norm_label": "dexie",
+      "source_file": "package.json",
+      "source_location": "L16"
     },
     {
       "id": "src_app_budget_layout",
@@ -1547,22 +1572,66 @@
       "source_location": "L1"
     },
     {
+      "id": "src_app_dashboard_settings_page",
+      "label": "settings/page.tsx",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "store.tsx",
+      "file_type": "code",
+      "norm_label": "settings/page.tsx",
+      "source_file": "src/app/dashboard/settings/page.tsx",
+      "source_location": "L1"
+    },
+    {
       "id": "src_app_login_page",
       "label": "login/page.tsx",
       "_origin": "ast",
       "community": 15,
-      "community_name": "auth.ts",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "login/page.tsx",
       "source_file": "src/app/login/page.tsx",
       "source_location": "L1"
     },
     {
+      "id": "src_lib_store",
+      "label": "store.tsx",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "store.tsx",
+      "file_type": "code",
+      "norm_label": "store.tsx",
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_lib_store_appcontext",
+      "label": "AppContext",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "store.tsx",
+      "file_type": "code",
+      "norm_label": "appcontext",
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L21"
+    },
+    {
+      "id": "src_lib_store_default_budget",
+      "label": "DEFAULT_BUDGET",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "store.tsx",
+      "file_type": "code",
+      "norm_label": "default_budget",
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L23"
+    },
+    {
       "id": "src_lib_supabase_auth",
       "label": "auth.ts",
       "_origin": "ast",
       "community": 15,
-      "community_name": "auth.ts",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "auth.ts",
       "source_file": "src/lib/supabase/auth.ts",
@@ -1573,7 +1642,7 @@
       "label": "supabase",
       "_origin": "ast",
       "community": 15,
-      "community_name": "auth.ts",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "supabase",
       "source_file": "src/lib/supabase/auth.ts",
@@ -1584,7 +1653,7 @@
       "label": "client.ts",
       "_origin": "ast",
       "community": 15,
-      "community_name": "auth.ts",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "client.ts",
       "source_file": "src/lib/supabase/client.ts",
@@ -1595,19 +1664,31 @@
       "label": "Error 1: `login is not a function` en `src/app/login/page.tsx:14`",
       "_origin": "ast",
       "community": 15,
-      "community_name": "auth.ts",
+      "community_name": "store.tsx",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "error 1: `login is not a function` en `src/app/login/page.tsx:14`",
       "source_file": "BITACORA.md",
-      "source_location": "L60"
+      "source_location": "L86"
+    },
+    {
+      "id": "development_protecci\u00f3n_de_rutas",
+      "label": "Protecci\u00f3n de rutas",
+      "_origin": "ast",
+      "community": 15,
+      "community_name": "store.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "proteccion de rutas",
+      "source_file": "DEVELOPMENT.md",
+      "source_location": "L44"
     },
     {
       "id": "bitacora",
       "label": "BITACORA.md",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo - Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "page",
       "norm_label": "bitacora.md",
@@ -1615,208 +1696,256 @@
       "source_location": "L1"
     },
     {
-      "id": "bitacora_archivos_clave_de_supabase",
-      "label": "Archivos clave de Supabase",
+      "id": "bitacora_archivos_clave",
+      "label": "Archivos clave",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo - Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "archivos clave de supabase",
+      "norm_label": "archivos clave",
       "source_file": "BITACORA.md",
-      "source_location": "L187"
+      "source_location": "L62"
+    },
+    {
+      "id": "bitacora_bug_5_middleware_no_redirige_despu\u00e9s_de_logout_2026_10_08",
+      "label": "Bug 5: Middleware no redirige despu\u00e9s de logout (2026-10-08)",
+      "_origin": "ast",
+      "community": 16,
+      "community_name": "dependencies",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "bug 5: middleware no redirige despues de logout (2026-10-08)",
+      "source_file": "BITACORA.md",
+      "source_location": "L154"
     },
     {
       "id": "bitacora_comandos_\u00fatiles",
       "label": "Comandos \u00fatiles",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo - Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "comandos utiles",
       "source_file": "BITACORA.md",
-      "source_location": "L211"
+      "source_location": "L220"
+    },
+    {
+      "id": "bitacora_completados",
+      "label": "Completados \u2705",
+      "_origin": "ast",
+      "community": 16,
+      "community_name": "dependencies",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "completados \u2705",
+      "source_file": "BITACORA.md",
+      "source_location": "L198"
     },
     {
       "id": "bitacora_configuraci\u00f3n_de_entorno_env_local",
       "label": "Configuraci\u00f3n de entorno (.env.local)",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo - Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "configuracion de entorno (.env.local)",
       "source_file": "BITACORA.md",
-      "source_location": "L12"
+      "source_location": "L13"
     },
     {
       "id": "bitacora_diagn\u00f3stico_de_supabase_queries_\u00fatiles",
       "label": "Diagn\u00f3stico de Supabase (queries \u00fatiles)",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo - Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "diagnostico de supabase (queries utiles)",
       "source_file": "BITACORA.md",
-      "source_location": "L152"
+      "source_location": "L168"
+    },
+    {
+      "id": "bitacora_en_progreso",
+      "label": "En progreso \ud83d\udd04",
+      "_origin": "ast",
+      "community": 16,
+      "community_name": "dependencies",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "en progreso \ud83d\udd04",
+      "source_file": "BITACORA.md",
+      "source_location": "L208"
     },
     {
       "id": "bitacora_error_2_database_error_saving_new_user_http_500_en_auth_v1_signup",
       "label": "Error 2: `Database error saving new user` (HTTP 500 en `/auth/v1/signup`)",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo - Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "error 2: `database error saving new user` (http 500 en `/auth/v1/signup`)",
       "source_file": "BITACORA.md",
-      "source_location": "L74"
+      "source_location": "L96"
     },
     {
       "id": "bitacora_error_3_uncaught_syntaxerror_invalid_or_unexpected_token_at_layout_js_728_29",
       "label": "Error 3: `Uncaught SyntaxError: Invalid or unexpected token (at layout.js:728:29)`",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo - Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "error 3: `uncaught syntaxerror: invalid or unexpected token (at layout.js:728:29)`",
       "source_file": "BITACORA.md",
-      "source_location": "L132"
+      "source_location": "L140"
     },
     {
       "id": "bitacora_error_4_relation_pg_log_does_not_exist_en_supabase",
       "label": "Error 4: `relation \"pg_log\" does not exist` en Supabase",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo - Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "error 4: `relation \"pg_log\" does not exist` en supabase",
       "source_file": "BITACORA.md",
-      "source_location": "L144"
+      "source_location": "L148"
     },
     {
       "id": "bitacora_errores_y_soluciones",
       "label": "Errores y soluciones",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo - Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "errores y soluciones",
       "source_file": "BITACORA.md",
-      "source_location": "L58"
+      "source_location": "L84"
     },
     {
       "id": "bitacora_esquema_de_base_de_datos",
       "label": "Esquema de base de datos",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo - Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "esquema de base de datos",
       "source_file": "BITACORA.md",
-      "source_location": "L23"
+      "source_location": "L24"
     },
     {
-      "id": "bitacora_estado_actual_del_proyecto",
-      "label": "Estado actual del proyecto",
+      "id": "bitacora_estado_del_proyecto_2026_10_08",
+      "label": "Estado del proyecto (2026-10-08)",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo - Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "estado actual del proyecto",
+      "norm_label": "estado del proyecto (2026-10-08)",
       "source_file": "BITACORA.md",
       "source_location": "L3"
-    },
-    {
-      "id": "bitacora_flujo_de_autenticaci\u00f3n_actual",
-      "label": "Flujo de autenticaci\u00f3n actual",
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "Paltazo - Bit\u00e1cora de Avance",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "flujo de autenticacion actual",
-      "source_file": "BITACORA.md",
-      "source_location": "L173"
     },
     {
       "id": "bitacora_notas_para_continuar_en_otro_equipo",
       "label": "Notas para continuar en otro equipo",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo - Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "notas para continuar en otro equipo",
       "source_file": "BITACORA.md",
-      "source_location": "L232"
+      "source_location": "L244"
     },
     {
       "id": "bitacora_paltazo_bit\u00e1cora_de_avance",
-      "label": "Paltazo - Bit\u00e1cora de Avance",
+      "label": "Paltazo \u2014 Bit\u00e1cora de Avance",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo - Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "paltazo - bitacora de avance",
+      "norm_label": "paltazo \u2014 bitacora de avance",
       "source_file": "BITACORA.md",
       "source_location": "L1"
     },
     {
-      "id": "bitacora_pendientes_confirmados",
-      "label": "Pendientes confirmados",
+      "id": "bitacora_pendientes",
+      "label": "Pendientes \ud83d\udccb",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo - Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "pendientes confirmados",
+      "norm_label": "pendientes \ud83d\udccb",
       "source_file": "BITACORA.md",
-      "source_location": "L200"
+      "source_location": "L212"
+    },
+    {
+      "id": "bitacora_pendientes_y_estado",
+      "label": "Pendientes y estado",
+      "_origin": "ast",
+      "community": 16,
+      "community_name": "dependencies",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "pendientes y estado",
+      "source_file": "BITACORA.md",
+      "source_location": "L196"
     },
     {
       "id": "bitacora_tabla_budget_alerts",
       "label": "Tabla: `budget_alerts`",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo - Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "tabla: `budget_alerts`",
       "source_file": "BITACORA.md",
-      "source_location": "L46"
+      "source_location": "L47"
     },
     {
       "id": "bitacora_tabla_expenses",
       "label": "Tabla: `expenses`",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo - Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "tabla: `expenses`",
       "source_file": "BITACORA.md",
-      "source_location": "L34"
+      "source_location": "L35"
     },
     {
       "id": "bitacora_tabla_profiles",
       "label": "Tabla: `profiles`",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo - Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "tabla: `profiles`",
       "source_file": "BITACORA.md",
-      "source_location": "L25"
+      "source_location": "L26"
+    },
+    {
+      "id": "bitacora_trigger_on_auth_user_created",
+      "label": "Trigger: `on_auth_user_created`",
+      "_origin": "ast",
+      "community": 16,
+      "community_name": "dependencies",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "trigger: `on_auth_user_created`",
+      "source_file": "BITACORA.md",
+      "source_location": "L57"
     },
     {
       "id": "postcss_config",
@@ -1944,7 +2073,7 @@
       "label": "budget/page.tsx",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "budget/page.tsx",
       "source_file": "src/app/budget/page.tsx",
@@ -1955,18 +2084,40 @@
       "label": "add-expense/page.tsx",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "add-expense/page.tsx",
       "source_file": "src/app/dashboard/add-expense/page.tsx",
       "source_location": "L1"
     },
     {
+      "id": "src_app_dashboard_add_expense_page_currency_map",
+      "label": "CURRENCY_MAP",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "useAppState",
+      "file_type": "code",
+      "norm_label": "currency_map",
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "source_location": "L14"
+    },
+    {
+      "id": "src_app_dashboard_add_expense_page_currency_options",
+      "label": "CURRENCY_OPTIONS",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "useAppState",
+      "file_type": "code",
+      "norm_label": "currency_options",
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "source_location": "L9"
+    },
+    {
       "id": "src_app_dashboard_expenses_page",
       "label": "expenses/page.tsx",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "expenses/page.tsx",
       "source_file": "src/app/dashboard/expenses/page.tsx",
@@ -1977,21 +2128,10 @@
       "label": "dashboard/page.tsx",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "dashboard/page.tsx",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_app_dashboard_settings_page",
-      "label": "settings/page.tsx",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "settings/page.tsx",
-      "source_file": "src/app/dashboard/settings/page.tsx",
       "source_location": "L1"
     },
     {
@@ -1999,7 +2139,7 @@
       "label": "onboarding/page.tsx",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "onboarding/page.tsx",
       "source_file": "src/app/onboarding/page.tsx",
@@ -2010,10 +2150,21 @@
       "label": "app/page.tsx",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "app/page.tsx",
       "source_file": "src/app/page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_components_ui_authguard",
+      "label": "AuthGuard.tsx",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "useAppState",
+      "file_type": "code",
+      "norm_label": "authguard.tsx",
+      "source_file": "src/components/ui/AuthGuard.tsx",
       "source_location": "L1"
     },
     {
@@ -2021,7 +2172,7 @@
       "label": "Button.tsx",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "button.tsx",
       "source_file": "src/components/ui/Button.tsx",
@@ -2032,7 +2183,7 @@
       "label": "variants",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "variants",
       "source_file": "src/components/ui/Button.tsx",
@@ -2043,7 +2194,7 @@
       "label": "Card.tsx",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "card.tsx",
       "source_file": "src/components/ui/Card.tsx",
@@ -2054,7 +2205,7 @@
       "label": "Input.tsx",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "input.tsx",
       "source_file": "src/components/ui/Input.tsx",
@@ -2065,7 +2216,7 @@
       "label": "categories.ts",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "categories.ts",
       "source_file": "src/lib/categories.ts",
@@ -2076,51 +2227,29 @@
       "label": "EXPENSE_CATEGORIES",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "expense_categories",
       "source_file": "src/lib/categories.ts",
       "source_location": "L10"
     },
     {
-      "id": "src_lib_store",
-      "label": "store.tsx",
+      "id": "src_types_index",
+      "label": "index.ts",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
-      "norm_label": "store.tsx",
-      "source_file": "src/lib/store.tsx",
+      "norm_label": "index.ts",
+      "source_file": "src/types/index.ts",
       "source_location": "L1"
-    },
-    {
-      "id": "src_lib_store_appcontext",
-      "label": "AppContext",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "appcontext",
-      "source_file": "src/lib/store.tsx",
-      "source_location": "L21"
-    },
-    {
-      "id": "src_lib_store_default_budget",
-      "label": "DEFAULT_BUDGET",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "default_budget",
-      "source_file": "src/lib/store.tsx",
-      "source_location": "L23"
     },
     {
       "id": "ref_react",
       "label": "react",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "concept",
       "norm_label": "react",
       "source_file": "package.json",
@@ -2139,16 +2268,16 @@
       "source_location": "L1"
     },
     {
-      "id": "development_bit\u00e1cora",
-      "label": "Bit\u00e1cora",
+      "id": "development_autenticaci\u00f3n",
+      "label": "Autenticaci\u00f3n",
       "_origin": "ast",
       "community": 20,
       "community_name": "Paltazo Web App - Gu\u00eda de Desarrollo",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "bitacora",
+      "norm_label": "autenticacion",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L87"
+      "source_location": "L116"
     },
     {
       "id": "development_comandos",
@@ -2160,19 +2289,19 @@
       "node_kind": "heading",
       "norm_label": "comandos",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L33"
+      "source_location": "L171"
     },
     {
-      "id": "development_desarrollo",
-      "label": "Desarrollo",
+      "id": "development_credenciales",
+      "label": "Credenciales",
       "_origin": "ast",
       "community": 20,
       "community_name": "Paltazo Web App - Gu\u00eda de Desarrollo",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "desarrollo",
+      "norm_label": "credenciales",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L14"
+      "source_location": "L20"
     },
     {
       "id": "development_design_system",
@@ -2184,7 +2313,7 @@
       "node_kind": "heading",
       "norm_label": "design system",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L100"
+      "source_location": "L161"
     },
     {
       "id": "development_estado_de_datos",
@@ -2196,7 +2325,7 @@
       "node_kind": "heading",
       "norm_label": "estado de datos",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L78"
+      "source_location": "L106"
     },
     {
       "id": "development_estructura_del_proyecto",
@@ -2208,29 +2337,29 @@
       "node_kind": "heading",
       "norm_label": "estructura del proyecto",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L42"
+      "source_location": "L54"
     },
     {
-      "id": "development_instalaci\u00f3n",
-      "label": "Instalaci\u00f3n",
+      "id": "development_instalaci\u00f3n_y_arranque",
+      "label": "Instalaci\u00f3n y arranque",
       "_origin": "ast",
       "community": 20,
       "community_name": "Paltazo Web App - Gu\u00eda de Desarrollo",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "instalacion",
+      "norm_label": "instalacion y arranque",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L8"
+      "source_location": "L10"
     },
     {
       "id": "development_paltazo_web_app_gu\u00eda_de_desarrollo",
-      "label": "Paltazo Web App - Gu\u00eda de Desarrollo",
+      "label": "Paltazo Web App \u2014 Gu\u00eda de Desarrollo",
       "_origin": "ast",
       "community": 20,
       "community_name": "Paltazo Web App - Gu\u00eda de Desarrollo",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "paltazo web app - guia de desarrollo",
+      "norm_label": "paltazo web app \u2014 guia de desarrollo",
       "source_file": "DEVELOPMENT.md",
       "source_location": "L1"
     },
@@ -2244,7 +2373,7 @@
       "node_kind": "heading",
       "norm_label": "pendientes",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L109"
+      "source_location": "L182"
     },
     {
       "id": "development_pwa",
@@ -2256,7 +2385,7 @@
       "node_kind": "heading",
       "norm_label": "pwa",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L94"
+      "source_location": "L154"
     },
     {
       "id": "development_requisitos",
@@ -2268,19 +2397,31 @@
       "node_kind": "heading",
       "norm_label": "requisitos",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L3"
+      "source_location": "L5"
     },
     {
-      "id": "development_rutas_disponibles",
-      "label": "Rutas disponibles",
+      "id": "development_row_level_security_rls",
+      "label": "Row Level Security (RLS)",
       "_origin": "ast",
       "community": 20,
       "community_name": "Paltazo Web App - Gu\u00eda de Desarrollo",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "rutas disponibles",
+      "norm_label": "row level security (rls)",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L22"
+      "source_location": "L142"
+    },
+    {
+      "id": "development_rutas",
+      "label": "Rutas",
+      "_origin": "ast",
+      "community": 20,
+      "community_name": "Paltazo Web App - Gu\u00eda de Desarrollo",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "rutas",
+      "source_file": "DEVELOPMENT.md",
+      "source_location": "L31"
     },
     {
       "id": "next_env_d",
@@ -2357,7 +2498,7 @@
       "file_type": "code",
       "norm_label": "links",
       "source_file": "src/components/ui/Sidebar.tsx",
-      "source_location": "L5"
+      "source_location": "L6"
     },
     {
       "id": "src_lib_supabase_server",
@@ -3290,10 +3431,34 @@
       "label": "ref_next_navigation",
       "_origin": "semantic",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "external": true,
       "file_type": "concept",
       "norm_label": "ref_next_navigation",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "ref_next_headers",
+      "label": "ref_next_headers",
+      "_origin": "semantic",
+      "community": 23,
+      "community_name": "@supabase/ssr",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "ref_next_headers",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "ref_next_server",
+      "label": "ref_next_server",
+      "_origin": "semantic",
+      "community": 23,
+      "community_name": "@supabase/ssr",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "ref_next_server",
       "source_file": "",
       "type": "external"
     },
@@ -3320,28 +3485,6 @@
       "norm_label": "ref_path",
       "source_file": "",
       "type": "external"
-    },
-    {
-      "id": "ref_next_headers",
-      "label": "ref_next_headers",
-      "community": 23,
-      "community_name": "@supabase/ssr",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "ref_next_headers",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "ref_next_server",
-      "label": "ref_next_server",
-      "community": 23,
-      "community_name": "@supabase/ssr",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "ref_next_server",
-      "source_file": "",
-      "type": "external"
     }
   ],
   "links": [
@@ -3366,7 +3509,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/add-expense/page.tsx",
-      "source_location": "L11",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_add_expense_page_addexpensepage",
+      "target": "src_app_dashboard_add_expense_page_formatamount",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "source_location": "L38",
       "weight": 1.0
     },
     {
@@ -3426,7 +3581,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/settings/page.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_settings_page_settingspage",
+      "target": "src_lib_supabase_auth_signout",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app/dashboard/settings/page.tsx",
+      "source_location": "L132",
       "weight": 1.0
     },
     {
@@ -3474,7 +3641,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/login/page.tsx",
-      "source_location": "L41",
+      "source_location": "L47",
       "weight": 1.0
     },
     {
@@ -3502,15 +3669,27 @@
       "weight": 1.0
     },
     {
-      "source": "src_lib_store_appprovider",
-      "target": "src_lib_supabase_auth_onauthstatechange",
+      "source": "src_components_ui_authguard_authguard",
+      "target": "src_lib_store_useappstate",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
-      "source_file": "src/lib/store.tsx",
-      "source_location": "L37",
+      "source_file": "src/components/ui/AuthGuard.tsx",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_sidebar_sidebar",
+      "target": "src_lib_supabase_auth_signout",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/components/ui/Sidebar.tsx",
+      "source_location": "L45",
       "weight": 1.0
     },
     {
@@ -3522,7 +3701,43 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/lib/store.tsx",
-      "source_location": "L92",
+      "source_location": "L103",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_store_appprovider",
+      "target": "src_lib_store_loaduserdata",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_store_appprovider",
+      "target": "src_lib_supabase_auth_getsession",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_store_appprovider",
+      "target": "src_lib_supabase_auth_onauthstatechange",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L66",
       "weight": 1.0
     },
     {
@@ -3594,7 +3809,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L50",
+      "source_location": "L52",
       "weight": 1.0
     },
     {
@@ -4030,6 +4245,18 @@
       "weight": 1.0
     },
     {
+      "source": "src_app_dashboard_layout",
+      "target": "src_components_ui_authguard_authguard",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/dashboard/layout.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
       "source": "src_app_dashboard_page",
       "target": "src_lib_store_useappstate",
       "relation": "imports",
@@ -4063,6 +4290,18 @@
       "context": "import",
       "source_file": "src/app/dashboard/settings/page.tsx",
       "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_settings_page",
+      "target": "src_lib_supabase_auth_signout",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/dashboard/settings/page.tsx",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -4186,6 +4425,30 @@
       "weight": 1.0
     },
     {
+      "source": "src_components_ui_authguard",
+      "target": "src_lib_store_useappstate",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/ui/AuthGuard.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_sidebar",
+      "target": "src_lib_supabase_auth_signout",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/ui/Sidebar.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
       "source": "src_lib_categories",
       "target": "src_types_index_expensecategory",
       "relation": "imports",
@@ -4267,6 +4530,18 @@
       "context": "import",
       "source_file": "src/lib/repositories/expense-repository.ts",
       "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_store",
+      "target": "src_lib_supabase_auth_getsession",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -4633,6 +4908,18 @@
       "weight": 1.0
     },
     {
+      "source": "src_app_dashboard_layout",
+      "target": "src_components_ui_authguard",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/dashboard/layout.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
       "source": "src_app_dashboard_page",
       "target": "ref_next_navigation",
       "relation": "imports_from",
@@ -4702,6 +4989,18 @@
       "context": "import",
       "source_file": "src/app/dashboard/settings/page.tsx",
       "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_settings_page",
+      "target": "src_lib_supabase_auth",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/dashboard/settings/page.tsx",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -4922,6 +5221,42 @@
       "weight": 1.0
     },
     {
+      "source": "src_components_ui_authguard",
+      "target": "ref_react",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/ui/AuthGuard.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_authguard",
+      "target": "ref_next_navigation",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/ui/AuthGuard.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_authguard",
+      "target": "src_lib_store",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/ui/AuthGuard.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
       "source": "src_components_ui_bottomnav",
       "target": "ref_next_navigation",
       "relation": "imports_from",
@@ -4979,6 +5314,18 @@
       "context": "import",
       "source_file": "src/components/ui/Sidebar.tsx",
       "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_sidebar",
+      "target": "src_lib_supabase_auth",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/ui/Sidebar.tsx",
+      "source_location": "L4",
       "weight": 1.0
     },
     {
@@ -5246,7 +5593,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "BITACORA.md",
-      "source_location": "L132",
+      "source_location": "L140",
       "weight": 1.0
     },
     {
@@ -5257,7 +5604,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "BITACORA.md",
-      "source_location": "L144",
+      "source_location": "L148",
+      "weight": 1.0
+    },
+    {
+      "source": "bitacora_errores_y_soluciones",
+      "target": "bitacora_bug_5_middleware_no_redirige_despu\u00e9s_de_logout_2026_10_08",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BITACORA.md",
+      "source_location": "L154",
       "weight": 1.0
     },
     {
@@ -5268,7 +5626,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "BITACORA.md",
-      "source_location": "L60",
+      "source_location": "L86",
       "weight": 1.0
     },
     {
@@ -5279,7 +5637,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "BITACORA.md",
-      "source_location": "L74",
+      "source_location": "L96",
       "weight": 1.0
     },
     {
@@ -5290,7 +5648,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "BITACORA.md",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -5301,7 +5659,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "BITACORA.md",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -5312,7 +5670,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "BITACORA.md",
-      "source_location": "L46",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "bitacora_esquema_de_base_de_datos",
+      "target": "bitacora_trigger_on_auth_user_created",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BITACORA.md",
+      "source_location": "L57",
       "weight": 1.0
     },
     {
@@ -5323,7 +5692,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "BITACORA.md",
-      "source_location": "L12",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -5334,40 +5703,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "BITACORA.md",
-      "source_location": "L152",
+      "source_location": "L168",
       "weight": 1.0
     },
     {
       "source": "bitacora_paltazo_bit\u00e1cora_de_avance",
-      "target": "bitacora_flujo_de_autenticaci\u00f3n_actual",
+      "target": "bitacora_pendientes_y_estado",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "BITACORA.md",
-      "source_location": "L173",
-      "weight": 1.0
-    },
-    {
-      "source": "bitacora_paltazo_bit\u00e1cora_de_avance",
-      "target": "bitacora_archivos_clave_de_supabase",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "BITACORA.md",
-      "source_location": "L187",
-      "weight": 1.0
-    },
-    {
-      "source": "bitacora_paltazo_bit\u00e1cora_de_avance",
-      "target": "bitacora_pendientes_confirmados",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "BITACORA.md",
-      "source_location": "L200",
+      "source_location": "L196",
       "weight": 1.0
     },
     {
@@ -5378,7 +5725,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "BITACORA.md",
-      "source_location": "L211",
+      "source_location": "L220",
       "weight": 1.0
     },
     {
@@ -5389,7 +5736,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "BITACORA.md",
-      "source_location": "L23",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -5400,12 +5747,12 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "BITACORA.md",
-      "source_location": "L232",
+      "source_location": "L244",
       "weight": 1.0
     },
     {
       "source": "bitacora_paltazo_bit\u00e1cora_de_avance",
-      "target": "bitacora_estado_actual_del_proyecto",
+      "target": "bitacora_estado_del_proyecto_2026_10_08",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5416,13 +5763,57 @@
     },
     {
       "source": "bitacora_paltazo_bit\u00e1cora_de_avance",
+      "target": "bitacora_archivos_clave",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BITACORA.md",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "bitacora_paltazo_bit\u00e1cora_de_avance",
       "target": "bitacora_errores_y_soluciones",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "BITACORA.md",
-      "source_location": "L58",
+      "source_location": "L84",
+      "weight": 1.0
+    },
+    {
+      "source": "bitacora_pendientes_y_estado",
+      "target": "bitacora_completados",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BITACORA.md",
+      "source_location": "L198",
+      "weight": 1.0
+    },
+    {
+      "source": "bitacora_pendientes_y_estado",
+      "target": "bitacora_en_progreso",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BITACORA.md",
+      "source_location": "L208",
+      "weight": 1.0
+    },
+    {
+      "source": "bitacora_pendientes_y_estado",
+      "target": "bitacora_pendientes",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BITACORA.md",
+      "source_location": "L212",
       "weight": 1.0
     },
     {
@@ -5438,79 +5829,13 @@
     },
     {
       "source": "development_paltazo_web_app_gu\u00eda_de_desarrollo",
-      "target": "development_design_system",
+      "target": "development_instalaci\u00f3n_y_arranque",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L100",
-      "weight": 1.0
-    },
-    {
-      "source": "development_paltazo_web_app_gu\u00eda_de_desarrollo",
-      "target": "development_pendientes",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "DEVELOPMENT.md",
-      "source_location": "L109",
-      "weight": 1.0
-    },
-    {
-      "source": "development_paltazo_web_app_gu\u00eda_de_desarrollo",
-      "target": "development_desarrollo",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "DEVELOPMENT.md",
-      "source_location": "L14",
-      "weight": 1.0
-    },
-    {
-      "source": "development_paltazo_web_app_gu\u00eda_de_desarrollo",
-      "target": "development_rutas_disponibles",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "DEVELOPMENT.md",
-      "source_location": "L22",
-      "weight": 1.0
-    },
-    {
-      "source": "development_paltazo_web_app_gu\u00eda_de_desarrollo",
-      "target": "development_requisitos",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "DEVELOPMENT.md",
-      "source_location": "L3",
-      "weight": 1.0
-    },
-    {
-      "source": "development_paltazo_web_app_gu\u00eda_de_desarrollo",
-      "target": "development_comandos",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "DEVELOPMENT.md",
-      "source_location": "L33",
-      "weight": 1.0
-    },
-    {
-      "source": "development_paltazo_web_app_gu\u00eda_de_desarrollo",
-      "target": "development_estructura_del_proyecto",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "DEVELOPMENT.md",
-      "source_location": "L42",
+      "source_location": "L10",
       "weight": 1.0
     },
     {
@@ -5521,29 +5846,29 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L78",
+      "source_location": "L106",
       "weight": 1.0
     },
     {
       "source": "development_paltazo_web_app_gu\u00eda_de_desarrollo",
-      "target": "development_instalaci\u00f3n",
+      "target": "development_autenticaci\u00f3n",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L8",
+      "source_location": "L116",
       "weight": 1.0
     },
     {
       "source": "development_paltazo_web_app_gu\u00eda_de_desarrollo",
-      "target": "development_bit\u00e1cora",
+      "target": "development_row_level_security_rls",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L87",
+      "source_location": "L142",
       "weight": 1.0
     },
     {
@@ -5554,7 +5879,95 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L94",
+      "source_location": "L154",
+      "weight": 1.0
+    },
+    {
+      "source": "development_paltazo_web_app_gu\u00eda_de_desarrollo",
+      "target": "development_design_system",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": "L161",
+      "weight": 1.0
+    },
+    {
+      "source": "development_paltazo_web_app_gu\u00eda_de_desarrollo",
+      "target": "development_comandos",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": "L171",
+      "weight": 1.0
+    },
+    {
+      "source": "development_paltazo_web_app_gu\u00eda_de_desarrollo",
+      "target": "development_pendientes",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": "L182",
+      "weight": 1.0
+    },
+    {
+      "source": "development_paltazo_web_app_gu\u00eda_de_desarrollo",
+      "target": "development_credenciales",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "development_paltazo_web_app_gu\u00eda_de_desarrollo",
+      "target": "development_rutas",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "development_paltazo_web_app_gu\u00eda_de_desarrollo",
+      "target": "development_protecci\u00f3n_de_rutas",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "development_paltazo_web_app_gu\u00eda_de_desarrollo",
+      "target": "development_requisitos",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "development_paltazo_web_app_gu\u00eda_de_desarrollo",
+      "target": "development_estructura_del_proyecto",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": "L54",
       "weight": 1.0
     },
     {
@@ -5999,7 +6412,40 @@
     },
     {
       "source": "src_app_dashboard_add_expense_page",
+      "target": "src_app_dashboard_add_expense_page_currency_map",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_add_expense_page",
+      "target": "src_app_dashboard_add_expense_page_formatamount",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_add_expense_page",
       "target": "src_app_dashboard_add_expense_page_addexpensepage",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_add_expense_page",
+      "target": "src_app_dashboard_add_expense_page_currency_options",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -6027,7 +6473,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/dashboard/layout.tsx",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -6049,7 +6495,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/dashboard/settings/page.tsx",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -6060,7 +6506,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/layout.tsx",
-      "source_location": "L21",
+      "source_location": "L20",
       "weight": 1.0
     },
     {
@@ -6071,7 +6517,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/layout.tsx",
-      "source_location": "L29",
+      "source_location": "L28",
       "weight": 1.0
     },
     {
@@ -6138,6 +6584,17 @@
       "confidence_score": 1.0,
       "source_file": "src/components/providers/ServiceWorkerRegistrar.tsx",
       "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_authguard",
+      "target": "src_components_ui_authguard_authguard",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/ui/AuthGuard.tsx",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -6258,7 +6715,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/ui/Sidebar.tsx",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0
     },
     {
@@ -6269,7 +6726,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/ui/Sidebar.tsx",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -6390,7 +6847,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/store.tsx",
-      "source_location": "L106",
+      "source_location": "L117",
       "weight": 1.0
     },
     {
@@ -6417,13 +6874,24 @@
     },
     {
       "source": "src_lib_store",
-      "target": "src_lib_store_appprovider",
+      "target": "src_lib_store_loaduserdata",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/store.tsx",
       "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_store",
+      "target": "src_lib_store_appprovider",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L38",
       "weight": 1.0
     },
     {
@@ -6544,7 +7012,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L110",
+      "source_location": "L115",
       "weight": 1.0
     },
     {
@@ -6555,7 +7023,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0
     },
     {
@@ -6566,7 +7034,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -6577,7 +7045,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L45",
+      "source_location": "L47",
       "weight": 1.0
     },
     {
@@ -6610,7 +7078,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L75",
+      "source_location": "L79",
       "weight": 1.0
     },
     {
@@ -6621,7 +7089,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L86",
+      "source_location": "L91",
       "weight": 1.0
     },
     {
@@ -6632,7 +7100,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L91",
+      "source_location": "L96",
       "weight": 1.0
     },
     {
@@ -6698,7 +7166,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/types/index.ts",
-      "source_location": "L21",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -6709,7 +7177,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/types/index.ts",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -6720,7 +7188,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/types/index.ts",
-      "source_location": "L37",
+      "source_location": "L38",
       "weight": 1.0
     },
     {
@@ -7084,7 +7552,31 @@
       "confidence_score": 0.95,
       "context": "signIn()",
       "source_file": "BITACORA.md",
-      "source_location": "L65",
+      "source_location": "L91",
+      "weight": 1.0
+    },
+    {
+      "source": "bitacora_bug_5_middleware_no_redirige_despu\u00e9s_de_logout_2026_10_08",
+      "target": "src_lib_supabase_auth_signout",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "signOut()",
+      "source_file": "BITACORA.md",
+      "source_location": "L156",
+      "weight": 1.0
+    },
+    {
+      "source": "development_protecci\u00f3n_de_rutas",
+      "target": "src_lib_supabase_auth_signout",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "signOut()",
+      "source_file": "DEVELOPMENT.md",
+      "source_location": "L52",
       "weight": 1.0
     },
     {
@@ -7096,7 +7588,7 @@
       "confidence_score": 0.95,
       "context": "signUp()",
       "source_file": "BITACORA.md",
-      "source_location": "L65",
+      "source_location": "L91",
       "weight": 1.0
     },
     {
@@ -7705,5 +8197,5 @@
       "source_file": "docs/stack_tecnologico_paltazo.md"
     }
   ],
-  "built_at_commit": "a7d6547fcf68623cdfaf38ea46fc5e64d2228f39"
+  "built_at_commit": "0182dc6fa2388c6a140175af4db938928e87d02d"
 }

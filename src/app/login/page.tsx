@@ -37,6 +37,12 @@ export default function LoginPage() {
       } else if (mode === 'register') {
         const { error: authError } = await signUp(email, password, name)
         if (authError) throw authError
+        const { error: loginError } = await signIn(email, password)
+        if (loginError) {
+          setSuccess('Revisa tu correo para confirmar tu cuenta, luego inicia sesión')
+          router.push('/login')
+          return
+        }
       } else {
         const { error: authError } = await resetPassword(email)
         if (authError) throw authError

@@ -124,7 +124,7 @@
       "file_type": "code",
       "norm_label": "supabaseprofilerow",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L18"
+      "source_location": "L19"
     },
     {
       "id": "src_types_index_budget",
@@ -137,7 +137,7 @@
       "file_type": "code",
       "norm_label": "budget",
       "source_file": "src/types/index.ts",
-      "source_location": "L21"
+      "source_location": "L22"
     },
     {
       "id": "src_types_index_expense",
@@ -163,59 +163,7 @@
       "file_type": "code",
       "norm_label": "profile",
       "source_file": "src/types/index.ts",
-      "source_location": "L37"
-    },
-    {
-      "id": "src_components_ui_button_buttonprops",
-      "label": "ButtonProps",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "buttonprops",
-      "source_file": "src/components/ui/Button.tsx",
-      "source_location": "L5"
-    },
-    {
-      "id": "src_components_ui_button_variant",
-      "label": "Variant",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "variant",
-      "source_file": "src/components/ui/Button.tsx",
-      "source_location": "L3"
-    },
-    {
-      "id": "src_components_ui_card_cardprops",
-      "label": "CardProps",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "cardprops",
-      "source_file": "src/components/ui/Card.tsx",
-      "source_location": "L3"
-    },
-    {
-      "id": "src_components_ui_input_inputprops",
-      "label": "InputProps",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "inputprops",
-      "source_file": "src/components/ui/Input.tsx",
-      "source_location": "L3"
+      "source_location": "L38"
     },
     {
       "id": "src_lib_categories_categoryinfo",
@@ -224,7 +172,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "categoryinfo",
       "source_file": "src/lib/categories.ts",
@@ -237,11 +185,11 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "budgetalert",
       "source_file": "src/types/index.ts",
-      "source_location": "L28"
+      "source_location": "L29"
     },
     {
       "id": "src_types_index_budgetalertlevel",
@@ -250,7 +198,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "budgetalertlevel",
       "source_file": "src/types/index.ts",
@@ -263,11 +211,63 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "expensecategory",
       "source_file": "src/types/index.ts",
       "source_location": "L1"
+    },
+    {
+      "id": "src_components_ui_button_buttonprops",
+      "label": "ButtonProps",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "react",
+      "file_type": "code",
+      "norm_label": "buttonprops",
+      "source_file": "src/components/ui/Button.tsx",
+      "source_location": "L5"
+    },
+    {
+      "id": "src_components_ui_button_variant",
+      "label": "Variant",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "react",
+      "file_type": "code",
+      "norm_label": "variant",
+      "source_file": "src/components/ui/Button.tsx",
+      "source_location": "L3"
+    },
+    {
+      "id": "src_components_ui_card_cardprops",
+      "label": "CardProps",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "react",
+      "file_type": "code",
+      "norm_label": "cardprops",
+      "source_file": "src/components/ui/Card.tsx",
+      "source_location": "L3"
+    },
+    {
+      "id": "src_components_ui_input_inputprops",
+      "label": "InputProps",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "react",
+      "file_type": "code",
+      "norm_label": "inputprops",
+      "source_file": "src/components/ui/Input.tsx",
+      "source_location": "L3"
     },
     {
       "id": "src_app_layout_rootlayout",
@@ -275,11 +275,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "app/layout.tsx",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "rootlayout()",
       "source_file": "src/app/layout.tsx",
-      "source_location": "L29"
+      "source_location": "L28"
     },
     {
       "id": "src_components_providers_serviceworkerregistrar_serviceworkerregistrar",
@@ -287,7 +287,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "app/layout.tsx",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "serviceworkerregistrar()",
       "source_file": "src/components/providers/ServiceWorkerRegistrar.tsx",
@@ -299,11 +299,35 @@
       "_callable": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "app/layout.tsx",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "appprovider()",
       "source_file": "src/lib/store.tsx",
+      "source_location": "L38"
+    },
+    {
+      "id": "src_lib_store_loaduserdata",
+      "label": "loadUserData()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "store.tsx",
+      "file_type": "code",
+      "norm_label": "loaduserdata()",
+      "source_file": "src/lib/store.tsx",
       "source_location": "L30"
+    },
+    {
+      "id": "src_lib_supabase_auth_getsession",
+      "label": "getSession()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "store.tsx",
+      "file_type": "code",
+      "norm_label": "getsession()",
+      "source_file": "src/lib/supabase/auth.ts",
+      "source_location": "L29"
     },
     {
       "id": "src_lib_supabase_auth_onauthstatechange",
@@ -311,7 +335,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 1,
-      "community_name": "app/layout.tsx",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "onauthstatechange()",
       "source_file": "src/lib/supabase/auth.ts",
@@ -423,7 +447,7 @@
       "file_type": "code",
       "norm_label": "addexpense()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L45"
+      "source_location": "L47"
     },
     {
       "id": "src_lib_supabase_repositories_deleteexpense",
@@ -435,7 +459,7 @@
       "file_type": "code",
       "norm_label": "deleteexpense()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L86"
+      "source_location": "L91"
     },
     {
       "id": "src_lib_supabase_repositories_getbudget",
@@ -447,7 +471,7 @@
       "file_type": "code",
       "norm_label": "getbudget()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L91"
+      "source_location": "L96"
     },
     {
       "id": "src_lib_supabase_repositories_getexpenses",
@@ -459,7 +483,7 @@
       "file_type": "code",
       "norm_label": "getexpenses()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L25"
+      "source_location": "L26"
     },
     {
       "id": "src_lib_supabase_repositories_updateexpense",
@@ -471,7 +495,7 @@
       "file_type": "code",
       "norm_label": "updateexpense()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L75"
+      "source_location": "L79"
     },
     {
       "id": "src_lib_supabase_repositories_upsertbudget",
@@ -483,7 +507,7 @@
       "file_type": "code",
       "norm_label": "upsertbudget()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L110"
+      "source_location": "L115"
     },
     {
       "id": "src_app_budget_layout_budgetlayout",
@@ -508,18 +532,6 @@
       "norm_label": "loginpage()",
       "source_file": "src/app/login/page.tsx",
       "source_location": "L9"
-    },
-    {
-      "id": "src_lib_supabase_auth_getsession",
-      "label": "getSession()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 15,
-      "community_name": "auth.ts",
-      "file_type": "code",
-      "norm_label": "getsession()",
-      "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L29"
     },
     {
       "id": "src_lib_supabase_auth_getuser",
@@ -587,7 +599,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "budgetpage()",
       "source_file": "src/app/budget/page.tsx",
@@ -599,11 +611,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "addexpensepage()",
       "source_file": "src/app/dashboard/add-expense/page.tsx",
-      "source_location": "L9"
+      "source_location": "L22"
+    },
+    {
+      "id": "src_app_dashboard_add_expense_page_formatamount",
+      "label": "formatAmount()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "useAppState",
+      "file_type": "code",
+      "norm_label": "formatamount()",
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "source_location": "L14"
     },
     {
       "id": "src_app_dashboard_expenses_page_expensespage",
@@ -611,7 +635,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "expensespage()",
       "source_file": "src/app/dashboard/expenses/page.tsx",
@@ -623,23 +647,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "dashboardpage()",
       "source_file": "src/app/dashboard/page.tsx",
       "source_location": "L7"
-    },
-    {
-      "id": "src_app_onboarding_page_onboardingpage",
-      "label": "OnboardingPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "onboardingpage()",
-      "source_file": "src/app/onboarding/page.tsx",
-      "source_location": "L8"
     },
     {
       "id": "src_app_page_home",
@@ -647,47 +659,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "home()",
       "source_file": "src/app/page.tsx",
       "source_location": "L7"
-    },
-    {
-      "id": "src_components_ui_button_button",
-      "label": "Button()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "button()",
-      "source_file": "src/components/ui/Button.tsx",
-      "source_location": "L18"
-    },
-    {
-      "id": "src_components_ui_card_card",
-      "label": "Card()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "card()",
-      "source_file": "src/components/ui/Card.tsx",
-      "source_location": "L9"
-    },
-    {
-      "id": "src_components_ui_input_input",
-      "label": "Input()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "input()",
-      "source_file": "src/components/ui/Input.tsx",
-      "source_location": "L8"
     },
     {
       "id": "src_lib_categories_getcategoryinfo",
@@ -695,7 +671,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "getcategoryinfo()",
       "source_file": "src/lib/categories.ts",
@@ -707,11 +683,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "useappstate()",
       "source_file": "src/lib/store.tsx",
-      "source_location": "L106"
+      "source_location": "L117"
     },
     {
       "id": "src_app_dashboard_layout_dashboardlayout",
@@ -719,11 +695,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 22,
-      "community_name": "signOut",
+      "community_name": "ref_next_navigation",
       "file_type": "code",
       "norm_label": "dashboardlayout()",
       "source_file": "src/app/dashboard/layout.tsx",
-      "source_location": "L4"
+      "source_location": "L5"
     },
     {
       "id": "src_app_dashboard_settings_page_settingspage",
@@ -731,11 +707,23 @@
       "_callable": true,
       "_origin": "ast",
       "community": 22,
-      "community_name": "signOut",
+      "community_name": "ref_next_navigation",
       "file_type": "code",
       "norm_label": "settingspage()",
       "source_file": "src/app/dashboard/settings/page.tsx",
       "source_location": "L8"
+    },
+    {
+      "id": "src_components_ui_authguard_authguard",
+      "label": "AuthGuard()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "ref_next_navigation",
+      "file_type": "code",
+      "norm_label": "authguard()",
+      "source_file": "src/components/ui/AuthGuard.tsx",
+      "source_location": "L7"
     },
     {
       "id": "src_components_ui_bottomnav_bottomnav",
@@ -743,7 +731,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 22,
-      "community_name": "signOut",
+      "community_name": "ref_next_navigation",
       "file_type": "code",
       "norm_label": "bottomnav()",
       "source_file": "src/components/ui/BottomNav.tsx",
@@ -755,7 +743,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 22,
-      "community_name": "signOut",
+      "community_name": "ref_next_navigation",
       "file_type": "code",
       "norm_label": "sidebar()",
       "source_file": "src/components/ui/Sidebar.tsx",
@@ -767,7 +755,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 22,
-      "community_name": "signOut",
+      "community_name": "ref_next_navigation",
       "file_type": "code",
       "norm_label": "signout()",
       "source_file": "src/lib/supabase/auth.ts",
@@ -798,6 +786,54 @@
       "source_location": "L4"
     },
     {
+      "id": "src_app_onboarding_page_onboardingpage",
+      "label": "OnboardingPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "react",
+      "file_type": "code",
+      "norm_label": "onboardingpage()",
+      "source_file": "src/app/onboarding/page.tsx",
+      "source_location": "L8"
+    },
+    {
+      "id": "src_components_ui_button_button",
+      "label": "Button()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "react",
+      "file_type": "code",
+      "norm_label": "button()",
+      "source_file": "src/components/ui/Button.tsx",
+      "source_location": "L18"
+    },
+    {
+      "id": "src_components_ui_card_card",
+      "label": "Card()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "react",
+      "file_type": "code",
+      "norm_label": "card()",
+      "source_file": "src/components/ui/Card.tsx",
+      "source_location": "L9"
+    },
+    {
+      "id": "src_components_ui_input_input",
+      "label": "Input()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "react",
+      "file_type": "code",
+      "norm_label": "input()",
+      "source_file": "src/components/ui/Input.tsx",
+      "source_location": "L8"
+    },
+    {
       "id": "opencode_plugins_graphify_graphifyplugin",
       "label": "GraphifyPlugin()",
       "_callable": true,
@@ -810,33 +846,11 @@
       "source_location": "L12"
     },
     {
-      "id": "next_config",
-      "label": "next.config.ts",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "app/layout.tsx",
-      "file_type": "code",
-      "norm_label": "next.config.ts",
-      "source_file": "next.config.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "next_config_nextconfig",
-      "label": "nextConfig",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "app/layout.tsx",
-      "file_type": "code",
-      "norm_label": "nextconfig",
-      "source_file": "next.config.ts",
-      "source_location": "L3"
-    },
-    {
       "id": "src_app_layout",
       "label": "app/layout.tsx",
       "_origin": "ast",
       "community": 1,
-      "community_name": "app/layout.tsx",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "app/layout.tsx",
       "source_file": "src/app/layout.tsx",
@@ -847,7 +861,7 @@
       "label": "inter",
       "_origin": "ast",
       "community": 1,
-      "community_name": "app/layout.tsx",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "inter",
       "source_file": "src/app/layout.tsx",
@@ -858,7 +872,7 @@
       "label": "metadata",
       "_origin": "ast",
       "community": 1,
-      "community_name": "app/layout.tsx",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "metadata",
       "source_file": "src/app/layout.tsx",
@@ -869,33 +883,77 @@
       "label": "viewport",
       "_origin": "ast",
       "community": 1,
-      "community_name": "app/layout.tsx",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "viewport",
       "source_file": "src/app/layout.tsx",
-      "source_location": "L21"
+      "source_location": "L20"
     },
     {
       "id": "src_components_providers_serviceworkerregistrar",
       "label": "ServiceWorkerRegistrar.tsx",
       "_origin": "ast",
       "community": 1,
-      "community_name": "app/layout.tsx",
+      "community_name": "store.tsx",
       "file_type": "code",
       "norm_label": "serviceworkerregistrar.tsx",
       "source_file": "src/components/providers/ServiceWorkerRegistrar.tsx",
       "source_location": "L1"
     },
     {
-      "id": "ref_next",
-      "label": "next",
+      "id": "src_lib_store",
+      "label": "store.tsx",
       "_origin": "ast",
       "community": 1,
-      "community_name": "app/layout.tsx",
-      "file_type": "concept",
-      "norm_label": "next",
-      "source_file": "package.json",
-      "source_location": "L17"
+      "community_name": "store.tsx",
+      "file_type": "code",
+      "norm_label": "store.tsx",
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_lib_store_appcontext",
+      "label": "AppContext",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "store.tsx",
+      "file_type": "code",
+      "norm_label": "appcontext",
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L21"
+    },
+    {
+      "id": "src_lib_store_default_budget",
+      "label": "DEFAULT_BUDGET",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "store.tsx",
+      "file_type": "code",
+      "norm_label": "default_budget",
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L23"
+    },
+    {
+      "id": "next_config",
+      "label": "next.config.ts",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "next.config.ts",
+      "source_file": "next.config.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "next_config_nextconfig",
+      "label": "nextConfig",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "nextconfig",
+      "source_file": "next.config.ts",
+      "source_location": "L3"
     },
     {
       "id": "package",
@@ -909,92 +967,81 @@
       "source_location": "L1"
     },
     {
-      "id": "package_devdependencies",
-      "label": "devDependencies",
+      "id": "package_dependencies",
+      "label": "dependencies",
       "_origin": "ast",
       "community": 11,
       "community_name": "package.json",
       "file_type": "code",
-      "norm_label": "devdependencies",
+      "norm_label": "dependencies",
       "source_file": "package.json",
-      "source_location": "L21"
+      "source_location": "L13"
     },
     {
-      "id": "package_devdependencies_autoprefixer",
-      "label": "autoprefixer",
+      "id": "package_dependencies_dexie",
+      "label": "dexie",
       "_origin": "ast",
       "community": 11,
       "community_name": "package.json",
       "file_type": "code",
-      "norm_label": "autoprefixer",
+      "norm_label": "dexie",
       "source_file": "package.json",
-      "source_location": "L25"
+      "source_location": "L16"
     },
     {
-      "id": "package_devdependencies_postcss",
-      "label": "postcss",
+      "id": "package_dependencies_next",
+      "label": "next",
       "_origin": "ast",
       "community": 11,
       "community_name": "package.json",
       "file_type": "code",
-      "norm_label": "postcss",
+      "norm_label": "next",
       "source_file": "package.json",
-      "source_location": "L26"
+      "source_location": "L17"
     },
     {
-      "id": "package_devdependencies_tailwindcss",
-      "label": "tailwindcss",
+      "id": "package_dependencies_react",
+      "label": "react",
       "_origin": "ast",
       "community": 11,
       "community_name": "package.json",
       "file_type": "code",
-      "norm_label": "tailwindcss",
+      "norm_label": "react",
       "source_file": "package.json",
-      "source_location": "L27"
+      "source_location": "L18"
     },
     {
-      "id": "package_devdependencies_types_node",
-      "label": "@types/node",
+      "id": "package_dependencies_react_dom",
+      "label": "react-dom",
       "_origin": "ast",
       "community": 11,
       "community_name": "package.json",
       "file_type": "code",
-      "norm_label": "@types/node",
+      "norm_label": "react-dom",
       "source_file": "package.json",
-      "source_location": "L22"
+      "source_location": "L19"
     },
     {
-      "id": "package_devdependencies_types_react",
-      "label": "@types/react",
+      "id": "package_dependencies_supabase_ssr",
+      "label": "@supabase/ssr",
       "_origin": "ast",
       "community": 11,
       "community_name": "package.json",
       "file_type": "code",
-      "norm_label": "@types/react",
+      "norm_label": "@supabase/ssr",
       "source_file": "package.json",
-      "source_location": "L23"
+      "source_location": "L14"
     },
     {
-      "id": "package_devdependencies_types_react_dom",
-      "label": "@types/react-dom",
+      "id": "package_dependencies_supabase_supabase_js",
+      "label": "@supabase/supabase-js",
       "_origin": "ast",
       "community": 11,
       "community_name": "package.json",
       "file_type": "code",
-      "norm_label": "@types/react-dom",
+      "norm_label": "@supabase/supabase-js",
       "source_file": "package.json",
-      "source_location": "L24"
-    },
-    {
-      "id": "package_devdependencies_typescript",
-      "label": "typescript",
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "package.json",
-      "file_type": "code",
-      "norm_label": "typescript",
-      "source_file": "package.json",
-      "source_location": "L28"
+      "source_location": "L15"
     },
     {
       "id": "package_name",
@@ -1138,6 +1185,17 @@
       "norm_label": "autoprefixer",
       "source_file": "package.json",
       "source_location": "L25"
+    },
+    {
+      "id": "ref_next",
+      "label": "next",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "concept",
+      "norm_label": "next",
+      "source_file": "package.json",
+      "source_location": "L17"
     },
     {
       "id": "ref_postcss",
@@ -1596,7 +1654,7 @@
       "label": "BITACORA.md",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "page",
       "norm_label": "bitacora.md",
@@ -1608,7 +1666,7 @@
       "label": "Archivos clave",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "archivos clave",
@@ -1620,7 +1678,7 @@
       "label": "Bug 5: Middleware no redirige despu\u00e9s de logout (2026-10-08)",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "bug 5: middleware no redirige despues de logout (2026-10-08)",
@@ -1632,7 +1690,7 @@
       "label": "Comandos \u00fatiles",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "comandos utiles",
@@ -1644,7 +1702,7 @@
       "label": "Completados \u2705",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "completados \u2705",
@@ -1656,7 +1714,7 @@
       "label": "Configuraci\u00f3n de entorno (.env.local)",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "configuracion de entorno (.env.local)",
@@ -1668,7 +1726,7 @@
       "label": "Diagn\u00f3stico de Supabase (queries \u00fatiles)",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "diagnostico de supabase (queries utiles)",
@@ -1680,7 +1738,7 @@
       "label": "En progreso \ud83d\udd04",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "en progreso \ud83d\udd04",
@@ -1692,7 +1750,7 @@
       "label": "Error 2: `Database error saving new user` (HTTP 500 en `/auth/v1/signup`)",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "error 2: `database error saving new user` (http 500 en `/auth/v1/signup`)",
@@ -1704,7 +1762,7 @@
       "label": "Error 3: `Uncaught SyntaxError: Invalid or unexpected token (at layout.js:728:29)`",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "error 3: `uncaught syntaxerror: invalid or unexpected token (at layout.js:728:29)`",
@@ -1716,7 +1774,7 @@
       "label": "Error 4: `relation \"pg_log\" does not exist` en Supabase",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "error 4: `relation \"pg_log\" does not exist` en supabase",
@@ -1728,7 +1786,7 @@
       "label": "Errores y soluciones",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "errores y soluciones",
@@ -1740,7 +1798,7 @@
       "label": "Esquema de base de datos",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "esquema de base de datos",
@@ -1752,7 +1810,7 @@
       "label": "Estado del proyecto (2026-10-08)",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "estado del proyecto (2026-10-08)",
@@ -1764,7 +1822,7 @@
       "label": "Notas para continuar en otro equipo",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "notas para continuar en otro equipo",
@@ -1776,7 +1834,7 @@
       "label": "Paltazo \u2014 Bit\u00e1cora de Avance",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "paltazo \u2014 bitacora de avance",
@@ -1788,7 +1846,7 @@
       "label": "Pendientes \ud83d\udccb",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "pendientes \ud83d\udccb",
@@ -1800,7 +1858,7 @@
       "label": "Pendientes y estado",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "pendientes y estado",
@@ -1812,7 +1870,7 @@
       "label": "Tabla: `budget_alerts`",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "tabla: `budget_alerts`",
@@ -1824,7 +1882,7 @@
       "label": "Tabla: `expenses`",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "tabla: `expenses`",
@@ -1836,7 +1894,7 @@
       "label": "Tabla: `profiles`",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "tabla: `profiles`",
@@ -1848,7 +1906,7 @@
       "label": "Trigger: `on_auth_user_created`",
       "_origin": "ast",
       "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community_name": "dependencies",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "trigger: `on_auth_user_created`",
@@ -1977,33 +2035,33 @@
       "source_location": "L8"
     },
     {
-      "id": "src_app_budget_page",
-      "label": "budget/page.tsx",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "budget/page.tsx",
-      "source_file": "src/app/budget/page.tsx",
-      "source_location": "L1"
-    },
-    {
       "id": "src_app_dashboard_add_expense_page",
       "label": "add-expense/page.tsx",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "add-expense/page.tsx",
       "source_file": "src/app/dashboard/add-expense/page.tsx",
       "source_location": "L1"
     },
     {
+      "id": "src_app_dashboard_add_expense_page_currency_options",
+      "label": "CURRENCY_OPTIONS",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "useAppState",
+      "file_type": "code",
+      "norm_label": "currency_options",
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "source_location": "L9"
+    },
+    {
       "id": "src_app_dashboard_expenses_page",
       "label": "expenses/page.tsx",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "expenses/page.tsx",
       "source_file": "src/app/dashboard/expenses/page.tsx",
@@ -2014,21 +2072,10 @@
       "label": "dashboard/page.tsx",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "dashboard/page.tsx",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_app_onboarding_page",
-      "label": "onboarding/page.tsx",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "onboarding/page.tsx",
-      "source_file": "src/app/onboarding/page.tsx",
       "source_location": "L1"
     },
     {
@@ -2036,54 +2083,10 @@
       "label": "app/page.tsx",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "app/page.tsx",
       "source_file": "src/app/page.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_components_ui_button",
-      "label": "Button.tsx",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "button.tsx",
-      "source_file": "src/components/ui/Button.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_components_ui_button_variants",
-      "label": "variants",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "variants",
-      "source_file": "src/components/ui/Button.tsx",
-      "source_location": "L11"
-    },
-    {
-      "id": "src_components_ui_card",
-      "label": "Card.tsx",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "card.tsx",
-      "source_file": "src/components/ui/Card.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_components_ui_input",
-      "label": "Input.tsx",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "input.tsx",
-      "source_file": "src/components/ui/Input.tsx",
       "source_location": "L1"
     },
     {
@@ -2091,7 +2094,7 @@
       "label": "categories.ts",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "categories.ts",
       "source_file": "src/lib/categories.ts",
@@ -2102,66 +2105,22 @@
       "label": "EXPENSE_CATEGORIES",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "expense_categories",
       "source_file": "src/lib/categories.ts",
       "source_location": "L10"
     },
     {
-      "id": "src_lib_store",
-      "label": "store.tsx",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "store.tsx",
-      "source_file": "src/lib/store.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_lib_store_appcontext",
-      "label": "AppContext",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "appcontext",
-      "source_file": "src/lib/store.tsx",
-      "source_location": "L21"
-    },
-    {
-      "id": "src_lib_store_default_budget",
-      "label": "DEFAULT_BUDGET",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "default_budget",
-      "source_file": "src/lib/store.tsx",
-      "source_location": "L23"
-    },
-    {
       "id": "src_types_index",
       "label": "index.ts",
       "_origin": "ast",
       "community": 19,
-      "community_name": "store.tsx",
+      "community_name": "useAppState",
       "file_type": "code",
       "norm_label": "index.ts",
       "source_file": "src/types/index.ts",
       "source_location": "L1"
-    },
-    {
-      "id": "ref_react",
-      "label": "react",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "concept",
-      "norm_label": "react",
-      "source_file": "package.json",
-      "source_location": "L18"
     },
     {
       "id": "development",
@@ -2284,6 +2243,18 @@
       "source_location": "L182"
     },
     {
+      "id": "development_protecci\u00f3n_de_rutas",
+      "label": "Protecci\u00f3n de rutas",
+      "_origin": "ast",
+      "community": 20,
+      "community_name": "Paltazo Web App \u2014 Gu\u00eda de Desarrollo",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "proteccion de rutas",
+      "source_file": "DEVELOPMENT.md",
+      "source_location": "L44"
+    },
+    {
       "id": "development_pwa",
       "label": "PWA",
       "_origin": "ast",
@@ -2358,7 +2329,7 @@
       "label": "dashboard/layout.tsx",
       "_origin": "ast",
       "community": 22,
-      "community_name": "signOut",
+      "community_name": "ref_next_navigation",
       "file_type": "code",
       "norm_label": "dashboard/layout.tsx",
       "source_file": "src/app/dashboard/layout.tsx",
@@ -2369,10 +2340,21 @@
       "label": "settings/page.tsx",
       "_origin": "ast",
       "community": 22,
-      "community_name": "signOut",
+      "community_name": "ref_next_navigation",
       "file_type": "code",
       "norm_label": "settings/page.tsx",
       "source_file": "src/app/dashboard/settings/page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_components_ui_authguard",
+      "label": "AuthGuard.tsx",
+      "_origin": "ast",
+      "community": 22,
+      "community_name": "ref_next_navigation",
+      "file_type": "code",
+      "norm_label": "authguard.tsx",
+      "source_file": "src/components/ui/AuthGuard.tsx",
       "source_location": "L1"
     },
     {
@@ -2380,7 +2362,7 @@
       "label": "BottomNav.tsx",
       "_origin": "ast",
       "community": 22,
-      "community_name": "signOut",
+      "community_name": "ref_next_navigation",
       "file_type": "code",
       "norm_label": "bottomnav.tsx",
       "source_file": "src/components/ui/BottomNav.tsx",
@@ -2391,7 +2373,7 @@
       "label": "tabs",
       "_origin": "ast",
       "community": 22,
-      "community_name": "signOut",
+      "community_name": "ref_next_navigation",
       "file_type": "code",
       "norm_label": "tabs",
       "source_file": "src/components/ui/BottomNav.tsx",
@@ -2402,7 +2384,7 @@
       "label": "Sidebar.tsx",
       "_origin": "ast",
       "community": 22,
-      "community_name": "signOut",
+      "community_name": "ref_next_navigation",
       "file_type": "code",
       "norm_label": "sidebar.tsx",
       "source_file": "src/components/ui/Sidebar.tsx",
@@ -2413,23 +2395,11 @@
       "label": "links",
       "_origin": "ast",
       "community": 22,
-      "community_name": "signOut",
+      "community_name": "ref_next_navigation",
       "file_type": "code",
       "norm_label": "links",
       "source_file": "src/components/ui/Sidebar.tsx",
       "source_location": "L6"
-    },
-    {
-      "id": "development_protecci\u00f3n_de_rutas",
-      "label": "Protecci\u00f3n de rutas",
-      "_origin": "ast",
-      "community": 22,
-      "community_name": "signOut",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "proteccion de rutas",
-      "source_file": "DEVELOPMENT.md",
-      "source_location": "L44"
     },
     {
       "id": "src_lib_supabase_server",
@@ -2527,81 +2497,169 @@
       "source_location": "L136"
     },
     {
-      "id": "package_dependencies",
-      "label": "dependencies",
+      "id": "src_app_budget_page",
+      "label": "budget/page.tsx",
       "_origin": "ast",
       "community": 25,
-      "community_name": "dependencies",
+      "community_name": "react",
       "file_type": "code",
-      "norm_label": "dependencies",
-      "source_file": "package.json",
-      "source_location": "L13"
+      "norm_label": "budget/page.tsx",
+      "source_file": "src/app/budget/page.tsx",
+      "source_location": "L1"
     },
     {
-      "id": "package_dependencies_dexie",
-      "label": "dexie",
+      "id": "src_app_onboarding_page",
+      "label": "onboarding/page.tsx",
       "_origin": "ast",
       "community": 25,
-      "community_name": "dependencies",
+      "community_name": "react",
       "file_type": "code",
-      "norm_label": "dexie",
-      "source_file": "package.json",
-      "source_location": "L16"
+      "norm_label": "onboarding/page.tsx",
+      "source_file": "src/app/onboarding/page.tsx",
+      "source_location": "L1"
     },
     {
-      "id": "package_dependencies_next",
-      "label": "next",
+      "id": "src_components_ui_button",
+      "label": "Button.tsx",
       "_origin": "ast",
       "community": 25,
-      "community_name": "dependencies",
+      "community_name": "react",
       "file_type": "code",
-      "norm_label": "next",
-      "source_file": "package.json",
-      "source_location": "L17"
+      "norm_label": "button.tsx",
+      "source_file": "src/components/ui/Button.tsx",
+      "source_location": "L1"
     },
     {
-      "id": "package_dependencies_react",
+      "id": "src_components_ui_button_variants",
+      "label": "variants",
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "react",
+      "file_type": "code",
+      "norm_label": "variants",
+      "source_file": "src/components/ui/Button.tsx",
+      "source_location": "L11"
+    },
+    {
+      "id": "src_components_ui_card",
+      "label": "Card.tsx",
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "react",
+      "file_type": "code",
+      "norm_label": "card.tsx",
+      "source_file": "src/components/ui/Card.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_components_ui_input",
+      "label": "Input.tsx",
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "react",
+      "file_type": "code",
+      "norm_label": "input.tsx",
+      "source_file": "src/components/ui/Input.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "ref_react",
       "label": "react",
       "_origin": "ast",
       "community": 25,
-      "community_name": "dependencies",
-      "file_type": "code",
+      "community_name": "react",
+      "file_type": "concept",
       "norm_label": "react",
       "source_file": "package.json",
       "source_location": "L18"
     },
     {
-      "id": "package_dependencies_react_dom",
-      "label": "react-dom",
+      "id": "package_devdependencies",
+      "label": "devDependencies",
       "_origin": "ast",
-      "community": 25,
-      "community_name": "dependencies",
+      "community": 26,
+      "community_name": "devDependencies",
       "file_type": "code",
-      "norm_label": "react-dom",
+      "norm_label": "devdependencies",
       "source_file": "package.json",
-      "source_location": "L19"
+      "source_location": "L21"
     },
     {
-      "id": "package_dependencies_supabase_ssr",
-      "label": "@supabase/ssr",
+      "id": "package_devdependencies_autoprefixer",
+      "label": "autoprefixer",
       "_origin": "ast",
-      "community": 25,
-      "community_name": "dependencies",
+      "community": 26,
+      "community_name": "devDependencies",
       "file_type": "code",
-      "norm_label": "@supabase/ssr",
+      "norm_label": "autoprefixer",
       "source_file": "package.json",
-      "source_location": "L14"
+      "source_location": "L25"
     },
     {
-      "id": "package_dependencies_supabase_supabase_js",
-      "label": "@supabase/supabase-js",
+      "id": "package_devdependencies_postcss",
+      "label": "postcss",
       "_origin": "ast",
-      "community": 25,
-      "community_name": "dependencies",
+      "community": 26,
+      "community_name": "devDependencies",
       "file_type": "code",
-      "norm_label": "@supabase/supabase-js",
+      "norm_label": "postcss",
       "source_file": "package.json",
-      "source_location": "L15"
+      "source_location": "L26"
+    },
+    {
+      "id": "package_devdependencies_tailwindcss",
+      "label": "tailwindcss",
+      "_origin": "ast",
+      "community": 26,
+      "community_name": "devDependencies",
+      "file_type": "code",
+      "norm_label": "tailwindcss",
+      "source_file": "package.json",
+      "source_location": "L27"
+    },
+    {
+      "id": "package_devdependencies_types_node",
+      "label": "@types/node",
+      "_origin": "ast",
+      "community": 26,
+      "community_name": "devDependencies",
+      "file_type": "code",
+      "norm_label": "@types/node",
+      "source_file": "package.json",
+      "source_location": "L22"
+    },
+    {
+      "id": "package_devdependencies_types_react",
+      "label": "@types/react",
+      "_origin": "ast",
+      "community": 26,
+      "community_name": "devDependencies",
+      "file_type": "code",
+      "norm_label": "@types/react",
+      "source_file": "package.json",
+      "source_location": "L23"
+    },
+    {
+      "id": "package_devdependencies_types_react_dom",
+      "label": "@types/react-dom",
+      "_origin": "ast",
+      "community": 26,
+      "community_name": "devDependencies",
+      "file_type": "code",
+      "norm_label": "@types/react-dom",
+      "source_file": "package.json",
+      "source_location": "L24"
+    },
+    {
+      "id": "package_devdependencies_typescript",
+      "label": "typescript",
+      "_origin": "ast",
+      "community": 26,
+      "community_name": "devDependencies",
+      "file_type": "code",
+      "norm_label": "typescript",
+      "source_file": "package.json",
+      "source_location": "L28"
     },
     {
       "id": "opencode_opencode",
@@ -3338,7 +3396,7 @@
       "label": "ref_next_font_google",
       "_origin": "semantic",
       "community": 1,
-      "community_name": "app/layout.tsx",
+      "community_name": "store.tsx",
       "external": true,
       "file_type": "concept",
       "norm_label": "ref_next_font_google",
@@ -3350,7 +3408,7 @@
       "label": "src_app_globals",
       "_origin": "semantic",
       "community": 1,
-      "community_name": "app/layout.tsx",
+      "community_name": "store.tsx",
       "external": true,
       "file_type": "concept",
       "norm_label": "src_app_globals",
@@ -3361,8 +3419,8 @@
       "id": "ref_next_navigation",
       "label": "ref_next_navigation",
       "_origin": "semantic",
-      "community": 19,
-      "community_name": "store.tsx",
+      "community": 22,
+      "community_name": "ref_next_navigation",
       "external": true,
       "file_type": "concept",
       "norm_label": "ref_next_navigation",
@@ -3440,7 +3498,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/add-expense/page.tsx",
-      "source_location": "L11",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_add_expense_page_addexpensepage",
+      "target": "src_app_dashboard_add_expense_page_formatamount",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -3560,7 +3630,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/login/page.tsx",
-      "source_location": "L41",
+      "source_location": "L47",
       "weight": 1.0
     },
     {
@@ -3588,6 +3658,18 @@
       "weight": 1.0
     },
     {
+      "source": "src_components_ui_authguard_authguard",
+      "target": "src_lib_store_useappstate",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/components/ui/AuthGuard.tsx",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
       "source": "src_components_ui_sidebar_sidebar",
       "target": "src_lib_supabase_auth_signout",
       "relation": "calls",
@@ -3601,18 +3683,6 @@
     },
     {
       "source": "src_lib_store_appprovider",
-      "target": "src_lib_supabase_auth_onauthstatechange",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/lib/store.tsx",
-      "source_location": "L37",
-      "weight": 1.0
-    },
-    {
-      "source": "src_lib_store_appprovider",
       "target": "src_lib_supabase_auth_signout",
       "relation": "calls",
       "_origin": "ast",
@@ -3620,7 +3690,43 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/lib/store.tsx",
-      "source_location": "L92",
+      "source_location": "L103",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_store_appprovider",
+      "target": "src_lib_store_loaduserdata",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_store_appprovider",
+      "target": "src_lib_supabase_auth_getsession",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_store_appprovider",
+      "target": "src_lib_supabase_auth_onauthstatechange",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L66",
       "weight": 1.0
     },
     {
@@ -3692,7 +3798,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L50",
+      "source_location": "L52",
       "weight": 1.0
     },
     {
@@ -4128,6 +4234,18 @@
       "weight": 1.0
     },
     {
+      "source": "src_app_dashboard_layout",
+      "target": "src_components_ui_authguard_authguard",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/dashboard/layout.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
       "source": "src_app_dashboard_page",
       "target": "src_lib_store_useappstate",
       "relation": "imports",
@@ -4296,6 +4414,18 @@
       "weight": 1.0
     },
     {
+      "source": "src_components_ui_authguard",
+      "target": "src_lib_store_useappstate",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/ui/AuthGuard.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
       "source": "src_components_ui_sidebar",
       "target": "src_lib_supabase_auth_signout",
       "relation": "imports",
@@ -4389,6 +4519,18 @@
       "context": "import",
       "source_file": "src/lib/repositories/expense-repository.ts",
       "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_store",
+      "target": "src_lib_supabase_auth_getsession",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -4755,6 +4897,18 @@
       "weight": 1.0
     },
     {
+      "source": "src_app_dashboard_layout",
+      "target": "src_components_ui_authguard",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/dashboard/layout.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
       "source": "src_app_dashboard_page",
       "target": "ref_next_navigation",
       "relation": "imports_from",
@@ -5053,6 +5207,42 @@
       "context": "import",
       "source_file": "src/components/providers/ServiceWorkerRegistrar.tsx",
       "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_authguard",
+      "target": "ref_react",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/ui/AuthGuard.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_authguard",
+      "target": "ref_next_navigation",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/ui/AuthGuard.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_authguard",
+      "target": "src_lib_store",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/ui/AuthGuard.tsx",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -6211,7 +6401,29 @@
     },
     {
       "source": "src_app_dashboard_add_expense_page",
+      "target": "src_app_dashboard_add_expense_page_formatamount",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_add_expense_page",
       "target": "src_app_dashboard_add_expense_page_addexpensepage",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_add_expense_page",
+      "target": "src_app_dashboard_add_expense_page_currency_options",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -6239,7 +6451,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/dashboard/layout.tsx",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0
     },
     {
@@ -6272,7 +6484,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/layout.tsx",
-      "source_location": "L21",
+      "source_location": "L20",
       "weight": 1.0
     },
     {
@@ -6283,7 +6495,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/layout.tsx",
-      "source_location": "L29",
+      "source_location": "L28",
       "weight": 1.0
     },
     {
@@ -6350,6 +6562,17 @@
       "confidence_score": 1.0,
       "source_file": "src/components/providers/ServiceWorkerRegistrar.tsx",
       "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_authguard",
+      "target": "src_components_ui_authguard_authguard",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/ui/AuthGuard.tsx",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -6602,7 +6825,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/store.tsx",
-      "source_location": "L106",
+      "source_location": "L117",
       "weight": 1.0
     },
     {
@@ -6629,13 +6852,24 @@
     },
     {
       "source": "src_lib_store",
-      "target": "src_lib_store_appprovider",
+      "target": "src_lib_store_loaduserdata",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/store.tsx",
       "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_store",
+      "target": "src_lib_store_appprovider",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L38",
       "weight": 1.0
     },
     {
@@ -6756,7 +6990,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L110",
+      "source_location": "L115",
       "weight": 1.0
     },
     {
@@ -6767,7 +7001,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0
     },
     {
@@ -6778,7 +7012,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -6789,7 +7023,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L45",
+      "source_location": "L47",
       "weight": 1.0
     },
     {
@@ -6822,7 +7056,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L75",
+      "source_location": "L79",
       "weight": 1.0
     },
     {
@@ -6833,7 +7067,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L86",
+      "source_location": "L91",
       "weight": 1.0
     },
     {
@@ -6844,7 +7078,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L91",
+      "source_location": "L96",
       "weight": 1.0
     },
     {
@@ -6910,7 +7144,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/types/index.ts",
-      "source_location": "L21",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -6921,7 +7155,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/types/index.ts",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -6932,7 +7166,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/types/index.ts",
-      "source_location": "L37",
+      "source_location": "L38",
       "weight": 1.0
     },
     {
@@ -7941,5 +8175,5 @@
       "source_file": "docs/stack_tecnologico_paltazo.md"
     }
   ],
-  "built_at_commit": "a7d6547fcf68623cdfaf38ea46fc5e64d2228f39"
+  "built_at_commit": "0182dc6fa2388c6a140175af4db938928e87d02d"
 }
