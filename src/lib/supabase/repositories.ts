@@ -23,6 +23,15 @@ interface SupabaseProfileRow {
   created_at: string
 }
 
+interface SupabaseBudgetRow {
+  id: string
+  user_id: string
+  currency: string
+  monthly_limit: string | number
+  created_at: string
+  updated_at: string
+}
+
 export async function getExpenses(userId: string): Promise<Expense[]> {
   const { data, error } = await supabase
     .from('expenses')
@@ -112,14 +121,32 @@ export async function getBudget(userId: string): Promise<Budget | null> {
   }
 }
 
+export async function getBudgets(userId: string): Promise<Budget[]> {
+  const { data, error } = await supabase
+    .from('budgets')
+    .select('*')
+    .eq('user_id', userId)
+
+  if (error) throw error
+  return data.map((row: SupabaseBudgetRow) => ({
+    userId: row.user_id,
+    monthlyLimit: Number(row.monthly_limit),
+    currency: row.currency,
+    updatedAt: row.updated_at,
+  }))
+}
+
 export async function upsertBudget(budget: Budget) {
   const { error } = await supabase
-    .from('profiles')
-    .update({
-      monthly_budget: budget.monthlyLimit,
+    .from('budgets')
+    .upsert({
+      user_id: budget.userId,
       currency: budget.currency,
+      monthly_limit: budget.monthlyLimit,
+      updated_at: new Date().toISOString(),
+    }, {
+      onConflict: 'user_id,currency'
     })
-    .eq('id', budget.userId)
 
   if (error) throw error
 }

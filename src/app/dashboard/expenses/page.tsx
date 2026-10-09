@@ -73,7 +73,7 @@ export default function ExpensesPage() {
             <div>
               <span className="text-label-sm text-text-secondary block">Total gastado</span>
               <span className="text-headline-sm text-on-surface font-bold">
-                {budget.currency} {expenses.reduce((s, e) => s + e.amount, 0).toFixed(2)}
+                {budget.currency} {expenses.filter((e) => e.currency === budget.currency).reduce((s, e) => s + e.amount, 0).toFixed(2)}
               </span>
             </div>
             <span className="text-label-sm text-text-secondary">
@@ -186,7 +186,7 @@ export default function ExpensesPage() {
                           {expense.description || '—'}
                         </td>
                         <td className="px-4 py-3 text-right text-label-lg font-bold text-on-surface">
-                          -{budget.currency} {expense.amount.toFixed(2)}
+                           -{expense.currency} {expense.amount.toFixed(2)}
                         </td>
                         <td className="px-4 py-3 text-right">
                           <div className="flex gap-1 justify-end">
@@ -219,7 +219,7 @@ export default function ExpensesPage() {
                       {formatDate(date)}
                     </h3>
                     <span className="text-label-md text-text-secondary font-medium">
-                      {budget.currency} {dayExpenses.reduce((s, e) => s + e.amount, 0).toFixed(2)}
+                      {budget.currency} {dayExpenses.filter((e) => e.currency === budget.currency).reduce((s, e) => s + e.amount, 0).toFixed(2)}
                     </span>
                   </div>
                   <div className="space-y-space-xs">
@@ -302,7 +302,7 @@ export default function ExpensesPage() {
                           </div>
                           <div className="flex items-center gap-2 shrink-0">
                             <span className="text-label-lg font-bold text-on-surface">
-                              -{budget.currency}{expense.amount.toFixed(2)}
+                              -{expense.currency} {expense.amount.toFixed(2)}
                             </span>
                             <div className="flex flex-col gap-0.5">
                               <button

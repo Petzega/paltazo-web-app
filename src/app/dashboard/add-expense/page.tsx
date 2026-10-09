@@ -28,6 +28,7 @@ export default function AddExpensePage() {
   const [description, setDescription] = useState('')
   const [date, setDate] = useState(new Date().toISOString().split('T')[0])
   const [focused, setFocused] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
 
   const presets = ['15.00', '30.00', '50.00', '100.00']
 
@@ -49,7 +50,10 @@ export default function AddExpensePage() {
       description: description || undefined,
       date,
     })
-    router.push('/dashboard')
+    setShowSuccess(true)
+    setTimeout(() => setShowSuccess(false), 2000)
+    setDigits('')
+    setDescription('')
   }
 
   const handleClear = () => {
@@ -95,6 +99,12 @@ export default function AddExpensePage() {
           </div>
 
           <form onSubmit={(e) => { e.preventDefault(); handleSave() }} className="flex flex-col gap-space-lg">
+            {showSuccess && (
+              <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[100] px-6 py-3 rounded-full bg-secondary-fixed text-on-secondary-fixed shadow-lg animate-in fade-in slide-in-from-top-2 duration-300 flex items-center gap-2">
+                <span className="text-lg">✓</span>
+                <span className="text-body-md font-medium">Gasto registrado</span>
+              </div>
+            )}
             <div className="relative overflow-hidden bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col items-center justify-center gap-space-xs text-center">
               <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-secondary-fixed/30 pointer-events-none blur-2xl" />
               <div className="absolute -bottom-10 -left-10 w-28 h-28 rounded-full bg-primary-fixed/40 pointer-events-none blur-xl" />
@@ -284,7 +294,7 @@ export default function AddExpensePage() {
                 disabled={numericValue <= 0}
                 className="w-full h-12 rounded-full bg-primary-container text-on-primary text-headline-sm flex items-center justify-center gap-space-xs shadow-sm hover:opacity-95 active:scale-[0.99] transition-all disabled:opacity-50"
               >
-                ✓ Guardar Gasto
+                ✓ Guardar y Continuar
               </button>
               <button
                 type="button"

@@ -14,15 +14,15 @@
   "12": "compilerOptions",
   "13": "repositories.ts",
   "14": "budget/layout.tsx",
-  "15": "store.tsx",
-  "16": "dependencies",
+  "15": "auth.ts",
+  "16": "Paltazo — Bitácora de Avance",
   "17": "postcss.config.mjs",
   "18": "manifest.json",
-  "19": "useAppState",
-  "20": "Paltazo Web App - Guía de Desarrollo",
+  "19": "store.tsx",
+  "20": "Paltazo Web App — Guía de Desarrollo",
   "21": "next-env.d.ts",
-  "22": "dashboard/layout.tsx",
+  "22": "signOut",
   "23": "@supabase/ssr",
   "24": "Paltazo Design System",
-  "25": "scripts"
+  "25": "Supabase Local — Guía de Desarrollo"
 }

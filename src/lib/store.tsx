@@ -8,12 +8,13 @@ import type { Expense, Budget } from '@/types'
 interface AppState {
   expenses: Expense[]
   budget: Budget
+  budgets: Record<string, Budget>
   isLoggedIn: boolean
   userId: string | null
   addExpense: (expense: Omit<Expense, 'id' | 'createdAt'>) => Promise<void>
   updateExpense: (id: string, changes: Partial<Expense>) => Promise<void>
   deleteExpense: (id: string) => Promise<void>
-  setBudget: (monthlyLimit: number) => Promise<void>
+  setBudget: (monthlyLimit: number, currency?: string) => Promise<void>
   logout: () => Promise<void>
   isLoading: boolean
 }
@@ -28,16 +29,18 @@ const DEFAULT_BUDGET: Budget = {
 }
 
 async function loadUserData(id: string) {
-  const [expensesData, budgetData] = await Promise.all([
+  const [expensesData, budgetData, budgetsData] = await Promise.all([
     db.getExpenses(id),
     db.getBudget(id),
+    db.getBudgets(id),
   ])
-  return { expenses: expensesData, budget: budgetData }
+  return { expenses: expensesData, budget: budgetData, budgets: budgetsData }
 }
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [expenses, setExpenses] = useState<Expense[]>([])
   const [budget, setBudgetState] = useState<Budget>(DEFAULT_BUDGET)
+  const [budgets, setBudgets] = useState<Record<string, Budget>>({})
   const [userId, setUserId] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
@@ -45,15 +48,21 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setUserId(id)
     if (id) {
       loadUserData(id)
-        .then(({ expenses: e, budget: b }) => {
+        .then(({ expenses: e, budget: b, budgets: bs }) => {
           setExpenses(e)
           if (b) setBudgetState(b)
+          const budgetsMap: Record<string, Budget> = {}
+          for (const budget of bs) {
+            budgetsMap[budget.currency] = budget
+          }
+          setBudgets(budgetsMap)
         })
         .catch((err) => console.error('Failed to load from Supabase', err))
         .finally(() => setIsLoading(false))
     } else {
       setExpenses([])
       setBudgetState(DEFAULT_BUDGET)
+      setBudgets({})
       setIsLoading(false)
     }
   }, [])
@@ -87,16 +96,21 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setExpenses((prev) => prev.filter((e) => e.id !== id))
   }
 
-  const setBudget = async (monthlyLimit: number) => {
+  const setBudget = async (monthlyLimit: number, currency?: string) => {
     if (!userId) return
+    const targetCurrency = currency || budget.currency
     const updated: Budget = {
       ...budget,
       userId,
       monthlyLimit,
+      currency: targetCurrency,
       updatedAt: new Date().toISOString(),
     }
     await db.upsertBudget(updated)
-    setBudgetState(updated)
+    setBudgets((prev) => ({ ...prev, [targetCurrency]: updated }))
+    if (targetCurrency === budget.currency) {
+      setBudgetState(updated)
+    }
   }
 
   const logout = async () => {
@@ -108,7 +122,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   if (isLoading) return null
 
   return (
-    <AppContext.Provider value={{ expenses, budget, isLoggedIn: !!userId, userId, addExpense, updateExpense, deleteExpense, setBudget, logout, isLoading }}>
+    <AppContext.Provider value={{ expenses, budget, budgets, isLoggedIn: !!userId, userId, addExpense, updateExpense, deleteExpense, setBudget, logout, isLoading }}>
       {children}
     </AppContext.Provider>
   )

@@ -1,12 +1,39 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { useAppState } from '@/lib/store'
 import { getCategoryInfo } from '@/lib/categories'
 
+const DAY_NAMES = ['L', 'M', 'X', 'J', 'V', 'S', 'D']
+const MONTH_NAMES = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+
+function dateStr(year: number, month: number, day: number): string {
+  return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+}
+
+function getDaysInMonth(year: number, month: number): number {
+  return new Date(year, month + 1, 0).getDate()
+}
+
+function getFirstDayOfMonth(year: number, month: number): number {
+  const day = new Date(year, month, 1).getDay()
+  return day === 0 ? 6 : day - 1
+}
+
+interface CurrencySummary {
+  currency: string
+  monthlyLimit: number
+  totalExpenses: number
+  percentage: number
+  remaining: number
+  alertLevel: 'safe' | 'warning' | 'critical' | 'exceeded'
+  alertMessage: string
+}
+
 export default function DashboardPage() {
   const router = useRouter()
-  const { expenses, budget } = useAppState()
+  const { expenses, budget, budgets } = useAppState()
 
   const now = new Date()
   const currentMonth = now.getMonth()
@@ -20,51 +47,79 @@ export default function DashboardPage() {
     return expDate.getMonth() === currentMonth && expDate.getFullYear() === currentYear
   })
 
-  const totalExpenses = monthlyExpenses.reduce((sum, exp) => sum + exp.amount, 0)
-  const percentage = budget.monthlyLimit > 0 ? Math.min((totalExpenses / budget.monthlyLimit) * 100, 100) : 0
-  const remaining = Math.max(budget.monthlyLimit - totalExpenses, 0)
-  const dailyAverage = currentDay > 0 ? totalExpenses / currentDay : 0
+  const activeCurrencies = new Set(monthlyExpenses.map((e) => e.currency))
+  activeCurrencies.add(budget.currency)
+  if (Object.keys(budgets).length > 0) {
+    Object.keys(budgets).forEach((c) => activeCurrencies.add(c))
+  }
 
-  const alertLevel = percentage >= 101 ? 'exceeded' : percentage >= 100 ? 'critical' : percentage >= 80 ? 'warning' : 'safe'
-  const alertMessage = alertLevel === 'exceeded'
-    ? 'Has superado tu presupuesto mensual'
-    : alertLevel === 'critical'
-    ? 'Has alcanzado tu límite mensual'
-    : alertLevel === 'warning'
-    ? 'Ritmo de gasto moderado'
-    : 'Ritmo de gasto saludable'
-
-  const dailySuggestion = daysRemaining > 0 ? remaining / daysRemaining : 0
-
-  const weeklyData = Array.from({ length: 7 }, (_, i) => {
-    const dayNames = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom']
-    const today = new Date()
-    const dayOfWeek = (today.getDay() + 6) % 7
-    const targetDate = new Date(today)
-    targetDate.setDate(today.getDate() - dayOfWeek + i)
-    
-    const dayExpenses = expenses.filter((exp) => {
-      const expDate = new Date(exp.date)
-      return expDate.toDateString() === targetDate.toDateString()
-    })
-    
-    const dayTotal = dayExpenses.reduce((sum, exp) => sum + exp.amount, 0)
-    const maxDay = Math.max(...Array.from({ length: 7 }, (_, j) => {
-      const d = new Date(today)
-      d.setDate(today.getDate() - dayOfWeek + j)
-      return expenses.filter((e) => new Date(e.date).toDateString() === d.toDateString())
-        .reduce((s, e) => s + e.amount, 0)
-    }), 1)
-    
-    const heightPercent = (dayTotal / maxDay) * 100
-    const isHighlight = dayTotal === maxDay && dayTotal > 0
-    
-    return {
-      day: dayNames[i],
-      heightPercent,
-      isHighlight,
-    }
+  const currencySummaries: CurrencySummary[] = Array.from(activeCurrencies).map((currency) => {
+    const budgetForCurrency = budgets[currency] || (currency === budget.currency ? budget : null)
+    const monthlyLimit = budgetForCurrency?.monthlyLimit || 0
+    const totalExpenses = monthlyExpenses
+      .filter((e) => e.currency === currency)
+      .reduce((sum, e) => sum + e.amount, 0)
+    const percentage = monthlyLimit > 0 ? Math.min((totalExpenses / monthlyLimit) * 100, 100) : 0
+    const remaining = Math.max(monthlyLimit - totalExpenses, 0)
+    const alertLevel: CurrencySummary['alertLevel'] = percentage >= 101 ? 'exceeded' : percentage >= 100 ? 'critical' : percentage >= 80 ? 'warning' : 'safe'
+    const alertMessage = alertLevel === 'exceeded'
+      ? `Has superado tu presupuesto en ${currency}`
+      : alertLevel === 'critical'
+      ? `Alcanzaste tu límite en ${currency}`
+      : alertLevel === 'warning'
+      ? `Ritmo de gasto moderado en ${currency}`
+      : monthlyLimit > 0
+      ? `${currency} dentro del límite`
+      : `${currency} sin presupuesto configurado`
+    return { currency, monthlyLimit, totalExpenses, percentage, remaining, alertLevel, alertMessage }
   })
+
+  currencySummaries.sort((a, b) => {
+    if (a.currency === budget.currency) return -1
+    if (b.currency === budget.currency) return 1
+    return a.currency.localeCompare(b.currency)
+  })
+
+  const primarySummary = currencySummaries.find((s) => s.currency === budget.currency) || currencySummaries[0]
+
+  const todayStr = now.toISOString().split('T')[0]
+  const [selectedDate, setSelectedDate] = useState(todayStr)
+  const [calendarMonth, setCalendarMonth] = useState(now.getMonth())
+  const [calendarYear, setCalendarYear] = useState(now.getFullYear())
+
+  const daysWithExpenses = new Set(expenses.map((e) => e.date))
+
+  const selectedDayExpenses = expenses
+    .filter((exp) => exp.date === selectedDate)
+    .sort((a, b) => {
+      const timeA = a.createdAt ? new Date(a.createdAt).getTime() : 0
+      const timeB = b.createdAt ? new Date(b.createdAt).getTime() : 0
+      return timeB - timeA
+    })
+
+  const prevMonth = () => {
+    if (calendarMonth === 0) {
+      setCalendarMonth(11)
+      setCalendarYear(calendarYear - 1)
+    } else {
+      setCalendarMonth(calendarMonth - 1)
+    }
+  }
+
+  const nextMonth = () => {
+    if (calendarMonth === 11) {
+      setCalendarMonth(0)
+      setCalendarYear(calendarYear + 1)
+    } else {
+      setCalendarMonth(calendarMonth + 1)
+    }
+  }
+
+  const goToToday = () => {
+    setCalendarMonth(now.getMonth())
+    setCalendarYear(now.getFullYear())
+    setSelectedDate(todayStr)
+  }
 
   return (
     <main className="min-h-screen bg-surface pb-24 md:pb-space-xl max-w-xl mx-auto md:max-w-none px-gutter md:px-space-xl">
@@ -104,20 +159,20 @@ export default function DashboardPage() {
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between">
               <p className="text-label-lg text-on-secondary-container font-semibold">
-                {alertMessage}
+                {primarySummary.alertMessage}
               </p>
               <span className="text-label-sm px-2 py-0.5 rounded-full bg-secondary/15 text-secondary font-medium">
                 Quedan {daysRemaining} días
               </span>
             </div>
             <p className="text-body-sm text-on-surface-variant mt-0.5 leading-relaxed">
-              {percentage >= 80
-                ? `Has alcanzado el ${percentage.toFixed(0)}% de tu presupuesto. ${
-                    dailySuggestion > 0
-                      ? `Te sugerimos mantener tus consumos diarios en ${budget.currency} ${dailySuggestion.toFixed(2)} para cerrar el mes en verde.`
+              {primarySummary.percentage >= 80
+                ? `Has alcanzado el ${primarySummary.percentage.toFixed(0)}% de tu presupuesto en ${primarySummary.currency}. ${
+                    primarySummary.remaining / daysRemaining > 0 && daysRemaining > 0
+                      ? `Te sugerimos mantener tus consumos diarios en ${primarySummary.currency} ${(primarySummary.remaining / daysRemaining).toFixed(2)} para cerrar el mes en verde.`
                       : ''
                   }`
-                : `Has gastado el ${percentage.toFixed(0)}% de tu presupuesto. ¡Sigue así!`
+                : `Has gastado el ${primarySummary.percentage.toFixed(0)}% de tu presupuesto en ${primarySummary.currency}. ¡Sigue así!`
               }
             </p>
           </div>
@@ -129,60 +184,71 @@ export default function DashboardPage() {
             <div className="flex items-center justify-between mb-space-md">
               <div>
                 <span className="text-label-sm text-text-secondary uppercase tracking-wider block">
-                  Presupuesto mensual
-                </span>
-                <span className="text-headline-lg-mobile font-bold text-on-surface">
-                  {budget.currency} {budget.monthlyLimit.toFixed(2)}
+                  Presupuestos mensuales
                 </span>
               </div>
-              <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full font-label-md ${
-                percentage >= 100
-                  ? 'bg-danger/15 text-danger'
-                  : percentage >= 80
-                  ? 'bg-warning/15 text-warning'
-                  : 'bg-primary/15 text-primary'
-              }`}>
-                <span className={`w-2 h-2 rounded-full animate-pulse ${
-                  percentage >= 100 ? 'bg-danger' : percentage >= 80 ? 'bg-warning' : 'bg-primary'
-                }`} />
-                {percentage.toFixed(0)}% utilizado
+              <span className="text-label-sm px-2 py-0.5 rounded-full bg-secondary/15 text-secondary font-medium">
+                {currencySummaries.length} {currencySummaries.length === 1 ? 'moneda' : 'monedas'}
               </span>
             </div>
 
-            <div className="space-y-2 mb-space-lg">
-              <div className="w-full h-3.5 bg-surface-container-highest rounded-full overflow-hidden p-0.5 flex">
-                <div
-                  className={`h-full rounded-full transition-all duration-700 ease-out shadow-xs ${
-                    percentage >= 100 ? 'bg-danger' : percentage >= 80 ? 'bg-warning' : 'bg-primary'
-                  }`}
-                  style={{ width: `${percentage}%` }}
-                />
-              </div>
-              <div className="flex justify-between items-center text-body-sm">
-                <span className="text-on-surface-variant font-medium">
-                  {budget.currency} {totalExpenses.toFixed(2)} gastados ({percentage.toFixed(0)}%)
-                </span>
-                <span className="text-text-secondary hidden md:inline">
-                  Límite {budget.currency} {budget.monthlyLimit.toFixed(2)}
-                </span>
-              </div>
+            <div className="space-y-4 mb-space-lg">
+              {currencySummaries.map((summary) => (
+                <div key={summary.currency} className="bg-surface-container-lowest rounded-2xl p-4 shadow-sm">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-headline-sm font-bold text-on-surface">
+                      {summary.currency} {summary.monthlyLimit.toFixed(2)}
+                    </span>
+                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-label-sm ${
+                      summary.percentage >= 100
+                        ? 'bg-danger/15 text-danger'
+                        : summary.percentage >= 80
+                        ? 'bg-warning/15 text-warning'
+                        : summary.monthlyLimit > 0
+                        ? 'bg-primary/15 text-primary'
+                        : 'bg-surface-container text-text-secondary'
+                    }`}>
+                      {summary.monthlyLimit > 0 ? `${summary.percentage.toFixed(0)}%` : 'Sin límite'}
+                    </span>
+                  </div>
+                  {summary.monthlyLimit > 0 && (
+                    <>
+                      <div className="w-full h-2.5 bg-surface-container-highest rounded-full overflow-hidden mb-2">
+                        <div
+                          className={`h-full rounded-full transition-all duration-700 ease-out ${
+                            summary.percentage >= 100 ? 'bg-danger' : summary.percentage >= 80 ? 'bg-warning' : 'bg-primary'
+                          }`}
+                          style={{ width: `${summary.percentage}%` }}
+                        />
+                      </div>
+                      <div className="flex justify-between items-center text-body-sm">
+                        <span className="text-on-surface-variant">
+                          {summary.currency} {summary.totalExpenses.toFixed(2)} gastados
+                        </span>
+                        <span className="text-text-secondary">
+                          {summary.currency} {summary.remaining.toFixed(2)} restantes
+                        </span>
+                      </div>
+                    </>
+                  )}
+                  {summary.monthlyLimit === 0 && summary.totalExpenses > 0 && (
+                    <div className="text-body-sm text-on-surface-variant">
+                      {summary.currency} {summary.totalExpenses.toFixed(2)} registrados (sin presupuesto configurado)
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
 
             <div className="p-space-md rounded-2xl bg-surface-container-lowest flex items-center justify-between shadow-sm">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-primary-fixed flex items-center justify-center text-primary shrink-0">
-                  💰
+                  📅
                 </div>
                 <div>
-                  <span className="text-label-sm text-text-secondary block">Saldo disponible</span>
-                  <span className="text-headline-sm text-secondary font-bold">
-                    {budget.currency} {remaining.toFixed(2)} restantes
-                  </span>
+                  <span className="text-label-sm text-text-secondary block">Días restantes del mes</span>
+                  <span className="text-headline-sm text-secondary font-bold">{daysRemaining} días</span>
                 </div>
-              </div>
-              <div className="text-right">
-                <span className="text-label-sm text-text-secondary block">Días restantes</span>
-                <span className="text-label-lg text-on-surface font-semibold">{daysRemaining} días</span>
               </div>
             </div>
 
@@ -199,7 +265,7 @@ export default function DashboardPage() {
                 className="w-full py-2.5 px-3 rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface text-label-md flex items-center justify-center gap-1.5 transition-colors active:scale-95"
               >
                 <span className="text-secondary text-[18px]">⚙️</span>
-                Ajustar presupuesto
+                Ajustar presupuestos
               </button>
             </div>
           </div>
@@ -207,31 +273,122 @@ export default function DashboardPage() {
           <div className="mb-space-lg p-space-md rounded-2xl bg-surface-container-low shadow-sm h-fit">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-label-lg font-semibold text-on-surface flex items-center gap-1.5">
-                <span className="text-primary text-[18px]">📊</span>
-                Distribución semanal
+                <span className="text-primary text-[18px]">📅</span>
+                Gastos del día
               </h3>
-              <span className="text-label-sm text-text-secondary">
-                Promedio {budget.currency} {dailyAverage.toFixed(2)}/día
-              </span>
+              <button
+                onClick={goToToday}
+                className="text-label-sm text-primary font-semibold hover:text-primary-container px-2 py-1 rounded-full hover:bg-primary/10 transition-colors"
+              >
+                Hoy
+              </button>
             </div>
-            <div className="flex items-end justify-between gap-2 h-20 pt-2 px-1">
-              {weeklyData.map((item) => (
-                <div key={item.day} className="flex flex-col items-center flex-1 gap-1.5">
-                  <div
-                    className={`w-full rounded-t-lg transition-all ${
-                      item.isHighlight
-                        ? 'bg-warning/60 hover:bg-warning'
-                        : 'bg-primary-container/40 hover:bg-primary-container'
-                    }`}
-                    style={{ height: `${Math.max(item.heightPercent, 10)}%` }}
-                  />
-                  <span className={`text-label-sm ${
-                    item.isHighlight ? 'text-warning font-semibold' : 'text-text-secondary'
-                  }`}>
-                    {item.day}
-                  </span>
+
+            <div className="bg-surface-container-lowest rounded-2xl p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-4">
+                <button
+                  onClick={prevMonth}
+                  className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors"
+                >
+                  ←
+                </button>
+                <span className="text-label-lg text-on-surface font-semibold capitalize">
+                  {MONTH_NAMES[calendarMonth]} {calendarYear}
+                </span>
+                <button
+                  onClick={nextMonth}
+                  className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors"
+                >
+                  →
+                </button>
+              </div>
+
+              <div className="grid grid-cols-7 gap-1 mb-2">
+                {DAY_NAMES.map((day) => (
+                  <div key={day} className="text-center text-label-sm text-text-secondary font-medium py-1">
+                    {day}
+                  </div>
+                ))}
+              </div>
+
+              <div className="grid grid-cols-7 gap-1">
+                {Array.from({ length: getFirstDayOfMonth(calendarYear, calendarMonth) }).map((_, i) => (
+                  <div key={`empty-${i}`} />
+                ))}
+                {Array.from({ length: getDaysInMonth(calendarYear, calendarMonth) }, (_, i) => {
+                  const day = i + 1
+                  const ds = dateStr(calendarYear, calendarMonth, day)
+                  const isToday = ds === todayStr
+                  const isSelected = ds === selectedDate
+                  const hasExpenses = daysWithExpenses.has(ds)
+
+                  return (
+                    <button
+                      key={day}
+                      onClick={() => setSelectedDate(ds)}
+                      className={`relative w-full aspect-square rounded-full text-body-sm font-medium transition-all duration-150 ${
+                        isSelected
+                          ? 'bg-primary text-on-primary shadow-sm'
+                          : isToday
+                          ? 'bg-primary/20 text-primary font-bold'
+                          : hasExpenses
+                          ? 'bg-surface-container-high text-on-surface hover:bg-surface-variant'
+                          : 'text-on-surface-variant hover:bg-surface-container'
+                      }`}
+                    >
+                      {day}
+                      {hasExpenses && !isSelected && (
+                        <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary" />
+                      )}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+
+            <div className="mt-4">
+              {selectedDayExpenses.length === 0 ? (
+                <div className="text-center py-6 flex flex-col items-center gap-2">
+                  <span className="text-4xl opacity-50">📭</span>
+                  <p className="text-body-sm text-on-surface-variant">
+                    No hay gastos registrados para el{' '}
+                    {new Date(selectedDate + 'T12:00:00').toLocaleDateString('es-PE', { weekday: 'long', day: 'numeric', month: 'long' })}
+                  </p>
                 </div>
-              ))}
+              ) : (
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-body-sm text-on-surface-variant px-1">
+                    <span>{selectedDayExpenses.length} {selectedDayExpenses.length === 1 ? 'gasto' : 'gastos'}</span>
+                    <span className="font-semibold text-on-surface">
+                      Total: {primarySummary.currency} {selectedDayExpenses.reduce((s, e) => s + e.amount, 0).toFixed(2)}
+                    </span>
+                  </div>
+                  {selectedDayExpenses.map((expense) => {
+                    const catInfo = getCategoryInfo(expense.category)
+                    return (
+                      <div
+                        key={expense.id}
+                        className="flex items-center justify-between p-3 rounded-xl bg-surface-container-lowest shadow-sm"
+                      >
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <div className="w-9 h-9 rounded-full flex items-center justify-center text-[18px] shrink-0 bg-surface-container">
+                            {catInfo.icon}
+                          </div>
+                          <div className="min-w-0">
+                            <p className="text-label-md text-on-surface font-medium truncate">
+                              {expense.description || catInfo.label}
+                            </p>
+                            <span className="text-label-sm text-text-secondary">{catInfo.label}</span>
+                          </div>
+                        </div>
+                        <span className="text-label-md font-bold text-on-surface shrink-0 ml-2">
+                          {expense.currency} {expense.amount.toFixed(2)}
+                        </span>
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -287,7 +444,7 @@ export default function DashboardPage() {
                             {expense.description || '—'}
                           </td>
                           <td className="px-4 py-3 text-right text-label-lg font-bold text-on-surface">
-                            - {budget.currency} {expense.amount.toFixed(2)}
+                            - {expense.currency} {expense.amount.toFixed(2)}
                           </td>
                           <td className="px-4 py-3 text-right">
                             <button
@@ -305,7 +462,7 @@ export default function DashboardPage() {
               </div>
 
               <div className="md:hidden space-y-space-xs">
-                {monthlyExpenses.slice(0, 5).map((expense) => {
+                {monthlyExpenses.map((expense) => {
                   const catInfo = getCategoryInfo(expense.category)
                   return (
                     <div
@@ -338,7 +495,7 @@ export default function DashboardPage() {
                       </div>
                       <div className="text-right shrink-0">
                         <span className="text-label-lg font-bold text-on-surface">
-                          - {budget.currency} {expense.amount.toFixed(2)}
+                          - {expense.currency} {expense.amount.toFixed(2)}
                         </span>
                       </div>
                     </div>

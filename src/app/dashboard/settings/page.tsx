@@ -5,18 +5,30 @@ import { useRouter } from 'next/navigation'
 import { useAppState } from '@/lib/store'
 import { signOut } from '@/lib/supabase/auth'
 
+const CURRENCY_OPTIONS = [
+  { value: 'S/', label: 'Soles (S/)' },
+  { value: '$', label: 'Dólares ($)' },
+]
+
 export default function SettingsPage() {
   const router = useRouter()
-  const { budget, setBudget, logout } = useAppState()
-  const [newLimit, setNewLimit] = useState(budget.monthlyLimit.toString())
-  const [saved, setSaved] = useState(false)
+  const { budget, budgets, setBudget, logout } = useAppState()
+  const [budgetInputs, setBudgetInputs] = useState<Record<string, string>>(() => {
+    const inputs: Record<string, string> = {}
+    if (budget.monthlyLimit > 0) inputs[budget.currency] = budget.monthlyLimit.toString()
+    Object.values(budgets).forEach((b) => {
+      if (b.monthlyLimit > 0) inputs[b.currency] = b.monthlyLimit.toString()
+    })
+    return inputs
+  })
+  const [saved, setSaved] = useState<string | null>(null)
 
-  const handleSaveBudget = async () => {
-    const val = parseFloat(newLimit)
+  const handleSaveBudget = async (currency: string) => {
+    const val = parseFloat(budgetInputs[currency] || '0')
     if (val <= 0) return
-    await setBudget(val)
-    setSaved(true)
-    setTimeout(() => setSaved(false), 2000)
+    await setBudget(val, currency)
+    setSaved(currency)
+    setTimeout(() => setSaved(null), 2000)
   }
 
   return (
@@ -32,30 +44,60 @@ export default function SettingsPage() {
         </div>
 
         <div className="space-y-space-lg md:grid md:grid-cols-2 md:gap-space-lg md:space-y-0">
-          <section className="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm">
+          <section className="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm md:col-span-2">
             <h3 className="text-label-lg text-on-surface font-semibold mb-space-sm flex items-center gap-2">
-              💰 Presupuesto mensual
+              💰 Presupuestos por moneda
             </h3>
-            <div className="flex gap-space-sm">
-              <div className="flex-1 relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary text-body-md">
-                  {budget.currency}
-                </span>
-                <input
-                  type="number"
-                  step="0.01"
-                  value={newLimit}
-                  onChange={(e) => setNewLimit(e.target.value)}
-                  className="w-full pl-10 pr-3 py-3 rounded-xl bg-surface-container-lowest border border-outline text-on-surface text-body-md focus:outline-none focus:border-primary transition-colors"
-                />
-              </div>
-              <button
-                onClick={handleSaveBudget}
-                disabled={!newLimit || parseFloat(newLimit) <= 0}
-                className="px-5 py-3 rounded-xl bg-primary text-on-primary text-label-md font-semibold hover:bg-secondary transition-colors disabled:opacity-50"
-              >
-                {saved ? '✓' : 'Guardar'}
-              </button>
+            <p className="text-body-sm text-on-surface-variant mb-space-md">
+              Configura un límite mensual independiente para cada moneda.
+            </p>
+            <div className="space-y-space-md">
+              {CURRENCY_OPTIONS.map(({ value, label }) => {
+                const currentValue = budgetInputs[value] || ''
+                const existingBudget = budgets[value]
+                const isPrimary = value === budget.currency
+                return (
+                  <div key={value} className="flex flex-col gap-space-sm p-space-md rounded-xl bg-surface-container-lowest">
+                    <div className="flex items-center justify-between">
+                      <span className="text-label-lg text-on-surface font-semibold">
+                        {label}
+                      </span>
+                      {isPrimary && (
+                        <span className="text-label-sm px-2 py-0.5 rounded-full bg-primary/10 text-primary">
+                          Principal
+                        </span>
+                      )}
+                      {existingBudget && !isPrimary && (
+                        <span className="text-label-sm px-2 py-0.5 rounded-full bg-surface-container text-text-secondary">
+                          Configurado
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex gap-space-sm">
+                      <div className="flex-1 relative">
+                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary text-body-md">
+                          {value}
+                        </span>
+                        <input
+                          type="number"
+                          step="0.01"
+                          value={currentValue}
+                          onChange={(e) => setBudgetInputs((prev) => ({ ...prev, [value]: e.target.value }))}
+                          className="w-full pl-10 pr-3 py-3 rounded-xl bg-surface-container border border-outline text-on-surface text-body-md focus:outline-none focus:border-primary transition-colors"
+                          placeholder="0.00"
+                        />
+                      </div>
+                      <button
+                        onClick={() => handleSaveBudget(value)}
+                        disabled={!currentValue || parseFloat(currentValue) <= 0}
+                        className="px-5 py-3 rounded-xl bg-primary text-on-primary text-label-md font-semibold hover:bg-secondary transition-colors disabled:opacity-50"
+                      >
+                        {saved === value ? '✓' : 'Guardar'}
+                      </button>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           </section>
 
