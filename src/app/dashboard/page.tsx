@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useAppState } from '@/lib/store'
 import { getCategoryInfo } from '@/lib/categories'
 
@@ -42,43 +42,47 @@ export default function DashboardPage() {
   const currentDay = now.getDate()
   const daysRemaining = daysInMonth - currentDay
 
-  const monthlyExpenses = expenses.filter((exp) => {
+  const monthlyExpenses = useMemo(() => expenses.filter((exp) => {
     const expDate = new Date(exp.date)
     return expDate.getMonth() === currentMonth && expDate.getFullYear() === currentYear
-  })
+  }), [expenses, currentMonth, currentYear])
 
-  const activeCurrencies = new Set(monthlyExpenses.map((e) => e.currency))
-  activeCurrencies.add(budget.currency)
-  if (Object.keys(budgets).length > 0) {
-    Object.keys(budgets).forEach((c) => activeCurrencies.add(c))
-  }
+  const currencySummaries: CurrencySummary[] = useMemo(() => {
+    const activeCurrencies = new Set(monthlyExpenses.map((e) => e.currency))
+    activeCurrencies.add(budget.currency)
+    if (Object.keys(budgets).length > 0) {
+      Object.keys(budgets).forEach((c) => activeCurrencies.add(c))
+    }
 
-  const currencySummaries: CurrencySummary[] = Array.from(activeCurrencies).map((currency) => {
-    const budgetForCurrency = budgets[currency] || (currency === budget.currency ? budget : null)
-    const monthlyLimit = budgetForCurrency?.monthlyLimit || 0
-    const totalExpenses = monthlyExpenses
-      .filter((e) => e.currency === currency)
-      .reduce((sum, e) => sum + e.amount, 0)
-    const percentage = monthlyLimit > 0 ? Math.min((totalExpenses / monthlyLimit) * 100, 100) : 0
-    const remaining = Math.max(monthlyLimit - totalExpenses, 0)
-    const alertLevel: CurrencySummary['alertLevel'] = percentage >= 101 ? 'exceeded' : percentage >= 100 ? 'critical' : percentage >= 80 ? 'warning' : 'safe'
-    const alertMessage = alertLevel === 'exceeded'
-      ? `Has superado tu presupuesto en ${currency}`
-      : alertLevel === 'critical'
-      ? `Alcanzaste tu límite en ${currency}`
-      : alertLevel === 'warning'
-      ? `Ritmo de gasto moderado en ${currency}`
-      : monthlyLimit > 0
-      ? `${currency} dentro del límite`
-      : `${currency} sin presupuesto configurado`
-    return { currency, monthlyLimit, totalExpenses, percentage, remaining, alertLevel, alertMessage }
-  })
+    const summaries = Array.from(activeCurrencies).map((currency) => {
+      const budgetForCurrency = budgets[currency] || (currency === budget.currency ? budget : null)
+      const monthlyLimit = budgetForCurrency?.monthlyLimit || 0
+      const totalExpenses = monthlyExpenses
+        .filter((e) => e.currency === currency)
+        .reduce((sum, e) => sum + e.amount, 0)
+      const percentage = monthlyLimit > 0 ? Math.min((totalExpenses / monthlyLimit) * 100, 100) : 0
+      const remaining = Math.max(monthlyLimit - totalExpenses, 0)
+      const alertLevel: CurrencySummary['alertLevel'] = percentage >= 101 ? 'exceeded' : percentage >= 100 ? 'critical' : percentage >= 80 ? 'warning' : 'safe'
+      const alertMessage = alertLevel === 'exceeded'
+        ? `Has superado tu presupuesto en ${currency}`
+        : alertLevel === 'critical'
+        ? `Alcanzaste tu límite en ${currency}`
+        : alertLevel === 'warning'
+        ? `Ritmo de gasto moderado en ${currency}`
+        : monthlyLimit > 0
+        ? `${currency} dentro del límite`
+        : `${currency} sin presupuesto configurado`
+      return { currency, monthlyLimit, totalExpenses, percentage, remaining, alertLevel, alertMessage }
+    })
 
-  currencySummaries.sort((a, b) => {
-    if (a.currency === budget.currency) return -1
-    if (b.currency === budget.currency) return 1
-    return a.currency.localeCompare(b.currency)
-  })
+    summaries.sort((a, b) => {
+      if (a.currency === budget.currency) return -1
+      if (b.currency === budget.currency) return 1
+      return a.currency.localeCompare(b.currency)
+    })
+
+    return summaries
+  }, [monthlyExpenses, budget, budgets])
 
   const primarySummary = currencySummaries.find((s) => s.currency === budget.currency) || currencySummaries[0]
 
@@ -88,9 +92,9 @@ export default function DashboardPage() {
   const [calendarMonth, setCalendarMonth] = useState(now.getMonth())
   const [calendarYear, setCalendarYear] = useState(now.getFullYear())
 
-  const daysWithExpenses = new Set(expenses.map((e) => e.date))
+  const daysWithExpenses = useMemo(() => new Set(expenses.map((e) => e.date)), [expenses])
 
-  const last7Days = Array.from({ length: 7 }, (_, i) => {
+  const last7Days = useMemo(() => Array.from({ length: 7 }, (_, i) => {
     const d = new Date(now)
     d.setDate(d.getDate() - (6 - i))
     const ds = d.toISOString().split('T')[0]
@@ -103,25 +107,25 @@ export default function DashboardPage() {
       dayName,
       count: dayExpenses.length
     }
-  })
+  }), [expenses])
 
   const maxBarCount = Math.max(...last7Days.map(d => d.count), 1)
 
-  const selectedBarDateExpenses = expenses
+  const selectedBarDateExpenses = useMemo(() => expenses
     .filter((exp) => exp.date === selectedBarDate)
     .sort((a, b) => {
       const timeA = a.createdAt ? new Date(a.createdAt).getTime() : 0
       const timeB = b.createdAt ? new Date(b.createdAt).getTime() : 0
       return timeB - timeA
-    })
+    }), [expenses, selectedBarDate])
 
-  const selectedDayExpenses = expenses
+  const selectedDayExpenses = useMemo(() => expenses
     .filter((exp) => exp.date === selectedDate)
     .sort((a, b) => {
       const timeA = a.createdAt ? new Date(a.createdAt).getTime() : 0
       const timeB = b.createdAt ? new Date(b.createdAt).getTime() : 0
       return timeB - timeA
-    })
+    }), [expenses, selectedDate])
 
   const prevMonth = () => {
     if (calendarMonth === 0) {

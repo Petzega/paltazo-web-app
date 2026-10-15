@@ -11,7 +11,7 @@ interface AppState {
   budgets: Record<string, Budget>
   isLoggedIn: boolean
   userId: string | null
-  addExpense: (expense: Omit<Expense, 'id' | 'createdAt'>) => Promise<void>
+  addExpense: (expense: Omit<Expense, 'id' | 'createdAt' | 'userId'>) => Promise<void>
   updateExpense: (id: string, changes: Partial<Expense>) => Promise<void>
   deleteExpense: (id: string) => Promise<void>
   setBudget: (monthlyLimit: number, currency?: string) => Promise<void>
@@ -78,7 +78,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     return () => subscription.unsubscribe()
   }, [applySession])
 
-  const addExpense = async (expense: Omit<Expense, 'id' | 'createdAt'>) => {
+  const addExpense = async (expense: Omit<Expense, 'id' | 'createdAt' | 'userId'>) => {
     if (!userId) return
     const newExpense = await db.addExpense({ ...expense, userId, currency: expense.currency || budget.currency })
     setExpenses((prev) => [newExpense, ...prev])
@@ -87,17 +87,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const updateExpense = async (id: string, changes: Partial<Expense>) => {
     if (!userId) return
     await db.updateExpense(id, changes)
-    const allExpenses = await db.getExpenses(userId)
-    setExpenses(allExpenses)
+    setExpenses(prev => prev.map(e => e.id === id ? { ...e, ...changes } : e))
   }
 
   const deleteExpense = async (id: string) => {
+    if (!userId) return
     await db.deleteExpense(id)
     setExpenses((prev) => prev.filter((e) => e.id !== id))
   }
 
   const setBudget = async (monthlyLimit: number, currency?: string) => {
     if (!userId) return
+    if (isNaN(monthlyLimit) || monthlyLimit <= 0) return
     const targetCurrency = currency || budget.currency
     const updated: Budget = {
       ...budget,

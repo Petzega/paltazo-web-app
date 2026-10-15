@@ -132,21 +132,6 @@ export default function SettingsPage() {
 
           <section className="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm">
             <h3 className="text-label-lg text-on-surface font-semibold mb-space-sm flex items-center gap-2">
-              📴 Modo offline
-            </h3>
-            <p className="text-body-md text-on-surface-variant mb-space-sm">
-              Paltazo guarda todos tus datos localmente. Funciona sin internet.
-            </p>
-            <div className="flex items-center gap-space-sm p-space-sm rounded-xl bg-secondary-fixed/30">
-              <span className="text-secondary text-label-lg">✓</span>
-              <span className="text-label-md text-on-surface">
-                Datos almacenados en IndexedDB
-              </span>
-            </div>
-          </section>
-
-          <section className="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm">
-            <h3 className="text-label-lg text-on-surface font-semibold mb-space-sm flex items-center gap-2">
               🌿 Acerca de Paltazo
             </h3>
             <div className="space-y-space-xs text-body-md text-on-surface-variant">
@@ -156,11 +141,11 @@ export default function SettingsPage() {
               </div>
               <div className="flex justify-between">
                 <span>Tipo</span>
-                <span className="text-label-md text-on-surface">PWA offline-first</span>
+                <span className="text-label-md text-on-surface">App web progresiva</span>
               </div>
               <div className="flex justify-between">
                 <span>Almacenamiento</span>
-                <span className="text-label-md text-on-surface">Supabase + IndexedDB</span>
+                <span className="text-label-md text-on-surface">Supabase</span>
               </div>
             </div>
           </section>
@@ -184,14 +169,12 @@ export default function SettingsPage() {
         <div className="mt-space-lg">
           <button
             onClick={async () => {
-              if (confirm('¿Borrar todos los datos? Esta acción no se puede deshacer.')) {
-                await logout()
-                window.location.href = '/onboarding'
-              }
+              await logout()
+              window.location.href = '/onboarding'
             }}
             className="w-full py-3 rounded-2xl bg-danger/10 text-danger text-label-lg font-semibold hover:bg-danger/20 transition-colors"
           >
-            🗑️ Borrar todos los datos
+            Cerrar sesión
           </button>
         </div>
       </div>

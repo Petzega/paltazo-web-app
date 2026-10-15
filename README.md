@@ -93,7 +93,7 @@ paltazo-web-app/
 │   │   ├── layout.tsx           # Layout raíz
 │   │   └── page.tsx             # Landing page
 │   ├── lib/
-│   │   ├── store.tsx            # Zustand store + Dexie (IndexedDB)
+│   │   ├── store.tsx            # Zustand store + estado global
 │   │   ├── categories.ts        # Categorías de gastos
 │   │   └── supabase/            # Cliente y repositorios Supabase
 │   └── components/              # Componentes reutilizables
@@ -110,8 +110,7 @@ paltazo-web-app/
 - **Presupuestos independientes**: Límites mensuales separados por moneda
 - **Dashboard interactivo**: Calendario visual + gráfico de barras de últimos 7 días
 - **Filtrado por fecha**: Selecciona cualquier día para ver sus gastos
-- **Almacenamiento local**: IndexedDB con Dexie para persistencia offline
-- **Sync con Supabase**: Sincronización opcional con PostgreSQL
+- **Sincronización en la nube**: Datos almacenados en Supabase (PostgreSQL)
 
 ## Desarrollo
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAppState } from '@/lib/store'
 import { EXPENSE_CATEGORIES } from '@/lib/categories'
@@ -29,6 +29,13 @@ export default function AddExpensePage() {
   const [date, setDate] = useState(new Date().toISOString().split('T')[0])
   const [focused, setFocused] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
+  const successTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+
+  useEffect(() => {
+    return () => {
+      if (successTimerRef.current) clearTimeout(successTimerRef.current)
+    }
+  }, [])
 
   const presets = ['15.00', '30.00', '50.00', '100.00']
 
@@ -43,7 +50,6 @@ export default function AddExpensePage() {
   const handleSave = async () => {
     if (numericValue <= 0) return
     await addExpense({
-      userId: 'default',
       amount: numericValue,
       currency,
       category,
@@ -51,7 +57,8 @@ export default function AddExpensePage() {
       date,
     })
     setShowSuccess(true)
-    setTimeout(() => setShowSuccess(false), 2000)
+    if (successTimerRef.current) clearTimeout(successTimerRef.current)
+    successTimerRef.current = setTimeout(() => setShowSuccess(false), 2000)
     setDigits('')
     setDescription('')
   }
@@ -268,8 +275,8 @@ export default function AddExpensePage() {
                     ☁️
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-label-sm font-semibold text-on-surface">Sincronizado offline</span>
-                    <span className="text-body-sm text-text-secondary">Guardado local listo</span>
+                    <span className="text-label-sm font-semibold text-on-surface">Sincronizado en la nube</span>
+                    <span className="text-body-sm text-text-secondary">Guardado en Supabase</span>
                   </div>
                 </div>
                 <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed-variant text-label-sm font-medium">

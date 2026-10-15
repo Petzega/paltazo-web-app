@@ -272,6 +272,7 @@ export default function LoginPage() {
           <div className="flex-1 h-px bg-surface-variant" />
         </div>
 
+        {/* shortcut: Google OAuth pendiente — revisit when se active integración social */}
         <button
           type="button"
           className="w-full h-12 rounded-full bg-surface-container text-on-surface text-label-lg flex items-center justify-center gap-space-sm hover:bg-surface-container-high transition-colors active:scale-[0.99]"
@@ -307,7 +308,7 @@ export default function LoginPage() {
           ✅
         </div>
         <p className="text-body-sm text-on-surface-variant">
-          Tus datos se guardan de forma segura y funcionan sin conexión (offline).
+          Tus datos se guardan de forma segura en la nube.
         </p>
       </div>
     </main>
