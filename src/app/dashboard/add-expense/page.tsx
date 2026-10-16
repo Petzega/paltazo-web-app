@@ -24,11 +24,13 @@ export default function AddExpensePage() {
   const { addExpense, budget } = useAppState()
   const [digits, setDigits] = useState('')
   const [currency, setCurrency] = useState(budget.currency || 'S/')
+  const [initialCurrency] = useState(budget.currency || 'S/')
   const [category, setCategory] = useState<ExpenseCategory>('food')
   const [description, setDescription] = useState('')
   const [date, setDate] = useState(new Date().toISOString().split('T')[0])
   const [focused, setFocused] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
+  const [showConfirm, setShowConfirm] = useState(false)
   const successTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   useEffect(() => {
@@ -66,14 +68,19 @@ export default function AddExpensePage() {
   const handleClear = () => {
     setDigits('')
     setDescription('')
+    setCategory('food')
+    setCurrency(initialCurrency)
+    setDate(new Date().toISOString().split('T')[0])
   }
 
-  const categoryNames: Record<ExpenseCategory, string> = {
-    food: 'Comida',
-    transport: 'Transporte',
-    services: 'Servicios',
-    entertainment: 'Ocio',
-    other: 'Otros',
+  const hasChanges = digits !== '' || description !== '' || category !== 'food' || currency !== initialCurrency
+
+  const handleBack = () => {
+    if (hasChanges) {
+      setShowConfirm(true)
+    } else {
+      router.back()
+    }
   }
 
   const displayText = formatAmount(digits)
@@ -82,13 +89,13 @@ export default function AddExpensePage() {
     <>
       <div
         className="hidden md:block fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
-        onClick={() => router.back()}
+        onClick={handleBack}
       />
       <main className="min-h-screen bg-surface pb-24 max-w-xl mx-auto px-gutter md:fixed md:right-0 md:top-0 md:bottom-0 md:w-[420px] md:max-w-none md:z-50 md:overflow-y-auto md:shadow-[-8px_0_24px_rgba(0,0,0,0.1)] md:bg-surface md:pb-space-xl">
         <div className="flex flex-col pt-16 pb-6 md:pt-space-lg">
           <div className="flex items-center justify-between py-space-sm mb-space-md">
             <button
-              onClick={() => router.back()}
+              onClick={handleBack}
               className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-variant transition-colors"
             >
               ←
@@ -97,12 +104,7 @@ export default function AddExpensePage() {
               <h1 className="text-headline-sm text-on-surface font-bold tracking-tight">Nuevo Gasto</h1>
               <span className="text-label-sm text-secondary font-medium">Registra tu gasto</span>
             </div>
-            <button
-              onClick={handleClear}
-              className="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-text-secondary hover:text-error hover:bg-error-container transition-colors"
-            >
-              🗑️
-            </button>
+            <div className="w-10 h-10" aria-hidden="true" />
           </div>
 
           <form onSubmit={(e) => { e.preventDefault(); handleSave() }} className="flex flex-col gap-space-lg">
@@ -168,7 +170,7 @@ export default function AddExpensePage() {
                       onBlur={() => setFocused(false)}
                       onChange={(e) => {
                         const raw = e.target.value.replace(/[^0-9]/g, '').slice(0, 9)
-                        setDigits(raw)
+                        setDigits(raw.replace(/^0+(?=\d)/, ''))
                       }}
                       placeholder=""
                       className="absolute inset-0 w-full h-full opacity-0 cursor-text caret-transparent focus:outline-none"
@@ -210,7 +212,7 @@ export default function AddExpensePage() {
             <div className="flex flex-col gap-space-sm">
               <div className="flex items-center justify-between px-space-xs">
                 <label className="text-label-lg text-on-surface font-semibold">Categoría</label>
-                <span className="text-label-sm text-primary font-bold">{categoryNames[category]}</span>
+                <span className="text-label-sm text-primary font-bold">{EXPENSE_CATEGORIES.find(c => c.id === category)?.label}</span>
               </div>
               <div className="grid grid-cols-5 gap-space-xs">
                 {EXPENSE_CATEGORIES.map((cat) => (
@@ -303,17 +305,51 @@ export default function AddExpensePage() {
               >
                 ✓ Guardar y Continuar
               </button>
-              <button
-                type="button"
-                onClick={() => router.back()}
-                className="w-full h-11 rounded-full bg-transparent text-text-secondary text-label-lg flex items-center justify-center hover:bg-surface-container hover:text-on-surface transition-colors"
-              >
-                Cancelar
-              </button>
+              <div className="grid grid-cols-2 gap-space-sm">
+                <button
+                  type="button"
+                  onClick={handleClear}
+                  className="h-11 rounded-full bg-surface-container text-on-surface text-label-md font-medium flex items-center justify-center gap-1.5 hover:bg-surface-container-high transition-colors"
+                >
+                  🗑️ Limpiar
+                </button>
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  className="h-11 rounded-full bg-surface-container text-on-surface text-label-md font-medium flex items-center justify-center hover:bg-surface-container-high transition-colors"
+                >
+                  Cancelar
+                </button>
+              </div>
             </div>
           </form>
         </div>
       </main>
+
+      {showConfirm && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/40 backdrop-blur-sm p-gutter" onClick={() => setShowConfirm(false)}>
+          <div className="bg-surface-container-lowest rounded-2xl p-space-md max-w-sm w-full shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <h3 className="text-headline-sm text-on-surface font-bold mb-2">¿Descartar cambios?</h3>
+            <p className="text-body-sm text-text-secondary mb-6">
+              Se perderá la información del gasto que estás registrando.
+            </p>
+            <div className="flex gap-space-sm">
+              <button
+                onClick={() => setShowConfirm(false)}
+                className="flex-1 h-11 rounded-full bg-surface-container text-on-surface text-label-lg font-medium hover:bg-surface-container-high transition-colors"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={() => router.back()}
+                className="flex-1 h-11 rounded-full bg-error-container text-on-error-container text-label-lg font-medium hover:bg-error hover:text-on-error transition-colors"
+              >
+                Descartar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }

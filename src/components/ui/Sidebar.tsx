@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname, useRouter } from 'next/navigation'
-import { signOut } from '@/lib/supabase/auth'
+import { useAppState } from '@/lib/store'
 
 const links = [
   { label: 'Inicio', icon: '🏠', path: '/dashboard' },
@@ -12,6 +12,7 @@ const links = [
 export function Sidebar() {
   const pathname = usePathname()
   const router = useRouter()
+  const { logout } = useAppState()
 
   return (
     <div className="flex flex-col h-screen p-space-lg sticky top-0">
@@ -42,7 +43,7 @@ export function Sidebar() {
 
       <div className="pt-space-md border-t border-surface-container-high mt-space-md flex flex-col gap-space-xs">
         <button
-          onClick={async () => { await signOut(); window.location.href = '/login' }}
+          onClick={async () => { await logout(); window.location.href = '/onboarding' }}
           className="flex items-center gap-3 px-4 py-3 rounded-xl text-left text-text-secondary hover:bg-danger/10 hover:text-danger transition-colors"
         >
           <span className="text-[22px]">🚪</span>

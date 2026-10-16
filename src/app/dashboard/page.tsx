@@ -3,7 +3,8 @@
 import { useRouter } from 'next/navigation'
 import { useState, useMemo } from 'react'
 import { useAppState } from '@/lib/store'
-import { getCategoryInfo } from '@/lib/categories'
+import { getCategoryInfo, getCategoryColorClass } from '@/lib/categories'
+import { AddExpenseFab } from '@/components/ui/AddExpenseFab'
 
 const DAY_NAMES = ['L', 'M', 'X', 'J', 'V', 'S', 'D']
 const MONTH_NAMES = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
@@ -42,10 +43,10 @@ export default function DashboardPage() {
   const currentDay = now.getDate()
   const daysRemaining = daysInMonth - currentDay
 
-  const monthlyExpenses = useMemo(() => expenses.filter((exp) => {
-    const expDate = new Date(exp.date)
-    return expDate.getMonth() === currentMonth && expDate.getFullYear() === currentYear
-  }), [expenses, currentMonth, currentYear])
+  const monthlyExpenses = useMemo(() => {
+    const prefix = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}`
+    return expenses.filter((exp) => exp.date.startsWith(prefix))
+  }, [expenses, currentMonth, currentYear])
 
   const currencySummaries: CurrencySummary[] = useMemo(() => {
     const activeCurrencies = new Set(monthlyExpenses.map((e) => e.currency))
@@ -94,8 +95,10 @@ export default function DashboardPage() {
 
   const daysWithExpenses = useMemo(() => new Set(expenses.map((e) => e.date)), [expenses])
 
-  const last7Days = useMemo(() => Array.from({ length: 7 }, (_, i) => {
-    const d = new Date(now)
+  const last7Days = useMemo(() => {
+    const today = new Date()
+    return Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(today)
     d.setDate(d.getDate() - (6 - i))
     const ds = d.toISOString().split('T')[0]
     const dayExpenses = expenses.filter((e) => e.date === ds)
@@ -107,7 +110,7 @@ export default function DashboardPage() {
       dayName,
       count: dayExpenses.length
     }
-  }), [expenses])
+  })}, [expenses, todayStr])
 
   const maxBarCount = Math.max(...last7Days.map(d => d.count), 1)
 
@@ -198,7 +201,7 @@ export default function DashboardPage() {
             <p className="text-body-sm text-on-surface-variant mt-0.5 leading-relaxed">
               {primarySummary.percentage >= 80
                 ? `Has alcanzado el ${primarySummary.percentage.toFixed(0)}% de tu presupuesto en ${primarySummary.currency}. ${
-                    primarySummary.remaining / daysRemaining > 0 && daysRemaining > 0
+                    daysRemaining > 0 && primarySummary.remaining / daysRemaining > 0
                       ? `Te sugerimos mantener tus consumos diarios en ${primarySummary.currency} ${(primarySummary.remaining / daysRemaining).toFixed(2)} para cerrar el mes en verde.`
                       : ''
                   }`
@@ -287,15 +290,15 @@ export default function DashboardPage() {
                 onClick={() => router.push('/dashboard/expenses')}
                 className="w-full py-2.5 px-3 rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface text-label-md flex items-center justify-center gap-1.5 transition-colors active:scale-95"
               >
-                <span className="text-primary text-[18px]">📊</span>
-                Ver reporte
+                <span className="inline-flex h-[18px] items-center text-primary text-[18px]">📊</span>
+                <span>Ver reporte</span>
               </button>
               <button
                 onClick={() => router.push('/dashboard/settings')}
                 className="w-full py-2.5 px-3 rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface text-label-md flex items-center justify-center gap-1.5 transition-colors active:scale-95"
               >
-                <span className="text-secondary text-[18px]">⚙️</span>
-                Ajustar presupuestos
+                <span className="inline-flex h-[18px] items-center text-secondary text-[18px]">⚙️</span>
+                <span>Ajustes</span>
               </button>
             </div>
           </div>
@@ -390,7 +393,7 @@ export default function DashboardPage() {
                   <div className="flex justify-between items-center text-body-sm text-on-surface-variant px-1">
                     <span>{selectedDayExpenses.length} {selectedDayExpenses.length === 1 ? 'gasto' : 'gastos'}</span>
                     <span className="font-semibold text-on-surface">
-                      Total: {primarySummary.currency} {selectedDayExpenses.reduce((s, e) => s + e.amount, 0).toFixed(2)}
+                      Total: {primarySummary.currency} {selectedDayExpenses.filter(e => e.currency === primarySummary.currency).reduce((s, e) => s + e.amount, 0).toFixed(2)}
                     </span>
                   </div>
                   {selectedDayExpenses.map((expense) => {
@@ -406,9 +409,9 @@ export default function DashboardPage() {
                           </div>
                           <div className="min-w-0">
                             <p className="text-label-md text-on-surface font-medium truncate">
-                              {expense.description || catInfo.label}
+                              {catInfo.label}
                             </p>
-                            <span className="text-label-sm text-text-secondary">{catInfo.label}</span>
+                            <span className="text-label-sm text-text-secondary">{expense.description || 'Sin descripción'}</span>
                           </div>
                         </div>
                         <span className="text-label-md font-bold text-on-surface shrink-0 ml-2">
@@ -556,22 +559,16 @@ export default function DashboardPage() {
                       className="p-3 rounded-2xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors flex items-center justify-between gap-3 shadow-sm"
                     >
                       <div className="flex items-center gap-3 min-w-0">
-                        <div className={`w-11 h-11 rounded-2xl flex items-center justify-center text-[22px] shrink-0 ${
-                          expense.category === 'food' ? 'bg-secondary-fixed text-secondary' :
-                          expense.category === 'transport' ? 'bg-primary-fixed text-primary' :
-                          expense.category === 'services' ? 'bg-surface-container-high text-on-surface-variant' :
-                          expense.category === 'entertainment' ? 'bg-tertiary-fixed text-tertiary' :
-                          'bg-surface-container text-on-surface-variant'
-                        }`}>
+                        <div className={`w-11 h-11 rounded-2xl flex items-center justify-center text-[22px] shrink-0 ${getCategoryColorClass(expense.category)}`}>
                           {catInfo.icon}
                         </div>
                         <div className="min-w-0">
                           <h4 className="text-label-lg text-on-surface font-semibold truncate">
-                            {expense.description || catInfo.label}
+                            {catInfo.label}
                           </h4>
                           <div className="flex items-center gap-2 mt-0.5">
                             <span className="text-label-sm px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant">
-                              {catInfo.label}
+                              {expense.description || 'Sin descripción'}
                             </span>
                           </div>
                         </div>
@@ -601,15 +598,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="fixed bottom-20 right-5 z-40 md:hidden">
-          <button
-            onClick={() => router.push('/dashboard/add-expense')}
-            className="group flex items-center gap-2 px-5 py-3.5 rounded-full bg-secondary text-on-secondary shadow-[0_8px_24px_rgba(57,106,28,0.35)] hover:bg-primary transition-all duration-200 active:scale-90"
-          >
-            <span className="text-[24px] font-bold transition-transform duration-200 group-hover:rotate-90">➕</span>
-            <span className="text-label-lg font-bold tracking-tight">Agregar gasto</span>
-          </button>
-        </div>
+        <AddExpenseFab />
       </div>
     </main>
   )

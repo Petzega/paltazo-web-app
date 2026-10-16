@@ -352,7 +352,10 @@ docker volume ls --filter label=com.supabase.cli.project=paltazo-web-app
 supabase/
 ├── config.toml          # Configuración de servicios locales
 ├── migrations/          # Migraciones SQL versionadas
-│   └── 20261008182458_create_schema.sql
+│   ├── 20261008182458_create_schema.sql
+│   ├── 20261008190000_add_currency_to_expenses.sql
+│   ├── 20261009020000_create_budgets.sql
+│   └── 20261015000000_drop_budget_alerts.sql
 ├── seed.sql             # Datos seed (opcional)
 └── snippets/            # Snippets SQL reutilizables
 ```

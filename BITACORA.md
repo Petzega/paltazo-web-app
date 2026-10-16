@@ -328,3 +328,58 @@ docker volume ls --filter label=com.supabase.cli.project=paltazo-web-app  # Ver 
 8. Probar registro → debe crear fila en `profiles` automáticamente
 9. Probar agregar gasto → verificar tabla `expenses` en Supabase Dashboard
 10. **Bug conocido:** Si el logout no redirige correctamente, revisar Bug 5 arriba
+
+---
+
+## Auditoría de código — Actualización 2026-10-15
+
+Se aplicaron 16 fixes tras auditoría completa del repositorio:
+
+**Eliminado (código muerto):**
+- Ruta `/budget/` (legacy, no enlazada)
+- `src/lib/supabase/server.ts` (no importado)
+- `supabase/schema.sql` (desactualizado, migraciones son fuente de verdad)
+- Tipos `BudgetAlert`, `BudgetAlertLevel`, `Profile` (no usados)
+- Función `generateId()` (la DB genera UUIDs)
+- Tabla `budget_alerts` (nunca se escribía en ella) — migración `20261015000000_drop_budget_alerts.sql`
+
+**Bugs corregidos:**
+- Dashboard mezclaba monedas en total del día (filtro por moneda principal)
+- `budget` state quedaba obsoleto tras `setBudget` (ahora lee desde `budgets[currency]`)
+- Validación de contraseña < 6 chars cliente-lado en registro y new-password
+
+**Mejoras:**
+- Client singleton compartido en `client.ts` (antes 3 instancias)
+- Botón logout duplicado eliminado (uno solo via `logout()` del store)
+- FAB "Agregar gasto" extraído a componente compartido `AddExpenseFab`
+- Balance fantasma eliminado del onboarding (no logueados no tienen datos)
+- Etiqueta "este mes" → "en total" en expenses (no filtraba por mes)
+- Label "Total gastado" → "Total gastado (moneda)" para claridad multi-moneda
+- Memo `last7Days` ahora recalcula al cambiar el día
+
+**Neto:** -264 líneas de código
+
+---
+
+## Auditoría de código — Actualización 2026-10-16
+
+Se aplicaron 12 fixes tras auditoría del repositorio:
+
+**Bugs críticos corregidos:**
+- División por cero en `dashboard/page.tsx:202` — guard `daysRemaining > 0` antes de dividir `remaining / daysRemaining`
+- `getBudget()` leía de tabla `profiles` en vez de `budgets` — ahora lee correctamente de la tabla dedicada
+- Eliminación de gastos sin confirmación — agregado modal de confirmación con "Cancelar" / "Eliminar"
+- Tipos `any` en errores de autenticación — reemplazados con `unknown` + guard `instanceof Error`
+- Logout no limpiaba estado del store — ahora usa `store.logout()` en vez de `signOut()` directo
+
+**Limpieza y refactor:**
+- Eliminado export nombrado `createClient()` en `client.ts` — solo queda default singleton
+- Eliminado directorio vacío `supabase/snippets/` (no se usaba)
+- Eliminado mapa duplicado `categoryNames` en `add-expense/page.tsx` — ahora usa `EXPENSE_CATEGORIES.find()`
+- Agregada función `getCategoryColorClass()` en `categories.ts` — centraliza clases de color por categoría
+
+**Performance:**
+- Filtro mensual por string prefix (`YYYY-MM`) en `dashboard/page.tsx:46-49` — evita `new Date()` por fila
+
+**Neto:** Código más robusto, menos duplicación, fuente única de verdad para datos de categorías y presupuesto.
+

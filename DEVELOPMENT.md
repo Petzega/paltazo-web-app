@@ -66,7 +66,6 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon key del dashboard Supabase>
 | `/dashboard/add-expense` | Formulario de nuevo gasto | Sí |
 | `/dashboard/expenses` | Historial, editar, eliminar | Sí |
 | `/dashboard/settings` | Presupuesto, acerca de, logout | Sí |
-| `/budget` | Legacy (no usar) | — |
 
 ## Protección de rutas
 
@@ -96,7 +95,6 @@ paltazo-web-app/
 │   │   │   ├── add-expense/        # Agregar gasto
 │   │   │   ├── expenses/           # Historial
 │   │   │   └── settings/           # Ajustes + logout
-│   │   └── budget/                 # Legacy (ignorar)
 │   ├── components/
 │   │   ├── ui/
 │   │   │   ├── Button.tsx
@@ -108,12 +106,10 @@ paltazo-web-app/
 │   ├── lib/
 │   │   ├── store.tsx               # Context global (Auth + Datos)
 │   │   ├── categories.ts           # Categorías MVP
-│   │   ├── db.ts                   # Dexie.js (IndexedDB) — legacy
 │   │   └── supabase/
-│   │       ├── client.ts           # createBrowserClient
-│   │       ├── server.ts           # createServerClient (async)
+│   │       ├── client.ts           # createBrowserClient (singleton)
 │   │       ├── auth.ts             # signIn, signUp, signOut, resetPassword, onAuthStateChange
-│   │       └── repositories.ts     # CRUD: expenses + budget
+│   │       └── repositories.ts     # CRUD: expenses + budgets
 │   └── types/
 │       └── index.ts
 ├── public/
@@ -125,8 +121,9 @@ paltazo-web-app/
 │   ├── LOCAL_SETUP.md                # **Guía completa de Supabase Local**
 │   ├── migrations/                   # Migraciones SQL versionadas
 │   │   ├── 20261008182458_create_schema.sql
-│   │   ── 20261008190000_add_currency_to_expenses.sql
-│   └── schema.sql                    # Esquema SQL (referencia)
+│   │   ├── 20261008190000_add_currency_to_expenses.sql
+│   │   ├── 20261009020000_create_budgets.sql
+│   │   └── 20261015000000_drop_budget_alerts.sql
 ── docs/                           # Specs y diseño
 ── stitch/                         # Diseño de referencia
 ├── tailwind.config.ts              # Design tokens
@@ -141,7 +138,6 @@ paltazo-web-app/
 |------|-----------|--------|
 | Auth | Supabase Auth (`@supabase/ssr`) | ✅ Producción |
 | Datos | Supabase PostgreSQL | ✅ Producción |
-| Local | Dexie.js (IndexedDB) | ⚠️ Legacy, no se usa |
 | Repository | `src/lib/supabase/repositories.ts` | ✅ Producción |
 | Context | `src/lib/store.tsx` (React Context) | ✅ Producción |
 
@@ -173,13 +169,13 @@ Logout: `signOut({ scope: 'global' })` + `window.location.href = '/login'` (fuer
 
 ## Row Level Security (RLS)
 
-Verificado en Supabase. 9 policies activas:
+Verificado en Supabase. 7 policies activas:
 
 | Tabla | Policies |
 |-------|----------|
 | profiles | SELECT, INSERT, UPDATE (propio) |
 | expenses | SELECT, INSERT, UPDATE, DELETE (propio) |
-| budget_alerts | SELECT, INSERT (propio) |
+| budgets | SELECT, INSERT, UPDATE (propio) |
 
 Todas filtran por `auth.uid() = user_id`.
 

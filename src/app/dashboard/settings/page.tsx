@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAppState } from '@/lib/store'
-import { signOut } from '@/lib/supabase/auth'
 
 const CURRENCY_OPTIONS = [
   { value: 'S/', label: 'Soles (S/)' },
@@ -34,6 +33,13 @@ export default function SettingsPage() {
   return (
     <main className="min-h-screen bg-surface pb-24 md:pb-space-xl max-w-xl mx-auto md:max-w-none px-gutter md:px-space-xl">
       <div className="pt-16 md:pt-space-xl pb-6 flex flex-col">
+        <button
+          onClick={() => router.push('/dashboard')}
+          className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-variant transition-colors mb-4 self-start"
+          aria-label="Volver al inicio"
+        >
+          ←
+        </button>
         <div className="mb-space-md">
           <h1 className="text-headline-lg-mobile md:text-headline-xl text-on-surface font-bold tracking-tight">
             Ajustes ⚙️
@@ -148,21 +154,6 @@ export default function SettingsPage() {
                 <span className="text-label-md text-on-surface">Supabase</span>
               </div>
             </div>
-          </section>
-
-          <section className="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm">
-            <h3 className="text-label-lg text-on-surface font-semibold mb-space-sm flex items-center gap-2">
-              🚪 Sesión
-            </h3>
-            <button
-              onClick={async () => {
-                await signOut()
-                window.location.href = '/login'
-              }}
-              className="w-full py-3 rounded-xl bg-danger/10 text-danger text-label-lg font-semibold hover:bg-danger/20 transition-colors"
-            >
-              Cerrar sesión
-            </button>
           </section>
         </div>
 

@@ -4,11 +4,10 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
 import { signIn, signUp, resetPassword } from '@/lib/supabase/auth'
-import { createClient } from '@/lib/supabase/client'
+import supabase from '@/lib/supabase/client'
 
 export default function LoginPage() {
   const router = useRouter()
-  const supabase = createClient()
   const [mode, setMode] = useState<'login' | 'register' | 'reset' | 'new-password'>('login')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -35,6 +34,11 @@ export default function LoginPage() {
         const { error: authError } = await signIn(email, password)
         if (authError) throw authError
       } else if (mode === 'register') {
+        if (password.length < 6) {
+          setError('La contraseña debe tener al menos 6 caracteres')
+          setLoading(false)
+          return
+        }
         const { error: authError } = await signUp(email, password, name)
         if (authError) throw authError
         const { error: loginError } = await signIn(email, password)
@@ -49,8 +53,8 @@ export default function LoginPage() {
         setSuccess('Revisa tu correo para restablecer la contraseña')
       }
       if (mode !== 'reset' && mode !== 'new-password') router.push('/')
-    } catch (err: any) {
-      setError(err.message || 'Error de autenticación')
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Error de autenticación')
     } finally {
       setLoading(false)
     }
@@ -63,6 +67,10 @@ export default function LoginPage() {
       setError('Las contraseñas no coinciden')
       return
     }
+    if (password.length < 6) {
+      setError('La contraseña debe tener al menos 6 caracteres')
+      return
+    }
     setLoading(true)
     try {
       const { error: updateError } = await supabase.auth.updateUser({ password })
@@ -71,8 +79,8 @@ export default function LoginPage() {
       setMode('login')
       setPassword('')
       setConfirmPassword('')
-    } catch (err: any) {
-      setError(err.message || 'Error al actualizar contraseña')
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Error al actualizar contraseña')
     } finally {
       setLoading(false)
     }

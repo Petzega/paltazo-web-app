@@ -108,9 +108,11 @@ CREATE TABLE push_subscriptions (
 
 ## Seguridad (RLS)
 
-- Habilitar Row Level Security para `profiles`, `expenses`, `budget_alerts` y `push_subscriptions`.
+- Habilitar Row Level Security para `profiles`, `expenses`, `budgets` y `push_subscriptions`.
 - Cada usuario autenticado solo puede leer y modificar filas cuyo `user_id` o `id` sea igual a `auth.uid()`.
 - Las operaciones administrativas de alertas deben ejecutarse en una Edge Function con credenciales de servidor, nunca exponiendo la service-role key al frontend.
+
+> **Nota (2026-10-15):** La tabla `budget_alerts` fue eliminada. La lógica de alertas ahora se calcula cliente-lado en el dashboard. Si se requiere persistir alertas en el futuro, re-crear con migración y ajustar Edge Function `check-budget`.
 
 ---
 

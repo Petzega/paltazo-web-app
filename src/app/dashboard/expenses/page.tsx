@@ -3,13 +3,15 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAppState } from '@/lib/store'
-import { getCategoryInfo } from '@/lib/categories'
+import { getCategoryInfo, getCategoryColorClass } from '@/lib/categories'
+import { AddExpenseFab } from '@/components/ui/AddExpenseFab'
 import type { Expense, ExpenseCategory } from '@/types'
 
 export default function ExpensesPage() {
   const router = useRouter()
   const { expenses, budget, updateExpense, deleteExpense } = useAppState()
   const [editingId, setEditingId] = useState<string | null>(null)
+  const [deletingId, setDeletingId] = useState<string | null>(null)
   const [editForm, setEditForm] = useState({ amount: '', description: '', category: '' as ExpenseCategory, date: '' })
 
   const sorted = [...expenses].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -37,9 +39,12 @@ export default function ExpensesPage() {
     setEditingId(null)
   }
 
+  const confirmDelete = (id: string) => setDeletingId(id)
+  const cancelDelete = () => setDeletingId(null)
   const handleDelete = async (id: string) => {
     await deleteExpense(id)
     setEditingId(null)
+    setDeletingId(null)
   }
 
   const formatDate = (dateStr: string) => {
@@ -56,7 +61,7 @@ export default function ExpensesPage() {
               Mis gastos 🧾
             </h1>
             <p className="text-body-sm text-text-secondary mt-0.5">
-              {expenses.length} {expenses.length === 1 ? 'registro' : 'registros'} este mes
+              {expenses.length} {expenses.length === 1 ? 'registro' : 'registros'} en total
             </p>
           </div>
           <button
@@ -71,7 +76,7 @@ export default function ExpensesPage() {
         <div className="mb-space-md p-space-md rounded-2xl bg-surface-container-lowest shadow-sm">
           <div className="flex justify-between items-center">
             <div>
-              <span className="text-label-sm text-text-secondary block">Total gastado</span>
+              <span className="text-label-sm text-text-secondary block">Total gastado ({budget.currency})</span>
               <span className="text-headline-sm text-on-surface font-bold">
                 {budget.currency} {expenses.filter((e) => e.currency === budget.currency).reduce((s, e) => s + e.amount, 0).toFixed(2)}
               </span>
@@ -122,7 +127,7 @@ export default function ExpensesPage() {
                                   type="number"
                                   step="0.01"
                                   value={editForm.amount}
-                                  onChange={(e) => setEditForm({ ...editForm, amount: e.target.value })}
+                                  onChange={(e) => setEditForm({ ...editForm, amount: e.target.value.replace(/^0+(?=\d)/, '') })}
                                   className="w-full px-3 py-2 rounded-xl bg-surface-container border border-outline text-on-surface text-body-md focus:outline-none focus:border-primary"
                                 />
                               </div>
@@ -197,7 +202,7 @@ export default function ExpensesPage() {
                               ✏️
                             </button>
                             <button
-                              onClick={() => handleDelete(expense.id)}
+                              onClick={() => confirmDelete(expense.id)}
                               className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-text-secondary hover:text-danger hover:bg-danger/10 text-sm transition-colors"
                             >
                               🗑️
@@ -235,7 +240,7 @@ export default function ExpensesPage() {
                                 type="number"
                                 step="0.01"
                                 value={editForm.amount}
-                                onChange={(e) => setEditForm({ ...editForm, amount: e.target.value })}
+                                onChange={(e) => setEditForm({ ...editForm, amount: e.target.value.replace(/^0+(?=\d)/, '') })}
                                 className="w-full px-3 py-2 rounded-xl bg-surface-container-lowest border border-outline text-on-surface text-body-md focus:outline-none focus:border-primary"
                                 placeholder="Monto"
                               />
@@ -280,22 +285,16 @@ export default function ExpensesPage() {
                           className="p-3 rounded-2xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors flex items-center justify-between gap-3 shadow-sm"
                         >
                           <div className="flex items-center gap-3 min-w-0">
-                            <div className={`w-11 h-11 rounded-2xl flex items-center justify-center text-[22px] shrink-0 ${
-                              expense.category === 'food' ? 'bg-secondary-fixed text-secondary' :
-                              expense.category === 'transport' ? 'bg-primary-fixed text-primary' :
-                              expense.category === 'services' ? 'bg-surface-container-high text-on-surface-variant' :
-                              expense.category === 'entertainment' ? 'bg-tertiary-fixed text-tertiary' :
-                              'bg-surface-container text-on-surface-variant'
-                            }`}>
+                            <div className={`w-11 h-11 rounded-2xl flex items-center justify-center text-[22px] shrink-0 ${getCategoryColorClass(expense.category)}`}>
                               {catInfo.icon}
                             </div>
                             <div className="min-w-0">
                               <h4 className="text-label-lg text-on-surface font-semibold truncate">
-                                {expense.description || catInfo.label}
+                                {catInfo.label}
                               </h4>
                               <div className="flex items-center gap-2 mt-0.5">
                                 <span className="text-label-sm px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant">
-                                  {catInfo.label}
+                                  {expense.description || 'Sin descripción'}
                                 </span>
                               </div>
                             </div>
@@ -312,7 +311,7 @@ export default function ExpensesPage() {
                                 ✏️
                               </button>
                               <button
-                                onClick={() => handleDelete(expense.id)}
+                                onClick={() => confirmDelete(expense.id)}
                                 className="w-7 h-7 rounded-full bg-surface-container flex items-center justify-center text-text-secondary hover:text-danger hover:bg-danger/10 text-xs"
                               >
                                 🗑️
@@ -329,15 +328,32 @@ export default function ExpensesPage() {
           </>
         )}
 
-        <div className="fixed bottom-20 right-5 z-40 md:hidden">
-          <button
-            onClick={() => router.push('/dashboard/add-expense')}
-            className="group flex items-center gap-2 px-5 py-3.5 rounded-full bg-secondary text-on-secondary shadow-[0_8px_24px_rgba(57,106,28,0.35)] hover:bg-primary transition-all duration-200 active:scale-90"
-          >
-            <span className="text-[24px] font-bold transition-transform duration-200 group-hover:rotate-90">➕</span>
-            <span className="text-label-lg font-bold tracking-tight">Agregar gasto</span>
-          </button>
-        </div>
+        {deletingId && (
+          <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/40 backdrop-blur-sm p-gutter" onClick={cancelDelete}>
+            <div className="bg-surface-container-lowest rounded-2xl p-space-md max-w-sm w-full shadow-2xl" onClick={(e) => e.stopPropagation()}>
+              <h3 className="text-headline-sm text-on-surface font-bold mb-2">¿Eliminar gasto?</h3>
+              <p className="text-body-sm text-text-secondary mb-6">
+                Esta acción no se puede deshacer.
+              </p>
+              <div className="flex gap-space-sm">
+                <button
+                  onClick={cancelDelete}
+                  className="flex-1 h-11 rounded-full bg-surface-container text-on-surface text-label-lg font-medium hover:bg-surface-container-high transition-colors"
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={() => handleDelete(deletingId)}
+                  className="flex-1 h-11 rounded-full bg-error-container text-on-error-container text-label-lg font-medium hover:bg-error hover:text-on-error transition-colors"
+                >
+                  Eliminar
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <AddExpenseFab />
       </div>
     </main>
   )

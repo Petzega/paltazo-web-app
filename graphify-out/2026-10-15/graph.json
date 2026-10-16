@@ -59,7 +59,7 @@
       "file_type": "code",
       "norm_label": "supabasebudgetrow",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L33"
+      "source_location": "L23"
     },
     {
       "id": "src_lib_supabase_repositories_supabaseexpenserow",
@@ -72,7 +72,7 @@
       "file_type": "code",
       "norm_label": "supabaseexpenserow",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L14"
+      "source_location": "L4"
     },
     {
       "id": "src_lib_supabase_repositories_supabaseprofilerow",
@@ -85,7 +85,7 @@
       "file_type": "code",
       "norm_label": "supabaseprofilerow",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L26"
+      "source_location": "L16"
     },
     {
       "id": "src_lib_store_appstate",
@@ -111,7 +111,7 @@
       "file_type": "code",
       "norm_label": "budget",
       "source_file": "src/types/index.ts",
-      "source_location": "L22"
+      "source_location": "L20"
     },
     {
       "id": "src_types_index_expense",
@@ -124,7 +124,7 @@
       "file_type": "code",
       "norm_label": "expense",
       "source_file": "src/types/index.ts",
-      "source_location": "L10"
+      "source_location": "L8"
     },
     {
       "id": "src_app_dashboard_page_currencysummary",
@@ -137,7 +137,7 @@
       "file_type": "code",
       "norm_label": "currencysummary",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L24"
+      "source_location": "L25"
     },
     {
       "id": "src_components_ui_button_buttonprops",
@@ -205,32 +205,6 @@
       "source_location": "L3"
     },
     {
-      "id": "src_types_index_budgetalert",
-      "label": "BudgetAlert",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 66,
-      "community_name": "add-expense/page.tsx",
-      "file_type": "code",
-      "norm_label": "budgetalert",
-      "source_file": "src/types/index.ts",
-      "source_location": "L29"
-    },
-    {
-      "id": "src_types_index_budgetalertlevel",
-      "label": "BudgetAlertLevel",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 66,
-      "community_name": "add-expense/page.tsx",
-      "file_type": "code",
-      "norm_label": "budgetalertlevel",
-      "source_file": "src/types/index.ts",
-      "source_location": "L8"
-    },
-    {
       "id": "src_types_index_expensecategory",
       "label": "ExpenseCategory",
       "_callable": true,
@@ -242,19 +216,6 @@
       "norm_label": "expensecategory",
       "source_file": "src/types/index.ts",
       "source_location": "L1"
-    },
-    {
-      "id": "src_types_index_profile",
-      "label": "Profile",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 66,
-      "community_name": "add-expense/page.tsx",
-      "file_type": "code",
-      "norm_label": "profile",
-      "source_file": "src/types/index.ts",
-      "source_location": "L38"
     },
     {
       "id": "src_app_layout_rootlayout",
@@ -281,6 +242,18 @@
       "source_location": "L5"
     },
     {
+      "id": "src_middleware_middleware",
+      "label": "middleware()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "middleware()",
+      "source_file": "src/middleware.ts",
+      "source_location": "L4"
+    },
+    {
       "id": "src_lib_supabase_repositories_addexpense",
       "label": "addExpense()",
       "_callable": true,
@@ -290,7 +263,7 @@
       "file_type": "code",
       "norm_label": "addexpense()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L63"
+      "source_location": "L53"
     },
     {
       "id": "src_lib_supabase_repositories_deleteexpense",
@@ -302,19 +275,7 @@
       "file_type": "code",
       "norm_label": "deleteexpense()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L107"
-    },
-    {
-      "id": "src_lib_supabase_repositories_generateid",
-      "label": "generateId()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "repositories.ts",
-      "file_type": "code",
-      "norm_label": "generateid()",
-      "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L4"
+      "source_location": "L96"
     },
     {
       "id": "src_lib_supabase_repositories_getbudget",
@@ -326,7 +287,7 @@
       "file_type": "code",
       "norm_label": "getbudget()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L112"
+      "source_location": "L101"
     },
     {
       "id": "src_lib_supabase_repositories_getbudgets",
@@ -338,7 +299,7 @@
       "file_type": "code",
       "norm_label": "getbudgets()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L131"
+      "source_location": "L120"
     },
     {
       "id": "src_lib_supabase_repositories_getexpenses",
@@ -350,7 +311,7 @@
       "file_type": "code",
       "norm_label": "getexpenses()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L42"
+      "source_location": "L32"
     },
     {
       "id": "src_lib_supabase_repositories_updateexpense",
@@ -362,7 +323,7 @@
       "file_type": "code",
       "norm_label": "updateexpense()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L95"
+      "source_location": "L84"
     },
     {
       "id": "src_lib_supabase_repositories_upsertbudget",
@@ -374,19 +335,7 @@
       "file_type": "code",
       "norm_label": "upsertbudget()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L146"
-    },
-    {
-      "id": "src_app_budget_layout_budgetlayout",
-      "label": "BudgetLayout()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "budget/layout.tsx",
-      "file_type": "code",
-      "norm_label": "budgetlayout()",
-      "source_file": "src/app/budget/layout.tsx",
-      "source_location": "L1"
+      "source_location": "L135"
     },
     {
       "id": "src_lib_supabase_auth_getuser",
@@ -398,7 +347,7 @@
       "file_type": "code",
       "norm_label": "getuser()",
       "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L24"
+      "source_location": "L22"
     },
     {
       "id": "src_app_login_page_loginpage",
@@ -422,7 +371,7 @@
       "file_type": "code",
       "norm_label": "resetpassword()",
       "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L34"
+      "source_location": "L32"
     },
     {
       "id": "src_lib_supabase_auth_signin",
@@ -434,7 +383,7 @@
       "file_type": "code",
       "norm_label": "signin()",
       "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L5"
+      "source_location": "L3"
     },
     {
       "id": "src_lib_supabase_auth_signup",
@@ -446,7 +395,7 @@
       "file_type": "code",
       "norm_label": "signup()",
       "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L10"
+      "source_location": "L8"
     },
     {
       "id": "src_lib_supabase_client_createclient",
@@ -494,7 +443,7 @@
       "file_type": "code",
       "norm_label": "getsession()",
       "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L29"
+      "source_location": "L27"
     },
     {
       "id": "src_lib_supabase_auth_onauthstatechange",
@@ -506,7 +455,19 @@
       "file_type": "code",
       "norm_label": "onauthstatechange()",
       "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L41"
+      "source_location": "L39"
+    },
+    {
+      "id": "src_app_dashboard_expenses_page_expensespage",
+      "label": "ExpensesPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 176,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "expensespage()",
+      "source_file": "src/app/dashboard/expenses/page.tsx",
+      "source_location": "L10"
     },
     {
       "id": "src_app_dashboard_page_dashboardpage",
@@ -518,7 +479,7 @@
       "file_type": "code",
       "norm_label": "dashboardpage()",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L34"
+      "source_location": "L35"
     },
     {
       "id": "src_app_dashboard_page_datestr",
@@ -530,7 +491,7 @@
       "file_type": "code",
       "norm_label": "datestr()",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L11"
+      "source_location": "L12"
     },
     {
       "id": "src_app_dashboard_page_getdaysinmonth",
@@ -542,7 +503,7 @@
       "file_type": "code",
       "norm_label": "getdaysinmonth()",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L15"
+      "source_location": "L16"
     },
     {
       "id": "src_app_dashboard_page_getfirstdayofmonth",
@@ -554,19 +515,67 @@
       "file_type": "code",
       "norm_label": "getfirstdayofmonth()",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L19"
+      "source_location": "L20"
     },
     {
-      "id": "src_app_budget_page_budgetpage",
-      "label": "BudgetPage()",
+      "id": "src_app_dashboard_settings_page_settingspage",
+      "label": "SettingsPage()",
       "_callable": true,
       "_origin": "ast",
-      "community": 19,
-      "community_name": "useAppState",
+      "community": 176,
+      "community_name": "dashboard/page.tsx",
       "file_type": "code",
-      "norm_label": "budgetpage()",
-      "source_file": "src/app/budget/page.tsx",
-      "source_location": "L10"
+      "norm_label": "settingspage()",
+      "source_file": "src/app/dashboard/settings/page.tsx",
+      "source_location": "L12"
+    },
+    {
+      "id": "src_app_page_home",
+      "label": "Home()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 176,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "home()",
+      "source_file": "src/app/page.tsx",
+      "source_location": "L7"
+    },
+    {
+      "id": "src_components_ui_addexpensefab_addexpensefab",
+      "label": "AddExpenseFab()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 176,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "addexpensefab()",
+      "source_file": "src/components/ui/AddExpenseFab.tsx",
+      "source_location": "L5"
+    },
+    {
+      "id": "src_lib_categories_getcategoryinfo",
+      "label": "getCategoryInfo()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 176,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "getcategoryinfo()",
+      "source_file": "src/lib/categories.ts",
+      "source_location": "L18"
+    },
+    {
+      "id": "src_lib_store_useappstate",
+      "label": "useAppState()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 176,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "useappstate()",
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L134"
     },
     {
       "id": "src_app_dashboard_layout_dashboardlayout",
@@ -574,35 +583,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "useAppState",
+      "community_name": "signOut",
       "file_type": "code",
       "norm_label": "dashboardlayout()",
       "source_file": "src/app/dashboard/layout.tsx",
       "source_location": "L5"
-    },
-    {
-      "id": "src_app_dashboard_settings_page_settingspage",
-      "label": "SettingsPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "useAppState",
-      "file_type": "code",
-      "norm_label": "settingspage()",
-      "source_file": "src/app/dashboard/settings/page.tsx",
-      "source_location": "L13"
-    },
-    {
-      "id": "src_app_page_home",
-      "label": "Home()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "useAppState",
-      "file_type": "code",
-      "norm_label": "home()",
-      "source_file": "src/app/page.tsx",
-      "source_location": "L7"
     },
     {
       "id": "src_components_ui_authguard_authguard",
@@ -610,7 +595,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "useAppState",
+      "community_name": "signOut",
       "file_type": "code",
       "norm_label": "authguard()",
       "source_file": "src/components/ui/AuthGuard.tsx",
@@ -622,7 +607,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "useAppState",
+      "community_name": "signOut",
       "file_type": "code",
       "norm_label": "bottomnav()",
       "source_file": "src/components/ui/BottomNav.tsx",
@@ -634,23 +619,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "useAppState",
+      "community_name": "signOut",
       "file_type": "code",
       "norm_label": "sidebar()",
       "source_file": "src/components/ui/Sidebar.tsx",
       "source_location": "L12"
-    },
-    {
-      "id": "src_lib_store_useappstate",
-      "label": "useAppState()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "useAppState",
-      "file_type": "code",
-      "norm_label": "useappstate()",
-      "source_file": "src/lib/store.tsx",
-      "source_location": "L132"
     },
     {
       "id": "src_lib_supabase_auth_signout",
@@ -658,35 +631,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 19,
-      "community_name": "useAppState",
+      "community_name": "signOut",
       "file_type": "code",
       "norm_label": "signout()",
       "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L19"
-    },
-    {
-      "id": "src_lib_supabase_server_createclient",
-      "label": "createClient()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "@supabase/ssr",
-      "file_type": "code",
-      "norm_label": "createclient()",
-      "source_file": "src/lib/supabase/server.ts",
-      "source_location": "L4"
-    },
-    {
-      "id": "src_middleware_middleware",
-      "label": "middleware()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "@supabase/ssr",
-      "file_type": "code",
-      "norm_label": "middleware()",
-      "source_file": "src/middleware.ts",
-      "source_location": "L4"
+      "source_location": "L17"
     },
     {
       "id": "opencode_plugins_graphify_graphifyplugin",
@@ -773,28 +722,26 @@
       "source_location": "L14"
     },
     {
-      "id": "src_app_dashboard_expenses_page_expensespage",
-      "label": "ExpensesPage()",
-      "_callable": true,
+      "id": "next_config",
+      "label": "next.config.ts",
       "_origin": "ast",
-      "community": 66,
-      "community_name": "add-expense/page.tsx",
+      "community": 1,
+      "community_name": "app/layout.tsx",
       "file_type": "code",
-      "norm_label": "expensespage()",
-      "source_file": "src/app/dashboard/expenses/page.tsx",
-      "source_location": "L9"
+      "norm_label": "next.config.ts",
+      "source_file": "next.config.ts",
+      "source_location": "L1"
     },
     {
-      "id": "src_lib_categories_getcategoryinfo",
-      "label": "getCategoryInfo()",
-      "_callable": true,
+      "id": "next_config_nextconfig",
+      "label": "nextConfig",
       "_origin": "ast",
-      "community": 66,
-      "community_name": "add-expense/page.tsx",
+      "community": 1,
+      "community_name": "app/layout.tsx",
       "file_type": "code",
-      "norm_label": "getcategoryinfo()",
-      "source_file": "src/lib/categories.ts",
-      "source_location": "L18"
+      "norm_label": "nextconfig",
+      "source_file": "next.config.ts",
+      "source_location": "L3"
     },
     {
       "id": "src_app_layout",
@@ -850,6 +797,17 @@
       "norm_label": "serviceworkerregistrar.tsx",
       "source_file": "src/components/providers/ServiceWorkerRegistrar.tsx",
       "source_location": "L1"
+    },
+    {
+      "id": "ref_next",
+      "label": "next",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "app/layout.tsx",
+      "file_type": "concept",
+      "norm_label": "next",
+      "source_file": "package.json",
+      "source_location": "L21"
     },
     {
       "id": "agents_skills_react_best_practices_rules_js_flatmap_filter",
@@ -1163,6 +1121,160 @@
       "source_location": "L1"
     },
     {
+      "id": "package_dependencies",
+      "label": "dependencies",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "dependencies",
+      "source_file": "package.json",
+      "source_location": "L18"
+    },
+    {
+      "id": "package_dependencies_next",
+      "label": "next",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "next",
+      "source_file": "package.json",
+      "source_location": "L21"
+    },
+    {
+      "id": "package_dependencies_react",
+      "label": "react",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "react",
+      "source_file": "package.json",
+      "source_location": "L22"
+    },
+    {
+      "id": "package_dependencies_react_dom",
+      "label": "react-dom",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "react-dom",
+      "source_file": "package.json",
+      "source_location": "L23"
+    },
+    {
+      "id": "package_dependencies_supabase_ssr",
+      "label": "@supabase/ssr",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "@supabase/ssr",
+      "source_file": "package.json",
+      "source_location": "L19"
+    },
+    {
+      "id": "package_dependencies_supabase_supabase_js",
+      "label": "@supabase/supabase-js",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "@supabase/supabase-js",
+      "source_file": "package.json",
+      "source_location": "L20"
+    },
+    {
+      "id": "package_devdependencies",
+      "label": "devDependencies",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "devdependencies",
+      "source_file": "package.json",
+      "source_location": "L25"
+    },
+    {
+      "id": "package_devdependencies_autoprefixer",
+      "label": "autoprefixer",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "autoprefixer",
+      "source_file": "package.json",
+      "source_location": "L29"
+    },
+    {
+      "id": "package_devdependencies_postcss",
+      "label": "postcss",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "postcss",
+      "source_file": "package.json",
+      "source_location": "L30"
+    },
+    {
+      "id": "package_devdependencies_tailwindcss",
+      "label": "tailwindcss",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "tailwindcss",
+      "source_file": "package.json",
+      "source_location": "L31"
+    },
+    {
+      "id": "package_devdependencies_types_node",
+      "label": "@types/node",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "@types/node",
+      "source_file": "package.json",
+      "source_location": "L26"
+    },
+    {
+      "id": "package_devdependencies_types_react",
+      "label": "@types/react",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "@types/react",
+      "source_file": "package.json",
+      "source_location": "L27"
+    },
+    {
+      "id": "package_devdependencies_types_react_dom",
+      "label": "@types/react-dom",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "@types/react-dom",
+      "source_file": "package.json",
+      "source_location": "L28"
+    },
+    {
+      "id": "package_devdependencies_typescript",
+      "label": "typescript",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "typescript",
+      "source_file": "package.json",
+      "source_location": "L32"
+    },
+    {
       "id": "package_name",
       "label": "name",
       "_origin": "ast",
@@ -1185,6 +1297,138 @@
       "source_location": "L4"
     },
     {
+      "id": "package_scripts",
+      "label": "scripts",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "scripts",
+      "source_file": "package.json",
+      "source_location": "L5"
+    },
+    {
+      "id": "package_scripts_build",
+      "label": "build",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "build",
+      "source_file": "package.json",
+      "source_location": "L7"
+    },
+    {
+      "id": "package_scripts_dev",
+      "label": "dev",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "dev",
+      "source_file": "package.json",
+      "source_location": "L6"
+    },
+    {
+      "id": "package_scripts_lint",
+      "label": "lint",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "lint",
+      "source_file": "package.json",
+      "source_location": "L9"
+    },
+    {
+      "id": "package_scripts_start",
+      "label": "start",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "start",
+      "source_file": "package.json",
+      "source_location": "L8"
+    },
+    {
+      "id": "package_scripts_supabase_push",
+      "label": "supabase:push",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "supabase:push",
+      "source_file": "package.json",
+      "source_location": "L15"
+    },
+    {
+      "id": "package_scripts_supabase_reset",
+      "label": "supabase:reset",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "supabase:reset",
+      "source_file": "package.json",
+      "source_location": "L14"
+    },
+    {
+      "id": "package_scripts_supabase_start",
+      "label": "supabase:start",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "supabase:start",
+      "source_file": "package.json",
+      "source_location": "L12"
+    },
+    {
+      "id": "package_scripts_supabase_stop",
+      "label": "supabase:stop",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "supabase:stop",
+      "source_file": "package.json",
+      "source_location": "L13"
+    },
+    {
+      "id": "package_scripts_supabase_studio",
+      "label": "supabase:studio",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "supabase:studio",
+      "source_file": "package.json",
+      "source_location": "L16"
+    },
+    {
+      "id": "package_scripts_test_supabase",
+      "label": "test:supabase",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "test:supabase",
+      "source_file": "package.json",
+      "source_location": "L11"
+    },
+    {
+      "id": "package_scripts_typecheck",
+      "label": "typecheck",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "typecheck",
+      "source_file": "package.json",
+      "source_location": "L10"
+    },
+    {
       "id": "package_version",
       "label": "version",
       "_origin": "ast",
@@ -1193,6 +1437,50 @@
       "file_type": "code",
       "norm_label": "version",
       "source_file": "package.json",
+      "source_location": "L3"
+    },
+    {
+      "id": "src_middleware",
+      "label": "middleware.ts",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "middleware.ts",
+      "source_file": "src/middleware.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_middleware_config",
+      "label": "config",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "config",
+      "source_file": "src/middleware.ts",
+      "source_location": "L59"
+    },
+    {
+      "id": "tailwind_config",
+      "label": "tailwind.config.ts",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "tailwind.config.ts",
+      "source_file": "tailwind.config.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "tailwind_config_config",
+      "label": "config",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "config",
+      "source_file": "tailwind.config.ts",
       "source_location": "L3"
     },
     {
@@ -1229,6 +1517,17 @@
       "source_location": "L23"
     },
     {
+      "id": "ref_supabase_ssr",
+      "label": "@supabase/ssr",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "concept",
+      "norm_label": "@supabase/ssr",
+      "source_file": "package.json",
+      "source_location": "L19"
+    },
+    {
       "id": "ref_supabase_supabase_js",
       "label": "@supabase/supabase-js",
       "_origin": "ast",
@@ -1238,6 +1537,17 @@
       "norm_label": "@supabase/supabase-js",
       "source_file": "package.json",
       "source_location": "L20"
+    },
+    {
+      "id": "ref_tailwindcss",
+      "label": "tailwindcss",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "concept",
+      "norm_label": "tailwindcss",
+      "source_file": "package.json",
+      "source_location": "L31"
     },
     {
       "id": "ref_types_node",
@@ -2104,17 +2414,6 @@
       "source_location": "L1"
     },
     {
-      "id": "src_lib_supabase_repositories_supabase",
-      "label": "supabase",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "repositories.ts",
-      "file_type": "code",
-      "norm_label": "supabase",
-      "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L12"
-    },
-    {
       "id": "agents_skills_react_best_practices_rules_rerender_split_combined_hooks",
       "label": "rerender-split-combined-hooks.md",
       "_origin": "ast",
@@ -2413,17 +2712,6 @@
       "norm_label": "parallel data fetching with component composition",
       "source_file": ".agents/skills/react-best-practices/rules/server-parallel-fetching.md",
       "source_location": "L8"
-    },
-    {
-      "id": "src_app_budget_layout",
-      "label": "budget/layout.tsx",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "budget/layout.tsx",
-      "file_type": "code",
-      "norm_label": "budget/layout.tsx",
-      "source_file": "src/app/budget/layout.tsx",
-      "source_location": "L1"
     },
     {
       "id": "agents_skills_react_best_practices_rules_server_serialization",
@@ -4013,17 +4301,6 @@
       "source_location": "L1"
     },
     {
-      "id": "src_lib_supabase_auth_supabase",
-      "label": "supabase",
-      "_origin": "ast",
-      "community": 174,
-      "community_name": "auth.ts",
-      "file_type": "code",
-      "norm_label": "supabase",
-      "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L3"
-    },
-    {
       "id": "src_lib_supabase_client",
       "label": "client.ts",
       "_origin": "ast",
@@ -4033,6 +4310,17 @@
       "norm_label": "client.ts",
       "source_file": "src/lib/supabase/client.ts",
       "source_location": "L1"
+    },
+    {
+      "id": "src_lib_supabase_client_client",
+      "label": "client",
+      "_origin": "ast",
+      "community": 174,
+      "community_name": "auth.ts",
+      "file_type": "code",
+      "norm_label": "client",
+      "source_file": "src/lib/supabase/client.ts",
+      "source_location": "L10"
     },
     {
       "id": "bitacora_error_1_login_is_not_a_function_en_src_app_login_page_tsx_14",
@@ -4080,6 +4368,28 @@
       "source_location": "L24"
     },
     {
+      "id": "src_types_index",
+      "label": "index.ts",
+      "_origin": "ast",
+      "community": 175,
+      "community_name": "store.tsx",
+      "file_type": "code",
+      "norm_label": "index.ts",
+      "source_file": "src/types/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_app_dashboard_expenses_page",
+      "label": "expenses/page.tsx",
+      "_origin": "ast",
+      "community": 176,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "expenses/page.tsx",
+      "source_file": "src/app/dashboard/expenses/page.tsx",
+      "source_location": "L1"
+    },
+    {
       "id": "src_app_dashboard_page",
       "label": "dashboard/page.tsx",
       "_origin": "ast",
@@ -4099,7 +4409,7 @@
       "file_type": "code",
       "norm_label": "day_names",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L8"
+      "source_location": "L9"
     },
     {
       "id": "src_app_dashboard_page_month_names",
@@ -4110,7 +4420,63 @@
       "file_type": "code",
       "norm_label": "month_names",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L9"
+      "source_location": "L10"
+    },
+    {
+      "id": "src_app_dashboard_settings_page",
+      "label": "settings/page.tsx",
+      "_origin": "ast",
+      "community": 176,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "settings/page.tsx",
+      "source_file": "src/app/dashboard/settings/page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_app_dashboard_settings_page_currency_options",
+      "label": "CURRENCY_OPTIONS",
+      "_origin": "ast",
+      "community": 176,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "currency_options",
+      "source_file": "src/app/dashboard/settings/page.tsx",
+      "source_location": "L7"
+    },
+    {
+      "id": "src_app_page",
+      "label": "app/page.tsx",
+      "_origin": "ast",
+      "community": 176,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "app/page.tsx",
+      "source_file": "src/app/page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_components_ui_addexpensefab",
+      "label": "AddExpenseFab.tsx",
+      "_origin": "ast",
+      "community": 176,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "code",
+      "norm_label": "addexpensefab.tsx",
+      "source_file": "src/components/ui/AddExpenseFab.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "bitacora_auditor\u00eda_de_c\u00f3digo_actualizaci\u00f3n_2026_10_15",
+      "label": "Auditor\u00eda de c\u00f3digo \u2014 Actualizaci\u00f3n 2026-10-15",
+      "_origin": "ast",
+      "community": 176,
+      "community_name": "dashboard/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "auditoria de codigo \u2014 actualizacion 2026-10-15",
+      "source_file": "BITACORA.md",
+      "source_location": "L334"
     },
     {
       "id": "agents_skills_react_best_practices_agents_1_1_check_cheap_conditions_before_async_flags",
@@ -4571,181 +4937,14 @@
       "source_location": "L3633"
     },
     {
-      "id": "agents_skills_tailwind_css_patterns_skill",
-      "label": "tailwind-css-patterns/SKILL.md",
-      "_origin": "ast",
-      "community": 182,
-      "community_name": "tailwind-css-patterns/SKILL.md",
-      "file_type": "document",
-      "frontmatter": {
-        "name": "tailwind-css-patterns",
-        "description": "Provides comprehensive Tailwind CSS utility-first styling patterns including responsive design, layout utilities, flexbox, grid, spacing, typography, colors, and modern CSS best practices. Use when styling React/Vue/Svelte components, building responsive layouts, implementing design systems, or optimizing CSS workflow.",
-        "allowed-tools": "Read, Write, Edit, Glob, Grep, Bash"
-      },
-      "node_kind": "page",
-      "norm_label": "tailwind-css-patterns/skill.md",
-      "source_file": ".agents/skills/tailwind-css-patterns/SKILL.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "agents_skills_tailwind_css_patterns_references_component_patterns",
-      "label": "component-patterns.md",
-      "_origin": "ast",
-      "community": 182,
-      "community_name": "tailwind-css-patterns/SKILL.md",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "component-patterns.md",
-      "source_file": ".agents/skills/tailwind-css-patterns/references/component-patterns.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "agents_skills_tailwind_css_patterns_references_configuration",
-      "label": "configuration.md",
-      "_origin": "ast",
-      "community": 182,
-      "community_name": "tailwind-css-patterns/SKILL.md",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "configuration.md",
-      "source_file": ".agents/skills/tailwind-css-patterns/references/configuration.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "agents_skills_tailwind_css_patterns_references_reference",
-      "label": "reference.md",
-      "_origin": "ast",
-      "community": 182,
-      "community_name": "tailwind-css-patterns/SKILL.md",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "reference.md",
-      "source_file": ".agents/skills/tailwind-css-patterns/references/reference.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "agents_skills_tailwind_css_patterns_references_configuration_advanced_v4_1_features",
-      "label": "Advanced v4.1 Features",
-      "_origin": "ast",
-      "community": 183,
-      "community_name": "Advanced v4.1 Features",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "advanced v4.1 features",
-      "source_file": ".agents/skills/tailwind-css-patterns/references/configuration.md",
-      "source_location": "L93"
-    },
-    {
-      "id": "agents_skills_tailwind_css_patterns_references_configuration_custom_utilities",
-      "label": "Custom Utilities",
-      "_origin": "ast",
-      "community": 183,
-      "community_name": "Advanced v4.1 Features",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "custom utilities",
-      "source_file": ".agents/skills/tailwind-css-patterns/references/configuration.md",
-      "source_location": "L117"
-    },
-    {
-      "id": "agents_skills_tailwind_css_patterns_references_configuration_enhanced_arbitrary_values",
-      "label": "Enhanced Arbitrary Values",
-      "_origin": "ast",
-      "community": 183,
-      "community_name": "Advanced v4.1 Features",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "enhanced arbitrary values",
-      "source_file": ".agents/skills/tailwind-css-patterns/references/configuration.md",
-      "source_location": "L103"
-    },
-    {
-      "id": "agents_skills_tailwind_css_patterns_references_configuration_native_css_custom_properties",
-      "label": "Native CSS Custom Properties",
-      "_origin": "ast",
-      "community": 183,
-      "community_name": "Advanced v4.1 Features",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "native css custom properties",
-      "source_file": ".agents/skills/tailwind-css-patterns/references/configuration.md",
-      "source_location": "L95"
-    },
-    {
-      "id": "next_config",
-      "label": "next.config.ts",
-      "_origin": "ast",
-      "community": 184,
-      "community_name": "next",
-      "file_type": "code",
-      "norm_label": "next.config.ts",
-      "source_file": "next.config.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "next_config_nextconfig",
-      "label": "nextConfig",
-      "_origin": "ast",
-      "community": 184,
-      "community_name": "next",
-      "file_type": "code",
-      "norm_label": "nextconfig",
-      "source_file": "next.config.ts",
-      "source_location": "L3"
-    },
-    {
-      "id": "ref_next",
-      "label": "next",
-      "_origin": "ast",
-      "community": 184,
-      "community_name": "next",
-      "file_type": "concept",
-      "norm_label": "next",
-      "source_file": "package.json",
-      "source_location": "L21"
-    },
-    {
       "id": "src_app_dashboard_layout",
       "label": "dashboard/layout.tsx",
       "_origin": "ast",
       "community": 19,
-      "community_name": "useAppState",
+      "community_name": "signOut",
       "file_type": "code",
       "norm_label": "dashboard/layout.tsx",
       "source_file": "src/app/dashboard/layout.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_app_dashboard_settings_page",
-      "label": "settings/page.tsx",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "useAppState",
-      "file_type": "code",
-      "norm_label": "settings/page.tsx",
-      "source_file": "src/app/dashboard/settings/page.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_app_dashboard_settings_page_currency_options",
-      "label": "CURRENCY_OPTIONS",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "useAppState",
-      "file_type": "code",
-      "norm_label": "currency_options",
-      "source_file": "src/app/dashboard/settings/page.tsx",
-      "source_location": "L8"
-    },
-    {
-      "id": "src_app_page",
-      "label": "app/page.tsx",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "useAppState",
-      "file_type": "code",
-      "norm_label": "app/page.tsx",
-      "source_file": "src/app/page.tsx",
       "source_location": "L1"
     },
     {
@@ -4753,7 +4952,7 @@
       "label": "AuthGuard.tsx",
       "_origin": "ast",
       "community": 19,
-      "community_name": "useAppState",
+      "community_name": "signOut",
       "file_type": "code",
       "norm_label": "authguard.tsx",
       "source_file": "src/components/ui/AuthGuard.tsx",
@@ -4764,7 +4963,7 @@
       "label": "BottomNav.tsx",
       "_origin": "ast",
       "community": 19,
-      "community_name": "useAppState",
+      "community_name": "signOut",
       "file_type": "code",
       "norm_label": "bottomnav.tsx",
       "source_file": "src/components/ui/BottomNav.tsx",
@@ -4775,7 +4974,7 @@
       "label": "tabs",
       "_origin": "ast",
       "community": 19,
-      "community_name": "useAppState",
+      "community_name": "signOut",
       "file_type": "code",
       "norm_label": "tabs",
       "source_file": "src/components/ui/BottomNav.tsx",
@@ -4786,7 +4985,7 @@
       "label": "Sidebar.tsx",
       "_origin": "ast",
       "community": 19,
-      "community_name": "useAppState",
+      "community_name": "signOut",
       "file_type": "code",
       "norm_label": "sidebar.tsx",
       "source_file": "src/components/ui/Sidebar.tsx",
@@ -4797,7 +4996,7 @@
       "label": "links",
       "_origin": "ast",
       "community": 19,
-      "community_name": "useAppState",
+      "community_name": "signOut",
       "file_type": "code",
       "norm_label": "links",
       "source_file": "src/components/ui/Sidebar.tsx",
@@ -4808,12 +5007,12 @@
       "label": "Protecci\u00f3n de rutas",
       "_origin": "ast",
       "community": 19,
-      "community_name": "useAppState",
+      "community_name": "signOut",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "proteccion de rutas",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L71"
+      "source_location": "L70"
     },
     {
       "id": "agents_skills_react_best_practices_agents_6_10_use_react_dom_resource_hints",
@@ -5005,7 +5204,7 @@
       "node_kind": "heading",
       "norm_label": "autenticacion",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L148"
+      "source_location": "L144"
     },
     {
       "id": "development_comandos",
@@ -5017,7 +5216,7 @@
       "node_kind": "heading",
       "norm_label": "comandos",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L203"
+      "source_location": "L199"
     },
     {
       "id": "development_credenciales",
@@ -5041,7 +5240,7 @@
       "node_kind": "heading",
       "norm_label": "desarrollo",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L205"
+      "source_location": "L201"
     },
     {
       "id": "development_design_system",
@@ -5053,7 +5252,7 @@
       "node_kind": "heading",
       "norm_label": "design system",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L193"
+      "source_location": "L189"
     },
     {
       "id": "development_estado_de_datos",
@@ -5065,7 +5264,7 @@
       "node_kind": "heading",
       "norm_label": "estado de datos",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L138"
+      "source_location": "L135"
     },
     {
       "id": "development_estructura_del_proyecto",
@@ -5077,7 +5276,7 @@
       "node_kind": "heading",
       "norm_label": "estructura del proyecto",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L81"
+      "source_location": "L80"
     },
     {
       "id": "development_instalaci\u00f3n_y_arranque",
@@ -5125,7 +5324,7 @@
       "node_kind": "heading",
       "norm_label": "pendientes",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L226"
+      "source_location": "L222"
     },
     {
       "id": "development_producci\u00f3n_supabase_cloud",
@@ -5149,7 +5348,7 @@
       "node_kind": "heading",
       "norm_label": "pwa",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L186"
+      "source_location": "L182"
     },
     {
       "id": "development_requisitos",
@@ -5173,7 +5372,7 @@
       "node_kind": "heading",
       "norm_label": "row level security (rls)",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L174"
+      "source_location": "L170"
     },
     {
       "id": "development_rutas",
@@ -5197,7 +5396,7 @@
       "node_kind": "heading",
       "norm_label": "supabase local",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L215"
+      "source_location": "L211"
     },
     {
       "id": "next_env_d",
@@ -5709,50 +5908,6 @@
       "source_location": "L129"
     },
     {
-      "id": "src_lib_supabase_server",
-      "label": "server.ts",
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "@supabase/ssr",
-      "file_type": "code",
-      "norm_label": "server.ts",
-      "source_file": "src/lib/supabase/server.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_middleware",
-      "label": "middleware.ts",
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "@supabase/ssr",
-      "file_type": "code",
-      "norm_label": "middleware.ts",
-      "source_file": "src/middleware.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_middleware_config",
-      "label": "config",
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "@supabase/ssr",
-      "file_type": "code",
-      "norm_label": "config",
-      "source_file": "src/middleware.ts",
-      "source_location": "L59"
-    },
-    {
-      "id": "ref_supabase_ssr",
-      "label": "@supabase/ssr",
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "@supabase/ssr",
-      "file_type": "concept",
-      "norm_label": "@supabase/ssr",
-      "source_file": "package.json",
-      "source_location": "L19"
-    },
-    {
       "id": "stitch_paltazo_design",
       "label": "DESIGN.md",
       "_origin": "ast",
@@ -6077,7 +6232,7 @@
       "node_kind": "heading",
       "norm_label": "flujo de trabajo recomendado",
       "source_file": "supabase/LOCAL_SETUP.md",
-      "source_location": "L362"
+      "source_location": "L365"
     },
     {
       "id": "supabase_local_setup_inicializaci\u00f3n_del_proyecto",
@@ -6173,7 +6328,7 @@
       "node_kind": "heading",
       "norm_label": "recursos",
       "source_file": "supabase/LOCAL_SETUP.md",
-      "source_location": "L394"
+      "source_location": "L397"
     },
     {
       "id": "supabase_local_setup_reiniciar_reset_completo",
@@ -10251,6 +10406,30 @@
       "source_location": "L118"
     },
     {
+      "id": "agents_skills_tailwind_css_patterns_references_configuration",
+      "label": "configuration.md",
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "Tailwind CSS Configuration",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "configuration.md",
+      "source_file": ".agents/skills/tailwind-css-patterns/references/configuration.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "agents_skills_tailwind_css_patterns_references_configuration_advanced_v4_1_features",
+      "label": "Advanced v4.1 Features",
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "Tailwind CSS Configuration",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "advanced v4.1 features",
+      "source_file": ".agents/skills/tailwind-css-patterns/references/configuration.md",
+      "source_location": "L93"
+    },
+    {
       "id": "agents_skills_tailwind_css_patterns_references_configuration_creating_a_reusable_preset",
       "label": "Creating a Reusable Preset",
       "_origin": "ast",
@@ -10287,6 +10466,30 @@
       "source_location": "L133"
     },
     {
+      "id": "agents_skills_tailwind_css_patterns_references_configuration_custom_utilities",
+      "label": "Custom Utilities",
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "Tailwind CSS Configuration",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "custom utilities",
+      "source_file": ".agents/skills/tailwind-css-patterns/references/configuration.md",
+      "source_location": "L117"
+    },
+    {
+      "id": "agents_skills_tailwind_css_patterns_references_configuration_enhanced_arbitrary_values",
+      "label": "Enhanced Arbitrary Values",
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "Tailwind CSS Configuration",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "enhanced arbitrary values",
+      "source_file": ".agents/skills/tailwind-css-patterns/references/configuration.md",
+      "source_location": "L103"
+    },
+    {
       "id": "agents_skills_tailwind_css_patterns_references_configuration_javascript_configuration_legacy",
       "label": "JavaScript Configuration (Legacy)",
       "_origin": "ast",
@@ -10297,6 +10500,18 @@
       "norm_label": "javascript configuration (legacy)",
       "source_file": ".agents/skills/tailwind-css-patterns/references/configuration.md",
       "source_location": "L45"
+    },
+    {
+      "id": "agents_skills_tailwind_css_patterns_references_configuration_native_css_custom_properties",
+      "label": "Native CSS Custom Properties",
+      "_origin": "ast",
+      "community": 41,
+      "community_name": "Tailwind CSS Configuration",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "native css custom properties",
+      "source_file": ".agents/skills/tailwind-css-patterns/references/configuration.md",
+      "source_location": "L95"
     },
     {
       "id": "agents_skills_tailwind_css_patterns_references_configuration_plugins",
@@ -10720,7 +10935,7 @@
       "node_kind": "heading",
       "norm_label": "desarrollo",
       "source_file": "README.md",
-      "source_location": "L116"
+      "source_location": "L115"
     },
     {
       "id": "readme_estructura_del_proyecto",
@@ -10768,7 +10983,7 @@
       "node_kind": "heading",
       "norm_label": "migraciones",
       "source_file": "README.md",
-      "source_location": "L130"
+      "source_location": "L129"
     },
     {
       "id": "readme_paltazo_web_app",
@@ -10828,7 +11043,7 @@
       "node_kind": "heading",
       "norm_label": "troubleshooting",
       "source_file": "README.md",
-      "source_location": "L144"
+      "source_location": "L143"
     },
     {
       "id": "readme_variables_de_entorno",
@@ -10841,138 +11056,6 @@
       "norm_label": "variables de entorno",
       "source_file": "README.md",
       "source_location": "L55"
-    },
-    {
-      "id": "package_scripts",
-      "label": "scripts",
-      "_origin": "ast",
-      "community": 45,
-      "community_name": "scripts",
-      "file_type": "code",
-      "norm_label": "scripts",
-      "source_file": "package.json",
-      "source_location": "L5"
-    },
-    {
-      "id": "package_scripts_build",
-      "label": "build",
-      "_origin": "ast",
-      "community": 45,
-      "community_name": "scripts",
-      "file_type": "code",
-      "norm_label": "build",
-      "source_file": "package.json",
-      "source_location": "L7"
-    },
-    {
-      "id": "package_scripts_dev",
-      "label": "dev",
-      "_origin": "ast",
-      "community": 45,
-      "community_name": "scripts",
-      "file_type": "code",
-      "norm_label": "dev",
-      "source_file": "package.json",
-      "source_location": "L6"
-    },
-    {
-      "id": "package_scripts_lint",
-      "label": "lint",
-      "_origin": "ast",
-      "community": 45,
-      "community_name": "scripts",
-      "file_type": "code",
-      "norm_label": "lint",
-      "source_file": "package.json",
-      "source_location": "L9"
-    },
-    {
-      "id": "package_scripts_start",
-      "label": "start",
-      "_origin": "ast",
-      "community": 45,
-      "community_name": "scripts",
-      "file_type": "code",
-      "norm_label": "start",
-      "source_file": "package.json",
-      "source_location": "L8"
-    },
-    {
-      "id": "package_scripts_supabase_push",
-      "label": "supabase:push",
-      "_origin": "ast",
-      "community": 45,
-      "community_name": "scripts",
-      "file_type": "code",
-      "norm_label": "supabase:push",
-      "source_file": "package.json",
-      "source_location": "L15"
-    },
-    {
-      "id": "package_scripts_supabase_reset",
-      "label": "supabase:reset",
-      "_origin": "ast",
-      "community": 45,
-      "community_name": "scripts",
-      "file_type": "code",
-      "norm_label": "supabase:reset",
-      "source_file": "package.json",
-      "source_location": "L14"
-    },
-    {
-      "id": "package_scripts_supabase_start",
-      "label": "supabase:start",
-      "_origin": "ast",
-      "community": 45,
-      "community_name": "scripts",
-      "file_type": "code",
-      "norm_label": "supabase:start",
-      "source_file": "package.json",
-      "source_location": "L12"
-    },
-    {
-      "id": "package_scripts_supabase_stop",
-      "label": "supabase:stop",
-      "_origin": "ast",
-      "community": 45,
-      "community_name": "scripts",
-      "file_type": "code",
-      "norm_label": "supabase:stop",
-      "source_file": "package.json",
-      "source_location": "L13"
-    },
-    {
-      "id": "package_scripts_supabase_studio",
-      "label": "supabase:studio",
-      "_origin": "ast",
-      "community": 45,
-      "community_name": "scripts",
-      "file_type": "code",
-      "norm_label": "supabase:studio",
-      "source_file": "package.json",
-      "source_location": "L16"
-    },
-    {
-      "id": "package_scripts_test_supabase",
-      "label": "test:supabase",
-      "_origin": "ast",
-      "community": 45,
-      "community_name": "scripts",
-      "file_type": "code",
-      "norm_label": "test:supabase",
-      "source_file": "package.json",
-      "source_location": "L11"
-    },
-    {
-      "id": "package_scripts_typecheck",
-      "label": "typecheck",
-      "_origin": "ast",
-      "community": 45,
-      "community_name": "scripts",
-      "file_type": "code",
-      "norm_label": "typecheck",
-      "source_file": "package.json",
-      "source_location": "L10"
     },
     {
       "id": "agents_skills_composition_patterns_skill",
@@ -11761,11 +11844,40 @@
       "source_location": "L11"
     },
     {
+      "id": "agents_skills_tailwind_css_patterns_skill",
+      "label": "tailwind-css-patterns/SKILL.md",
+      "_origin": "ast",
+      "community": 52,
+      "community_name": "tailwind-css-patterns/SKILL.md",
+      "file_type": "document",
+      "frontmatter": {
+        "name": "tailwind-css-patterns",
+        "description": "Provides comprehensive Tailwind CSS utility-first styling patterns including responsive design, layout utilities, flexbox, grid, spacing, typography, colors, and modern CSS best practices. Use when styling React/Vue/Svelte components, building responsive layouts, implementing design systems, or optimizing CSS workflow.",
+        "allowed-tools": "Read, Write, Edit, Glob, Grep, Bash"
+      },
+      "node_kind": "page",
+      "norm_label": "tailwind-css-patterns/skill.md",
+      "source_file": ".agents/skills/tailwind-css-patterns/SKILL.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "agents_skills_tailwind_css_patterns_references_component_patterns",
+      "label": "component-patterns.md",
+      "_origin": "ast",
+      "community": 52,
+      "community_name": "tailwind-css-patterns/SKILL.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "component-patterns.md",
+      "source_file": ".agents/skills/tailwind-css-patterns/references/component-patterns.md",
+      "source_location": "L1"
+    },
+    {
       "id": "agents_skills_tailwind_css_patterns_references_component_patterns_card_component",
       "label": "Card Component",
       "_origin": "ast",
       "community": 52,
-      "community_name": "Tailwind CSS Component Patterns",
+      "community_name": "tailwind-css-patterns/SKILL.md",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "card component",
@@ -11777,7 +11889,7 @@
       "label": "Form Elements",
       "_origin": "ast",
       "community": 52,
-      "community_name": "Tailwind CSS Component Patterns",
+      "community_name": "tailwind-css-patterns/SKILL.md",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "form elements",
@@ -11789,7 +11901,7 @@
       "label": "Modal/Dialog",
       "_origin": "ast",
       "community": 52,
-      "community_name": "Tailwind CSS Component Patterns",
+      "community_name": "tailwind-css-patterns/SKILL.md",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "modal/dialog",
@@ -11801,7 +11913,7 @@
       "label": "Navigation Bar",
       "_origin": "ast",
       "community": 52,
-      "community_name": "Tailwind CSS Component Patterns",
+      "community_name": "tailwind-css-patterns/SKILL.md",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "navigation bar",
@@ -11813,7 +11925,7 @@
       "label": "React Button Component with Variants",
       "_origin": "ast",
       "community": 52,
-      "community_name": "Tailwind CSS Component Patterns",
+      "community_name": "tailwind-css-patterns/SKILL.md",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "react button component with variants",
@@ -11825,7 +11937,7 @@
       "label": "Responsive User Card",
       "_origin": "ast",
       "community": 52,
-      "community_name": "Tailwind CSS Component Patterns",
+      "community_name": "tailwind-css-patterns/SKILL.md",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "responsive user card",
@@ -11837,11 +11949,23 @@
       "label": "Tailwind CSS Component Patterns",
       "_origin": "ast",
       "community": 52,
-      "community_name": "Tailwind CSS Component Patterns",
+      "community_name": "tailwind-css-patterns/SKILL.md",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "tailwind css component patterns",
       "source_file": ".agents/skills/tailwind-css-patterns/references/component-patterns.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "agents_skills_tailwind_css_patterns_references_reference",
+      "label": "reference.md",
+      "_origin": "ast",
+      "community": 52,
+      "community_name": "tailwind-css-patterns/SKILL.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "reference.md",
+      "source_file": ".agents/skills/tailwind-css-patterns/references/reference.md",
       "source_location": "L1"
     },
     {
@@ -12169,94 +12293,6 @@
       "source_location": "L147"
     },
     {
-      "id": "package_devdependencies",
-      "label": "devDependencies",
-      "_origin": "ast",
-      "community": 55,
-      "community_name": "devDependencies",
-      "file_type": "code",
-      "norm_label": "devdependencies",
-      "source_file": "package.json",
-      "source_location": "L25"
-    },
-    {
-      "id": "package_devdependencies_autoprefixer",
-      "label": "autoprefixer",
-      "_origin": "ast",
-      "community": 55,
-      "community_name": "devDependencies",
-      "file_type": "code",
-      "norm_label": "autoprefixer",
-      "source_file": "package.json",
-      "source_location": "L29"
-    },
-    {
-      "id": "package_devdependencies_postcss",
-      "label": "postcss",
-      "_origin": "ast",
-      "community": 55,
-      "community_name": "devDependencies",
-      "file_type": "code",
-      "norm_label": "postcss",
-      "source_file": "package.json",
-      "source_location": "L30"
-    },
-    {
-      "id": "package_devdependencies_tailwindcss",
-      "label": "tailwindcss",
-      "_origin": "ast",
-      "community": 55,
-      "community_name": "devDependencies",
-      "file_type": "code",
-      "norm_label": "tailwindcss",
-      "source_file": "package.json",
-      "source_location": "L31"
-    },
-    {
-      "id": "package_devdependencies_types_node",
-      "label": "@types/node",
-      "_origin": "ast",
-      "community": 55,
-      "community_name": "devDependencies",
-      "file_type": "code",
-      "norm_label": "@types/node",
-      "source_file": "package.json",
-      "source_location": "L26"
-    },
-    {
-      "id": "package_devdependencies_types_react",
-      "label": "@types/react",
-      "_origin": "ast",
-      "community": 55,
-      "community_name": "devDependencies",
-      "file_type": "code",
-      "norm_label": "@types/react",
-      "source_file": "package.json",
-      "source_location": "L27"
-    },
-    {
-      "id": "package_devdependencies_types_react_dom",
-      "label": "@types/react-dom",
-      "_origin": "ast",
-      "community": 55,
-      "community_name": "devDependencies",
-      "file_type": "code",
-      "norm_label": "@types/react-dom",
-      "source_file": "package.json",
-      "source_location": "L28"
-    },
-    {
-      "id": "package_devdependencies_typescript",
-      "label": "typescript",
-      "_origin": "ast",
-      "community": 55,
-      "community_name": "devDependencies",
-      "file_type": "code",
-      "norm_label": "typescript",
-      "source_file": "package.json",
-      "source_location": "L32"
-    },
-    {
       "id": "agents_skills_frontend_design_skill",
       "label": "frontend-design/SKILL.md",
       "_origin": "ast",
@@ -12344,72 +12380,6 @@
       "norm_label": "restraint and self-critique",
       "source_file": ".agents/skills/frontend-design/SKILL.md",
       "source_location": "L57"
-    },
-    {
-      "id": "package_dependencies",
-      "label": "dependencies",
-      "_origin": "ast",
-      "community": 57,
-      "community_name": "dependencies",
-      "file_type": "code",
-      "norm_label": "dependencies",
-      "source_file": "package.json",
-      "source_location": "L18"
-    },
-    {
-      "id": "package_dependencies_next",
-      "label": "next",
-      "_origin": "ast",
-      "community": 57,
-      "community_name": "dependencies",
-      "file_type": "code",
-      "norm_label": "next",
-      "source_file": "package.json",
-      "source_location": "L21"
-    },
-    {
-      "id": "package_dependencies_react",
-      "label": "react",
-      "_origin": "ast",
-      "community": 57,
-      "community_name": "dependencies",
-      "file_type": "code",
-      "norm_label": "react",
-      "source_file": "package.json",
-      "source_location": "L22"
-    },
-    {
-      "id": "package_dependencies_react_dom",
-      "label": "react-dom",
-      "_origin": "ast",
-      "community": 57,
-      "community_name": "dependencies",
-      "file_type": "code",
-      "norm_label": "react-dom",
-      "source_file": "package.json",
-      "source_location": "L23"
-    },
-    {
-      "id": "package_dependencies_supabase_ssr",
-      "label": "@supabase/ssr",
-      "_origin": "ast",
-      "community": 57,
-      "community_name": "dependencies",
-      "file_type": "code",
-      "norm_label": "@supabase/ssr",
-      "source_file": "package.json",
-      "source_location": "L19"
-    },
-    {
-      "id": "package_dependencies_supabase_supabase_js",
-      "label": "@supabase/supabase-js",
-      "_origin": "ast",
-      "community": 57,
-      "community_name": "dependencies",
-      "file_type": "code",
-      "norm_label": "@supabase/supabase-js",
-      "source_file": "package.json",
-      "source_location": "L20"
     },
     {
       "id": "agents_skills_composition_patterns_rules_sections",
@@ -12912,17 +12882,6 @@
       "source_location": "L8"
     },
     {
-      "id": "src_app_budget_page",
-      "label": "budget/page.tsx",
-      "_origin": "ast",
-      "community": 65,
-      "community_name": "react",
-      "file_type": "code",
-      "norm_label": "budget/page.tsx",
-      "source_file": "src/app/budget/page.tsx",
-      "source_location": "L1"
-    },
-    {
       "id": "src_app_onboarding_page",
       "label": "onboarding/page.tsx",
       "_origin": "ast",
@@ -13011,17 +12970,6 @@
       "source_location": "L9"
     },
     {
-      "id": "src_app_dashboard_expenses_page",
-      "label": "expenses/page.tsx",
-      "_origin": "ast",
-      "community": 66,
-      "community_name": "add-expense/page.tsx",
-      "file_type": "code",
-      "norm_label": "expenses/page.tsx",
-      "source_file": "src/app/dashboard/expenses/page.tsx",
-      "source_location": "L1"
-    },
-    {
       "id": "src_lib_categories",
       "label": "categories.ts",
       "_origin": "ast",
@@ -13042,50 +12990,6 @@
       "norm_label": "expense_categories",
       "source_file": "src/lib/categories.ts",
       "source_location": "L10"
-    },
-    {
-      "id": "src_types_index",
-      "label": "index.ts",
-      "_origin": "ast",
-      "community": 66,
-      "community_name": "add-expense/page.tsx",
-      "file_type": "code",
-      "norm_label": "index.ts",
-      "source_file": "src/types/index.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "tailwind_config",
-      "label": "tailwind.config.ts",
-      "_origin": "ast",
-      "community": 67,
-      "community_name": "tailwindcss",
-      "file_type": "code",
-      "norm_label": "tailwind.config.ts",
-      "source_file": "tailwind.config.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "tailwind_config_config",
-      "label": "config",
-      "_origin": "ast",
-      "community": 67,
-      "community_name": "tailwindcss",
-      "file_type": "code",
-      "norm_label": "config",
-      "source_file": "tailwind.config.ts",
-      "source_location": "L3"
-    },
-    {
-      "id": "ref_tailwindcss",
-      "label": "tailwindcss",
-      "_origin": "ast",
-      "community": 67,
-      "community_name": "tailwindcss",
-      "file_type": "concept",
-      "norm_label": "tailwindcss",
-      "source_file": "package.json",
-      "source_location": "L31"
     },
     {
       "id": "agents_skills_composition_patterns_rules_architecture_avoid_boolean_props",
@@ -14747,11 +14651,23 @@
       "type": "external"
     },
     {
+      "id": "ref_next_server",
+      "label": "ref_next_server",
+      "_origin": "semantic",
+      "community": 11,
+      "community_name": "package.json",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "ref_next_server",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "ref_next_navigation",
       "label": "ref_next_navigation",
       "_origin": "semantic",
-      "community": 19,
-      "community_name": "useAppState",
+      "community": 176,
+      "community_name": "dashboard/page.tsx",
       "external": true,
       "file_type": "concept",
       "norm_label": "ref_next_navigation",
@@ -14763,22 +14679,10 @@
       "label": "ref_next_headers",
       "_origin": "semantic",
       "community": 23,
-      "community_name": "@supabase/ssr",
+      "community_name": "ref_next_headers",
       "external": true,
       "file_type": "concept",
       "norm_label": "ref_next_headers",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "ref_next_server",
-      "label": "ref_next_server",
-      "_origin": "semantic",
-      "community": 23,
-      "community_name": "@supabase/ssr",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "ref_next_server",
       "source_file": "",
       "type": "external"
     },
@@ -14809,18 +14713,6 @@
   ],
   "links": [
     {
-      "source": "src_app_budget_page_budgetpage",
-      "target": "src_lib_store_useappstate",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/app/budget/page.tsx",
-      "source_location": "L12",
-      "weight": 1.0
-    },
-    {
       "source": "src_app_dashboard_add_expense_page_addexpensepage",
       "target": "src_lib_store_useappstate",
       "relation": "calls",
@@ -14846,18 +14738,6 @@
     },
     {
       "source": "src_app_dashboard_expenses_page_expensespage",
-      "target": "src_lib_store_useappstate",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/app/dashboard/expenses/page.tsx",
-      "source_location": "L11",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_dashboard_expenses_page_expensespage",
       "target": "src_lib_categories_getcategoryinfo",
       "relation": "calls",
       "_origin": "ast",
@@ -14865,7 +14745,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/expenses/page.tsx",
-      "source_location": "L111",
+      "source_location": "L112",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_expenses_page_expensespage",
+      "target": "src_lib_store_useappstate",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app/dashboard/expenses/page.tsx",
+      "source_location": "L12",
       "weight": 1.0
     },
     {
@@ -14877,7 +14769,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L345",
+      "source_location": "L348",
       "weight": 1.0
     },
     {
@@ -14889,7 +14781,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L348",
+      "source_location": "L351",
       "weight": 1.0
     },
     {
@@ -14901,7 +14793,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L350",
+      "source_location": "L353",
       "weight": 1.0
     },
     {
@@ -14913,7 +14805,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L36",
+      "source_location": "L37",
       "weight": 1.0
     },
     {
@@ -14925,7 +14817,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L397",
+      "source_location": "L400",
       "weight": 1.0
     },
     {
@@ -14937,31 +14829,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/settings/page.tsx",
-      "source_location": "L15",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_dashboard_settings_page_settingspage",
-      "target": "src_lib_supabase_auth_signout",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/app/dashboard/settings/page.tsx",
-      "source_location": "L174",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_login_page_loginpage",
-      "target": "src_lib_supabase_client_createclient",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/app/login/page.tsx",
-      "source_location": "L11",
+      "source_location": "L14",
       "weight": 1.0
     },
     {
@@ -14973,7 +14841,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/login/page.tsx",
-      "source_location": "L35",
+      "source_location": "L34",
       "weight": 1.0
     },
     {
@@ -14985,7 +14853,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/login/page.tsx",
-      "source_location": "L38",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -14997,7 +14865,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/login/page.tsx",
-      "source_location": "L47",
+      "source_location": "L51",
       "weight": 1.0
     },
     {
@@ -15057,7 +14925,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/lib/store.tsx",
-      "source_location": "L118",
+      "source_location": "L120",
       "weight": 1.0
     },
     {
@@ -15081,7 +14949,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/lib/store.tsx",
-      "source_location": "L71",
+      "source_location": "L73",
       "weight": 1.0
     },
     {
@@ -15093,7 +14961,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/lib/store.tsx",
-      "source_location": "L75",
+      "source_location": "L77",
       "weight": 1.0
     },
     {
@@ -15105,7 +14973,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L30",
+      "source_location": "L28",
       "weight": 1.0
     },
     {
@@ -15117,7 +14985,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L25",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -15129,7 +14997,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L42",
+      "source_location": "L40",
       "weight": 1.0
     },
     {
@@ -15141,7 +15009,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L20",
+      "source_location": "L18",
       "weight": 1.0
     },
     {
@@ -15153,19 +15021,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L11",
-      "weight": 1.0
-    },
-    {
-      "source": "src_lib_supabase_repositories_addexpense",
-      "target": "src_lib_supabase_repositories_generateid",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L68",
+      "source_location": "L9",
       "weight": 1.0
     },
     {
@@ -15349,54 +15205,6 @@
       "weight": 1.0
     },
     {
-      "source": "src_app_budget_page",
-      "target": "src_lib_store_useappstate",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/app/budget/page.tsx",
-      "source_location": "L5",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_budget_page",
-      "target": "src_components_ui_button_button",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/app/budget/page.tsx",
-      "source_location": "L6",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_budget_page",
-      "target": "src_components_ui_input_input",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/app/budget/page.tsx",
-      "source_location": "L7",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_budget_page",
-      "target": "src_components_ui_card_card",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/app/budget/page.tsx",
-      "source_location": "L8",
-      "weight": 1.0
-    },
-    {
       "source": "src_app_dashboard_add_expense_page",
       "target": "src_lib_store_useappstate",
       "relation": "imports",
@@ -15458,7 +15266,7 @@
     },
     {
       "source": "src_app_dashboard_expenses_page",
-      "target": "src_types_index_expense",
+      "target": "src_components_ui_addexpensefab_addexpensefab",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -15470,6 +15278,18 @@
     },
     {
       "source": "src_app_dashboard_expenses_page",
+      "target": "src_types_index_expense",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/dashboard/expenses/page.tsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_expenses_page",
       "target": "src_types_index_expensecategory",
       "relation": "imports",
       "_origin": "ast",
@@ -15477,7 +15297,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/app/dashboard/expenses/page.tsx",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -15541,6 +15361,18 @@
       "weight": 1.0
     },
     {
+      "source": "src_app_dashboard_page",
+      "target": "src_components_ui_addexpensefab_addexpensefab",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/dashboard/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
       "source": "src_app_dashboard_settings_page",
       "target": "src_lib_store_useappstate",
       "relation": "imports",
@@ -15550,18 +15382,6 @@
       "context": "import",
       "source_file": "src/app/dashboard/settings/page.tsx",
       "source_location": "L5",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_dashboard_settings_page",
-      "target": "src_lib_supabase_auth_signout",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/app/dashboard/settings/page.tsx",
-      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -15638,7 +15458,7 @@
     },
     {
       "source": "src_app_login_page",
-      "target": "src_lib_supabase_client_createclient",
+      "target": "src_lib_supabase_client_client",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -15782,7 +15602,7 @@
     },
     {
       "source": "src_lib_supabase_auth",
-      "target": "src_lib_supabase_client_createclient",
+      "target": "src_lib_supabase_client_client",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -15794,7 +15614,7 @@
     },
     {
       "source": "src_lib_supabase_repositories",
-      "target": "src_lib_supabase_client_createclient",
+      "target": "src_lib_supabase_client_client",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -15866,78 +15686,6 @@
       "weight": 1.0
     },
     {
-      "source": "src_app_budget_page",
-      "target": "ref_react",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/app/budget/page.tsx",
-      "source_location": "L3",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_budget_page",
-      "target": "ref_next_navigation",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/app/budget/page.tsx",
-      "source_location": "L4",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_budget_page",
-      "target": "src_lib_store",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/app/budget/page.tsx",
-      "source_location": "L5",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_budget_page",
-      "target": "src_components_ui_button",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/app/budget/page.tsx",
-      "source_location": "L6",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_budget_page",
-      "target": "src_components_ui_input",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/app/budget/page.tsx",
-      "source_location": "L7",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_budget_page",
-      "target": "src_components_ui_card",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/app/budget/page.tsx",
-      "source_location": "L8",
-      "weight": 1.0
-    },
-    {
       "source": "src_app_dashboard_add_expense_page",
       "target": "ref_react",
       "relation": "imports_from",
@@ -16048,7 +15796,7 @@
     },
     {
       "source": "src_app_dashboard_expenses_page",
-      "target": "src_types_index",
+      "target": "src_components_ui_addexpensefab",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -16056,6 +15804,18 @@
       "context": "import",
       "source_file": "src/app/dashboard/expenses/page.tsx",
       "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_expenses_page",
+      "target": "src_types_index",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/dashboard/expenses/page.tsx",
+      "source_location": "L8",
       "type_only": true,
       "weight": 1.0
     },
@@ -16144,6 +15904,18 @@
       "weight": 1.0
     },
     {
+      "source": "src_app_dashboard_page",
+      "target": "src_components_ui_addexpensefab",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/dashboard/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
       "source": "src_app_dashboard_settings_page",
       "target": "ref_react",
       "relation": "imports_from",
@@ -16177,18 +15949,6 @@
       "context": "import",
       "source_file": "src/app/dashboard/settings/page.tsx",
       "source_location": "L5",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_dashboard_settings_page",
-      "target": "src_lib_supabase_auth",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/app/dashboard/settings/page.tsx",
-      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -16409,6 +16169,18 @@
       "weight": 1.0
     },
     {
+      "source": "src_components_ui_addexpensefab",
+      "target": "ref_next_navigation",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/ui/AddExpenseFab.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
       "source": "src_components_ui_authguard",
       "target": "ref_react",
       "relation": "imports_from",
@@ -16625,30 +16397,6 @@
       "source_file": "src/lib/supabase/repositories.ts",
       "source_location": "L2",
       "type_only": true,
-      "weight": 1.0
-    },
-    {
-      "source": "src_lib_supabase_server",
-      "target": "ref_supabase_ssr",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/lib/supabase/server.ts",
-      "source_location": "L1",
-      "weight": 1.0
-    },
-    {
-      "source": "src_lib_supabase_server",
-      "target": "ref_next_headers",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/lib/supabase/server.ts",
-      "source_location": "L2",
       "weight": 1.0
     },
     {
@@ -24181,6 +23929,17 @@
     },
     {
       "source": "bitacora_paltazo_bit\u00e1cora_de_avance",
+      "target": "bitacora_auditor\u00eda_de_c\u00f3digo_actualizaci\u00f3n_2026_10_15",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BITACORA.md",
+      "source_location": "L334",
+      "weight": 1.0
+    },
+    {
+      "source": "bitacora_paltazo_bit\u00e1cora_de_avance",
       "target": "bitacora_esquema_de_base_de_datos",
       "relation": "contains",
       "_origin": "ast",
@@ -24253,7 +24012,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L205",
+      "source_location": "L201",
       "weight": 1.0
     },
     {
@@ -24264,7 +24023,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L215",
+      "source_location": "L211",
       "weight": 1.0
     },
     {
@@ -24330,7 +24089,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L138",
+      "source_location": "L135",
       "weight": 1.0
     },
     {
@@ -24341,7 +24100,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L148",
+      "source_location": "L144",
       "weight": 1.0
     },
     {
@@ -24352,7 +24111,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L174",
+      "source_location": "L170",
       "weight": 1.0
     },
     {
@@ -24363,7 +24122,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L186",
+      "source_location": "L182",
       "weight": 1.0
     },
     {
@@ -24374,7 +24133,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L193",
+      "source_location": "L189",
       "weight": 1.0
     },
     {
@@ -24385,7 +24144,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L203",
+      "source_location": "L199",
       "weight": 1.0
     },
     {
@@ -24396,7 +24155,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L226",
+      "source_location": "L222",
       "weight": 1.0
     },
     {
@@ -24440,7 +24199,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L71",
+      "source_location": "L70",
       "weight": 1.0
     },
     {
@@ -24451,7 +24210,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L81",
+      "source_location": "L80",
       "weight": 1.0
     },
     {
@@ -25100,7 +24859,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L116",
+      "source_location": "L115",
       "weight": 1.0
     },
     {
@@ -25122,7 +24881,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L130",
+      "source_location": "L129",
       "weight": 1.0
     },
     {
@@ -25133,7 +24892,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L144",
+      "source_location": "L143",
       "weight": 1.0
     },
     {
@@ -25203,28 +24962,6 @@
       "weight": 1.0
     },
     {
-      "source": "src_app_budget_layout",
-      "target": "src_app_budget_layout_budgetlayout",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/budget/layout.tsx",
-      "source_location": "L1",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_budget_page",
-      "target": "src_app_budget_page_budgetpage",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/budget/page.tsx",
-      "source_location": "L10",
-      "weight": 1.0
-    },
-    {
       "source": "src_app_dashboard_add_expense_page",
       "target": "src_app_dashboard_add_expense_page_formatamount",
       "relation": "contains",
@@ -25265,7 +25002,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/dashboard/expenses/page.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0
     },
     {
@@ -25281,13 +25018,24 @@
     },
     {
       "source": "src_app_dashboard_page",
+      "target": "src_app_dashboard_page_month_names",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/dashboard/page.tsx",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_page",
       "target": "src_app_dashboard_page_datestr",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0
     },
     {
@@ -25298,7 +25046,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0
     },
     {
@@ -25309,7 +25057,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L19",
+      "source_location": "L20",
       "weight": 1.0
     },
     {
@@ -25320,7 +25068,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L24",
+      "source_location": "L25",
       "weight": 1.0
     },
     {
@@ -25331,23 +25079,12 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
       "source": "src_app_dashboard_page",
       "target": "src_app_dashboard_page_day_names",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L8",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_dashboard_page",
-      "target": "src_app_dashboard_page_month_names",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -25364,7 +25101,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/dashboard/settings/page.tsx",
-      "source_location": "L13",
+      "source_location": "L12",
       "weight": 1.0
     },
     {
@@ -25375,7 +25112,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/dashboard/settings/page.tsx",
-      "source_location": "L8",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -25463,6 +25200,17 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/providers/ServiceWorkerRegistrar.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_addexpensefab",
+      "target": "src_components_ui_addexpensefab_addexpensefab",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/ui/AddExpenseFab.tsx",
       "source_location": "L5",
       "weight": 1.0
     },
@@ -25650,7 +25398,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/store.tsx",
-      "source_location": "L132",
+      "source_location": "L134",
       "weight": 1.0
     },
     {
@@ -25710,24 +25458,13 @@
     },
     {
       "source": "src_lib_supabase_auth",
-      "target": "src_lib_supabase_auth_signup",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L10",
-      "weight": 1.0
-    },
-    {
-      "source": "src_lib_supabase_auth",
       "target": "src_lib_supabase_auth_signout",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L19",
+      "source_location": "L17",
       "weight": 1.0
     },
     {
@@ -25738,7 +25475,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L24",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -25749,12 +25486,12 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L29",
+      "source_location": "L27",
       "weight": 1.0
     },
     {
       "source": "src_lib_supabase_auth",
-      "target": "src_lib_supabase_auth_supabase",
+      "target": "src_lib_supabase_auth_signin",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -25771,7 +25508,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L34",
+      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -25782,18 +25519,29 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L41",
+      "source_location": "L39",
       "weight": 1.0
     },
     {
       "source": "src_lib_supabase_auth",
-      "target": "src_lib_supabase_auth_signin",
+      "target": "src_lib_supabase_auth_signup",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L5",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_supabase_client",
+      "target": "src_lib_supabase_client_client",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/lib/supabase/client.ts",
+      "source_location": "L10",
       "weight": 1.0
     },
     {
@@ -25809,35 +25557,13 @@
     },
     {
       "source": "src_lib_supabase_repositories",
-      "target": "src_lib_supabase_repositories_deleteexpense",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L107",
-      "weight": 1.0
-    },
-    {
-      "source": "src_lib_supabase_repositories",
       "target": "src_lib_supabase_repositories_getbudget",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L112",
-      "weight": 1.0
-    },
-    {
-      "source": "src_lib_supabase_repositories",
-      "target": "src_lib_supabase_repositories_supabase",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L12",
+      "source_location": "L101",
       "weight": 1.0
     },
     {
@@ -25848,18 +25574,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L131",
-      "weight": 1.0
-    },
-    {
-      "source": "src_lib_supabase_repositories",
-      "target": "src_lib_supabase_repositories_supabaseexpenserow",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L14",
+      "source_location": "L120",
       "weight": 1.0
     },
     {
@@ -25870,7 +25585,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L146",
+      "source_location": "L135",
       "weight": 1.0
     },
     {
@@ -25881,7 +25596,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L26",
+      "source_location": "L16",
       "weight": 1.0
     },
     {
@@ -25892,18 +25607,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L33",
-      "weight": 1.0
-    },
-    {
-      "source": "src_lib_supabase_repositories",
-      "target": "src_lib_supabase_repositories_generateid",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L4",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -25914,7 +25618,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L42",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_supabase_repositories",
+      "target": "src_lib_supabase_repositories_supabaseexpenserow",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/lib/supabase/repositories.ts",
+      "source_location": "L4",
       "weight": 1.0
     },
     {
@@ -25925,7 +25640,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L63",
+      "source_location": "L53",
       "weight": 1.0
     },
     {
@@ -25936,18 +25651,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L95",
+      "source_location": "L84",
       "weight": 1.0
     },
     {
-      "source": "src_lib_supabase_server",
-      "target": "src_lib_supabase_server_createclient",
+      "source": "src_lib_supabase_repositories",
+      "target": "src_lib_supabase_repositories_deleteexpense",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "src/lib/supabase/server.ts",
-      "source_location": "L4",
+      "source_file": "src/lib/supabase/repositories.ts",
+      "source_location": "L96",
       "weight": 1.0
     },
     {
@@ -25985,51 +25700,18 @@
     },
     {
       "source": "src_types_index",
-      "target": "src_types_index_expense",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/types/index.ts",
-      "source_location": "L10",
-      "weight": 1.0
-    },
-    {
-      "source": "src_types_index",
       "target": "src_types_index_budget",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/types/index.ts",
-      "source_location": "L22",
+      "source_location": "L20",
       "weight": 1.0
     },
     {
       "source": "src_types_index",
-      "target": "src_types_index_budgetalert",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/types/index.ts",
-      "source_location": "L29",
-      "weight": 1.0
-    },
-    {
-      "source": "src_types_index",
-      "target": "src_types_index_profile",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/types/index.ts",
-      "source_location": "L38",
-      "weight": 1.0
-    },
-    {
-      "source": "src_types_index",
-      "target": "src_types_index_budgetalertlevel",
+      "target": "src_types_index_expense",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -26354,7 +26036,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "supabase/LOCAL_SETUP.md",
-      "source_location": "L362",
+      "source_location": "L365",
       "weight": 1.0
     },
     {
@@ -26365,7 +26047,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "supabase/LOCAL_SETUP.md",
-      "source_location": "L394",
+      "source_location": "L397",
       "weight": 1.0
     },
     {
@@ -26897,6 +26579,18 @@
       "weight": 1.0
     },
     {
+      "source": "bitacora_auditor\u00eda_de_c\u00f3digo_actualizaci\u00f3n_2026_10_15",
+      "target": "src_components_ui_addexpensefab_addexpensefab",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "AddExpenseFab",
+      "source_file": "BITACORA.md",
+      "source_location": "L354",
+      "weight": 1.0
+    },
+    {
       "source": "agents_skills_react_best_practices_agents_3_8_parallel_nested_data_fetching",
       "target": "src_lib_supabase_auth_getuser",
       "relation": "references",
@@ -26953,7 +26647,7 @@
       "confidence_score": 0.95,
       "context": "signOut()",
       "source_file": "DEVELOPMENT.md",
-      "source_location": "L79",
+      "source_location": "L78",
       "weight": 1.0
     },
     {
@@ -27574,5 +27268,5 @@
       "source_file": "docs/stack_tecnologico_paltazo.md"
     }
   ],
-  "built_at_commit": "1416c0ac5ff0ddb3d0b621badebff651e58d011e"
+  "built_at_commit": "bb3e09b2f5d8a82cc6c855c200a094198c629d21"
 }

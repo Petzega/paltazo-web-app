@@ -48,14 +48,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setUserId(id)
     if (id) {
       loadUserData(id)
-        .then(({ expenses: e, budget: b, budgets: bs }) => {
+        .then(({ expenses: e, budget: profileBudget, budgets: bs }) => {
           setExpenses(e)
-          if (b) setBudgetState(b)
           const budgetsMap: Record<string, Budget> = {}
-          for (const budget of bs) {
-            budgetsMap[budget.currency] = budget
+          for (const b of bs) {
+            budgetsMap[b.currency] = b
           }
           setBudgets(budgetsMap)
+          if (profileBudget) {
+            setBudgetState(budgetsMap[profileBudget.currency] || profileBudget)
+          }
         })
         .catch((err) => console.error('Failed to load from Supabase', err))
         .finally(() => setIsLoading(false))

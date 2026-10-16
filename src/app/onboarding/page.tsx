@@ -7,23 +7,11 @@ import { Button } from '@/components/ui/Button'
 
 export default function OnboardingPage() {
   const router = useRouter()
-  const { expenses, budget, isLoggedIn } = useAppState()
+  const { isLoggedIn } = useAppState()
 
   useEffect(() => {
     if (isLoggedIn) router.replace('/dashboard')
   }, [isLoggedIn, router])
-
-  const now = new Date()
-  const currentMonth = now.getMonth()
-  const currentYear = now.getFullYear()
-
-  const monthlyExpenses = expenses.filter((exp) => {
-    const expDate = new Date(exp.date)
-    return expDate.getMonth() === currentMonth && expDate.getFullYear() === currentYear
-  })
-
-  const totalExpenses = monthlyExpenses.reduce((sum, exp) => sum + exp.amount, 0)
-  const remaining = Math.max(budget.monthlyLimit - totalExpenses, 0)
 
   return (
     <main className="min-h-screen flex flex-col bg-surface max-w-xl mx-auto px-gutter">
@@ -83,32 +71,6 @@ export default function OnboardingPage() {
               Avisos oportunos para llegar tranquilo a tu quincena
             </span>
           </div>
-        </div>
-      </div>
-
-      <div className="w-full mt-5 p-4 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-2">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-label-sm text-text-secondary uppercase tracking-wider">
-              Tu balance actual
-            </span>
-          </div>
-          <span className="text-label-md text-secondary font-bold">
-            {budget.currency} {remaining.toFixed(2)} disponibles
-          </span>
-        </div>
-        <div className="w-full h-2 rounded-full bg-surface-container overflow-hidden">
-          <div
-            className="h-full bg-primary-container rounded-full transition-all duration-500"
-            style={{
-              width: `${budget.monthlyLimit > 0 ? Math.min((remaining / budget.monthlyLimit) * 100, 100) : 0}%`,
-            }}
-          />
-        </div>
-        <div className="flex justify-between text-body-sm text-text-secondary">
-          <span>Gastado: {budget.currency} {totalExpenses.toFixed(2)}</span>
-          <span>Límite: {budget.currency} {budget.monthlyLimit.toFixed(2)}</span>
         </div>
       </div>
 

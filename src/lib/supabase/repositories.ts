@@ -1,15 +1,5 @@
-import { createClient } from './client'
+import supabase from './client'
 import type { Expense, Budget } from '@/types'
-
-function generateId(): string {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-    const r = (Math.random() * 16) | 0
-    const v = c === 'x' ? r : (r & 0x3) | 0x8
-    return v.toString(16)
-  })
-}
-
-const supabase = createClient()
 
 interface SupabaseExpenseRow {
   id: string
@@ -21,13 +11,6 @@ interface SupabaseExpenseRow {
   date: string
   created_at: string
   synced_at: string
-}
-
-interface SupabaseProfileRow {
-  id: string
-  monthly_budget: string | number
-  currency: string
-  created_at: string
 }
 
 interface SupabaseBudgetRow {
@@ -65,7 +48,6 @@ export async function addExpense(expense: Omit<Expense, 'id' | 'createdAt' | 'sy
   const { data, error } = await supabase
     .from('expenses')
     .insert({
-      id: generateId(),
       user_id: expense.userId,
       amount: expense.amount,
       currency: expense.currency,
@@ -111,20 +93,21 @@ export async function deleteExpense(id: string) {
 
 export async function getBudget(userId: string): Promise<Budget | null> {
   const { data, error } = await supabase
-    .from('profiles')
+    .from('budgets')
     .select('*')
-    .eq('id', userId)
+    .eq('user_id', userId)
+    .limit(1)
     .single()
 
   if (error && error.code !== 'PGRST116') throw error
   if (!data) return null
 
-  const row = data as SupabaseProfileRow
+  const row = data as SupabaseBudgetRow
   return {
-    userId: row.id,
-    monthlyLimit: Number(row.monthly_budget),
+    userId: row.user_id,
+    monthlyLimit: Number(row.monthly_limit),
     currency: row.currency,
-    updatedAt: row.created_at,
+    updatedAt: row.updated_at,
   }
 }
 

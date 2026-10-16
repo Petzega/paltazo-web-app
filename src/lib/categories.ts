@@ -17,3 +17,15 @@ export const EXPENSE_CATEGORIES: CategoryInfo[] = [
 
 export const getCategoryInfo = (id: ExpenseCategory): CategoryInfo =>
   EXPENSE_CATEGORIES.find((c) => c.id === id) ?? EXPENSE_CATEGORIES[4]
+
+const CATEGORY_COLOR_CLASSES: Record<ExpenseCategory, string> = {
+  food: 'bg-secondary-fixed text-secondary',
+  transport: 'bg-primary-fixed text-primary',
+  services: 'bg-surface-container-high text-on-surface-variant',
+  entertainment: 'bg-tertiary-fixed text-tertiary',
+  other: 'bg-surface-container text-on-surface-variant',
+}
+
+export function getCategoryColorClass(id: ExpenseCategory): string {
+  return CATEGORY_COLOR_CLASSES[id]
+}

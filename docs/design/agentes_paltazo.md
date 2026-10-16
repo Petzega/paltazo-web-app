@@ -98,13 +98,13 @@ Decisión obligatoria:
 Tablas requeridas:
 - profiles
 - expenses
-- budget_alerts
+- budgets
 - push_subscriptions
 
 Reglas de datos:
 - expense.amount debe ser mayor que cero.
 - expense.category debe ser food, transport, services, entertainment u other.
-- profiles.monthly_budget debe ser mayor o igual a cero.
+- budgets.monthly_limit debe ser mayor o igual a cero.
 - Cada usuario solo puede ver y cambiar sus propios datos.
 
 Seguridad:
@@ -113,11 +113,8 @@ Seguridad:
 - Nunca exponer la service-role key en el frontend.
 
 Alertas:
-- Implementar una Edge Function check-budget.
-- Recalcular el total mensual desde la base de datos usando el mes de expense_date.
-- Si monthly_budget es cero, devolver sin alerta de porcentaje.
-- Evaluar umbrales 80, 100 y mayor a 100.
-- Usar budget_alerts y su restricción UNIQUE para garantizar una alerta por usuario, mes y umbral.
+- Calcular alertas de presupuesto cliente-lado en el dashboard (umbrales 80%, 100%, 101%).
+- Si se requiere persistencia de alertas, usar Edge Function `check-budget` con tabla `budget_alerts` (eliminar si se reactiva).
 - La función debe ser idempotente, tolerante a reintentos y registrar errores de forma útil.
 - No asumir que un trigger PostgreSQL puede llamar una Edge Function HTTP automáticamente; definir y probar el mecanismo de invocación.
 
