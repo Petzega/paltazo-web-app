@@ -1,26 +1,10 @@
-'use client'
+﻿'use client'
 
 import { useRouter } from 'next/navigation'
 import { useState, useMemo } from 'react'
 import { useAppState } from '@/lib/store'
 import { getCategoryInfo, getCategoryColorClass } from '@/lib/categories'
 import { AddExpenseFab } from '@/components/ui/AddExpenseFab'
-
-const DAY_NAMES = ['L', 'M', 'X', 'J', 'V', 'S', 'D']
-const MONTH_NAMES = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-
-function dateStr(year: number, month: number, day: number): string {
-  return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
-}
-
-function getDaysInMonth(year: number, month: number): number {
-  return new Date(year, month + 1, 0).getDate()
-}
-
-function getFirstDayOfMonth(year: number, month: number): number {
-  const day = new Date(year, month, 1).getDay()
-  return day === 0 ? 6 : day - 1
-}
 
 interface CurrencySummary {
   currency: string
@@ -77,8 +61,8 @@ export default function DashboardPage() {
     })
 
     summaries.sort((a, b) => {
-      if (a.currency === budget.currency) return -1
-      if (b.currency === budget.currency) return 1
+      if (a.currency === 'S/') return -1
+      if (b.currency === 'S/') return 1
       return a.currency.localeCompare(b.currency)
     })
 
@@ -88,12 +72,7 @@ export default function DashboardPage() {
   const primarySummary = currencySummaries.find((s) => s.currency === budget.currency) || currencySummaries[0]
 
   const todayStr = now.toISOString().split('T')[0]
-  const [selectedDate, setSelectedDate] = useState(todayStr)
   const [selectedBarDate, setSelectedBarDate] = useState(todayStr)
-  const [calendarMonth, setCalendarMonth] = useState(now.getMonth())
-  const [calendarYear, setCalendarYear] = useState(now.getFullYear())
-
-  const daysWithExpenses = useMemo(() => new Set(expenses.map((e) => e.date)), [expenses])
 
   const last7Days = useMemo(() => {
     const today = new Date()
@@ -121,38 +100,6 @@ export default function DashboardPage() {
       const timeB = b.createdAt ? new Date(b.createdAt).getTime() : 0
       return timeB - timeA
     }), [expenses, selectedBarDate])
-
-  const selectedDayExpenses = useMemo(() => expenses
-    .filter((exp) => exp.date === selectedDate)
-    .sort((a, b) => {
-      const timeA = a.createdAt ? new Date(a.createdAt).getTime() : 0
-      const timeB = b.createdAt ? new Date(b.createdAt).getTime() : 0
-      return timeB - timeA
-    }), [expenses, selectedDate])
-
-  const prevMonth = () => {
-    if (calendarMonth === 0) {
-      setCalendarMonth(11)
-      setCalendarYear(calendarYear - 1)
-    } else {
-      setCalendarMonth(calendarMonth - 1)
-    }
-  }
-
-  const nextMonth = () => {
-    if (calendarMonth === 11) {
-      setCalendarMonth(0)
-      setCalendarYear(calendarYear + 1)
-    } else {
-      setCalendarMonth(calendarMonth + 1)
-    }
-  }
-
-  const goToToday = () => {
-    setCalendarMonth(now.getMonth())
-    setCalendarYear(now.getFullYear())
-    setSelectedDate(todayStr)
-  }
 
   return (
     <main className="min-h-screen bg-surface pb-24 md:pb-space-xl max-w-xl mx-auto md:max-w-none px-gutter md:px-space-xl">
@@ -300,128 +247,6 @@ export default function DashboardPage() {
                 <span className="inline-flex h-[18px] items-center text-secondary text-[18px]">⚙️</span>
                 <span>Ajustes</span>
               </button>
-            </div>
-          </div>
-
-          <div className="mb-space-lg p-space-md rounded-2xl bg-surface-container-low shadow-sm h-fit">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-label-lg font-semibold text-on-surface flex items-center gap-1.5">
-                <span className="text-primary text-[18px]">📅</span>
-                Gastos del día
-              </h3>
-              <button
-                onClick={goToToday}
-                className="text-label-sm text-primary font-semibold hover:text-primary-container px-2 py-1 rounded-full hover:bg-primary/10 transition-colors"
-              >
-                Hoy
-              </button>
-            </div>
-
-            <div className="bg-surface-container-lowest rounded-2xl p-4 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <button
-                  onClick={prevMonth}
-                  className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors"
-                >
-                  ←
-                </button>
-                <span className="text-label-lg text-on-surface font-semibold capitalize">
-                  {MONTH_NAMES[calendarMonth]} {calendarYear}
-                </span>
-                <button
-                  onClick={nextMonth}
-                  className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors"
-                >
-                  →
-                </button>
-              </div>
-
-              <div className="grid grid-cols-7 gap-1 mb-2">
-                {DAY_NAMES.map((day) => (
-                  <div key={day} className="text-center text-label-sm text-text-secondary font-medium py-1">
-                    {day}
-                  </div>
-                ))}
-              </div>
-
-              <div className="grid grid-cols-7 gap-1">
-                {Array.from({ length: getFirstDayOfMonth(calendarYear, calendarMonth) }).map((_, i) => (
-                  <div key={`empty-${i}`} />
-                ))}
-                {Array.from({ length: getDaysInMonth(calendarYear, calendarMonth) }, (_, i) => {
-                  const day = i + 1
-                  const ds = dateStr(calendarYear, calendarMonth, day)
-                  const isToday = ds === todayStr
-                  const isSelected = ds === selectedDate
-                  const hasExpenses = daysWithExpenses.has(ds)
-
-                  return (
-                    <button
-                      key={day}
-                      onClick={() => setSelectedDate(ds)}
-                      className={`relative w-full aspect-square rounded-full text-body-sm font-medium transition-all duration-150 ${
-                        isSelected
-                          ? 'bg-primary text-on-primary shadow-sm'
-                          : isToday
-                          ? 'bg-primary/20 text-primary font-bold'
-                          : hasExpenses
-                          ? 'bg-surface-container-high text-on-surface hover:bg-surface-variant'
-                          : 'text-on-surface-variant hover:bg-surface-container'
-                      }`}
-                    >
-                      {day}
-                      {hasExpenses && !isSelected && (
-                        <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary" />
-                      )}
-                    </button>
-                  )
-                })}
-              </div>
-            </div>
-
-            <div className="mt-4">
-              {selectedDayExpenses.length === 0 ? (
-                <div className="text-center py-6 flex flex-col items-center gap-2">
-                  <span className="text-4xl opacity-50">📭</span>
-                  <p className="text-body-sm text-on-surface-variant">
-                    No hay gastos registrados para el{' '}
-                    {new Date(selectedDate + 'T12:00:00').toLocaleDateString('es-PE', { weekday: 'long', day: 'numeric', month: 'long' })}
-                  </p>
-                </div>
-              ) : (
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center text-body-sm text-on-surface-variant px-1">
-                    <span>{selectedDayExpenses.length} {selectedDayExpenses.length === 1 ? 'gasto' : 'gastos'}</span>
-                    <span className="font-semibold text-on-surface">
-                      Total: {primarySummary.currency} {selectedDayExpenses.filter(e => e.currency === primarySummary.currency).reduce((s, e) => s + e.amount, 0).toFixed(2)}
-                    </span>
-                  </div>
-                  {selectedDayExpenses.map((expense) => {
-                    const catInfo = getCategoryInfo(expense.category)
-                    return (
-                      <div
-                        key={expense.id}
-                        className="flex items-center justify-between p-3 rounded-xl bg-surface-container-lowest shadow-sm"
-                      >
-                        <div className="flex items-center gap-2.5 min-w-0">
-                          <div className="w-9 h-9 rounded-full flex items-center justify-center text-[18px] shrink-0 bg-surface-container">
-                            {catInfo.icon}
-                          </div>
-                          <div className="min-w-0">
-                            <p className="text-label-md text-on-surface font-medium truncate">
-                              {catInfo.label}
-                            </p>
-                            <span className="text-label-sm text-text-secondary">{expense.description || 'Sin descripción'}</span>
-                          </div>
-                        </div>
-                        <span className="text-label-md font-bold text-on-surface shrink-0 ml-2">
-                          {expense.currency} {expense.amount.toFixed(2)}
-                        </span>
-                      </div>
-                    )
-                  })}
-                </div>
-              )}
             </div>
           </div>
         </div>
