@@ -20,7 +20,11 @@ export default function LoginPage() {
   useEffect(() => {
     const hash = new URLSearchParams(window.location.hash.slice(1))
     if (hash.get('type') === 'recovery') {
-      setMode('new-password')
+      if (!hash.get('access_token')) {
+        setError('Enlace de recuperación inválido. Solicita uno nuevo.')
+      } else {
+        setMode('new-password')
+      }
     }
   }, [])
 

@@ -73,7 +73,7 @@ Esto crea la carpeta `supabase/` con `config.toml` y estructura base.
 ### Archivo `.env.development.local` (desarrollo local)
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321
+NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54331
 NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_ACJWlzQHlZjBrEguHvfOxg_3BJgxAaH
 ```
 
@@ -102,24 +102,24 @@ supabase start
 ╭──────────────────────────────────────
 │ 🔧 Development Tools                 │
 ├─────────┬────────────────────────────┤
-│ Studio  │ http://127.0.0.1:54323     │
-│ Mailpit │ http://127.0.0.1:54324     │
-│ MCP     │ http://127.0.0.1:54321/mcp │
+│ Studio  │ http://127.0.0.1:54333     │
+│ Mailpit │ http://127.0.0.1:54334     │
+│ MCP     │ http://127.0.0.1:54331/mcp │
 ╰─────────┴────────────────────────────┘
 
 ╭──────────────────────────────────────────────────────╮
 │ 🌐 APIs                                              │
 ├────────────────┬─────────────────────────────────────┤
-│ Project URL    │ http://127.0.0.1:54321              │
-│ REST           │ http://127.0.0.1:54321/rest/v1      │
-│ GraphQL        │ http://127.0.0.1:54321/graphql/v1   │
-│ Edge Functions │ http://127.0.0.1:54321/functions/v1 │
+│ Project URL    │ http://127.0.0.1:54331              │
+│ REST           │ http://127.0.0.1:54331/rest/v1      │
+│ GraphQL        │ http://127.0.0.1:54331/graphql/v1   │
+│ Edge Functions │ http://127.0.0.1:54331/functions/v1 │
 ╰────────────────┴─────────────────────────────────────┘
 
 ╭───────────────────────────────────────────────────────────────╮
 │  Database                                                    │
 ├─────┬─────────────────────────────────────────────────────────┤
-│ URL │ postgresql://postgres:postgres@127.0.0.1:54322/postgres │
+│ URL │ postgresql://postgres:postgres@127.0.0.1:54332/postgres │
 ╰─────┴─────────────────────────────────────────────────────────┘
 ```
 
@@ -147,7 +147,7 @@ supabase start
 
 ### 1. Supabase Studio (Web)
 
-**URL:** http://127.0.0.1:54323
+**URL:** http://127.0.0.1:54333
 
 - Table Editor
 - SQL Editor
@@ -158,7 +158,7 @@ supabase start
 
 ```bash
 # Usando psql
-psql "postgresql://postgres:postgres@127.0.0.1:54322/postgres"
+psql "postgresql://postgres:postgres@127.0.0.1:54332/postgres"
 
 # Usando Supabase CLI (abre psql automáticamente)
 supabase db psql
@@ -168,7 +168,7 @@ supabase db psql
 
 **Conexión:**
 - Host: `127.0.0.1`
-- Port: `54322`
+- Port: `54332`
 - Database: `postgres`
 - User: `postgres`
 - Password: `postgres`
@@ -212,7 +212,7 @@ supabase db reset
 ### Credenciales por defecto
 
 ```
-URL:    http://127.0.0.1:54321
+URL:    http://127.0.0.1:54331
 Anon:   sb_publishable_<TU_ANON_KEY_LOCAL>
 Secret: sb_secret_<TU_SECRET_KEY_LOCAL>
 ```
@@ -335,7 +335,7 @@ docker volume ls --filter label=com.supabase.cli.project=paltazo-web-app
 
 | Característica | Local | Cloud |
 |----------------|-------|-------|
-| URL | `http://127.0.0.1:54321` | `https://<project>.supabase.co` |
+| URL | `http://127.0.0.1:54331` | `https://<project>.supabase.co` |
 | Auth | Sin email real (Mailpit) | Email real |
 | Rate limits | Configurables | Fijos (plan) |
 | Backups | Volúmenes Docker | Automáticos |
@@ -380,7 +380,7 @@ supabase/
 3. **Testing:**
    - Usar `.env.development.local` para apuntar a local
    - Probar autenticación, CRUD de expenses, etc.
-   - Verificar en http://127.0.0.1:54323 (Studio)
+   - Verificar en http://127.0.0.1:54333 (Studio)
 
 4. **Deploy a producción:**
    ```bash

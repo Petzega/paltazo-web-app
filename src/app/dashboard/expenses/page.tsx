@@ -14,6 +14,11 @@ export default function ExpensesPage() {
   const [deletingId, setDeletingId] = useState<string | null>(null)
   const [editForm, setEditForm] = useState({ amount: '', description: '', category: '' as ExpenseCategory, date: '' })
 
+  const monthPrefix = `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}`
+  const monthlyTotal = expenses
+    .filter((e) => e.date.startsWith(monthPrefix) && e.currency === budget.currency)
+    .reduce((s, e) => s + e.amount, 0)
+
   const sorted = [...expenses].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   const grouped = sorted.reduce<Record<string, Expense[]>>((acc, exp) => {
@@ -78,7 +83,7 @@ export default function ExpensesPage() {
             <div>
               <span className="text-label-sm text-text-secondary block">Total gastado ({budget.currency})</span>
               <span className="text-headline-sm text-on-surface font-bold">
-                {budget.currency} {expenses.filter((e) => e.currency === budget.currency).reduce((s, e) => s + e.amount, 0).toFixed(2)}
+                {budget.currency} {monthlyTotal.toFixed(2)}
               </span>
             </div>
             <span className="text-label-sm text-text-secondary">

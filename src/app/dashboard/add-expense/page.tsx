@@ -31,6 +31,7 @@ export default function AddExpensePage() {
   const [focused, setFocused] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const successTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   useEffect(() => {
@@ -50,7 +51,8 @@ export default function AddExpensePage() {
   }, [])
 
   const handleSave = async () => {
-    if (numericValue <= 0) return
+    if (numericValue <= 0 || isSubmitting) return
+    setIsSubmitting(true)
     await addExpense({
       amount: numericValue,
       currency,
@@ -58,11 +60,11 @@ export default function AddExpensePage() {
       description: description || undefined,
       date,
     })
+    setIsSubmitting(false)
     setShowSuccess(true)
     if (successTimerRef.current) clearTimeout(successTimerRef.current)
     successTimerRef.current = setTimeout(() => setShowSuccess(false), 2000)
-    setDigits('')
-    setDescription('')
+    handleClear()
   }
 
   const handleClear = () => {
@@ -300,10 +302,10 @@ export default function AddExpensePage() {
             <div className="flex flex-col gap-space-sm mt-space-xs">
               <button
                 type="submit"
-                disabled={numericValue <= 0}
+                disabled={numericValue <= 0 || isSubmitting}
                 className="w-full h-12 rounded-full bg-primary-container text-on-primary text-headline-sm flex items-center justify-center gap-space-xs shadow-sm hover:opacity-95 active:scale-[0.99] transition-all disabled:opacity-50"
               >
-                ✓ Guardar y Continuar
+                {isSubmitting ? '⏳' : '✓'} Guardar y Continuar
               </button>
               <div className="grid grid-cols-2 gap-space-sm">
                 <button

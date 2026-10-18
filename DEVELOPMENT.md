@@ -40,7 +40,7 @@ Abre `http://localhost:3000`.
 Archivo `.env.development.local`:
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321
+NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54331
 NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_<TU_ANON_KEY_LOCAL>
 ```
 

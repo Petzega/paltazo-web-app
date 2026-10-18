@@ -74,7 +74,7 @@ export async function addExpense(expense: Omit<Expense, 'id' | 'createdAt' | 'sy
   }
 }
 
-export async function updateExpense(id: string, changes: Partial<Expense>) {
+export async function updateExpense(id: string, userId: string, changes: Partial<Expense>) {
   const payload: Record<string, unknown> = { synced_at: new Date().toISOString() }
   if (changes.amount !== undefined) payload.amount = changes.amount
   if (changes.currency !== undefined) payload.currency = changes.currency
@@ -82,33 +82,13 @@ export async function updateExpense(id: string, changes: Partial<Expense>) {
   if (changes.description !== undefined) payload.description = changes.description
   if (changes.date !== undefined) payload.date = changes.date
 
-  const { error } = await supabase.from('expenses').update(payload).eq('id', id)
+  const { error } = await supabase.from('expenses').update(payload).eq('id', id).eq('user_id', userId)
   if (error) throw error
 }
 
-export async function deleteExpense(id: string) {
-  const { error } = await supabase.from('expenses').delete().eq('id', id)
+export async function deleteExpense(id: string, userId: string) {
+  const { error } = await supabase.from('expenses').delete().eq('id', id).eq('user_id', userId)
   if (error) throw error
-}
-
-export async function getBudget(userId: string): Promise<Budget | null> {
-  const { data, error } = await supabase
-    .from('budgets')
-    .select('*')
-    .eq('user_id', userId)
-    .limit(1)
-    .single()
-
-  if (error && error.code !== 'PGRST116') throw error
-  if (!data) return null
-
-  const row = data as SupabaseBudgetRow
-  return {
-    userId: row.user_id,
-    monthlyLimit: Number(row.monthly_limit),
-    currency: row.currency,
-    updatedAt: row.updated_at,
-  }
 }
 
 export async function getBudgets(userId: string): Promise<Budget[]> {

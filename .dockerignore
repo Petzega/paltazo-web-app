@@ -1,0 +1,10 @@
+node_modules
+.next
+.git
+.gitignore
+supabase
+graphify-out
+*.md
+.env*.local
+.env.local.example
+.env.development.local.example

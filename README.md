@@ -45,10 +45,10 @@ supabase start
 
 | Servicio | URL | Credenciales |
 |----------|-----|--------------|
-| API | `http://127.0.0.1:54321` | anon key: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` |
-| DB | `postgresql://postgres:postgres@127.0.0.1:54322/postgres` | postgres/postgres |
-| Studio | `http://127.0.0.1:54323` | admin visual |
-| Inbucket | `http://127.0.0.1:54324` | Email testing |
+| API | `http://127.0.0.1:54331` | anon key: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` |
+| DB | `postgresql://postgres:postgres@127.0.0.1:54332/postgres` | postgres/postgres |
+| Studio | `http://127.0.0.1:54333` | admin visual |
+| Inbucket | `http://127.0.0.1:54334` | Email testing |
 
 **Importante:** Las credenciales de Supabase CLI son fijas y seguras para desarrollo local. No las cambies.
 
@@ -57,7 +57,7 @@ supabase start
 Edita `.env.local` con las credenciales que muestra `supabase start`:
 
 ```bash
-NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321
+NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54331
 NEXT_PUBLIC_SUPABASE_ANON_KEY=<tu-anon-key-local>
 ```
 
@@ -93,7 +93,7 @@ paltazo-web-app/
 │   │   ├── layout.tsx           # Layout raíz
 │   │   └── page.tsx             # Landing page
 │   ├── lib/
-│   │   ├── store.tsx            # Zustand store + estado global
+│   │   ├── store.tsx            # React Context + estado global
 │   │   ├── categories.ts        # Categorías de gastos
 │   │   └── supabase/            # Cliente y repositorios Supabase
 │   └── components/              # Componentes reutilizables

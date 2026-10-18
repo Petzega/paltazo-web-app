@@ -29,12 +29,11 @@ const DEFAULT_BUDGET: Budget = {
 }
 
 async function loadUserData(id: string) {
-  const [expensesData, budgetData, budgetsData] = await Promise.all([
+  const [expensesData, budgetsData] = await Promise.all([
     db.getExpenses(id),
-    db.getBudget(id),
     db.getBudgets(id),
   ])
-  return { expenses: expensesData, budget: budgetData, budgets: budgetsData }
+  return { expenses: expensesData, budgets: budgetsData }
 }
 
 export function AppProvider({ children }: { children: ReactNode }) {
@@ -48,15 +47,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setUserId(id)
     if (id) {
       loadUserData(id)
-        .then(({ expenses: e, budget: profileBudget, budgets: bs }) => {
+        .then(({ expenses: e, budgets: bs }) => {
           setExpenses(e)
           const budgetsMap: Record<string, Budget> = {}
           for (const b of bs) {
             budgetsMap[b.currency] = b
           }
           setBudgets(budgetsMap)
-          if (profileBudget) {
-            setBudgetState(budgetsMap[profileBudget.currency] || profileBudget)
+          const primaryBudget = budgetsMap[budget.currency]
+          if (primaryBudget) {
+            setBudgetState(primaryBudget)
+          } else if (bs.length > 0) {
+            setBudgetState(bs[0])
           }
         })
         .catch((err) => console.error('Failed to load from Supabase', err))
@@ -88,13 +90,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const updateExpense = async (id: string, changes: Partial<Expense>) => {
     if (!userId) return
-    await db.updateExpense(id, changes)
+    await db.updateExpense(id, userId, changes)
     setExpenses(prev => prev.map(e => e.id === id ? { ...e, ...changes } : e))
   }
 
   const deleteExpense = async (id: string) => {
     if (!userId) return
-    await db.deleteExpense(id)
+    await db.deleteExpense(id, userId)
     setExpenses((prev) => prev.filter((e) => e.id !== id))
   }
 
