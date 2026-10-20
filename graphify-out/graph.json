@@ -203,28 +203,136 @@
       "source_location": "L5"
     },
     {
+      "id": "src_middleware_middleware",
+      "label": "middleware()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "middleware()",
+      "source_file": "src/middleware.ts",
+      "source_location": "L4"
+    },
+    {
+      "id": "src_app_login_page_loginpage",
+      "label": "LoginPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "code",
+      "norm_label": "loginpage()",
+      "source_file": "src/app/login/page.tsx",
+      "source_location": "L9"
+    },
+    {
+      "id": "src_lib_store_appprovider",
+      "label": "AppProvider()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "code",
+      "norm_label": "appprovider()",
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L39"
+    },
+    {
+      "id": "src_lib_store_loaduserdata",
+      "label": "loadUserData()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "code",
+      "norm_label": "loaduserdata()",
+      "source_file": "src/lib/store.tsx",
+      "source_location": "L31"
+    },
+    {
+      "id": "src_lib_supabase_auth_getsession",
+      "label": "getSession()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "code",
+      "norm_label": "getsession()",
+      "source_file": "src/lib/supabase/auth.ts",
+      "source_location": "L27"
+    },
+    {
       "id": "src_lib_supabase_auth_getuser",
       "label": "getUser()",
       "_callable": true,
       "_origin": "ast",
-      "community": 15,
-      "community_name": "3. Server-Side Performance",
+      "community": 13,
+      "community_name": "login/page.tsx",
       "file_type": "code",
       "norm_label": "getuser()",
       "source_file": "src/lib/supabase/auth.ts",
       "source_location": "L22"
     },
     {
+      "id": "src_lib_supabase_auth_onauthstatechange",
+      "label": "onAuthStateChange()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "code",
+      "norm_label": "onauthstatechange()",
+      "source_file": "src/lib/supabase/auth.ts",
+      "source_location": "L39"
+    },
+    {
+      "id": "src_lib_supabase_auth_resetpassword",
+      "label": "resetPassword()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "code",
+      "norm_label": "resetpassword()",
+      "source_file": "src/lib/supabase/auth.ts",
+      "source_location": "L32"
+    },
+    {
+      "id": "src_lib_supabase_auth_signin",
+      "label": "signIn()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "code",
+      "norm_label": "signin()",
+      "source_file": "src/lib/supabase/auth.ts",
+      "source_location": "L3"
+    },
+    {
       "id": "src_lib_supabase_auth_signout",
       "label": "signOut()",
       "_callable": true,
       "_origin": "ast",
-      "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "community": 13,
+      "community_name": "login/page.tsx",
       "file_type": "code",
       "norm_label": "signout()",
       "source_file": "src/lib/supabase/auth.ts",
       "source_location": "L17"
+    },
+    {
+      "id": "src_lib_supabase_auth_signup",
+      "label": "signUp()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "code",
+      "norm_label": "signup()",
+      "source_file": "src/lib/supabase/auth.ts",
+      "source_location": "L8"
     },
     {
       "id": "src_app_dashboard_add_expense_page_addexpensepage",
@@ -297,18 +405,6 @@
       "norm_label": "settingspage()",
       "source_file": "src/app/dashboard/settings/page.tsx",
       "source_location": "L12"
-    },
-    {
-      "id": "src_app_login_page_loginpage",
-      "label": "LoginPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "loginpage()",
-      "source_file": "src/app/login/page.tsx",
-      "source_location": "L9"
     },
     {
       "id": "src_app_onboarding_page_onboardingpage",
@@ -407,30 +503,6 @@
       "source_location": "L18"
     },
     {
-      "id": "src_lib_store_appprovider",
-      "label": "AppProvider()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "appprovider()",
-      "source_file": "src/lib/store.tsx",
-      "source_location": "L39"
-    },
-    {
-      "id": "src_lib_store_loaduserdata",
-      "label": "loadUserData()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "loaduserdata()",
-      "source_file": "src/lib/store.tsx",
-      "source_location": "L31"
-    },
-    {
       "id": "src_lib_store_useappstate",
       "label": "useAppState()",
       "_callable": true,
@@ -441,66 +513,6 @@
       "norm_label": "useappstate()",
       "source_file": "src/lib/store.tsx",
       "source_location": "L136"
-    },
-    {
-      "id": "src_lib_supabase_auth_getsession",
-      "label": "getSession()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "getsession()",
-      "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L27"
-    },
-    {
-      "id": "src_lib_supabase_auth_onauthstatechange",
-      "label": "onAuthStateChange()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "onauthstatechange()",
-      "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L39"
-    },
-    {
-      "id": "src_lib_supabase_auth_resetpassword",
-      "label": "resetPassword()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "resetpassword()",
-      "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L32"
-    },
-    {
-      "id": "src_lib_supabase_auth_signin",
-      "label": "signIn()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "signin()",
-      "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L3"
-    },
-    {
-      "id": "src_lib_supabase_auth_signup",
-      "label": "signUp()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "signup()",
-      "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L8"
     },
     {
       "id": "src_lib_supabase_repositories_addexpense",
@@ -575,18 +587,6 @@
       "source_location": "L109"
     },
     {
-      "id": "src_middleware_middleware",
-      "label": "middleware()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "middleware()",
-      "source_file": "src/middleware.ts",
-      "source_location": "L4"
-    },
-    {
       "id": "opencode_plugins_graphify_graphifyplugin",
       "label": "GraphifyPlugin()",
       "_callable": true,
@@ -596,7 +596,19 @@
       "file_type": "code",
       "norm_label": "graphifyplugin()",
       "source_file": ".opencode/plugins/graphify.js",
-      "source_location": "L12"
+      "source_location": "L31"
+    },
+    {
+      "id": "opencode_plugins_graphify_setup",
+      "label": "setup()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "graphify.js",
+      "file_type": "code",
+      "norm_label": "setup()",
+      "source_file": ".opencode/plugins/graphify.js",
+      "source_location": "L8"
     },
     {
       "id": "next_config",
@@ -1306,6 +1318,28 @@
       "source_location": "L3"
     },
     {
+      "id": "src_middleware",
+      "label": "middleware.ts",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "middleware.ts",
+      "source_file": "src/middleware.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_middleware_config",
+      "label": "config",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "code",
+      "norm_label": "config",
+      "source_file": "src/middleware.ts",
+      "source_location": "L59"
+    },
+    {
       "id": "tailwind_config",
       "label": "tailwind.config.ts",
       "_origin": "ast",
@@ -1359,6 +1393,17 @@
       "norm_label": "react-dom",
       "source_file": "package.json",
       "source_location": "L22"
+    },
+    {
+      "id": "ref_supabase_ssr",
+      "label": "@supabase/ssr",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "package.json",
+      "file_type": "concept",
+      "norm_label": "@supabase/ssr",
+      "source_file": "package.json",
+      "source_location": "L18"
     },
     {
       "id": "ref_supabase_supabase_js",
@@ -2236,6 +2281,368 @@
       "source_location": "L8"
     },
     {
+      "id": "src_app_login_page",
+      "label": "login/page.tsx",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "code",
+      "norm_label": "login/page.tsx",
+      "source_file": "src/app/login/page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_lib_supabase_auth",
+      "label": "auth.ts",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "code",
+      "norm_label": "auth.ts",
+      "source_file": "src/lib/supabase/auth.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_lib_supabase_client",
+      "label": "client.ts",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "code",
+      "norm_label": "client.ts",
+      "source_file": "src/lib/supabase/client.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_lib_supabase_client_client",
+      "label": "client",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "code",
+      "norm_label": "client",
+      "source_file": "src/lib/supabase/client.ts",
+      "source_location": "L3"
+    },
+    {
+      "id": "agents_skills_react_best_practices_rules_server_parallel_nested_fetching",
+      "label": "server-parallel-nested-fetching.md",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "frontmatter": {
+        "title": "Parallel Nested Data Fetching",
+        "impact": "CRITICAL",
+        "impactDescription": "eliminates server-side waterfalls",
+        "tags": "server, rsc, parallel-fetching, promise-chaining"
+      },
+      "node_kind": "page",
+      "norm_label": "server-parallel-nested-fetching.md",
+      "source_file": ".agents/skills/react-best-practices/rules/server-parallel-nested-fetching.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "agents_skills_react_best_practices_agents_3_8_parallel_nested_data_fetching",
+      "label": "3.8 Parallel Nested Data Fetching",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "3.8 parallel nested data fetching",
+      "source_file": ".agents/skills/react-best-practices/AGENTS.md",
+      "source_location": "L1194"
+    },
+    {
+      "id": "agents_skills_react_best_practices_rules_server_parallel_nested_fetching_parallel_nested_data_fetching",
+      "label": "Parallel Nested Data Fetching",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "parallel nested data fetching",
+      "source_file": ".agents/skills/react-best-practices/rules/server-parallel-nested-fetching.md",
+      "source_location": "L8"
+    },
+    {
+      "id": "bitacora_auditor\u00eda_de_c\u00f3digo_actualizaci\u00f3n_2026_10_16",
+      "label": "Auditor\u00eda de c\u00f3digo \u2014 Actualizaci\u00f3n 2026-10-16",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "auditoria de codigo \u2014 actualizacion 2026-10-16",
+      "source_file": "BITACORA.md",
+      "source_location": "L378"
+    },
+    {
+      "id": "bitacora_bug_5_middleware_no_redirige_despu\u00e9s_de_logout_2026_10_08",
+      "label": "Bug 5: Middleware no redirige despu\u00e9s de logout (2026-10-08)",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "bug 5: middleware no redirige despues de logout (2026-10-08)",
+      "source_file": "BITACORA.md",
+      "source_location": "L180"
+    },
+    {
+      "id": "bitacora_bug_6_vector_analytics_no_arranca_en_windows_2026_10_08",
+      "label": "Bug 6: Vector (analytics) no arranca en Windows (2026-10-08)",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "bug 6: vector (analytics) no arranca en windows (2026-10-08)",
+      "source_file": "BITACORA.md",
+      "source_location": "L194"
+    },
+    {
+      "id": "bitacora_error_1_login_is_not_a_function_en_src_app_login_page_tsx_14",
+      "label": "Error 1: `login is not a function` en `src/app/login/page.tsx:14`",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "error 1: `login is not a function` en `src/app/login/page.tsx:14`",
+      "source_file": "BITACORA.md",
+      "source_location": "L112"
+    },
+    {
+      "id": "bitacora_error_2_database_error_saving_new_user_http_500_en_auth_v1_signup",
+      "label": "Error 2: `Database error saving new user` (HTTP 500 en `/auth/v1/signup`)",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "error 2: `database error saving new user` (http 500 en `/auth/v1/signup`)",
+      "source_file": "BITACORA.md",
+      "source_location": "L122"
+    },
+    {
+      "id": "bitacora_error_3_uncaught_syntaxerror_invalid_or_unexpected_token_at_layout_js_728_29",
+      "label": "Error 3: `Uncaught SyntaxError: Invalid or unexpected token (at layout.js:728:29)`",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "error 3: `uncaught syntaxerror: invalid or unexpected token (at layout.js:728:29)`",
+      "source_file": "BITACORA.md",
+      "source_location": "L166"
+    },
+    {
+      "id": "bitacora_error_4_relation_pg_log_does_not_exist_en_supabase",
+      "label": "Error 4: `relation \"pg_log\" does not exist` en Supabase",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "error 4: `relation \"pg_log\" does not exist` en supabase",
+      "source_file": "BITACORA.md",
+      "source_location": "L174"
+    },
+    {
+      "id": "bitacora_errores_y_soluciones",
+      "label": "Errores y soluciones",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "errores y soluciones",
+      "source_file": "BITACORA.md",
+      "source_location": "L110"
+    },
+    {
+      "id": "development_protecci\u00f3n_de_rutas",
+      "label": "Protecci\u00f3n de rutas",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "proteccion de rutas",
+      "source_file": "DEVELOPMENT.md",
+      "source_location": "L70"
+    },
+    {
+      "id": "docs_use_case_auth_auth",
+      "label": "auth.md",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "auth.md",
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_use_case_auth_auth_casos_de_uso_autenticaci\u00f3n",
+      "label": "Casos de Uso: Autenticaci\u00f3n",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "casos de uso: autenticacion",
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_use_case_auth_auth_cu_001_login_inicio_de_sesi\u00f3n",
+      "label": "CU-001: Login (Inicio de sesi\u00f3n)",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "cu-001: login (inicio de sesion)",
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L8"
+    },
+    {
+      "id": "docs_use_case_auth_auth_cu_002_registro_crear_cuenta",
+      "label": "CU-002: Registro (Crear cuenta)",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "cu-002: registro (crear cuenta)",
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L53"
+    },
+    {
+      "id": "docs_use_case_auth_auth_cu_003_recuperar_contrase\u00f1a_solicitar_enlace",
+      "label": "CU-003: Recuperar contrase\u00f1a (Solicitar enlace)",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "cu-003: recuperar contrasena (solicitar enlace)",
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L104"
+    },
+    {
+      "id": "docs_use_case_auth_auth_cu_004_nueva_contrase\u00f1a_reset_con_token",
+      "label": "CU-004: Nueva contrase\u00f1a (Reset con token)",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "cu-004: nueva contrasena (reset con token)",
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L145"
+    },
+    {
+      "id": "docs_use_case_auth_auth_cu_005_logout_cerrar_sesi\u00f3n",
+      "label": "CU-005: Logout (Cerrar sesi\u00f3n)",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "cu-005: logout (cerrar sesion)",
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L195"
+    },
+    {
+      "id": "docs_use_case_auth_auth_cu_006_protecci\u00f3n_de_rutas_middleware",
+      "label": "CU-006: Protecci\u00f3n de rutas (Middleware)",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "cu-006: proteccion de rutas (middleware)",
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L234"
+    },
+    {
+      "id": "docs_use_case_auth_auth_cu_007_google_oauth_login_social",
+      "label": "CU-007: Google OAuth (Login social)",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "cu-007: google oauth (login social)",
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L288"
+    },
+    {
+      "id": "docs_use_case_auth_auth_notas_t\u00e9cnicas",
+      "label": "Notas t\u00e9cnicas",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "notas tecnicas",
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L317"
+    },
+    {
+      "id": "docs_use_case_readme",
+      "label": "use-case/README.md",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "use-case/readme.md",
+      "source_file": "docs/use-case/README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_use_case_readme_casos_de_uso_paltazo",
+      "label": "Casos de Uso \u2014 Paltazo",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "casos de uso \u2014 paltazo",
+      "source_file": "docs/use-case/README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_use_case_readme_convenciones",
+      "label": "Convenciones",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "convenciones",
+      "source_file": "docs/use-case/README.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "docs_use_case_readme_m\u00f3dulos",
+      "label": "M\u00f3dulos",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "login/page.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "modulos",
+      "source_file": "docs/use-case/README.md",
+      "source_location": "L6"
+    },
+    {
       "id": "agents_skills_react_best_practices_rules_rerender_split_combined_hooks",
       "label": "rerender-split-combined-hooks.md",
       "_origin": "ast",
@@ -2534,6 +2941,59 @@
       "norm_label": "parallel data fetching with component composition",
       "source_file": ".agents/skills/react-best-practices/rules/server-parallel-fetching.md",
       "source_location": "L8"
+    },
+    {
+      "id": "agents_skills_tailwind_css_patterns_skill",
+      "label": "tailwind-css-patterns/SKILL.md",
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "tailwind-css-patterns/SKILL.md",
+      "file_type": "document",
+      "frontmatter": {
+        "name": "tailwind-css-patterns",
+        "description": "Provides comprehensive Tailwind CSS utility-first styling patterns including responsive design, layout utilities, flexbox, grid, spacing, typography, colors, and modern CSS best practices. Use when styling React/Vue/Svelte components, building responsive layouts, implementing design systems, or optimizing CSS workflow.",
+        "allowed-tools": "Read, Write, Edit, Glob, Grep, Bash"
+      },
+      "node_kind": "page",
+      "norm_label": "tailwind-css-patterns/skill.md",
+      "source_file": ".agents/skills/tailwind-css-patterns/SKILL.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "agents_skills_tailwind_css_patterns_references_component_patterns",
+      "label": "component-patterns.md",
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "tailwind-css-patterns/SKILL.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "component-patterns.md",
+      "source_file": ".agents/skills/tailwind-css-patterns/references/component-patterns.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "agents_skills_tailwind_css_patterns_references_performance",
+      "label": "performance.md",
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "tailwind-css-patterns/SKILL.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "performance.md",
+      "source_file": ".agents/skills/tailwind-css-patterns/references/performance.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "agents_skills_tailwind_css_patterns_references_reference",
+      "label": "reference.md",
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "tailwind-css-patterns/SKILL.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "reference.md",
+      "source_file": ".agents/skills/tailwind-css-patterns/references/reference.md",
+      "source_location": "L1"
     },
     {
       "id": "agents_skills_react_best_practices_rules_server_serialization",
@@ -2836,24 +3296,6 @@
       "source_location": "L8"
     },
     {
-      "id": "agents_skills_react_best_practices_rules_server_parallel_nested_fetching",
-      "label": "server-parallel-nested-fetching.md",
-      "_origin": "ast",
-      "community": 15,
-      "community_name": "3. Server-Side Performance",
-      "file_type": "document",
-      "frontmatter": {
-        "title": "Parallel Nested Data Fetching",
-        "impact": "CRITICAL",
-        "impactDescription": "eliminates server-side waterfalls",
-        "tags": "server, rsc, parallel-fetching, promise-chaining"
-      },
-      "node_kind": "page",
-      "norm_label": "server-parallel-nested-fetching.md",
-      "source_file": ".agents/skills/react-best-practices/rules/server-parallel-nested-fetching.md",
-      "source_location": "L1"
-    },
-    {
       "id": "agents_skills_react_best_practices_agents_3_10_use_after_for_non_blocking_operations",
       "label": "3.10 Use after() for Non-Blocking Operations",
       "_origin": "ast",
@@ -2950,18 +3392,6 @@
       "source_location": "L1115"
     },
     {
-      "id": "agents_skills_react_best_practices_agents_3_8_parallel_nested_data_fetching",
-      "label": "3.8 Parallel Nested Data Fetching",
-      "_origin": "ast",
-      "community": 15,
-      "community_name": "3. Server-Side Performance",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "3.8 parallel nested data fetching",
-      "source_file": ".agents/skills/react-best-practices/AGENTS.md",
-      "source_location": "L1194"
-    },
-    {
       "id": "agents_skills_react_best_practices_agents_3_9_per_request_deduplication_with_react_cache",
       "label": "3.9 Per-Request Deduplication with React.cache()",
       "_origin": "ast",
@@ -2984,18 +3414,6 @@
       "norm_label": "3. server-side performance",
       "source_file": ".agents/skills/react-best-practices/AGENTS.md",
       "source_location": "L689"
-    },
-    {
-      "id": "agents_skills_react_best_practices_rules_server_parallel_nested_fetching_parallel_nested_data_fetching",
-      "label": "Parallel Nested Data Fetching",
-      "_origin": "ast",
-      "community": 15,
-      "community_name": "3. Server-Side Performance",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "parallel nested data fetching",
-      "source_file": ".agents/skills/react-best-practices/rules/server-parallel-nested-fetching.md",
-      "source_location": "L8"
     },
     {
       "id": "agents_skills_supabase_postgres_best_practices_references_data_pagination",
@@ -3370,18 +3788,6 @@
       "source_location": "L348"
     },
     {
-      "id": "bitacora_auditor\u00eda_de_c\u00f3digo_actualizaci\u00f3n_2026_10_16",
-      "label": "Auditor\u00eda de c\u00f3digo \u2014 Actualizaci\u00f3n 2026-10-16",
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "auditoria de codigo \u2014 actualizacion 2026-10-16",
-      "source_file": "BITACORA.md",
-      "source_location": "L378"
-    },
-    {
       "id": "bitacora_avances_2026_10_17_18",
       "label": "Avances 2026-10-17/18",
       "_origin": "ast",
@@ -3416,30 +3822,6 @@
       "norm_label": "bitacora de bugs",
       "source_file": "BITACORA.md",
       "source_location": "L426"
-    },
-    {
-      "id": "bitacora_bug_5_middleware_no_redirige_despu\u00e9s_de_logout_2026_10_08",
-      "label": "Bug 5: Middleware no redirige despu\u00e9s de logout (2026-10-08)",
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "bug 5: middleware no redirige despues de logout (2026-10-08)",
-      "source_file": "BITACORA.md",
-      "source_location": "L180"
-    },
-    {
-      "id": "bitacora_bug_6_vector_analytics_no_arranca_en_windows_2026_10_08",
-      "label": "Bug 6: Vector (analytics) no arranca en Windows (2026-10-08)",
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "bug 6: vector (analytics) no arranca en windows (2026-10-08)",
-      "source_file": "BITACORA.md",
-      "source_location": "L194"
     },
     {
       "id": "bitacora_cloud_supabase_producci\u00f3n",
@@ -3548,54 +3930,6 @@
       "norm_label": "en progreso \ud83d\udd04",
       "source_file": "BITACORA.md",
       "source_location": "L258"
-    },
-    {
-      "id": "bitacora_error_2_database_error_saving_new_user_http_500_en_auth_v1_signup",
-      "label": "Error 2: `Database error saving new user` (HTTP 500 en `/auth/v1/signup`)",
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "error 2: `database error saving new user` (http 500 en `/auth/v1/signup`)",
-      "source_file": "BITACORA.md",
-      "source_location": "L122"
-    },
-    {
-      "id": "bitacora_error_3_uncaught_syntaxerror_invalid_or_unexpected_token_at_layout_js_728_29",
-      "label": "Error 3: `Uncaught SyntaxError: Invalid or unexpected token (at layout.js:728:29)`",
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "error 3: `uncaught syntaxerror: invalid or unexpected token (at layout.js:728:29)`",
-      "source_file": "BITACORA.md",
-      "source_location": "L166"
-    },
-    {
-      "id": "bitacora_error_4_relation_pg_log_does_not_exist_en_supabase",
-      "label": "Error 4: `relation \"pg_log\" does not exist` en Supabase",
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "error 4: `relation \"pg_log\" does not exist` en supabase",
-      "source_file": "BITACORA.md",
-      "source_location": "L174"
-    },
-    {
-      "id": "bitacora_errores_y_soluciones",
-      "label": "Errores y soluciones",
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "errores y soluciones",
-      "source_file": "BITACORA.md",
-      "source_location": "L110"
     },
     {
       "id": "bitacora_esquema_de_base_de_datos",
@@ -3788,18 +4122,6 @@
       "norm_label": "ui/ux",
       "source_file": "BITACORA.md",
       "source_location": "L413"
-    },
-    {
-      "id": "development_protecci\u00f3n_de_rutas",
-      "label": "Protecci\u00f3n de rutas",
-      "_origin": "ast",
-      "community": 16,
-      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "proteccion de rutas",
-      "source_file": "DEVELOPMENT.md",
-      "source_location": "L70"
     },
     {
       "id": "agents_skills_supabase_postgres_best_practices_references_query_covering_indexes",
@@ -4768,17 +5090,6 @@
       "source_location": "L7"
     },
     {
-      "id": "src_app_login_page",
-      "label": "login/page.tsx",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "login/page.tsx",
-      "source_file": "src/app/login/page.tsx",
-      "source_location": "L1"
-    },
-    {
       "id": "src_app_onboarding_page",
       "label": "onboarding/page.tsx",
       "_origin": "ast",
@@ -4944,39 +5255,6 @@
       "source_location": "L24"
     },
     {
-      "id": "src_lib_supabase_auth",
-      "label": "auth.ts",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "auth.ts",
-      "source_file": "src/lib/supabase/auth.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_lib_supabase_client",
-      "label": "client.ts",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "client.ts",
-      "source_file": "src/lib/supabase/client.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_lib_supabase_client_client",
-      "label": "client",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "client",
-      "source_file": "src/lib/supabase/client.ts",
-      "source_location": "L3"
-    },
-    {
       "id": "src_lib_supabase_repositories",
       "label": "repositories.ts",
       "_origin": "ast",
@@ -4986,28 +5264,6 @@
       "norm_label": "repositories.ts",
       "source_file": "src/lib/supabase/repositories.ts",
       "source_location": "L1"
-    },
-    {
-      "id": "src_middleware",
-      "label": "middleware.ts",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "middleware.ts",
-      "source_file": "src/middleware.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_middleware_config",
-      "label": "config",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "code",
-      "norm_label": "config",
-      "source_file": "src/middleware.ts",
-      "source_location": "L59"
     },
     {
       "id": "src_types_index",
@@ -5030,29 +5286,6 @@
       "norm_label": "react",
       "source_file": "package.json",
       "source_location": "L21"
-    },
-    {
-      "id": "ref_supabase_ssr",
-      "label": "@supabase/ssr",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "concept",
-      "norm_label": "@supabase/ssr",
-      "source_file": "package.json",
-      "source_location": "L18"
-    },
-    {
-      "id": "bitacora_error_1_login_is_not_a_function_en_src_app_login_page_tsx_14",
-      "label": "Error 1: `login is not a function` en `src/app/login/page.tsx:14`",
-      "_origin": "ast",
-      "community": 19,
-      "community_name": "store.tsx",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "error 1: `login is not a function` en `src/app/login/page.tsx:14`",
-      "source_file": "BITACORA.md",
-      "source_location": "L112"
     },
     {
       "id": "agents_skills_react_best_practices_agents_6_10_use_react_dom_resource_hints",
@@ -11622,17 +11855,6 @@
       "source_location": "L1"
     },
     {
-      "id": "opencode_opencode_plugin",
-      "label": "plugin",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "opencode.json",
-      "file_type": "code",
-      "norm_label": "plugin",
-      "source_file": ".opencode/opencode.json",
-      "source_location": "L3"
-    },
-    {
       "id": "opencode_opencode_schema",
       "label": "$schema",
       "_origin": "ast",
@@ -11884,40 +12106,11 @@
       "source_location": "L11"
     },
     {
-      "id": "agents_skills_tailwind_css_patterns_skill",
-      "label": "tailwind-css-patterns/SKILL.md",
-      "_origin": "ast",
-      "community": 52,
-      "community_name": "tailwind-css-patterns/SKILL.md",
-      "file_type": "document",
-      "frontmatter": {
-        "name": "tailwind-css-patterns",
-        "description": "Provides comprehensive Tailwind CSS utility-first styling patterns including responsive design, layout utilities, flexbox, grid, spacing, typography, colors, and modern CSS best practices. Use when styling React/Vue/Svelte components, building responsive layouts, implementing design systems, or optimizing CSS workflow.",
-        "allowed-tools": "Read, Write, Edit, Glob, Grep, Bash"
-      },
-      "node_kind": "page",
-      "norm_label": "tailwind-css-patterns/skill.md",
-      "source_file": ".agents/skills/tailwind-css-patterns/SKILL.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "agents_skills_tailwind_css_patterns_references_component_patterns",
-      "label": "component-patterns.md",
-      "_origin": "ast",
-      "community": 52,
-      "community_name": "tailwind-css-patterns/SKILL.md",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "component-patterns.md",
-      "source_file": ".agents/skills/tailwind-css-patterns/references/component-patterns.md",
-      "source_location": "L1"
-    },
-    {
       "id": "agents_skills_tailwind_css_patterns_references_component_patterns_card_component",
       "label": "Card Component",
       "_origin": "ast",
       "community": 52,
-      "community_name": "tailwind-css-patterns/SKILL.md",
+      "community_name": "Tailwind CSS Component Patterns",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "card component",
@@ -11929,7 +12122,7 @@
       "label": "Form Elements",
       "_origin": "ast",
       "community": 52,
-      "community_name": "tailwind-css-patterns/SKILL.md",
+      "community_name": "Tailwind CSS Component Patterns",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "form elements",
@@ -11941,7 +12134,7 @@
       "label": "Modal/Dialog",
       "_origin": "ast",
       "community": 52,
-      "community_name": "tailwind-css-patterns/SKILL.md",
+      "community_name": "Tailwind CSS Component Patterns",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "modal/dialog",
@@ -11953,7 +12146,7 @@
       "label": "Navigation Bar",
       "_origin": "ast",
       "community": 52,
-      "community_name": "tailwind-css-patterns/SKILL.md",
+      "community_name": "Tailwind CSS Component Patterns",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "navigation bar",
@@ -11965,7 +12158,7 @@
       "label": "React Button Component with Variants",
       "_origin": "ast",
       "community": 52,
-      "community_name": "tailwind-css-patterns/SKILL.md",
+      "community_name": "Tailwind CSS Component Patterns",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "react button component with variants",
@@ -11977,7 +12170,7 @@
       "label": "Responsive User Card",
       "_origin": "ast",
       "community": 52,
-      "community_name": "tailwind-css-patterns/SKILL.md",
+      "community_name": "Tailwind CSS Component Patterns",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "responsive user card",
@@ -11989,35 +12182,11 @@
       "label": "Tailwind CSS Component Patterns",
       "_origin": "ast",
       "community": 52,
-      "community_name": "tailwind-css-patterns/SKILL.md",
+      "community_name": "Tailwind CSS Component Patterns",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "tailwind css component patterns",
       "source_file": ".agents/skills/tailwind-css-patterns/references/component-patterns.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "agents_skills_tailwind_css_patterns_references_reference",
-      "label": "reference.md",
-      "_origin": "ast",
-      "community": 52,
-      "community_name": "tailwind-css-patterns/SKILL.md",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "reference.md",
-      "source_file": ".agents/skills/tailwind-css-patterns/references/reference.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "agents_skills_tailwind_css_patterns_references_performance",
-      "label": "performance.md",
-      "_origin": "ast",
-      "community": 53,
-      "community_name": "Tailwind CSS Performance Optimization",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "performance.md",
-      "source_file": ".agents/skills/tailwind-css-patterns/references/performance.md",
       "source_location": "L1"
     },
     {
@@ -12579,17 +12748,6 @@
       "norm_label": "graphify.js",
       "source_file": ".opencode/plugins/graphify.js",
       "source_location": "L1"
-    },
-    {
-      "id": "opencode_plugins_graphify_rationale_4",
-      "label": "IMPORTANT: keep the reminder string free of backticks and $(...) constructs.",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "graphify.js",
-      "file_type": "rationale",
-      "norm_label": "important: keep the reminder string free of backticks and $(...) constructs.",
-      "source_file": ".opencode/plugins/graphify.js",
-      "source_location": "L4"
     },
     {
       "id": "agents_skills_react_best_practices_readme",
@@ -14581,6 +14739,18 @@
       "type": "external"
     },
     {
+      "id": "ref_next_server",
+      "label": "ref_next_server",
+      "_origin": "semantic",
+      "community": 11,
+      "community_name": "package.json",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "ref_next_server",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "ref_next_navigation",
       "label": "ref_next_navigation",
       "_origin": "semantic",
@@ -14589,18 +14759,6 @@
       "external": true,
       "file_type": "concept",
       "norm_label": "ref_next_navigation",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "ref_next_server",
-      "label": "ref_next_server",
-      "_origin": "semantic",
-      "community": 19,
-      "community_name": "store.tsx",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "ref_next_server",
       "source_file": "",
       "type": "external"
     },
@@ -14620,8 +14778,8 @@
       "id": "ref_fs",
       "label": "ref_fs",
       "_origin": "semantic",
-      "community": 6,
-      "community_name": "graphify.js",
+      "community": 45,
+      "community_name": "ref_fs",
       "external": true,
       "file_type": "concept",
       "norm_label": "ref_fs",
@@ -14632,11 +14790,33 @@
       "id": "ref_path",
       "label": "ref_path",
       "_origin": "semantic",
+      "community": 55,
+      "community_name": "ref_path",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "ref_path",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "ref_node_fs",
+      "label": "ref_node_fs",
       "community": 6,
       "community_name": "graphify.js",
       "external": true,
       "file_type": "concept",
-      "norm_label": "ref_path",
+      "norm_label": "ref_node_fs",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "ref_node_path",
+      "label": "ref_node_path",
+      "community": 6,
+      "community_name": "graphify.js",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "ref_node_path",
       "source_file": "",
       "type": "external"
     }
@@ -15569,26 +15749,26 @@
     },
     {
       "source": "opencode_plugins_graphify",
-      "target": "ref_path",
+      "target": "ref_node_fs",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
       "source_file": ".opencode/plugins/graphify.js",
-      "source_location": "L10",
+      "source_location": "L3",
       "weight": 1.0
     },
     {
       "source": "opencode_plugins_graphify",
-      "target": "ref_fs",
+      "target": "ref_node_path",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
       "source_file": ".opencode/plugins/graphify.js",
-      "source_location": "L9",
+      "source_location": "L4",
       "weight": 1.0
     },
     {
@@ -24147,6 +24327,138 @@
       "weight": 1.0
     },
     {
+      "source": "docs_use_case_auth_auth",
+      "target": "docs_use_case_auth_auth_casos_de_uso_autenticaci\u00f3n",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_use_case_auth_auth_casos_de_uso_autenticaci\u00f3n",
+      "target": "docs_use_case_auth_auth_cu_003_recuperar_contrase\u00f1a_solicitar_enlace",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L104",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_use_case_auth_auth_casos_de_uso_autenticaci\u00f3n",
+      "target": "docs_use_case_auth_auth_cu_004_nueva_contrase\u00f1a_reset_con_token",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L145",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_use_case_auth_auth_casos_de_uso_autenticaci\u00f3n",
+      "target": "docs_use_case_auth_auth_cu_005_logout_cerrar_sesi\u00f3n",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L195",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_use_case_auth_auth_casos_de_uso_autenticaci\u00f3n",
+      "target": "docs_use_case_auth_auth_cu_006_protecci\u00f3n_de_rutas_middleware",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L234",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_use_case_auth_auth_casos_de_uso_autenticaci\u00f3n",
+      "target": "docs_use_case_auth_auth_cu_007_google_oauth_login_social",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L288",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_use_case_auth_auth_casos_de_uso_autenticaci\u00f3n",
+      "target": "docs_use_case_auth_auth_notas_t\u00e9cnicas",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L317",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_use_case_auth_auth_casos_de_uso_autenticaci\u00f3n",
+      "target": "docs_use_case_auth_auth_cu_002_registro_crear_cuenta",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_use_case_auth_auth_casos_de_uso_autenticaci\u00f3n",
+      "target": "docs_use_case_auth_auth_cu_001_login_inicio_de_sesi\u00f3n",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_use_case_readme",
+      "target": "docs_use_case_readme_casos_de_uso_paltazo",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/use-case/README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_use_case_readme_casos_de_uso_paltazo",
+      "target": "docs_use_case_readme_convenciones",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/use-case/README.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_use_case_readme_casos_de_uso_paltazo",
+      "target": "docs_use_case_readme_m\u00f3dulos",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/use-case/README.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
       "source": "next_config",
       "target": "next_config_nextconfig",
       "relation": "contains",
@@ -24169,17 +24481,6 @@
       "weight": 1.0
     },
     {
-      "source": "opencode_opencode",
-      "target": "opencode_opencode_plugin",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".opencode/opencode.json",
-      "source_location": "L3",
-      "weight": 1.0
-    },
-    {
       "source": "opencode_plugins_graphify",
       "target": "opencode_plugins_graphify_graphifyplugin",
       "relation": "contains",
@@ -24187,7 +24488,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": ".opencode/plugins/graphify.js",
-      "source_location": "L12",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "opencode_plugins_graphify",
+      "target": "opencode_plugins_graphify_setup",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".opencode/plugins/graphify.js",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -26193,17 +26505,6 @@
       "weight": 1.0
     },
     {
-      "source": "opencode_plugins_graphify_rationale_4",
-      "target": "opencode_plugins_graphify",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".opencode/plugins/graphify.js",
-      "source_location": "L4",
-      "weight": 1.0
-    },
-    {
       "source": "agents_skills_accessibility_references_a11y_patterns",
       "target": "agents_skills_accessibility_skill",
       "relation": "references",
@@ -26380,6 +26681,17 @@
       "weight": 1.0
     },
     {
+      "source": "docs_use_case_readme",
+      "target": "docs_use_case_auth_auth",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/use-case/README.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
       "source": "bitacora_auditor\u00eda_de_c\u00f3digo_actualizaci\u00f3n_2026_10_15",
       "target": "src_components_ui_addexpensefab_addexpensefab",
       "relation": "references",
@@ -26404,6 +26716,18 @@
       "weight": 1.0
     },
     {
+      "source": "docs_use_case_auth_auth_notas_t\u00e9cnicas",
+      "target": "src_lib_supabase_auth_getsession",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "getSession()",
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L328",
+      "weight": 1.0
+    },
+    {
       "source": "agents_skills_react_best_practices_agents_3_8_parallel_nested_data_fetching",
       "target": "src_lib_supabase_auth_getuser",
       "relation": "references",
@@ -26425,6 +26749,30 @@
       "context": "getUser",
       "source_file": ".agents/skills/react-best-practices/rules/server-parallel-nested-fetching.md",
       "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_use_case_auth_auth_notas_t\u00e9cnicas",
+      "target": "src_lib_supabase_auth_onauthstatechange",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "onAuthStateChange",
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L327",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_use_case_auth_auth_cu_004_nueva_contrase\u00f1a_reset_con_token",
+      "target": "src_lib_supabase_auth_resetpassword",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "resetPassword()",
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L191",
       "weight": 1.0
     },
     {
@@ -26476,6 +26824,42 @@
       "weight": 1.0
     },
     {
+      "source": "docs_use_case_auth_auth_cu_005_logout_cerrar_sesi\u00f3n",
+      "target": "src_lib_supabase_auth_signout",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "signOut()",
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L230",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_use_case_auth_auth_cu_006_protecci\u00f3n_de_rutas_middleware",
+      "target": "src_lib_supabase_auth_signout",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "signOut()",
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L283",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_use_case_auth_auth_notas_t\u00e9cnicas",
+      "target": "src_lib_supabase_auth_signout",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "signOut()",
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L333",
+      "weight": 1.0
+    },
+    {
       "source": "bitacora_error_1_login_is_not_a_function_en_src_app_login_page_tsx_14",
       "target": "src_lib_supabase_auth_signup",
       "relation": "references",
@@ -26485,6 +26869,30 @@
       "context": "signUp()",
       "source_file": "BITACORA.md",
       "source_location": "L117",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_use_case_auth_auth_cu_006_protecci\u00f3n_de_rutas_middleware",
+      "target": "src_lib_supabase_auth_getuser",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "supabase.auth.getUser()",
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L246",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_use_case_auth_auth_cu_002_registro_crear_cuenta",
+      "target": "src_lib_supabase_auth_signup",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "supabase.auth.signUp()",
+      "source_file": "docs/use-case/auth/auth.md",
+      "source_location": "L68",
       "weight": 1.0
     },
     {
@@ -27093,5 +27501,5 @@
       "source_file": "docs/stack_tecnologico_paltazo.md"
     }
   ],
-  "built_at_commit": "bca7b314ba67969c9d9a4c029ead6f2266c22a29"
+  "built_at_commit": "4957fa16484c9ec0875be6d5e9869d363028c6a7"
 }
