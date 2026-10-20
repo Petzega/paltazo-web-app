@@ -1,17 +1,17 @@
-# Graph Report - paltazo-web-app  (2026-10-19)
+# Graph Report - paltazo-web-app  (2026-10-20)
 
 ## Corpus Check
-- 201 files · ~99,042 words
+- 205 files · ~105,030 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 8 file(s) not represented in the graph (top: (none) 4, .example 2, .css 1)
 
 ## Summary
-- 1166 nodes · 1135 edges · 174 communities (56 shown, 118 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 24 edges (avg confidence: 0.95)
+- 1230 nodes · 1203 edges · 185 communities (64 shown, 121 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 27 edges (avg confidence: 0.95)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `4957fa16`
+- Built from commit: `6492f0b8`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -29,11 +29,11 @@
 - TypeScript (Strict Mode)
 - package.json
 - compilerOptions
-- login/page.tsx
+- Casos de Uso: Autenticación
 - 3. Server-Side Performance
 - Paltazo — Bitácora de Avance
 - manifest.json
-- store.tsx
+- expenses/page.tsx
 - Paltazo Web App — Guía de Desarrollo
 - next-env.d.ts
 - ref_next_navigation
@@ -68,7 +68,9 @@
 - Tailwind CSS Component Patterns
 - Tailwind CSS Performance Optimization
 - Tailwind CSS Layout Patterns
+- User Story Map — Paltazo
 - Frontend Design
+- Casos de Uso: Gastos
 - Sections
 - Node.js Backend Patterns
 - React Best Practices
@@ -76,6 +78,9 @@
 - async-cheap-condition-before-await.md
 - Prefer Statically Analyzable Paths
 - server-hoist-static-io.md
+- useAppState
+- store.tsx
+- repositories.ts
 - architecture-avoid-boolean-props.md
 - architecture-compound-components.md
 - patterns-children-over-render-props.md
@@ -181,11 +186,17 @@
 - security-rls-basics.md
 - security-rls-performance.md
 - references/_template.md
+- login/page.tsx
+- Sidebar.tsx
+- Errores y soluciones
 - 1. Eliminating Waterfalls
 - 2. Bundle Size Optimization
 - React Best Practices
 - 4. Client-Side Data Fetching
 - 8. Advanced Patterns
+- add-expense/page.tsx
+- ref_fs
+- ref_path
 
 ## God Nodes (most connected - your core abstractions)
 1. `Tailwind CSS Documentation` - 17 edges
@@ -200,16 +211,16 @@
 10. `React Best Practices` - 12 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Protección de rutas` --references--> `signOut()`  [INFERRED]
-  DEVELOPMENT.md → src/lib/supabase/auth.ts
-- `Auditoría de código — Actualización 2026-10-15` --references--> `AddExpenseFab()`  [INFERRED]
-  BITACORA.md → src/components/ui/AddExpenseFab.tsx
-- `Auditoría de código — Actualización 2026-10-16` --references--> `getCategoryColorClass()`  [INFERRED]
-  BITACORA.md → src/lib/categories.ts
 - `CU-002: Registro (Crear cuenta)` --references--> `signUp()`  [INFERRED]
   docs/use-case/auth/auth.md → src/lib/supabase/auth.ts
-- `Auditoría de código — Actualización 2026-10-16` --references--> `signOut()`  [INFERRED]
+- `Bug 5: Middleware no redirige después de logout (2026-10-08)` --references--> `signOut()`  [INFERRED]
   BITACORA.md → src/lib/supabase/auth.ts
+- `Protección de rutas` --references--> `signOut()`  [INFERRED]
+  DEVELOPMENT.md → src/lib/supabase/auth.ts
+- `CU-005: Logout (Cerrar sesión)` --references--> `signOut()`  [INFERRED]
+  docs/use-case/auth/auth.md → src/lib/supabase/auth.ts
+- `Auditoría de código — Actualización 2026-10-15` --references--> `AddExpenseFab()`  [INFERRED]
+  BITACORA.md → src/components/ui/AddExpenseFab.tsx
 
 ## Import Cycles
 - None detected.
@@ -219,7 +230,7 @@
 - **Paltazo AI Agent Team** — docs_design_agentes_paltazo_wireframes_agent, docs_design_agentes_paltazo_frontend_agent, docs_design_agentes_paltazo_backend_agent, docs_necesidad_proyecto_paltazo_product_agent [EXTRACTED 1.00]
 - **Paltazo Database Schema Tables** — docs_stack_tecnologico_paltazo_profiles_table, docs_stack_tecnologico_paltazo_expenses_table, docs_stack_tecnologico_paltazo_budget_alerts_table, docs_stack_tecnologico_paltazo_push_subscriptions_table [EXTRACTED 1.00]
 
-## Communities (174 total, 118 thin omitted)
+## Communities (185 total, 121 thin omitted)
 
 ### Community 0 - "Supabase (MVP Backend)"
 Cohesion: 0.08
@@ -241,10 +252,6 @@ Nodes (5): Paltazo Design Tokens, Wireframes Agent, Mobile-to-Desktop Layout Ada
 Cohesion: 0.67
 Nodes (3): Efficient Context Principle, Graphify Knowledge Graph, Minimalism & Safe Change Principle
 
-### Community 6 - "graphify.js"
-Cohesion: 0.40
-Nodes (3): IMPORTANT: keep the reminder string free of backticks and $(...) constructs., ref_fs, ref_path
-
 ### Community 11 - "package.json"
 Cohesion: 0.04
 Nodes (41): dependencies, next, react, react-dom, @supabase/ssr, @supabase/supabase-js, devDependencies, autoprefixer (+33 more)
@@ -253,9 +260,9 @@ Nodes (41): dependencies, next, react, react-dom, @supabase/ssr, @supabase/supab
 Cohesion: 0.11
 Nodes (18): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, lib, module (+10 more)
 
-### Community 13 - "login/page.tsx"
-Cohesion: 0.08
-Nodes (32): 3.8 Parallel Nested Data Fetching, Parallel Nested Data Fetching, Bug 5: Middleware no redirige después de logout (2026-10-08), Bug 6: Vector (analytics) no arranca en Windows (2026-10-08), Error 1: `login is not a function` en `src/app/login/page.tsx:14`, Error 2: `Database error saving new user` (HTTP 500 en `/auth/v1/signup`), Error 3: `Uncaught SyntaxError: Invalid or unexpected token (at layout.js:728:29)`, Error 4: `relation "pg_log" does not exist` en Supabase (+24 more)
+### Community 13 - "Casos de Uso: Autenticación"
+Cohesion: 0.17
+Nodes (11): 3.8 Parallel Nested Data Fetching, Parallel Nested Data Fetching, Casos de Uso: Autenticación, CU-001: Login (Inicio de sesión), CU-002: Registro (Crear cuenta), CU-003: Recuperar contraseña (Solicitar enlace), CU-004: Nueva contraseña (Reset con token), CU-005: Logout (Cerrar sesión) (+3 more)
 
 ### Community 15 - "3. Server-Side Performance"
 Cohesion: 0.20
@@ -263,15 +270,15 @@ Nodes (9): 3.10 Use after() for Non-Blocking Operations, 3.1 Authenticate Server
 
 ### Community 16 - "Paltazo — Bitácora de Avance"
 Cohesion: 0.06
-Nodes (34): 20261008182458_create_schema.sql, 20261008190000_add_currency_to_expenses.sql, Archivos clave, Auditoría aplicada, Auditoría de código — Actualización 2026-10-15, Auditoría de código — Actualización 2026-10-16, Avances 2026-10-17/18, Base de datos (+26 more)
+Nodes (33): 20261008182458_create_schema.sql, 20261008190000_add_currency_to_expenses.sql, Archivos clave, Auditoría aplicada, Auditoría de código — Actualización 2026-10-15, Avances 2026-10-17/18, Base de datos, Bitácora de Bugs (+25 more)
 
 ### Community 18 - "manifest.json"
 Cohesion: 0.20
 Nodes (9): background_color, description, display, icons, name, orientation, short_name, start_url (+1 more)
 
-### Community 19 - "store.tsx"
-Cohesion: 0.07
-Nodes (35): ref_next_navigation, react, AddExpensePage(), CURRENCY_OPTIONS, formatAmount(), ExpensesPage(), CurrencySummary, DashboardPage() (+27 more)
+### Community 19 - "expenses/page.tsx"
+Cohesion: 0.31
+Nodes (10): ref_next_navigation, ExpensesPage(), CurrencySummary, DashboardPage(), AddExpenseFab(), CATEGORY_COLOR_CLASSES, CategoryInfo, getCategoryColorClass() (+2 more)
 
 ### Community 20 - "Paltazo Web App — Guía de Desarrollo"
 Cohesion: 0.10
@@ -401,9 +408,17 @@ Nodes (9): Best Practices for Performance, Bundle Size Optimization, Content Pat
 Cohesion: 0.12
 Nodes (16): Background Colors, Colors, Container & Max Width, Flexbox Layouts, Font Size & Weight, Grid Layouts, Layout Utilities, Line Height & Letter Spacing (+8 more)
 
+### Community 55 - "User Story Map — Paltazo"
+Cohesion: 0.05
+Nodes (43): 1. Mapa visual (backbone), 2. Actividad A — Acceder a la aplicación, 3. Actividad B — Registrar gastos, 4. Actividad C — Consultar estado del mes, 5. Actividad D — Configurar presupuesto, 6. Historias futuras (Release v1.2), 7. Tabla resumen de trazabilidad, Tarea A1 — Crear cuenta (+35 more)
+
 ### Community 56 - "Frontend Design"
 Cohesion: 0.29
 Nodes (6): Design principles, Frontend Design, Ground your designs in the subject matter, More on writing in design, Process: plan, review against the brief, build, critique, Restraint and self-critique
+
+### Community 57 - "Casos de Uso: Gastos"
+Cohesion: 0.08
+Nodes (22): Casos de Uso: Dashboard, CU-012: Visualizar dashboard mensual, CU-013: Alertas de umbral (80% / 100% / >100%), CU-014: Consultar actividad de los últimos 7 días, Notas técnicas, Casos de Uso: Gastos, CU-008: Crear gasto, CU-009: Listar gastos del mes (+14 more)
 
 ### Community 58 - "Sections"
 Cohesion: 0.33
@@ -425,6 +440,30 @@ Nodes (5): How to Use, References, Rule Categories by Priority, Supabase Postgre
 Cohesion: 0.50
 Nodes (3): File-System Paths, Import Paths, Prefer Statically Analyzable Paths
 
+### Community 65 - "useAppState"
+Cohesion: 0.22
+Nodes (10): react, CURRENCY_OPTIONS, SettingsPage(), OnboardingPage(), Home(), Button(), ButtonProps, Variant (+2 more)
+
+### Community 66 - "store.tsx"
+Cohesion: 0.33
+Nodes (9): Auditoría de código — Actualización 2026-10-16, Notas técnicas, AppContext, AppProvider(), DEFAULT_BUDGET, loadUserData(), getSession(), onAuthStateChange() (+1 more)
+
+### Community 67 - "repositories.ts"
+Cohesion: 0.27
+Nodes (5): AppState, SupabaseBudgetRow, SupabaseExpenseRow, Budget, Expense
+
+### Community 174 - "login/page.tsx"
+Cohesion: 0.50
+Nodes (6): Error 1: `login is not a function` en `src/app/login/page.tsx:14`, LoginPage(), resetPassword(), signIn(), signUp(), client
+
+### Community 175 - "Sidebar.tsx"
+Cohesion: 0.32
+Nodes (4): BottomNav(), tabs, links, Sidebar()
+
+### Community 176 - "Errores y soluciones"
+Cohesion: 0.33
+Nodes (6): Bug 5: Middleware no redirige después de logout (2026-10-08), Bug 6: Vector (analytics) no arranca en Windows (2026-10-08), Error 2: `Database error saving new user` (HTTP 500 en `/auth/v1/signup`), Error 3: `Uncaught SyntaxError: Invalid or unexpected token (at layout.js:728:29)`, Error 4: `relation "pg_log" does not exist` en Supabase, Errores y soluciones
+
 ### Community 177 - "1. Eliminating Waterfalls"
 Cohesion: 0.29
 Nodes (7): 1.1 Check Cheap Conditions Before Async Flags, 1.2 Defer Await Until Needed, 1.3 Dependency-Based Parallelization, 1.4 Prevent Waterfall Chains in API Routes, 1.5 Promise.all() for Independent Operations, 1.6 Strategic Suspense Boundaries, 1. Eliminating Waterfalls
@@ -445,25 +484,29 @@ Nodes (5): 4.1 Deduplicate Global Event Listeners, 4.2 Use Passive Event Listene
 Cohesion: 0.40
 Nodes (5): 8.1 Do Not Put Effect Events in Dependency Arrays, 8.2 Initialize App Once, Not Per Mount, 8.3 Store Event Handlers in Refs, 8.4 useEffectEvent for Stable Callback Refs, 8. Advanced Patterns
 
+### Community 182 - "add-expense/page.tsx"
+Cohesion: 0.50
+Nodes (4): AddExpensePage(), CURRENCY_OPTIONS, formatAmount(), EXPENSE_CATEGORIES
+
 ## Knowledge Gaps
-- **728 isolated node(s):** `$schema`, `plugin`, `nextConfig`, `name`, `version` (+723 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 887 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **118 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **758 isolated node(s):** `$schema`, `nextConfig`, `name`, `version`, `private` (+753 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 917 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **121 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `3. Server-Side Performance` connect `3. Server-Side Performance` to `React Best Practices`, `login/page.tsx`?**
-  _High betweenness centrality (0.032) - this node is a cross-community bridge._
+- **Why does `3. Server-Side Performance` connect `3. Server-Side Performance` to `React Best Practices`, `Casos de Uso: Autenticación`?**
+  _High betweenness centrality (0.038) - this node is a cross-community bridge._
 - **Why does `React Best Practices` connect `React Best Practices` to `Paltazo Application`, `5. Re-render Optimization`, `7. JavaScript Performance`, `3. Server-Side Performance`, `1. Eliminating Waterfalls`, `2. Bundle Size Optimization`, `4. Client-Side Data Fetching`, `8. Advanced Patterns`?**
-  _High betweenness centrality (0.031) - this node is a cross-community bridge._
-- **What connects `$schema`, `plugin`, `nextConfig` to the rest of the system?**
-  _728 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.037) - this node is a cross-community bridge._
+- **Why does `getUser()` connect `Casos de Uso: Autenticación` to `login/page.tsx`?**
+  _High betweenness centrality (0.037) - this node is a cross-community bridge._
+- **What connects `$schema`, `nextConfig`, `name` to the rest of the system?**
+  _758 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Supabase (MVP Backend)` be split into smaller, more focused modules?**
   _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
 - **Should `package.json` be split into smaller, more focused modules?**
   _Cohesion score 0.044444444444444446 - nodes in this community are weakly interconnected._
 - **Should `compilerOptions` be split into smaller, more focused modules?**
   _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
-- **Should `login/page.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.08108108108108109 - nodes in this community are weakly interconnected._

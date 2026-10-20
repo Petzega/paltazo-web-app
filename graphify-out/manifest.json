@@ -1,14 +1,14 @@
 {
   ".opencode/opencode.json": {
-    "mtime": 1791393518.6444721,
-    "seen": 1792447740.9907017,
-    "ast_hash": "19a51febeea85351e9fcc679b3df35f4",
+    "mtime": 1792523221.5957153,
+    "seen": 1792524594.8764374,
+    "ast_hash": "72b4f907d836406332d788614c93aa22",
     "semantic_hash": ""
   },
   ".opencode/plugins/graphify.js": {
-    "mtime": 1791393518.6464949,
-    "seen": 1792447740.990703,
-    "ast_hash": "b33d000860642c6f4907a877e0387a21",
+    "mtime": 1792523221.5962372,
+    "seen": 1792524594.8764398,
+    "ast_hash": "995c149b9ca767039e2142dacc9e7fc6",
     "semantic_hash": ""
   },
   "AGENTS.md": {
@@ -1230,9 +1230,9 @@
     "semantic_hash": ""
   },
   "docs/use-case/README.md": {
-    "mtime": 1792444812.763181,
-    "seen": 1792447740.9909039,
-    "ast_hash": "c8c6f53397c962f0759293ea537bfd96",
+    "mtime": 1792523221.5967574,
+    "seen": 1792524594.904165,
+    "ast_hash": "2a428cd169d4025b488100a777dc5161",
     "semantic_hash": ""
   },
   "docs/use-case/auth/auth.md": {
@@ -1242,9 +1242,33 @@
     "semantic_hash": ""
   },
   "install-extensions.ps1": {
-    "mtime": 1792455773.6589744,
-    "seen": 1792455832.2427008,
-    "ast_hash": "1cfe9cc09f16a8e9e5ef46342b8878ea",
+    "mtime": 1792523230.5144012,
+    "seen": 1792524594.8764412,
+    "ast_hash": "27bb820df6c8e42901a72b6cd5661ea4",
+    "semantic_hash": ""
+  },
+  "docs/use-case/USER_STORY_MAP.md": {
+    "mtime": 1792523221.5967574,
+    "seen": 1792524594.904167,
+    "ast_hash": "11f79b115a18823e38591b7d93d9bc0d",
+    "semantic_hash": ""
+  },
+  "docs/use-case/dashboard/dashboard.md": {
+    "mtime": 1792523221.5972779,
+    "seen": 1792524594.9043157,
+    "ast_hash": "57eb363f1fce5adb0c70fbc20c5feb56",
+    "semantic_hash": ""
+  },
+  "docs/use-case/expenses/expenses.md": {
+    "mtime": 1792523221.598016,
+    "seen": 1792524594.9043171,
+    "ast_hash": "193fbc47f0fd80ab11c4199f85cc9df9",
+    "semantic_hash": ""
+  },
+  "docs/use-case/settings/settings.md": {
+    "mtime": 1792523221.5985537,
+    "seen": 1792524594.904318,
+    "ast_hash": "7a9c8144782423a28b859079d619e776",
     "semantic_hash": ""
   }
 }
