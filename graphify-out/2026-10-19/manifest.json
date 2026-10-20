@@ -1,0 +1,1244 @@
+{
+  ".opencode/opencode.json": {
+    "mtime": 1791393518.6444721,
+    "seen": 1792447740.9907017,
+    "ast_hash": "19a51febeea85351e9fcc679b3df35f4",
+    "semantic_hash": ""
+  },
+  ".opencode/plugins/graphify.js": {
+    "mtime": 1791393518.6464949,
+    "seen": 1792447740.990703,
+    "ast_hash": "b33d000860642c6f4907a877e0387a21",
+    "semantic_hash": ""
+  },
+  "AGENTS.md": {
+    "mtime": 1791402788.5911171,
+    "seen": 1792447740.9908917,
+    "ast_hash": "8f41e39faf9cd9efefb41843410933c7",
+    "semantic_hash": ""
+  },
+  "docs/design/agentes_paltazo.md": {
+    "mtime": 1792178272.7781594,
+    "seen": 1792447740.9908972,
+    "ast_hash": "1bb181d4c00379557dfa66ed759e22f8",
+    "semantic_hash": ""
+  },
+  "docs/design/paltazo_web_design.md": {
+    "mtime": 1791393518.64947,
+    "seen": 1792447740.9908981,
+    "ast_hash": "ed9044619f627eb18ffc801ee48c16d8",
+    "semantic_hash": ""
+  },
+  "docs/design/paltazo_web_desing_fix.md": {
+    "mtime": 1791393518.6524868,
+    "seen": 1792447740.990899,
+    "ast_hash": "38deb5512a5273fbed00cbaa351a164a",
+    "semantic_hash": ""
+  },
+  "docs/necesidad_proyecto_paltazo.md": {
+    "mtime": 1791393518.6524868,
+    "seen": 1792447740.9909008,
+    "ast_hash": "5fc64554771ca31d8a16c52b06dc5b58",
+    "semantic_hash": ""
+  },
+  "docs/stack_tecnologico_paltazo.md": {
+    "mtime": 1792178272.7791584,
+    "seen": 1792447740.9909022,
+    "ast_hash": "5b970d70a209a914d4835414944e63b3",
+    "semantic_hash": ""
+  },
+  "next.config.ts": {
+    "mtime": 1792444812.7889442,
+    "seen": 1792447740.990706,
+    "ast_hash": "e62ca5c5949a858090d70e2c31b313e7",
+    "semantic_hash": ""
+  },
+  "package.json": {
+    "mtime": 1792444812.7889442,
+    "seen": 1792447740.990707,
+    "ast_hash": "dda5ba53249eea61ff29d1e1ba784dba",
+    "semantic_hash": ""
+  },
+  "postcss.config.mjs": {
+    "mtime": 1791395315.0962324,
+    "seen": 1792447740.9907086,
+    "ast_hash": "ef3ba2a81ba19f8ea5ddf625521e96f0",
+    "semantic_hash": ""
+  },
+  "src/app/layout.tsx": {
+    "mtime": 1791487121.2071884,
+    "seen": 1792447740.9907174,
+    "ast_hash": "7cd8ef5d0c5b7e5a67f86a92cc2e3dc3",
+    "semantic_hash": ""
+  },
+  "src/app/page.tsx": {
+    "mtime": 1791405894.7185574,
+    "seen": 1792447740.9907205,
+    "ast_hash": "4576287fc411d741763e322eab75cbb7",
+    "semantic_hash": ""
+  },
+  "tailwind.config.ts": {
+    "mtime": 1791404382.217615,
+    "seen": 1792447740.990734,
+    "ast_hash": "67ae9a317f8689103026074fc93196a8",
+    "semantic_hash": ""
+  },
+  "tsconfig.json": {
+    "mtime": 1791395179.1430833,
+    "seen": 1792447740.990735,
+    "ast_hash": "db4f01e8aa6a92de90491a5c0689c4c7",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/page.tsx": {
+    "mtime": 1792192839.0795493,
+    "seen": 1792447740.990715,
+    "ast_hash": "0367baaaff581d04023494a204f52cb7",
+    "semantic_hash": ""
+  },
+  "src/app/login/page.tsx": {
+    "mtime": 1792444812.791446,
+    "seen": 1792447740.9907184,
+    "ast_hash": "3f6e7f695b5f376ee2483cc6d470a361",
+    "semantic_hash": ""
+  },
+  "src/app/onboarding/page.tsx": {
+    "mtime": 1792178272.814337,
+    "seen": 1792447740.9907193,
+    "ast_hash": "ec844f2410dcdc3d668c425f237c286b",
+    "semantic_hash": ""
+  },
+  "next-env.d.ts": {
+    "mtime": 1791397662.670343,
+    "seen": 1792447740.990705,
+    "ast_hash": "90426577ad8f38459f3e566411c85589",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/add-expense/page.tsx": {
+    "mtime": 1792444812.7889442,
+    "seen": 1792447740.9907122,
+    "ast_hash": "163f30ccd3b112557cccca1dafbcc3cb",
+    "semantic_hash": ""
+  },
+  "src/lib/categories.ts": {
+    "mtime": 1792178272.8153374,
+    "seen": 1792447740.9907274,
+    "ast_hash": "07f62363f70e25bd118e057de447995c",
+    "semantic_hash": ""
+  },
+  "src/types/index.ts": {
+    "mtime": 1792178272.8193407,
+    "seen": 1792447740.9907334,
+    "ast_hash": "a2529d87e2614894d73755c9b335b2d1",
+    "semantic_hash": ""
+  },
+  "DEVELOPMENT.md": {
+    "mtime": 1792444812.7611701,
+    "seen": 1792447740.9908938,
+    "ast_hash": "391d562c54f002b56b677753c4a0968c",
+    "semantic_hash": ""
+  },
+  "src/lib/store.tsx": {
+    "mtime": 1792444812.791446,
+    "seen": 1792447740.9907284,
+    "ast_hash": "94b887a9d98ae4ee1d87d4d4eda29b28",
+    "semantic_hash": ""
+  },
+  "public/manifest.json": {
+    "mtime": 1791399758.6933572,
+    "seen": 1792447740.99071,
+    "ast_hash": "c039897102e6a874e635322ba490a90a",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/layout.tsx": {
+    "mtime": 1792444812.7899406,
+    "seen": 1792447740.990714,
+    "ast_hash": "bb3d25dbec5b961edc9b4337e550c14f",
+    "semantic_hash": ""
+  },
+  "src/components/ui/Button.tsx": {
+    "mtime": 1791404401.5276556,
+    "seen": 1792447740.9907255,
+    "ast_hash": "ecbe98fe4793f4677767bae5dc5db5ae",
+    "semantic_hash": ""
+  },
+  "public/icons/icon-192.png": {
+    "mtime": 1791401842.288,
+    "seen": 1792447740.990914,
+    "ast_hash": "8fb82a5c28121d696fb9523b5664e86e",
+    "semantic_hash": ""
+  },
+  "public/icons/icon-512.png": {
+    "mtime": 1791401842.297,
+    "seen": 1792447740.990915,
+    "ast_hash": "1edd399de3fad5a7adf7051072bf6df9",
+    "semantic_hash": ""
+  },
+  "stitch/agregar_gasto_paltazo/code.html": {
+    "mtime": 1791404033.6361594,
+    "seen": 1792447740.9909077,
+    "ast_hash": "c42a99e82c2648fc144aead3afbf8f4b",
+    "semantic_hash": ""
+  },
+  "stitch/dashboard_paltazo/code.html": {
+    "mtime": 1791404033.6136317,
+    "seen": 1792447740.9909089,
+    "ast_hash": "081a7376631b45bd822584c9cdc8cab7",
+    "semantic_hash": ""
+  },
+  "stitch/login_paltazo/code.html": {
+    "mtime": 1791404033.5895803,
+    "seen": 1792447740.99091,
+    "ast_hash": "676a4cc9fbf40dd5411c5bc738dfc225",
+    "semantic_hash": ""
+  },
+  "stitch/onboarding_paltazo/code.html": {
+    "mtime": 1791404033.6546772,
+    "seen": 1792447740.990911,
+    "ast_hash": "c2b0ae514782e70822a988ff376559bc",
+    "semantic_hash": ""
+  },
+  "stitch/paltazo/DESIGN.md": {
+    "mtime": 1791404033.6772082,
+    "seen": 1792447740.9909117,
+    "ast_hash": "70b8fbc7ff6907e67a5ebd4c3458385f",
+    "semantic_hash": ""
+  },
+  "stitch/agregar_gasto_paltazo/screen.png": {
+    "mtime": 1791404033.64316,
+    "seen": 1792447740.990916,
+    "ast_hash": "21bddf681cbed99d8cdf2f2ff791fce7",
+    "semantic_hash": ""
+  },
+  "stitch/dashboard_paltazo/screen.png": {
+    "mtime": 1791404033.6241503,
+    "seen": 1792447740.990917,
+    "ast_hash": "21bddf681cbed99d8cdf2f2ff791fce7",
+    "semantic_hash": ""
+  },
+  "stitch/login_paltazo/screen.png": {
+    "mtime": 1791404033.603626,
+    "seen": 1792447740.990918,
+    "ast_hash": "21bddf681cbed99d8cdf2f2ff791fce7",
+    "semantic_hash": ""
+  },
+  "stitch/onboarding_paltazo/screen.png": {
+    "mtime": 1791404033.662686,
+    "seen": 1792447740.9909189,
+    "ast_hash": "21bddf681cbed99d8cdf2f2ff791fce7",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/expenses/page.tsx": {
+    "mtime": 1792444812.7899406,
+    "seen": 1792447740.9907131,
+    "ast_hash": "aa6b67a40da51a25d8ade6cdd98a4ee6",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/settings/page.tsx": {
+    "mtime": 1792178272.81333,
+    "seen": 1792447740.9907165,
+    "ast_hash": "686a6ad0820622ff32260e5183366bb2",
+    "semantic_hash": ""
+  },
+  "src/components/providers/ServiceWorkerRegistrar.tsx": {
+    "mtime": 1791405754.364998,
+    "seen": 1792447740.9907215,
+    "ast_hash": "918265de69ff7f49c9a846755f1108b4",
+    "semantic_hash": ""
+  },
+  "src/components/ui/BottomNav.tsx": {
+    "mtime": 1791407990.287772,
+    "seen": 1792447740.9907246,
+    "ast_hash": "b17f2281eb2047e157c51147cdd954a4",
+    "semantic_hash": ""
+  },
+  "src/components/ui/Sidebar.tsx": {
+    "mtime": 1792178272.8153374,
+    "seen": 1792447740.9907265,
+    "ast_hash": "8fd4a38ac5d4efdc2b66e900e3a72433",
+    "semantic_hash": ""
+  },
+  "src/lib/supabase/auth.ts": {
+    "mtime": 1792178272.8173368,
+    "seen": 1792447740.9907296,
+    "ast_hash": "c1ff7fd36a0babb66ce03b397cb47009",
+    "semantic_hash": ""
+  },
+  "src/lib/supabase/client.ts": {
+    "mtime": 1792178272.8183374,
+    "seen": 1792447740.9907303,
+    "ast_hash": "8417c8e835fa394ef490dfc52dbbd68c",
+    "semantic_hash": ""
+  },
+  "src/lib/supabase/repositories.ts": {
+    "mtime": 1792444812.791446,
+    "seen": 1792447740.9907312,
+    "ast_hash": "b83de66d4e30e70ed8459c346554b82e",
+    "semantic_hash": ""
+  },
+  "BITACORA.md": {
+    "mtime": 1792444812.7611701,
+    "seen": 1792447740.990893,
+    "ast_hash": "98dc9fbe9dcf0c7a93059a6bfb8eb60c",
+    "semantic_hash": ""
+  },
+  "src/middleware.ts": {
+    "mtime": 1791478660.504805,
+    "seen": 1792447740.9907322,
+    "ast_hash": "ddf92e55a394978af6496fdb1eb93bc6",
+    "semantic_hash": ""
+  },
+  "supabase/LOCAL_SETUP.md": {
+    "mtime": 1792444812.7929556,
+    "seen": 1792447740.990913,
+    "ast_hash": "28f5fc79fecca0b66f88a2b1ec6fa0d1",
+    "semantic_hash": ""
+  },
+  ".agents/skills/composition-patterns/metadata.json": {
+    "mtime": 1792089539.9024658,
+    "seen": 1792447740.9906936,
+    "ast_hash": "53869c397cd3dd76c4dddc6054c5d5cc",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/metadata.json": {
+    "mtime": 1792089539.91929,
+    "seen": 1792447740.9906995,
+    "ast_hash": "3ab18e9c45a0081e54ffe9f4200aa4aa",
+    "semantic_hash": ""
+  },
+  "skills-lock.json": {
+    "mtime": 1792089540.0159695,
+    "seen": 1792447740.990711,
+    "ast_hash": "1ed2bec77fba2d4194dc98f25a3759fe",
+    "semantic_hash": ""
+  },
+  ".agents/skills/accessibility/SKILL.md": {
+    "mtime": 1792089539.897427,
+    "seen": 1792447740.9907362,
+    "ast_hash": "addbb771501bcb9cbf14af339ae529a3",
+    "semantic_hash": ""
+  },
+  ".agents/skills/accessibility/references/A11Y-PATTERNS.md": {
+    "mtime": 1792089539.8989327,
+    "seen": 1792447740.9907374,
+    "ast_hash": "e7808c52467ae3a5a2a4a8eed2ba4dc9",
+    "semantic_hash": ""
+  },
+  ".agents/skills/accessibility/references/WCAG.md": {
+    "mtime": 1792089539.8989327,
+    "seen": 1792447740.9907382,
+    "ast_hash": "ab29c11d26f29783010dcaeeb744793c",
+    "semantic_hash": ""
+  },
+  ".agents/skills/composition-patterns/AGENTS.md": {
+    "mtime": 1792089539.9004476,
+    "seen": 1792447740.9907398,
+    "ast_hash": "6ca48da2d9f2e3df4bc875543b2c5d52",
+    "semantic_hash": ""
+  },
+  ".agents/skills/composition-patterns/README.md": {
+    "mtime": 1792089539.9014544,
+    "seen": 1792447740.9907405,
+    "ast_hash": "d0e78645434d460eaa1defbdff1d57df",
+    "semantic_hash": ""
+  },
+  ".agents/skills/composition-patterns/SKILL.md": {
+    "mtime": 1792089539.9014544,
+    "seen": 1792447740.9907415,
+    "ast_hash": "641a0ff3ecebfadb5234a13faa54f428",
+    "semantic_hash": ""
+  },
+  ".agents/skills/composition-patterns/rules/_sections.md": {
+    "mtime": 1792089539.903455,
+    "seen": 1792447740.9907424,
+    "ast_hash": "23f1c9af766ed9246d052484d5e0ed73",
+    "semantic_hash": ""
+  },
+  ".agents/skills/composition-patterns/rules/_template.md": {
+    "mtime": 1792089539.904455,
+    "seen": 1792447740.9907436,
+    "ast_hash": "1bfa639fa580642b7372425e0182edbf",
+    "semantic_hash": ""
+  },
+  ".agents/skills/composition-patterns/rules/architecture-avoid-boolean-props.md": {
+    "mtime": 1792089539.904455,
+    "seen": 1792447740.9907446,
+    "ast_hash": "0363b55141376d4059e2625a90fdba8b",
+    "semantic_hash": ""
+  },
+  ".agents/skills/composition-patterns/rules/architecture-compound-components.md": {
+    "mtime": 1792089539.906453,
+    "seen": 1792447740.9907455,
+    "ast_hash": "c21a8bd7f19ce7bb68fd970e307bd9a7",
+    "semantic_hash": ""
+  },
+  ".agents/skills/composition-patterns/rules/patterns-children-over-render-props.md": {
+    "mtime": 1792089539.9074535,
+    "seen": 1792447740.9907472,
+    "ast_hash": "cc134df030320f336a570f5d5bb19a9b",
+    "semantic_hash": ""
+  },
+  ".agents/skills/composition-patterns/rules/patterns-explicit-variants.md": {
+    "mtime": 1792089539.9074535,
+    "seen": 1792447740.990748,
+    "ast_hash": "da06c21b2c17c157b370e5b2c6fbb4a3",
+    "semantic_hash": ""
+  },
+  ".agents/skills/composition-patterns/rules/react19-no-forwardref.md": {
+    "mtime": 1792089539.9089582,
+    "seen": 1792447740.990749,
+    "ast_hash": "8268c880a29f7326048cb637ea3ef534",
+    "semantic_hash": ""
+  },
+  ".agents/skills/composition-patterns/rules/state-context-interface.md": {
+    "mtime": 1792089539.9099643,
+    "seen": 1792447740.9907498,
+    "ast_hash": "bfd14c0e521b2593e70de8ef1b5c20a9",
+    "semantic_hash": ""
+  },
+  ".agents/skills/composition-patterns/rules/state-decouple-implementation.md": {
+    "mtime": 1792089539.9099643,
+    "seen": 1792447740.990751,
+    "ast_hash": "cf84b77776095d867d5ba3bee5c4b76e",
+    "semantic_hash": ""
+  },
+  ".agents/skills/composition-patterns/rules/state-lift-state.md": {
+    "mtime": 1792089539.9099643,
+    "seen": 1792447740.9907517,
+    "ast_hash": "722dac7f3c9fd540380a4a7ec015cd0a",
+    "semantic_hash": ""
+  },
+  ".agents/skills/frontend-design/LICENSE.txt": {
+    "mtime": 1792089539.9109645,
+    "seen": 1792447740.990753,
+    "ast_hash": "29256199be2a609aac596980ffc11996",
+    "semantic_hash": ""
+  },
+  ".agents/skills/frontend-design/SKILL.md": {
+    "mtime": 1792089539.9119644,
+    "seen": 1792447740.990754,
+    "ast_hash": "9dab6b03d40b3a94a97a70bc65cf00f5",
+    "semantic_hash": ""
+  },
+  ".agents/skills/next-cache-components-adoption/SKILL.md": {
+    "mtime": 1792089539.9129624,
+    "seen": 1792447740.9907548,
+    "ast_hash": "525859ca7d7ac763cdbe9d42109e2e3b",
+    "semantic_hash": ""
+  },
+  ".agents/skills/next-cache-components-adoption/references/dev-only-validations.md": {
+    "mtime": 1792089539.9129624,
+    "seen": 1792447740.9907558,
+    "ast_hash": "fde9da7af087f2218c8765bdb922db1c",
+    "semantic_hash": ""
+  },
+  ".agents/skills/next-cache-components-adoption/references/per-page-decisions.md": {
+    "mtime": 1792089539.9139643,
+    "seen": 1792447740.9907568,
+    "ast_hash": "c128c401c0c2258b9e1fd104d1177d17",
+    "semantic_hash": ""
+  },
+  ".agents/skills/nodejs-backend-patterns/SKILL.md": {
+    "mtime": 1792089539.9150462,
+    "seen": 1792447740.990758,
+    "ast_hash": "466a9798fd6cdf6e01860847bbd1b5f7",
+    "semantic_hash": ""
+  },
+  ".agents/skills/nodejs-backend-patterns/references/advanced-patterns.md": {
+    "mtime": 1792089539.9150462,
+    "seen": 1792447740.990759,
+    "ast_hash": "4b4375600189862dd353f2cb046a8bd9",
+    "semantic_hash": ""
+  },
+  ".agents/skills/nodejs-backend-patterns/references/details.md": {
+    "mtime": 1792089539.9162838,
+    "seen": 1792447740.9907596,
+    "ast_hash": "5f3122113945d2f6b7e236c162cd1234",
+    "semantic_hash": ""
+  },
+  ".agents/skills/nodejs-best-practices/SKILL.md": {
+    "mtime": 1792089539.9172895,
+    "seen": 1792447740.9907608,
+    "ast_hash": "e5325d2d7727aa935904ac2decac1498",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/AGENTS.md": {
+    "mtime": 1792089539.9182892,
+    "seen": 1792447740.9907618,
+    "ast_hash": "f2639073a4b0e835bed60d37c6fd41f2",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/README.md": {
+    "mtime": 1792089539.9182892,
+    "seen": 1792447740.9907627,
+    "ast_hash": "ea0b87a642d12567a80424f12365a934",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/SKILL.md": {
+    "mtime": 1792089539.91929,
+    "seen": 1792447740.9907637,
+    "ast_hash": "f196f239081f4f193ccf785e11efb85f",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/_sections.md": {
+    "mtime": 1792089539.9204597,
+    "seen": 1792447740.9907649,
+    "ast_hash": "2e0313063b1c0e4f2aa9cfde7bc73321",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/_template.md": {
+    "mtime": 1792089539.9204597,
+    "seen": 1792447740.9907658,
+    "ast_hash": "83904a5210a1031a1a4dfdde0f49c088",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/advanced-effect-event-deps.md": {
+    "mtime": 1792089539.9214604,
+    "seen": 1792447740.9907665,
+    "ast_hash": "d505719c2c940fe7484021947538027b",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/advanced-event-handler-refs.md": {
+    "mtime": 1792089539.9214604,
+    "seen": 1792447740.9907677,
+    "ast_hash": "e277ef383b038da08b81404c569af6cd",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/advanced-init-once.md": {
+    "mtime": 1792089539.9214604,
+    "seen": 1792447740.990769,
+    "ast_hash": "8e7759bb017e5d0d1dd64f6f60f85d3e",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/advanced-use-latest.md": {
+    "mtime": 1792089539.9226696,
+    "seen": 1792447740.9907696,
+    "ast_hash": "21d3dbb5f2b557f6d14b224af2d47dc5",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/async-api-routes.md": {
+    "mtime": 1792089539.9226696,
+    "seen": 1792447740.9907706,
+    "ast_hash": "94058ab5b50f99781e5aa56183b00008",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/async-cheap-condition-before-await.md": {
+    "mtime": 1792089539.9226696,
+    "seen": 1792447740.9907725,
+    "ast_hash": "1f34f4c469dc79d9b56610967697c087",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/async-defer-await.md": {
+    "mtime": 1792089539.9236672,
+    "seen": 1792447740.9907734,
+    "ast_hash": "7ae1ade2d9621cc4f820f2e9ffd6357c",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/async-dependencies.md": {
+    "mtime": 1792089539.9236672,
+    "seen": 1792447740.9907742,
+    "ast_hash": "3bd47351349c6fe86323bf32dd017d76",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/async-parallel.md": {
+    "mtime": 1792089539.9236672,
+    "seen": 1792447740.9907753,
+    "ast_hash": "5029495e12b0b9b3c03b0ae4f3085659",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/async-suspense-boundaries.md": {
+    "mtime": 1792089539.924667,
+    "seen": 1792447740.9907765,
+    "ast_hash": "00c19181680f2f698664db510da810d4",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/bundle-analyzable-paths.md": {
+    "mtime": 1792089539.924667,
+    "seen": 1792447740.9907773,
+    "ast_hash": "62351ac5830fb55b2f77d3a4835529ac",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/bundle-barrel-imports.md": {
+    "mtime": 1792089539.924667,
+    "seen": 1792447740.9907784,
+    "ast_hash": "66868890a107341db885ff644ac1be04",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/bundle-conditional.md": {
+    "mtime": 1792089539.924667,
+    "seen": 1792447740.9907796,
+    "ast_hash": "d1e3c1adf9989359446cbf624bc0587d",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/bundle-defer-third-party.md": {
+    "mtime": 1792089539.925667,
+    "seen": 1792447740.9907808,
+    "ast_hash": "476bf2e75198f7c6accc17ea81f3a161",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/bundle-dynamic-imports.md": {
+    "mtime": 1792089539.925667,
+    "seen": 1792447740.9907818,
+    "ast_hash": "2ccb840f6d1c0b4ccf9714dc3fb05651",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/bundle-preload.md": {
+    "mtime": 1792089539.925667,
+    "seen": 1792447740.9907827,
+    "ast_hash": "b67a4242446249b2bafdeb6a620a2af7",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/client-event-listeners.md": {
+    "mtime": 1792089539.925667,
+    "seen": 1792447740.990784,
+    "ast_hash": "78c4562d3fa71d314c7b98d272f56045",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/client-localstorage-schema.md": {
+    "mtime": 1792089539.9266658,
+    "seen": 1792447740.9907854,
+    "ast_hash": "65c4468bd1d170a5f36003b23062a1e7",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/client-passive-event-listeners.md": {
+    "mtime": 1792089539.9266658,
+    "seen": 1792447740.9907863,
+    "ast_hash": "fbeb4ae3eb20a5bde142b50686e7a166",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/client-swr-dedup.md": {
+    "mtime": 1792089539.9266658,
+    "seen": 1792447740.990787,
+    "ast_hash": "e912f4b5ee9e04bcf1b12cb86c86e192",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/js-batch-dom-css.md": {
+    "mtime": 1792089539.927672,
+    "seen": 1792447740.990788,
+    "ast_hash": "8aeccee9fc15f16f17a8a035b095a088",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/js-cache-function-results.md": {
+    "mtime": 1792089539.927672,
+    "seen": 1792447740.9907894,
+    "ast_hash": "352d02de8ae05ca73448044591fedd70",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/js-cache-property-access.md": {
+    "mtime": 1792089539.927672,
+    "seen": 1792447740.9907901,
+    "ast_hash": "3fc311109878cb0564faad1c3f8992a8",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/js-cache-storage.md": {
+    "mtime": 1792089539.929178,
+    "seen": 1792447740.9907913,
+    "ast_hash": "ae2d1432a80c552513c42dac684d8663",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/js-combine-iterations.md": {
+    "mtime": 1792089539.929178,
+    "seen": 1792447740.9907925,
+    "ast_hash": "afe61f0854bf49bd52475dbaae3bac85",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/js-early-exit.md": {
+    "mtime": 1792089539.9301836,
+    "seen": 1792447740.990794,
+    "ast_hash": "729d6ae7f359973121b30dcb3c8e5d9b",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/js-flatmap-filter.md": {
+    "mtime": 1792089539.9301836,
+    "seen": 1792447740.990795,
+    "ast_hash": "9aa17a40be8457b4d9dbcaf7791acb23",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/js-hoist-regexp.md": {
+    "mtime": 1792089539.9301836,
+    "seen": 1792447740.990796,
+    "ast_hash": "76ec43c627c68eca559e7a79a6520bbc",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/js-index-maps.md": {
+    "mtime": 1792089539.931183,
+    "seen": 1792447740.990797,
+    "ast_hash": "8462667d199be001ed6df6cc0cb5c83b",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/js-length-check-first.md": {
+    "mtime": 1792089539.931183,
+    "seen": 1792447740.990798,
+    "ast_hash": "ded33d19a9c0d1aa4138838fd6c30402",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/js-min-max-loop.md": {
+    "mtime": 1792089539.932185,
+    "seen": 1792447740.9907992,
+    "ast_hash": "3b812151da0f973d0006fc954eeb1950",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/js-request-idle-callback.md": {
+    "mtime": 1792089539.932185,
+    "seen": 1792447740.9908001,
+    "ast_hash": "eba2c241f730a01cec317c06b53b50c2",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/js-set-map-lookups.md": {
+    "mtime": 1792089539.932185,
+    "seen": 1792447740.990801,
+    "ast_hash": "e26c96c5383f2afef8788fc4de914e97",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/js-tosorted-immutable.md": {
+    "mtime": 1792089539.9371824,
+    "seen": 1792447740.9908023,
+    "ast_hash": "55999ff61e2a85ef01e19c685fd1f0c0",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rendering-activity.md": {
+    "mtime": 1792089539.9381838,
+    "seen": 1792447740.9908032,
+    "ast_hash": "3d75187b877aef28c7b4d6b5f33b2915",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rendering-animate-svg-wrapper.md": {
+    "mtime": 1792089539.9381838,
+    "seen": 1792447740.9908042,
+    "ast_hash": "b471e4d8054772a6c5e6a67cf5589e8c",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rendering-conditional-render.md": {
+    "mtime": 1792089539.9381838,
+    "seen": 1792447740.990805,
+    "ast_hash": "c61896d12e979f353634cc6e5f1b27f0",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rendering-content-visibility.md": {
+    "mtime": 1792089539.9381838,
+    "seen": 1792447740.990806,
+    "ast_hash": "20a486c49754b5fb0bf806d303118aa2",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rendering-hoist-jsx.md": {
+    "mtime": 1792089539.9381838,
+    "seen": 1792447740.990807,
+    "ast_hash": "776e60b758a1e9fc755f112ae2dd6253",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rendering-hydration-no-flicker.md": {
+    "mtime": 1792089539.939184,
+    "seen": 1792447740.990808,
+    "ast_hash": "dc8c31d3ea2156299b3da17364fc51cb",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rendering-hydration-suppress-warning.md": {
+    "mtime": 1792089539.939184,
+    "seen": 1792447740.9908092,
+    "ast_hash": "ad795d33558ef725bb5204e122e9ffbd",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rendering-resource-hints.md": {
+    "mtime": 1792089539.939184,
+    "seen": 1792447740.9908102,
+    "ast_hash": "207930cc268f9a74c3cdd79f89330d1c",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rendering-script-defer-async.md": {
+    "mtime": 1792089539.939184,
+    "seen": 1792447740.9908109,
+    "ast_hash": "bb06001577eb52b221ba79abefbfaa6d",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rendering-svg-precision.md": {
+    "mtime": 1792089539.940214,
+    "seen": 1792447740.9908118,
+    "ast_hash": "bb74883dab6f28f8f5652ca779867be0",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rendering-usetransition-loading.md": {
+    "mtime": 1792089539.940214,
+    "seen": 1792447740.9908133,
+    "ast_hash": "5d8cd195730cf58891d3878bafe64bb0",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rerender-defer-reads.md": {
+    "mtime": 1792089539.940214,
+    "seen": 1792447740.9908142,
+    "ast_hash": "75aa954f318eedc3a9ca14fed5aebcac",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rerender-dependencies.md": {
+    "mtime": 1792089539.9412124,
+    "seen": 1792447740.9908152,
+    "ast_hash": "52f7b732ffe56cd965fe0843a3bb0734",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rerender-derived-state-no-effect.md": {
+    "mtime": 1792089539.9412124,
+    "seen": 1792447740.9908164,
+    "ast_hash": "31ea3f116cd42a25443867bc093d3694",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rerender-derived-state.md": {
+    "mtime": 1792089539.9412124,
+    "seen": 1792447740.9908175,
+    "ast_hash": "37b637d1bc1c176c0e25900d61783766",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rerender-functional-setstate.md": {
+    "mtime": 1792089539.9412124,
+    "seen": 1792447740.9908185,
+    "ast_hash": "ad5f7b2581764321ef7c856530130152",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rerender-lazy-state-init.md": {
+    "mtime": 1792089539.9412124,
+    "seen": 1792447740.9908197,
+    "ast_hash": "8232f3ad1c39eb66fbbd7586bba68477",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rerender-memo-with-default-value.md": {
+    "mtime": 1792089539.9412124,
+    "seen": 1792447740.9908204,
+    "ast_hash": "4a9093e4588f6bddd7bde77956ba12f9",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rerender-memo.md": {
+    "mtime": 1792089539.942212,
+    "seen": 1792447740.9908214,
+    "ast_hash": "ffc8ff5758af92671ad9073316eeec96",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rerender-move-effect-to-event.md": {
+    "mtime": 1792089539.942212,
+    "seen": 1792447740.9908223,
+    "ast_hash": "0f0a135c2841f75d12197e8d7a5b1dce",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rerender-no-inline-components.md": {
+    "mtime": 1792089539.942212,
+    "seen": 1792447740.9908233,
+    "ast_hash": "e3d4873ce0a8685edb279f3ea195437d",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rerender-simple-expression-in-memo.md": {
+    "mtime": 1792089539.9432125,
+    "seen": 1792447740.9908242,
+    "ast_hash": "93133bbfc9e82851d12dd10314b17239",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rerender-split-combined-hooks.md": {
+    "mtime": 1792089539.9432125,
+    "seen": 1792447740.9908252,
+    "ast_hash": "dd4d7c3c88422702722a10bcb150f645",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rerender-transitions.md": {
+    "mtime": 1792089539.9432125,
+    "seen": 1792447740.9908261,
+    "ast_hash": "a6900c7ea8278db5ebdc0dfea981da68",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rerender-use-deferred-value.md": {
+    "mtime": 1792089539.9432125,
+    "seen": 1792447740.9908273,
+    "ast_hash": "3e3740199ed0050be4c382e2dc38df43",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/rerender-use-ref-transient-values.md": {
+    "mtime": 1792089539.944214,
+    "seen": 1792447740.9908283,
+    "ast_hash": "7518ae1a018dd77897cba1897d321f5f",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/server-after-nonblocking.md": {
+    "mtime": 1792089539.944214,
+    "seen": 1792447740.990829,
+    "ast_hash": "ef9df9991c5ac8ef7d4685219fc4f2fe",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/server-auth-actions.md": {
+    "mtime": 1792089539.944214,
+    "seen": 1792447740.9908302,
+    "ast_hash": "79f807c5ceed427137d46e125b47c188",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/server-cache-lru.md": {
+    "mtime": 1792089539.9452124,
+    "seen": 1792447740.9908314,
+    "ast_hash": "b4bff68df5ef6067861ffd725c5de9db",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/server-cache-react.md": {
+    "mtime": 1792089539.9452124,
+    "seen": 1792447740.9908323,
+    "ast_hash": "07ef8edb8485881cb4d5dc679998a69b",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/server-dedup-props.md": {
+    "mtime": 1792089539.9452124,
+    "seen": 1792447740.9908335,
+    "ast_hash": "01b8f05177ca9fec8af89db728dad353",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/server-hoist-static-io.md": {
+    "mtime": 1792089539.9462116,
+    "seen": 1792447740.9908342,
+    "ast_hash": "1592802f3d317a216b5782ff6de2a331",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/server-no-shared-module-state.md": {
+    "mtime": 1792089539.9462116,
+    "seen": 1792447740.9908352,
+    "ast_hash": "5f330a1601f30a516ab2b865ba08b45e",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/server-parallel-fetching.md": {
+    "mtime": 1792089539.9462116,
+    "seen": 1792447740.9908364,
+    "ast_hash": "30af1819ffffec5afcababf49ed8e9f1",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/server-parallel-nested-fetching.md": {
+    "mtime": 1792089539.9462116,
+    "seen": 1792447740.9908378,
+    "ast_hash": "406444eacc5c3e039ef8dde372924a0e",
+    "semantic_hash": ""
+  },
+  ".agents/skills/react-best-practices/rules/server-serialization.md": {
+    "mtime": 1792089539.9472117,
+    "seen": 1792447740.990839,
+    "ast_hash": "65ef936a259fe0bfcdae6e70b643cf8b",
+    "semantic_hash": ""
+  },
+  ".agents/skills/seo/SKILL.md": {
+    "mtime": 1792089539.9472117,
+    "seen": 1792447740.99084,
+    "ast_hash": "5e50c5bce4a5a8dc6487f59f09a5a7fe",
+    "semantic_hash": ""
+  },
+  ".agents/skills/seo/references/STRUCTURED-DATA.md": {
+    "mtime": 1792089539.9472117,
+    "seen": 1792447740.990841,
+    "ast_hash": "722b28fd4149fa991afcef056268fc4b",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/CHANGELOG.md": {
+    "mtime": 1792089539.9472117,
+    "seen": 1792447740.990842,
+    "ast_hash": "fdd0ba418e6744556f0029ffb76711b1",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/SKILL.md": {
+    "mtime": 1792089539.948212,
+    "seen": 1792447740.9908428,
+    "ast_hash": "845c64575b6d28856ea6a9735a372225",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/_contributing.md": {
+    "mtime": 1792089539.948212,
+    "seen": 1792447740.990844,
+    "ast_hash": "32c800fa6621705288dc651da22c9366",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/_sections.md": {
+    "mtime": 1792089539.948212,
+    "seen": 1792447740.990845,
+    "ast_hash": "8547fba7fd9fae3b6be916c6f55b0f62",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/_template.md": {
+    "mtime": 1792089539.948212,
+    "seen": 1792447740.990846,
+    "ast_hash": "74ec7e2bdd6c8ddbb354fcceec038bc2",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/advanced-full-text-search.md": {
+    "mtime": 1792089539.9492128,
+    "seen": 1792447740.9908476,
+    "ast_hash": "327f8367de51b0982b963f2928184c35",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/advanced-jsonb-indexing.md": {
+    "mtime": 1792089539.9492128,
+    "seen": 1792447740.9908485,
+    "ast_hash": "413ba907ff4408d6fd3545f839101ebf",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/conn-idle-timeout.md": {
+    "mtime": 1792089539.9497201,
+    "seen": 1792447740.9908495,
+    "ast_hash": "8bbe8b609d5241351672cefc19036db6",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/conn-limits.md": {
+    "mtime": 1792089539.9497201,
+    "seen": 1792447740.9908504,
+    "ast_hash": "661b3efcf0e35136352b3923ff265d5c",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/conn-pooling.md": {
+    "mtime": 1792089539.9507296,
+    "seen": 1792447740.9908516,
+    "ast_hash": "c90dab7d0ab47443b41f17d5bc9f04b3",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/conn-prepared-statements.md": {
+    "mtime": 1792089539.9507296,
+    "seen": 1792447740.9908526,
+    "ast_hash": "b53eb9dea11d6da338a8b6f9e67a3622",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/data-batch-inserts.md": {
+    "mtime": 1792089539.9507296,
+    "seen": 1792447740.9908535,
+    "ast_hash": "6801a3a2d414dfd6a4c79970a37e795d",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/data-n-plus-one.md": {
+    "mtime": 1792089539.9507296,
+    "seen": 1792447740.9908547,
+    "ast_hash": "c3ed0702a116d654602120bd5cd7713e",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/data-pagination.md": {
+    "mtime": 1792089539.9517274,
+    "seen": 1792447740.9908557,
+    "ast_hash": "59be210a420d34780949ce16d5b4a8d5",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/data-upsert.md": {
+    "mtime": 1792089539.9517274,
+    "seen": 1792447740.990857,
+    "ast_hash": "3ae132bce8b5368e1e4a426d55ca4567",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/lock-advisory.md": {
+    "mtime": 1792089539.9517274,
+    "seen": 1792447740.990858,
+    "ast_hash": "ff943eb307d8b6e12cc6ab2bcb6e2d18",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/lock-deadlock-prevention.md": {
+    "mtime": 1792089539.9517274,
+    "seen": 1792447740.990859,
+    "ast_hash": "685b04bcae3a0720e84f1507d243e959",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/lock-short-transactions.md": {
+    "mtime": 1792089539.9527273,
+    "seen": 1792447740.99086,
+    "ast_hash": "3c947d59e0359f3b236bf2ad1da52c61",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/lock-skip-locked.md": {
+    "mtime": 1792089539.9527273,
+    "seen": 1792447740.9908614,
+    "ast_hash": "098d38542f44b656aa55923f06db74c1",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/monitor-explain-analyze.md": {
+    "mtime": 1792089539.9537294,
+    "seen": 1792447740.9908621,
+    "ast_hash": "1fd19c373a0ff272129edd215a96e3a1",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/monitor-pg-stat-statements.md": {
+    "mtime": 1792089539.9537294,
+    "seen": 1792447740.990863,
+    "ast_hash": "2f0cab7f72ad9dfe2cba469aaaacc733",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/monitor-vacuum-analyze.md": {
+    "mtime": 1792089539.9537294,
+    "seen": 1792447740.990864,
+    "ast_hash": "25e738451079707ac54d21364b5538e1",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/query-composite-indexes.md": {
+    "mtime": 1792089539.9537294,
+    "seen": 1792447740.9908652,
+    "ast_hash": "5017f09940ed04b5b3ad836e426d9084",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/query-covering-indexes.md": {
+    "mtime": 1792089539.9547317,
+    "seen": 1792447740.9908662,
+    "ast_hash": "fd05c38771229d97f2d4065d0af0df70",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/query-index-types.md": {
+    "mtime": 1792089539.9547317,
+    "seen": 1792447740.9908671,
+    "ast_hash": "e2395c6ef69ea2f147c9ab1d18c7f879",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/query-missing-indexes.md": {
+    "mtime": 1792089539.9547317,
+    "seen": 1792447740.9908683,
+    "ast_hash": "786767ec677862bad060fc1b4ae0a94f",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/query-partial-indexes.md": {
+    "mtime": 1792089539.9547317,
+    "seen": 1792447740.9908693,
+    "ast_hash": "249d8fccca68c332e946b499531f21d8",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/schema-constraints.md": {
+    "mtime": 1792089539.9557254,
+    "seen": 1792447740.9908702,
+    "ast_hash": "476ca283cfda6c5517d94c25c41de775",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/schema-data-types.md": {
+    "mtime": 1792089539.9557254,
+    "seen": 1792447740.9908712,
+    "ast_hash": "cd65e34969ebce0bce84f622f5072477",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/schema-foreign-key-indexes.md": {
+    "mtime": 1792089539.9557254,
+    "seen": 1792447740.9908724,
+    "ast_hash": "8b99b21a07cadd2d85c6c16f416b5464",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/schema-lowercase-identifiers.md": {
+    "mtime": 1792089539.9567263,
+    "seen": 1792447740.9908733,
+    "ast_hash": "632ea53a0da6fe7651e354f3744d998e",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/schema-partitioning.md": {
+    "mtime": 1792089539.9567263,
+    "seen": 1792447740.9908745,
+    "ast_hash": "0f2fe9016bf9aa79dd30d7d6a4a03358",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/schema-primary-keys.md": {
+    "mtime": 1792089539.9567263,
+    "seen": 1792447740.9908757,
+    "ast_hash": "a732b1a95b6c231d47af14b715c6b9b0",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/security-privileges.md": {
+    "mtime": 1792089539.9567263,
+    "seen": 1792447740.9908767,
+    "ast_hash": "e6fbc325f8f3af1cab3e1cb99d9f146a",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/security-rls-basics.md": {
+    "mtime": 1792089539.9567263,
+    "seen": 1792447740.9908776,
+    "ast_hash": "82ee8b214f39f78c9e88061b6f890508",
+    "semantic_hash": ""
+  },
+  ".agents/skills/supabase-postgres-best-practices/references/security-rls-performance.md": {
+    "mtime": 1792089539.957726,
+    "seen": 1792447740.9908786,
+    "ast_hash": "ad2ccf01dfd325527b18256c3e25b842",
+    "semantic_hash": ""
+  },
+  ".agents/skills/tailwind-css-patterns/SKILL.md": {
+    "mtime": 1792089539.957726,
+    "seen": 1792447740.9908795,
+    "ast_hash": "cbdd17164ed39558d0be93ba56f4bda1",
+    "semantic_hash": ""
+  },
+  ".agents/skills/tailwind-css-patterns/references/accessibility.md": {
+    "mtime": 1792089539.957726,
+    "seen": 1792447740.9908805,
+    "ast_hash": "3451c1ee0b5d3931db2d5c41895bc394",
+    "semantic_hash": ""
+  },
+  ".agents/skills/tailwind-css-patterns/references/animations.md": {
+    "mtime": 1792089539.957726,
+    "seen": 1792447740.9908812,
+    "ast_hash": "27b33641a28c8a4a1fbbb130c30cfe1f",
+    "semantic_hash": ""
+  },
+  ".agents/skills/tailwind-css-patterns/references/component-patterns.md": {
+    "mtime": 1792089539.957726,
+    "seen": 1792447740.9908826,
+    "ast_hash": "6fe95bdb4c1c4583dce3e1ef6c5b9613",
+    "semantic_hash": ""
+  },
+  ".agents/skills/tailwind-css-patterns/references/configuration.md": {
+    "mtime": 1792089539.95923,
+    "seen": 1792447740.990884,
+    "ast_hash": "d30192d2491248a0135c18ef542428ff",
+    "semantic_hash": ""
+  },
+  ".agents/skills/tailwind-css-patterns/references/layout-patterns.md": {
+    "mtime": 1792089539.95923,
+    "seen": 1792447740.990885,
+    "ast_hash": "50570fe9fe559d2e6565a1a123ba5a8b",
+    "semantic_hash": ""
+  },
+  ".agents/skills/tailwind-css-patterns/references/performance.md": {
+    "mtime": 1792089539.95923,
+    "seen": 1792447740.9908862,
+    "ast_hash": "b4defd20babc102c6207a8ada315f35c",
+    "semantic_hash": ""
+  },
+  ".agents/skills/tailwind-css-patterns/references/reference.md": {
+    "mtime": 1792089539.9602358,
+    "seen": 1792447740.9908874,
+    "ast_hash": "2ab04569e22f10b0a175f73137349460",
+    "semantic_hash": ""
+  },
+  ".agents/skills/tailwind-css-patterns/references/responsive-design.md": {
+    "mtime": 1792089539.9608874,
+    "seen": 1792447740.9908886,
+    "ast_hash": "20806e183dd79fe6948dc5c81e4cd5ce",
+    "semantic_hash": ""
+  },
+  ".agents/skills/typescript-advanced-types/SKILL.md": {
+    "mtime": 1792089539.9608874,
+    "seen": 1792447740.9908895,
+    "ast_hash": "6c103e07cff11ccafbc0ab160019b96c",
+    "semantic_hash": ""
+  },
+  ".agents/skills/typescript-advanced-types/references/details.md": {
+    "mtime": 1792089539.9608874,
+    "seen": 1792447740.990891,
+    "ast_hash": "3c27ac8c2df7653d5131f1be7cdb5adf",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1792444812.7621813,
+    "seen": 1792447740.990895,
+    "ast_hash": "1869d8d9162de6db40987c4c7edce1fc",
+    "semantic_hash": ""
+  },
+  "orch/product-brief-paltazo.md": {
+    "mtime": 1791590457.077971,
+    "seen": 1792447740.9909065,
+    "ast_hash": "c242174ff13131d7b59d1dc3f9ad8ad1",
+    "semantic_hash": ""
+  },
+  "src/components/ui/AddExpenseFab.tsx": {
+    "mtime": 1792182871.0027597,
+    "seen": 1792447740.9907234,
+    "ast_hash": "a8bdfcdc920f855f99a356e96b0a6f25",
+    "semantic_hash": ""
+  },
+  "docker-compose.yml": {
+    "mtime": 1792444812.7621813,
+    "seen": 1792447740.9908962,
+    "ast_hash": "97478797457f2f6d76c76cf1bfe7b1ad",
+    "semantic_hash": ""
+  },
+  "docs/use-case/README.md": {
+    "mtime": 1792444812.763181,
+    "seen": 1792447740.9909039,
+    "ast_hash": "c8c6f53397c962f0759293ea537bfd96",
+    "semantic_hash": ""
+  },
+  "docs/use-case/auth/auth.md": {
+    "mtime": 1792444812.7657762,
+    "seen": 1792447740.990905,
+    "ast_hash": "5dc8fc3ef42d3125574b6b4e06c7b0e0",
+    "semantic_hash": ""
+  }
+}
