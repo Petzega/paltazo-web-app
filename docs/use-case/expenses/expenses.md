@@ -38,6 +38,8 @@
 15. Dashboard recalcula gastos del mes automáticamente
 
 **Flujos alternativos:**
+- **3a. Agregar categoría:** al final de todas las opciones de categoría debe haber un icono con el signo "+" del tamaño del resto de categorías con el nombre "Agregar". 
+	- Cuando se le de click a este botón se redireccionará a la vista de ajustes `/dashboard/settings`
 - **9a. Monto = 0 o vacío:** botón "Guardar" permanece `disabled` (`numericValue <= 0`)
 - **11a. Error de red al persistir:** store mantiene estado optimista; toast de error; retry al reconectar (offline-first)
 - **Usuario quiere descartar:** toca "←" o "Cancelar"

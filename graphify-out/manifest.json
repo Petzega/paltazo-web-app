@@ -1236,9 +1236,9 @@
     "semantic_hash": ""
   },
   "docs/use-case/auth/auth.md": {
-    "mtime": 1792444812.7657762,
-    "seen": 1792447740.990905,
-    "ast_hash": "5dc8fc3ef42d3125574b6b4e06c7b0e0",
+    "mtime": 1792529978.6059968,
+    "seen": 1792532968.3696043,
+    "ast_hash": "40f287e6bdbd6c8fd2d209939c355585",
     "semantic_hash": ""
   },
   "install-extensions.ps1": {
@@ -1254,9 +1254,9 @@
     "semantic_hash": ""
   },
   "docs/use-case/dashboard/dashboard.md": {
-    "mtime": 1792523221.5972779,
-    "seen": 1792524594.9043157,
-    "ast_hash": "57eb363f1fce5adb0c70fbc20c5feb56",
+    "mtime": 1792529982.976139,
+    "seen": 1792532968.369609,
+    "ast_hash": "fa7fdb096baa2436ba792db8e4a4ac01",
     "semantic_hash": ""
   },
   "docs/use-case/expenses/expenses.md": {

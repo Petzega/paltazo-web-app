@@ -138,6 +138,24 @@
 
 ---
 
+## CU-018: Opción de agregar categorías
+
+**Actor:** Usuario autenticado
+
+**Precondiciones:**
+- Usuario logueado
+- Usuario en `/dashboard/settings` o Usuario redireccionado desde `add-expenses` al intentar agregar una nueva categoría
+
+**Flujo principal:**
+1. Usuario hace clic en botón "Agregar" (añadir sección para agregar nuevas categorías)
+2. 
+3. Sistema llama `store.logout()` → `signOut({ scope: 'global' })`
+4. Supabase invalida todas las sesiones del usuario
+5. Store setea `userId = null`, `expenses = []`
+6. Sistema ejecuta `window.location.href = '/onboarding'`
+7. Navegador recarga y redirige a pantalla de onboarding
+
+---
 ## Notas técnicas
 
 **Monedas soportadas (hardcoded):**
