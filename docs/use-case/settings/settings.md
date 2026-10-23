@@ -144,16 +144,59 @@
 
 **Precondiciones:**
 - Usuario logueado
-- Usuario en `/dashboard/settings` o Usuario redireccionado desde `add-expenses` al intentar agregar una nueva categoría
+- Usuario en `/dashboard/settings`o Usuario redireccionado desde `add-expenses` al intentar agregar una nueva categoría
 
 **Flujo principal:**
-1. Usuario hace clic en botón "Agregar" (añadir sección para agregar nuevas categorías)
-2. 
-3. Sistema llama `store.logout()` → `signOut({ scope: 'global' })`
-4. Supabase invalida todas las sesiones del usuario
-5. Store setea `userId = null`, `expenses = []`
-6. Sistema ejecuta `window.location.href = '/onboarding'`
-7. Navegador recarga y redirige a pantalla de onboarding
+1. El usuario se dirige a la sección de agregar categorías
+2. Verifica que su categoría no exista en el listado de las pildoras de categorías guardadas hasta el momento
+3. Ingresa el nombre de la categoría
+4. Selecciona una de los íconos predefinidos
+5. Selecciona el color del ícono para su categoría
+6. Da click al botón guardar para terminar la configuración de la categoría
+7. Al guardar se muestra el toast de exito con el mensaje: "Guardado exitoso."
+8. Se debe verificar que se haya guardado la pildora con la nueva categoría
+
+**Flujos alternativos:**
+- **2a. Categorías predeterminadas:**  se deben tener categorías agregadas: Comida, Transporte, Servicios, Ocio, Salud con la opcion de editar la categoría
+- **6a. Limpiar los datos:** al dar click al botón limpiar se borraran todos los datos ingresados, los iconos seleccionados y el color escogido
+- **7a. Cancelar el registro:** al dar click al botón cancelar se cerrara el modal de confirmación y se regresará a la seccion de agregar categoría con los datos ingresados previamente
+
+**Postcondiciones:**
+- Se debe guardar en la bd de supabase para mantener siempre las categorías en algun sitio
+
+**UI/UX:**
+- Se debe tener una seccion para agregar categorías
+- Se debe tener unas pildoras con las categorías y sus respectivos íconos
+- Se debe tener un input para agregar el nombre de la categoría
+- Al costado del input se debe tener una especie de combo box con las opciones de íconos predefinidos por la app para que el usuario pueda seleccionar
+- Se debe tener una pequeña sección de opciones de colores para que el usuario pueda personalizar la categoría que el decida
+- Se debe tener un botón para guardar las categorías
+- Al costado del botón debe haber un botón para limpiar los datos ingresados
+- Se debe tener un modal de confirmación al momento de guardar con los botones de aceptar o cancelar
+- Se debe tener un toast de exito al momento de guardar la categoría
+
+---
+## CU-019: Editar una categoría
+
+**Actor:** Usuario autenticado
+
+**Precondiciones:**
+- Usuario logueado
+- Usuario en `/dashboard/settings`o Usuario redireccionado desde `add-expenses` al intentar agregar una nueva categoría
+
+**Flujo principal:**
+1. El usuario se dirige a la sección de agregar categorías
+2. Verifica las categorías existentes
+3. Selecciona una categoría
+4. Se completan los datos en el formulario de la sección de agregar categoría
+5. El usuario podrá editar los datos que el crea conveniente
+6. Da click al botón guardar para terminar la configuración de la categoría
+7. Al guardar se muestra el toast de exito con el mensaje: "Guardado exitoso"
+
+**Flujos alternativos:**
+- **2a. Categorías predeterminadas:**  se deben tener categorías agregadas: Comida, Transporte, Servicios, Ocio, Salud con la opcion de editar la categoría
+- **6a. Limpiar los datos:** al dar click al botón limpiar se borraran todos los datos ingresados, los iconos seleccionados y el color escogido
+- **7a. Cancelar el registro:** al dar click al botón cancelar se cerrara el modal de confirmación y se regresará a la seccion de agregar categoría con los datos ingresados previamente
 
 ---
 ## Notas técnicas
