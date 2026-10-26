@@ -153,13 +153,14 @@
 4. Selecciona una de los íconos predefinidos
 5. Selecciona el color del ícono para su categoría
 6. Da click al botón guardar para terminar la configuración de la categoría
-7. Al guardar se muestra el toast de exito con el mensaje: "Guardado exitoso."
-8. Se debe verificar que se haya guardado la pildora con la nueva categoría
+7. Da click al botón aceptar del modal de confirmación
+8. Al guardar se muestra el toast de exito con el mensaje: "Guardado exitoso."
+9. Se debe verificar que se haya guardado la pildora con la nueva categoría
 
 **Flujos alternativos:**
-- **2a. Categorías predeterminadas:**  se deben tener categorías agregadas: Comida, Transporte, Servicios, Ocio, Salud con la opcion de editar la categoría
-- **6a. Limpiar los datos:** al dar click al botón limpiar se borraran todos los datos ingresados, los iconos seleccionados y el color escogido
-- **7a. Cancelar el registro:** al dar click al botón cancelar se cerrara el modal de confirmación y se regresará a la seccion de agregar categoría con los datos ingresados previamente
+- **2a. Categorías predeterminadas:**  se deben tener categorías agregadas: Comida, Transporte, Servicios, Ocio, Salud y cada categoría debe poderse editar
+- **6a. Cancelar los datos:** al dar click al botón cancelar se borraran todos los datos ingresados, los iconos seleccionados y el color escogido
+- **7a. Cancelar el registro:** al dar click al botón cancelar del modal de confirmación se cerrara el modal de confirmación y se regresará a la seccion de agregar categoría con los datos ingresados previamente
 
 **Postcondiciones:**
 - Se debe guardar en la bd de supabase para mantener siempre las categorías en algun sitio
@@ -171,7 +172,7 @@
 - Al costado del input se debe tener una especie de combo box con las opciones de íconos predefinidos por la app para que el usuario pueda seleccionar
 - Se debe tener una pequeña sección de opciones de colores para que el usuario pueda personalizar la categoría que el decida
 - Se debe tener un botón para guardar las categorías
-- Al costado del botón debe haber un botón para limpiar los datos ingresados
+- Al costado del botón guardar debe haber un botón para limpiar los datos ingresados
 - Se debe tener un modal de confirmación al momento de guardar con los botones de aceptar o cancelar
 - Se debe tener un toast de exito al momento de guardar la categoría
 
@@ -190,13 +191,44 @@
 3. Selecciona una categoría
 4. Se completan los datos en el formulario de la sección de agregar categoría
 5. El usuario podrá editar los datos que el crea conveniente
-6. Da click al botón guardar para terminar la configuración de la categoría
-7. Al guardar se muestra el toast de exito con el mensaje: "Guardado exitoso"
+6. Da click al botón guardar para terminar la configuración
+7. Da click al botón aceptar del modal de confirmación
+8. Al guardar se muestra el toast de exito con el mensaje: "Guardado exitoso."
+
+**Postcondiciones:**
+- Se debe guardar los datos editados en la bd de supabase para mantener siempre las categorías en algun sitio
 
 **Flujos alternativos:**
 - **2a. Categorías predeterminadas:**  se deben tener categorías agregadas: Comida, Transporte, Servicios, Ocio, Salud con la opcion de editar la categoría
-- **6a. Limpiar los datos:** al dar click al botón limpiar se borraran todos los datos ingresados, los iconos seleccionados y el color escogido
-- **7a. Cancelar el registro:** al dar click al botón cancelar se cerrara el modal de confirmación y se regresará a la seccion de agregar categoría con los datos ingresados previamente
+- **6a. Cancelar los datos:** al dar click al botón cancelar se borraran todos los datos ingresados, los iconos seleccionados y el color escogido
+- **7a. Cancelar el registro:** al dar click al botón cancelar del modal de confirmación se cerrara el modal de confirmación y se regresará a la seccion de agregar categoría con los datos ingresados previamente
+
+---
+## CU-020: Eliminar una categoría
+
+**Actor:** Usuario autenticado
+
+**Precondiciones:**
+- Usuario logueado
+- Usuario en `/dashboard/settings`o Usuario redireccionado desde `add-expenses` al intentar agregar una nueva categoría
+
+**Flujo principal:**
+1. El usuario se dirige a la sección de agregar categorías
+2. Verifica las categorías existentes
+3. Mantiene seleccionado una pildora de categoría
+4. Da click en el botón aceptar del modal de confirmación
+5. Verifica que la pildora ya no se muestra
+
+**Flujos alternativos:**
+- **4a. Cancelar los datos:** al dar click al botón cancelar se borraran todos los datos ingresados, los iconos seleccionados, el color escogido y se deselecciona la pildora en cuestión
+
+**Postcondiciones:**
+- Se debe eliminar la categoría de la base de datos de supabase
+
+**UI/UX:**
+- Se debe tener una seccion para agregar categorías
+- Se debe tener unas pildoras con las categorías y sus respectivos íconos
+- Se debe tener un input para agregar el nombre de la categoría
 
 ---
 ## Notas técnicas
