@@ -101,40 +101,18 @@
 
 ## CU-017: Cerrar sesión desde ajustes
 
-**Actor:** Usuario autenticado
+**Referencia a:** [`CU-005 — Cerrar sesión`](../auth/auth.md#cu-005-cerrar-sesión)
 
-**Precondiciones:**
-- Usuario logueado
-- Usuario en `/dashboard/settings`
+**Actor principal:** Usuario autenticado.
 
-**Flujo principal:**
-1. Usuario hace clic en botón "Cerrar sesión" (parte inferior de la página)
-2. Sistema llama `store.logout()` → `signOut({ scope: 'global' })`
-3. Supabase invalida todas las sesiones del usuario
-4. Store setea `userId = null`, `expenses = []`
-5. Sistema ejecuta `window.location.href = '/onboarding'`
-6. Navegador recarga y redirige a pantalla de onboarding
+**Punto de entrada específico:** Botón "Cerrar sesión" en la parte inferior de la página de Ajustes (`/dashboard/settings`).
 
-**Flujos alternativos:**
-- **2a. Error en signOut:** toast de error; usuario permanece logueado
-- **5a. Usuario intenta volver atrás:** middleware detecta sesión inválida y redirige a `/login`
+**Comportamiento:** Idéntico a CU-005. Ejecuta `store.logout()` → `signOut({ scope: 'global' })`, limpia el store y redirige a la pantalla **"Sesión cerrada"** (con botón a `/login`).
 
-**Postcondiciones:**
-- Sesión invalidada en Supabase Auth (todas las cookies eliminadas)
-- Store limpiado
-- Usuario en `/onboarding` (pantalla de bienvenida)
-
-**Validaciones:**
-- Ninguna (acción reversible)
-
-**UI/UX:**
-- Botón full-width en `bg-danger/10 text-danger hover:bg-danger/20`
-- Separado del resto del contenido con `mt-space-lg`
-- Sin modal de confirmación (acción reversible al poder volver a loguear)
-
-**Relacionado:**
-- CU-005 (logout centralizado en `store.logout()`)
-- CU-006 (middleware protege rutas post-logout)
+**Notas:**
+- No requiere confirmación (acción reversible).
+- El detalle del flujo (pasos, flujos alternativos, postcondiciones, reglas) se encuentra en CU-005.
+- El otro punto de entrada equivalente es el Sidebar (icono 🚪).
 
 ---
 
