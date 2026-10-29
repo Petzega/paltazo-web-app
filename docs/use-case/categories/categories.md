@@ -11,7 +11,7 @@
 Permitir al usuario registrar una categoría personalizada con nombre, icono y color de fondo, para clasificar sus gastos según sus necesidades.
 
 ### Alcance
-Gestión de categorías. Ubicación exacta en la navegación: PENDIENTE de diseño (desde ajustes o desde el selector de categoría al registrar gasto).
+Gestión de categorías. Ubicación en navegación (RESUELTO): Panel de gestión en `/dashboard/settings` con acceso rápido `+ Nueva categoría` desde el selector/modal de categoría al registrar gasto (CU-008).
 
 ### Actor principal
 Usuario autenticado.
@@ -59,9 +59,37 @@ El usuario pulsa "Agregar categoría".
 - La categoría persiste entre sesiones.
 - Aparece en el selector al crear o editar gastos inmediatamente después de crearla.
 
+### Catálogo cerrado de emojis y colores (DEFINIDO)
+- **Catálogo de 16 Emojis:**
+  1. 🍔 Comida / Restaurantes
+  2. 🚗 Transporte / Movilidad
+  3. 🏠 Hogar / Vivienda
+  4. 🎬 Entretenimiento / Ocio
+  5. 🛒 Compras / Supermercado
+  6. 💊 Salud / Farmacia
+  7. ✈️ Viajes / Vacaciones
+  8. 📚 Educación / Cursos
+  9. 💼 Trabajo / Negocio
+  10. 🐾 Mascotas
+  11. 🎁 Regalos / Donaciones
+  12. 💡 Servicios / Luz, Agua, Internet
+  13. ⚽ Deportes / Fitness
+  14. ☕ Café / Snacks
+  15. 📱 Tecnología / Suscripciones
+  16. 📦 Otros (exclusivo para la categoría de respaldo "Otros")
+
+- **Paleta de 8 Colores Tailwind:**
+  1. Rojo: `bg-red-500/15 text-red-600 dark:text-red-400`
+  2. Naranja: `bg-orange-500/15 text-orange-600 dark:text-orange-400`
+  3. Ámbar: `bg-amber-500/15 text-amber-600 dark:text-amber-400`
+  4. Esmeralda: `bg-emerald-500/15 text-emerald-600 dark:text-emerald-400`
+  5. Verde azulado (Teal): `bg-teal-500/15 text-teal-600 dark:text-teal-400`
+  6. Azul: `bg-blue-500/15 text-blue-600 dark:text-blue-400`
+  7. Índigo: `bg-indigo-500/15 text-indigo-600 dark:text-indigo-400`
+  8. Púrpura: `bg-purple-500/15 text-purple-600 dark:text-purple-400`
+
 ### Preguntas pendientes
-- Catálogo exacto de emojis y paleta de colores: PENDIENTE de diseño.
-- Ubicación de la gestión de categorías en la navegación: PENDIENTE de diseño.
+- Ninguna pendiente de diseño para creación o edición.
 - Impacto técnico anotado para implementación: requiere tabla de categorías en Supabase y eliminar el `CHECK` actual de `expenses.category`.
 
 ---

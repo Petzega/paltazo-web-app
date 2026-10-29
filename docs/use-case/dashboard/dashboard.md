@@ -36,7 +36,7 @@ Usuario navega a `/dashboard` (ruta raíz post-login).
    - Para cada moneda calcula:
      - `monthlyLimit`: presupuesto asignado (0 si no existe)
      - `totalExpenses`: suma de gastos en esa moneda
-     - `percentage`: `min(totalExpenses / monthlyLimit * 100, 100)` (0 si no hay límite)
+     - `percentage`: `totalExpenses / monthlyLimit * 100` (sin tope del 100%, 0 si no hay límite)
      - `remaining`: `max(monthlyLimit - totalExpenses, 0)`
      - `alertLevel`: `safe | warning | critical | exceeded`
      - `alertMessage`: texto contextual según nivel
@@ -154,10 +154,9 @@ Recálculo de `currencySummaries` tras cualquier cambio en `expenses` o `budgets
 
 ### Excepciones
 
-**⚠️ BUG CONOCIDO: Nivel `exceeded` inalcanzable**
-- **Problema:** `percentage` se calcula con `Math.min((totalExpenses / monthlyLimit) * 100, 100)`, lo que capa el valor máximo en 100. Por lo tanto, `percentage >= 101` nunca se cumple.
-- **Impacto:** El nivel `exceeded` (rojo intenso para >100%) es código muerto. Usuarios que gasten 150% de su presupuesto solo ven `critical` (rojo), no `exceeded`.
-- **Estado:** BUG documentado. Requiere decisión: eliminar el cap de 100% en el cálculo, o eliminar el nivel `exceeded` de la documentación.
+**Resolución formal de BUG-001 (Nivel `exceeded`):**
+- **Decisión cerrada:** Eliminar el tope `Math.min((totalExpenses / monthlyLimit) * 100, 100)` en el cálculo de `percentage` en `src/app/dashboard/page.tsx`.
+- **Comportamiento requerido:** Valores `percentage >= 101` activarán efectivamente el nivel `exceeded` (alerta en rojo intenso y mensaje "Has superado tu presupuesto en {currency}"), eliminando la condición de código muerto.
 - **Workaround actual:** El badge muestra ">100%" visualmente, pero el `alertLevel` interno nunca alcanza `exceeded`.
 
 ### Postcondiciones

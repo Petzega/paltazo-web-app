@@ -206,7 +206,7 @@ El usuario, estando en `/login` en modo "Ingresar", pulsa "¿Olvidaste tu clave?
 
 ### Preguntas pendientes
 - **Entorno de emails:** en desarrollo local, los emails se capturan en Inbucket (puerto 54334). En producción, Supabase Email Provider o SMTP custom. (Documentado, no bloquea.)
-- **Pantalla de confirmación post-solicitud:** ¿Qué ve exactamente el usuario después de solicitar el enlace? Actualmente se muestra un mensaje inline en la misma pantalla (línea 185). ¿Debería existir una pantalla dedicada `/recovery-email-sent` con instrucciones más claras y opción de reenviar? Ver sección 9.2 de USER_STORY_MAP.md.
+- **Pantalla de confirmación post-solicitud (RESUELTO):** Se mantiene el feedback inline en `/login` ("Revisa tu correo para continuar") sin pantalla intermedia separada, optimizando simplicidad y consistencia visual.
 
 ---
 
@@ -341,8 +341,8 @@ El usuario pulsa "Cerrar sesión" desde cualquiera de los puntos de entrada: Sid
 - No requiere modal de confirmación.
 
 ### Preguntas pendientes
-- **Ruta concreta de la pantalla "Sesión cerrada"** (PENDIENTE): se decidirá en la implementación (ej. `/logout-success`, `/session-closed`). No afecta a este caso de uso.
-- **Pantalla "Sesión cerrada" no existe en código:** Actualmente el logout redirige a `/onboarding` (ver `src/lib/store.tsx` línea 124). ¿Crear pantalla dedicada `/logout-success` o ajustar documentación para reflejar comportamiento actual? Ver sección 9.1 de USER_STORY_MAP.md.
+- **Ruta concreta de la pantalla "Sesión cerrada" (RESUELTO):** Se ratifica el requisito de una pantalla dedicada `/session-closed` (o `/logout-success`) con botón para volver a `/login`.
+- **Deuda técnica en código:** Actualmente el logout redirige a `/onboarding` (`Sidebar.tsx`, `settings/page.tsx`). Esto queda clasificado como brecha P0 a implementar en código para cumplir con la especificación.
 
 ---
 
@@ -396,13 +396,13 @@ Cada request HTTP que llega al servidor Next.js.
 
 ### Rutas públicas
 - `/login`
-- `/onboarding` (splash/logo de Paltazo; redirige a `/login` si no hay sesión, o a `/` si la hay)
+- `/onboarding` (splash/logo de Paltazo)
+- `/` (pública en `middleware.ts` para permitir el routing client-side de `src/app/page.tsx`, la cual redirige a `/dashboard` si hay sesión o a `/onboarding` si no la hay)
 
 ### Rutas protegidas
-- `/` (dashboard/home — la raíz es el dashboard, no es pública)
-- `/dashboard/*`
-- `/settings/*`
-- Cualquier ruta no listada en `publicPaths`
+- `/dashboard` y `/dashboard/*`
+- `/settings` y `/settings/*`
+- Cualquier ruta de la app no listada en `publicPaths`
 
 ### Reglas de negocio
 - El middleware valida sesión en cada request server-side.

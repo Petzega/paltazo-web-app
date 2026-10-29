@@ -1,24 +1,24 @@
 # Graph Report - paltazo-web-app  (2026-10-29)
 
 ## Corpus Check
-- 210 files · ~116,047 words
+- 211 files · ~117,021 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 9 file(s) not represented in the graph (top: (none) 4, .example 2, .canvas 1)
 
 ## Summary
-- 1674 nodes · 1651 edges · 215 communities (92 shown, 123 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 31 edges (avg confidence: 0.95)
+- 1668 nodes · 1646 edges · 214 communities (94 shown, 120 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 33 edges (avg confidence: 0.95)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `51b74e41`
+- Built from commit: `bbc02d82`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
+- Supabase (MVP Backend)
+- CU-008: Crear gasto
 - Paltazo Application
-- app/layout.tsx
-- 6. Rendering Performance
 - Paltazo Design Tokens
 - Graphify Knowledge Graph
 - opencode.json
@@ -29,7 +29,7 @@
 - TypeScript (Strict Mode)
 - package.json
 - compilerOptions
-- Casos de Uso: Autenticación
+- Decisiones pendientes
 - UC-XXX: Nombre
 - CU-006: Proteger rutas con middleware
 - Paltazo — Bitácora de Avance
@@ -37,15 +37,15 @@
 - store.tsx
 - Paltazo Web App — Guía de Desarrollo
 - next-env.d.ts
-- Node.js Best Practices
-- ref_next_headers
+- ref_next_navigation
+- @supabase/ssr
 - Paltazo Design System
-- Supabase Local — Guía de Desarrollo
-- SEO optimization
+- react
+- devDependencies
 - Accessibility (a11y)
 - next-cache-components-adoption
 - nodejs-backend-patterns — detailed patterns and worked examples
-- Common ARIA patterns
+- Accessibility Code Patterns
 - Tailwind CSS Development Patterns
 - React Composition Patterns
 - Changelog
@@ -69,9 +69,9 @@
 - tailwind-css-patterns/SKILL.md
 - Tailwind CSS Performance Optimization
 - Tailwind CSS Layout Patterns
-- 2. Actividad A — Acceder a la aplicación
+- User Story Map — Paltazo
 - Frontend Design
-- Casos de Uso: Configuración (Settings)
+- CU-020: Notificaciones push al cruzar umbral 🔜 FUTURO
 - Sections
 - Node.js Backend Patterns
 - React Best Practices
@@ -79,7 +79,7 @@
 - async-cheap-condition-before-await.md
 - Prefer Statically Analyzable Paths
 - server-hoist-static-io.md
-- Handoff: Revisión de Casos de Uso - Módulo Auth
+- CU-010: Editar gasto
 - CU-015: Configurar presupuesto por moneda
 - CU-012: Visualizar dashboard mensual
 - architecture-avoid-boolean-props.md
@@ -188,33 +188,33 @@
 - security-rls-performance.md
 - references/_template.md
 - CU-018: Visualizar pantalla de onboarding
-- CU-003: Solicitar enlace de recuperación de contraseña
-- Errores y soluciones
+- CU-009: Listar gastos del mes
+- CU-011: Eliminar gasto
 - 1. Eliminating Waterfalls
 - 2. Bundle Size Optimization
 - React Best Practices
 - 4. Client-Side Data Fetching
-- Handoff: Documentación Completa de Casos de Uso - Paltazo
-- CU-002: Registrarse con email y contraseña
+- Checkpoint: Paltazo — Documentación funcional y estado técnico
+- CU-007: Iniciar sesión con Google (OAuth) — shortcut
 - ref_fs
 - ref_path
+- CU-001: Iniciar sesión con email y contraseña
+- CU-003: Solicitar enlace de recuperación de contraseña
+- CU-004: Establecer nueva contraseña con token de recuperación
+- CU-002: Registrarse con email y contraseña
 - CU-005: Cerrar sesión
-- scripts
-- devDependencies
-- dependencies
-- CU-017: Cerrar sesión desde ajustes
-- Pendientes y estado
-- Casos de Uso: Gastos
-- middleware.ts
-- Comandos útiles
-- Migraciones de Base de Datos
-- CU-024: Crear categoría
-- next
-- use-case/README.md
-- next
-- tailwindcss
-- CU-026: Eliminar categoría
 - CU-025: Editar categoría
+- signOut
+- CU-026: Eliminar categoría
+- CU-013: Alertas de umbral
+- CU-014: Consultar actividad de los últimos 7 días
+- CU-024: Crear categoría
+- Archify — Arquitectura Técnica y Diagramación
+- use-case/README.md
+- Casos de Uso: Configuración (Settings)
+- Instalación y arranque
+- Casos de Uso — Paltazo
+- Comandos
 - CU-021: Seleccionar moneda principal y presupuesto en el primer ingreso
 - CU-022: Agregar moneda
 - CU-023: Quitar moneda
@@ -224,8 +224,7 @@
 - User Story Map — Paltazo
 - 4. Actividad C — Consultar estado del mes
 - 5. Actividad D — Configurar presupuesto
-- Layout Utilities
-- Casos de Uso: Configuración (Settings)
+- Credenciales
 - 6. Historias futuras (Release v1.2)
 - 9. Decisiones pendientes sobre pantallas inexistentes
 
@@ -236,22 +235,22 @@
 4. `5. Re-render Optimization` - 16 edges
 5. `Paltazo — Bitácora de Avance` - 16 edges
 6. `CU-007: Iniciar sesión con Google (OAuth) — shortcut` - 16 edges
-7. `useAppState()` - 15 edges
-8. `7. JavaScript Performance` - 15 edges
-9. `UC-XXX: Nombre` - 15 edges
-10. `CU-001: Iniciar sesión con email y contraseña` - 15 edges
+7. `CU-024: Crear categoría` - 16 edges
+8. `useAppState()` - 15 edges
+9. `7. JavaScript Performance` - 15 edges
+10. `UC-XXX: Nombre` - 15 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Flujo principal` --references--> `signUp()`  [INFERRED]
   docs/use-case/auth/auth.md → src/lib/supabase/auth.ts
 - `Bug 5: Middleware no redirige después de logout (2026-10-08)` --references--> `signOut()`  [INFERRED]
   BITACORA.md → src/lib/supabase/auth.ts
+- `P0 — Logout ignora errores de Supabase` --references--> `signOut()`  [INFERRED]
+  HANDOFF_AUTH_REVIEW.md → src/lib/supabase/auth.ts
+- `5. Impacto técnico pendiente (NO implementado)` --references--> `ExpenseCategory`  [INFERRED]
+  HANDOFF_AUTH_REVIEW.md → src/types/index.ts
 - `Auditoría de código — Actualización 2026-10-15` --references--> `AddExpenseFab()`  [INFERRED]
   BITACORA.md → src/components/ui/AddExpenseFab.tsx
-- `Protección de rutas` --references--> `signOut()`  [INFERRED]
-  DEVELOPMENT.md → src/lib/supabase/auth.ts
-- `Excepciones` --references--> `signOut()`  [INFERRED]
-  docs/use-case/auth/auth.md → src/lib/supabase/auth.ts
 
 ## Import Cycles
 - None detected.
@@ -261,17 +260,17 @@
 - **Paltazo AI Agent Team** — docs_design_agentes_paltazo_wireframes_agent, docs_design_agentes_paltazo_frontend_agent, docs_design_agentes_paltazo_backend_agent, docs_necesidad_proyecto_paltazo_product_agent [EXTRACTED 1.00]
 - **Paltazo Database Schema Tables** — docs_stack_tecnologico_paltazo_profiles_table, docs_stack_tecnologico_paltazo_expenses_table, docs_stack_tecnologico_paltazo_budget_alerts_table, docs_stack_tecnologico_paltazo_push_subscriptions_table [EXTRACTED 1.00]
 
-## Communities (215 total, 123 thin omitted)
+## Communities (214 total, 120 thin omitted)
 
-### Community 0 - "Paltazo Application"
+### Community 0 - "Supabase (MVP Backend)"
 Cohesion: 0.08
 Nodes (33): Backend Agent, budget_alerts table, check-budget Edge Function, expenses table, Frontend Agent, profiles table, push_subscriptions table, Row Level Security (RLS) (+25 more)
 
-### Community 1 - "app/layout.tsx"
+### Community 1 - "CU-008: Crear gasto"
 Cohesion: 0.13
 Nodes (16): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-008: Crear gasto, Disparador, Excepciones, Flujo principal (+8 more)
 
-### Community 2 - "6. Rendering Performance"
+### Community 2 - "Paltazo Application"
 Cohesion: 0.17
 Nodes (12): 6.10 Use React DOM Resource Hints, 6.11 Use useTransition Over Manual Loading States, 6.1 Animate SVG Wrapper Instead of SVG Element, 6.2 CSS content-visibility for Long Lists, 6.3 Hoist Static JSX Elements, 6.4 Optimize SVG Precision, 6.5 Prevent Hydration Mismatch Without Flickering, 6.6 Suppress Expected Hydration Mismatches (+4 more)
 
@@ -284,16 +283,16 @@ Cohesion: 0.67
 Nodes (3): Efficient Context Principle, Graphify Knowledge Graph, Minimalism & Safe Change Principle
 
 ### Community 11 - "package.json"
-Cohesion: 0.17
-Nodes (11): name, private, version, autoprefixer, postcss, react-dom, @supabase/supabase-js, @types/node (+3 more)
+Cohesion: 0.04
+Nodes (41): dependencies, next, react, react-dom, @supabase/ssr, @supabase/supabase-js, devDependencies, autoprefixer (+33 more)
 
 ### Community 12 - "compilerOptions"
 Cohesion: 0.11
 Nodes (18): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, lib, module (+10 more)
 
-### Community 13 - "Casos de Uso: Autenticación"
+### Community 13 - "Decisiones pendientes"
 Cohesion: 0.25
-Nodes (7): 1. Naming "dashboard" vs "home", 2. Ruta concreta de la pantalla "Sesión cerrada", 3. Alcance del rol admin, 4. Discrepancia de moneda: `'PEN'` (documentación) vs `'S/'` (código), 5. Trigger `handle_new_user` tolerante a fallos, Casos de Uso: Autenticación, Decisiones pendientes
+Nodes (7): 1. Naming "dashboard" vs "home", 2. Ruta concreta de la pantalla "Sesión cerrada", 3. Alcance del rol admin, 4. Discrepancia de moneda: `'PEN'` (documentación) vs `'S/'` (código) — REEMPLAZADA, 5. Trigger `handle_new_user` tolerante a fallos, Casos de Uso: Autenticación, Decisiones pendientes
 
 ### Community 14 - "UC-XXX: Nombre"
 Cohesion: 0.08
@@ -312,14 +311,14 @@ Cohesion: 0.20
 Nodes (9): background_color, description, display, icons, name, orientation, short_name, start_url (+1 more)
 
 ### Community 19 - "store.tsx"
-Cohesion: 0.06
-Nodes (51): Auditoría de código — Actualización 2026-10-16, Error 1: `login is not a function` en `src/app/login/page.tsx:14`, Protección de rutas, Anexo: Notas técnicas, Excepciones, Flujos alternativos, Flujos alternativos, ref_next_navigation (+43 more)
+Cohesion: 0.05
+Nodes (53): Error 1: `login is not a function` en `src/app/login/page.tsx:14`, Anexo: Notas técnicas, nextConfig, next, ref_next_font_google, ref_next_navigation, react, AddExpensePage() (+45 more)
 
 ### Community 20 - "Paltazo Web App — Guía de Desarrollo"
-Cohesion: 0.10
-Nodes (19): 1. Instalación básica, 2. Desarrollo con Supabase Local, Autenticación, Comandos, Credenciales, Desarrollo, Design System, Estado de datos (+11 more)
+Cohesion: 0.18
+Nodes (10): Autenticación, Design System, Estado de datos, Estructura del proyecto, Paltazo Web App — Guía de Desarrollo, Pendientes, PWA, Requisitos (+2 more)
 
-### Community 22 - "Node.js Best Practices"
+### Community 22 - "ref_next_navigation"
 Cohesion: 0.05
 Nodes (39): 10. Decision Checklist, 1. Framework Selection (2025), 2. Runtime Considerations (2025), 3. Architecture Principles, 4. Error Handling Principles, 5. Async Patterns Principles, 6. Validation Principles, 7. Security Principles (+31 more)
 
@@ -327,11 +326,11 @@ Nodes (39): 10. Decision Checklist, 1. Framework Selection (2025), 2. Runtime Co
 Cohesion: 0.50
 Nodes (3): Brand Identity & Aesthetic, Design Tokens, Paltazo Design System
 
-### Community 25 - "Supabase Local — Guía de Desarrollo"
+### Community 25 - "react"
 Cohesion: 0.05
 Nodes (38): 1. Supabase CLI, 1. Supabase Studio (Web), 2. Cliente PostgreSQL (CLI), 2. Docker, 3. Clientes GUI, Acceso a la Base de Datos, Aplicar migraciones manualmente, Archivo `.env.development.local` (desarrollo local) (+30 more)
 
-### Community 26 - "SEO optimization"
+### Community 26 - "devDependencies"
 Cohesion: 0.05
 Nodes (38): Article, Breadcrumbs, FAQ, Organization, Product, Structured data reference, Validation, Agentic browsing and AI discoverability (+30 more)
 
@@ -347,7 +346,7 @@ Nodes (29): dev-only validation sweep, gotchas, the loop, what the build misses,
 Cohesion: 0.06
 Nodes (30): API Response Format, Authentication & Authorization, Caching Strategies, Database Patterns, Dependency Injection, DI Container, JWT Authentication, MongoDB with Mongoose (+22 more)
 
-### Community 30 - "Common ARIA patterns"
+### Community 30 - "Accessibility Code Patterns"
 Cohesion: 0.07
 Nodes (25): Accessibility Code Patterns, ARIA tabs, Dragging movements, Error handling, Form labels, Live regions and notifications, Modal focus trap, Screen reader commands (+17 more)
 
@@ -440,10 +439,10 @@ Cohesion: 0.20
 Nodes (9): Best Practices for Performance, Bundle Size Optimization, Content Path Best Practices, CSS Optimization Techniques, Development Performance (v4.1+), Minification, Production Build Optimization, PurgeCSS Configuration (+1 more)
 
 ### Community 54 - "Tailwind CSS Layout Patterns"
-Cohesion: 0.15
-Nodes (12): Background Colors, Colors, Font Size & Weight, Line Height & Letter Spacing, Opacity, Padding & Margin, Responsive Breakpoints Reference, Spacing (+4 more)
+Cohesion: 0.12
+Nodes (16): Background Colors, Colors, Container & Max Width, Flexbox Layouts, Font Size & Weight, Grid Layouts, Layout Utilities, Line Height & Letter Spacing (+8 more)
 
-### Community 55 - "2. Actividad A — Acceder a la aplicación"
+### Community 55 - "User Story Map — Paltazo"
 Cohesion: 0.15
 Nodes (13): 2. Actividad A — Acceder a la aplicación, Tarea A1 — Crear cuenta, Tarea A2 — Iniciar sesión, Tarea A3 — Recuperar contraseña, Tarea A4 — Cerrar sesión, Tarea A5 — Proteger rutas, Tarea A6 — Login social (futuro), US-001: Registro básico (+5 more)
 
@@ -451,7 +450,7 @@ Nodes (13): 2. Actividad A — Acceder a la aplicación, Tarea A1 — Crear cuen
 Cohesion: 0.29
 Nodes (6): Design principles, Frontend Design, Ground your designs in the subject matter, More on writing in design, Process: plan, review against the brief, build, critique, Restraint and self-critique
 
-### Community 57 - "Casos de Uso: Configuración (Settings)"
+### Community 57 - "CU-020: Notificaciones push al cruzar umbral 🔜 FUTURO"
 Cohesion: 0.06
 Nodes (31): Actor principal, Actor principal, Actores secundarios, Alcance, Alcance, Casos de Uso: Features Futuras (v1.2+), Criterios de aceptación, Criterios de aceptación (+23 more)
 
@@ -475,7 +474,7 @@ Nodes (5): How to Use, References, Rule Categories by Priority, Supabase Postgre
 Cohesion: 0.50
 Nodes (3): File-System Paths, Import Paths, Prefer Statically Analyzable Paths
 
-### Community 65 - "Handoff: Revisión de Casos de Uso - Módulo Auth"
+### Community 65 - "CU-010: Editar gasto"
 Cohesion: 0.13
 Nodes (15): Actor principal, Alcance, Criterios de aceptación, CU-010: Editar gasto, Disparador, Excepciones, Flujo principal, Flujos alternativos (+7 more)
 
@@ -484,18 +483,18 @@ Cohesion: 0.13
 Nodes (15): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-015: Configurar presupuesto por moneda, Disparador, Excepciones, Flujo principal (+7 more)
 
 ### Community 67 - "CU-012: Visualizar dashboard mensual"
-Cohesion: 0.04
-Nodes (44): Actor principal, Actor principal, Actor principal, Alcance, Alcance, Alcance, Casos de Uso: Dashboard, Criterios de aceptación (+36 more)
+Cohesion: 0.14
+Nodes (14): Actor principal, Alcance, Criterios de aceptación, CU-012: Visualizar dashboard mensual, Disparador, Excepciones, Flujo principal, Flujos alternativos (+6 more)
 
 ### Community 174 - "CU-018: Visualizar pantalla de onboarding"
 Cohesion: 0.14
 Nodes (14): Actor principal, Alcance, Criterios de aceptación, CU-018: Visualizar pantalla de onboarding, Disparador, Excepciones, Flujo principal, Flujos alternativos (+6 more)
 
-### Community 175 - "CU-003: Solicitar enlace de recuperación de contraseña"
+### Community 175 - "CU-009: Listar gastos del mes"
 Cohesion: 0.14
 Nodes (14): Actor principal, Alcance, Criterios de aceptación, CU-009: Listar gastos del mes, Disparador, Excepciones, Flujo principal, Flujos alternativos (+6 more)
 
-### Community 176 - "Errores y soluciones"
+### Community 176 - "CU-011: Eliminar gasto"
 Cohesion: 0.14
 Nodes (14): Actor principal, Alcance, Criterios de aceptación, CU-011: Eliminar gasto, Disparador, Excepciones, Flujo principal, Flujos alternativos (+6 more)
 
@@ -515,69 +514,81 @@ Nodes (9): 8.1 Do Not Put Effect Events in Dependency Arrays, 8.2 Initialize App
 Cohesion: 0.40
 Nodes (5): 4.1 Deduplicate Global Event Listeners, 4.2 Use Passive Event Listeners for Scrolling Performance, 4.3 Use SWR for Automatic Deduplication, 4.4 Version and Minimize localStorage Data, 4. Client-Side Data Fetching
 
-### Community 181 - "Handoff: Documentación Completa de Casos de Uso - Paltazo"
-Cohesion: 0.06
-Nodes (30): 1. Módulo Auth (CU-001 a CU-007) - 7 CUs, 1. Pantalla "Sesión cerrada" (post-logout), 2. Módulo Expenses (CU-008 a CU-011) - 4 CUs, 2. Pantalla "Revisa tu correo" (post-recuperación), 3. BUG-001: Nivel `exceeded` inalcanzable, 3. Módulo Dashboard (CU-012 a CU-014) - 3 CUs, 4. Módulo Settings (CU-015 a CU-017) - 3 CUs, 5. Módulo Onboarding (CU-018) - 1 CU (+22 more)
+### Community 181 - "Checkpoint: Paltazo — Documentación funcional y estado técnico"
+Cohesion: 0.10
+Nodes (19): 10. Archivos modificados en esta sesión, 11. Convenciones para el siguiente dev, 1. Estado en una mirada, 2. Qué se completó en esta sesión (29 oct 2026), 3. Documentación por módulo, 4.1 Monedas — CU-021 a CU-023, 4.2 Categorías — CU-024 a CU-026 (`categories`, módulo nuevo), 4.3 Decisiones de producto tomadas (+11 more)
 
-### Community 182 - "CU-002: Registrarse con email y contraseña"
+### Community 182 - "CU-007: Iniciar sesión con Google (OAuth) — shortcut"
 Cohesion: 0.12
 Nodes (16): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-007: Iniciar sesión con Google (OAuth) — shortcut, Disparador, Estado actual (shortcut), Excepciones (+8 more)
 
-### Community 185 - "CU-005: Cerrar sesión"
+### Community 185 - "CU-001: Iniciar sesión con email y contraseña"
 Cohesion: 0.13
 Nodes (15): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-001: Iniciar sesión con email y contraseña, Disparador, Excepciones, Flujo principal (+7 more)
 
-### Community 186 - "scripts"
+### Community 186 - "CU-003: Solicitar enlace de recuperación de contraseña"
 Cohesion: 0.13
 Nodes (15): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-003: Solicitar enlace de recuperación de contraseña, Disparador, Excepciones, Flujo principal (+7 more)
 
-### Community 187 - "devDependencies"
+### Community 187 - "CU-004: Establecer nueva contraseña con token de recuperación"
 Cohesion: 0.13
 Nodes (15): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-004: Establecer nueva contraseña con token de recuperación, Disparador, Excepciones, Flujo principal (+7 more)
 
-### Community 188 - "dependencies"
+### Community 188 - "CU-002: Registrarse con email y contraseña"
 Cohesion: 0.13
 Nodes (15): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-002: Registrarse con email y contraseña, Disparador, Excepciones, Flujo principal (+7 more)
 
-### Community 189 - "CU-017: Cerrar sesión desde ajustes"
+### Community 189 - "CU-005: Cerrar sesión"
 Cohesion: 0.14
 Nodes (14): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-017: Cerrar sesión desde ajustes, Disparador, Excepciones, Flujo principal (+6 more)
 
-### Community 190 - "Pendientes y estado"
-Cohesion: 0.18
-Nodes (11): scripts, build, dev, lint, start, supabase:push, supabase:reset, supabase:start (+3 more)
-
-### Community 192 - "middleware.ts"
-Cohesion: 0.25
-Nodes (6): ref_next_font_google, src_app_globals, inter, metadata, viewport, ServiceWorkerRegistrar()
-
-### Community 193 - "Comandos útiles"
-Cohesion: 0.25
-Nodes (8): devDependencies, autoprefixer, postcss, tailwindcss, @types/node, @types/react, @types/react-dom, typescript
-
-### Community 194 - "Migraciones de Base de Datos"
-Cohesion: 0.33
-Nodes (6): dependencies, next, react, react-dom, @supabase/ssr, @supabase/supabase-js
-
-### Community 195 - "CU-024: Crear categoría"
+### Community 190 - "CU-025: Editar categoría"
 Cohesion: 0.13
-Nodes (15): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-024: Crear categoría, Disparador, Excepciones, Flujo principal (+7 more)
+Nodes (15): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-025: Editar categoría, Disparador, Excepciones, Flujo principal (+7 more)
 
-### Community 196 - "next"
-Cohesion: 0.40
-Nodes (3): ref_next_server, @supabase/ssr, config
+### Community 191 - "signOut"
+Cohesion: 0.33
+Nodes (6): Auditoría de código — Actualización 2026-10-16, Protección de rutas, Excepciones, Flujos alternativos, Flujos alternativos, signOut()
 
-### Community 197 - "use-case/README.md"
-Cohesion: 0.22
-Nodes (6): Casos de Uso: Categorías, Casos de Uso: Onboarding, Casos de Uso — Paltazo, Convenciones, Módulos, Visualización
-
-### Community 200 - "CU-026: Eliminar categoría"
+### Community 192 - "CU-026: Eliminar categoría"
 Cohesion: 0.13
 Nodes (15): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-026: Eliminar categoría, Disparador, Excepciones, Flujo principal (+7 more)
 
-### Community 201 - "CU-025: Editar categoría"
+### Community 193 - "CU-013: Alertas de umbral"
 Cohesion: 0.13
-Nodes (15): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-025: Editar categoría, Disparador, Excepciones, Flujo principal (+7 more)
+Nodes (15): Actor principal, Alcance, Criterios de aceptación, CU-013: Alertas de umbral, Disparador, Excepciones, Flujo principal, Flujos alternativos (+7 more)
+
+### Community 194 - "CU-014: Consultar actividad de los últimos 7 días"
+Cohesion: 0.14
+Nodes (14): Actor principal, Alcance, Criterios de aceptación, CU-014: Consultar actividad de los últimos 7 días, Disparador, Excepciones, Flujo principal, Flujos alternativos (+6 more)
+
+### Community 195 - "CU-024: Crear categoría"
+Cohesion: 0.12
+Nodes (16): Actor principal, Actores secundarios, Alcance, Catálogo cerrado de emojis y colores (DEFINIDO), Criterios de aceptación, CU-024: Crear categoría, Disparador, Excepciones (+8 more)
+
+### Community 196 - "Archify — Arquitectura Técnica y Diagramación"
+Cohesion: 0.50
+Nodes (3): 1. Fuentes de verdad funcional (lectura obligatoria), 2. Entregables requeridos (Markdown con diagramas Mermaid), Archify — Arquitectura Técnica y Diagramación
+
+### Community 197 - "use-case/README.md"
+Cohesion: 0.27
+Nodes (4): Casos de Uso: Categorías, Casos de Uso: Dashboard, Casos de Uso: Gastos, Casos de Uso: Onboarding
+
+### Community 198 - "Casos de Uso: Configuración (Settings)"
+Cohesion: 0.50
+Nodes (3): Casos de Uso: Configuración (Settings), Notas técnicas, upsertBudget()
+
+### Community 199 - "Instalación y arranque"
+Cohesion: 0.67
+Nodes (3): 1. Instalación básica, 2. Desarrollo con Supabase Local, Instalación y arranque
+
+### Community 200 - "Casos de Uso — Paltazo"
+Cohesion: 0.50
+Nodes (4): Casos de Uso — Paltazo, Convenciones, Módulos, Visualización
+
+### Community 201 - "Comandos"
+Cohesion: 0.67
+Nodes (3): Comandos, Desarrollo, Supabase Local
 
 ### Community 202 - "CU-021: Seleccionar moneda principal y presupuesto en el primer ingreso"
 Cohesion: 0.13
@@ -615,13 +626,9 @@ Nodes (7): 4. Actividad C — Consultar estado del mes, Tarea C1 — Ver resumen
 Cohesion: 0.29
 Nodes (7): 5. Actividad D — Configurar presupuesto, Tarea D1 — Definir límite por moneda, Tarea D2 — Consultar info de la app, Tarea D3 — Cerrar sesión, US-013: Presupuesto independiente por moneda, US-014: Información de la app y niveles de alerta, US-015: Logout desde settings
 
-### Community 211 - "Layout Utilities"
-Cohesion: 0.50
-Nodes (4): Container & Max Width, Flexbox Layouts, Grid Layouts, Layout Utilities
-
-### Community 212 - "Casos de Uso: Configuración (Settings)"
-Cohesion: 0.50
-Nodes (3): Casos de Uso: Configuración (Settings), Notas técnicas, upsertBudget()
+### Community 211 - "Credenciales"
+Cohesion: 0.67
+Nodes (3): Credenciales, Local (Supabase en Docker), Producción (Supabase Cloud)
 
 ### Community 213 - "6. Historias futuras (Release v1.2)"
 Cohesion: 0.50
@@ -632,24 +639,24 @@ Cohesion: 0.50
 Nodes (4): 9.1 Pantalla "Sesión cerrada" (post-logout), 9.2 Pantalla "Revisa tu correo" (post-recuperación), 9.3 Resolución de decisiones, 9. Decisiones pendientes sobre pantallas inexistentes
 
 ## Knowledge Gaps
-- **1151 isolated node(s):** `$schema`, `nextConfig`, `name`, `version`, `private` (+1146 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1311 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **123 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **1144 isolated node(s):** `$schema`, `nextConfig`, `name`, `version`, `private` (+1139 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1305 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **120 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Casos de Uso: Autenticación` connect `Casos de Uso: Autenticación` to `CU-005: Cerrar sesión`, `CU-006: Proteger rutas con middleware`, `store.tsx`, `CU-002: Registrarse con email y contraseña`, `CU-005: Cerrar sesión`, `scripts`, `devDependencies`, `dependencies`?**
-  _High betweenness centrality (0.087) - this node is a cross-community bridge._
+- **Why does `Casos de Uso: Autenticación` connect `Decisiones pendientes` to `CU-005: Cerrar sesión`, `CU-006: Proteger rutas con middleware`, `store.tsx`, `CU-007: Iniciar sesión con Google (OAuth) — shortcut`, `CU-001: Iniciar sesión con email y contraseña`, `CU-003: Solicitar enlace de recuperación de contraseña`, `CU-004: Establecer nueva contraseña con token de recuperación`, `CU-002: Registrarse con email y contraseña`?**
+  _High betweenness centrality (0.091) - this node is a cross-community bridge._
 - **Why does `getUser()` connect `CU-006: Proteger rutas con middleware` to `store.tsx`?**
-  _High betweenness centrality (0.052) - this node is a cross-community bridge._
-- **Why does `3. Server-Side Performance` connect `CU-006: Proteger rutas con middleware` to `React Best Practices`?**
   _High betweenness centrality (0.051) - this node is a cross-community bridge._
+- **Why does `3. Server-Side Performance` connect `CU-006: Proteger rutas con middleware` to `React Best Practices`?**
+  _High betweenness centrality (0.049) - this node is a cross-community bridge._
 - **What connects `$schema`, `nextConfig`, `name` to the rest of the system?**
-  _1151 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Paltazo Application` be split into smaller, more focused modules?**
+  _1144 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Supabase (MVP Backend)` be split into smaller, more focused modules?**
   _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
-- **Should `app/layout.tsx` be split into smaller, more focused modules?**
+- **Should `CU-008: Crear gasto` be split into smaller, more focused modules?**
   _Cohesion score 0.13333333333333333 - nodes in this community are weakly interconnected._
-- **Should `compilerOptions` be split into smaller, more focused modules?**
-  _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
+- **Should `package.json` be split into smaller, more focused modules?**
+  _Cohesion score 0.044444444444444446 - nodes in this community are weakly interconnected._
