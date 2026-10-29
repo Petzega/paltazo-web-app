@@ -72,7 +72,7 @@ El usuario navega a `/login`.
 ## CU-002: Registrarse con email y contraseña
 
 ### Objetivo
-Que un usuario nuevo pueda crear una cuenta y acceder automáticamente a su dashboard, con un perfil y un presupuesto inicial creados por el sistema.
+Que un usuario nuevo pueda crear una cuenta, con un perfil creado por el sistema, y continuar a la configuración inicial del primer ingreso (CU-021, PROPUESTO), donde definirá su moneda principal y presupuesto inicial.
 
 ### Alcance
 Módulo de autenticación de Paltazo.
@@ -105,19 +105,17 @@ El usuario, estando en `/login`, pulsa "Crear cuenta" tras cambiar al modo "Regi
    - Nombre ≤ 200 caracteres (si se indicó).
 6. El sistema invoca `signUp(email, password, name)` → `supabase.auth.signUp()`.
 7. Supabase crea el usuario en `auth.users`.
-8. El trigger `handle_new_user` inserta:
-   - Un registro en `profiles` con `display_name` y `currency = 'PEN'`.
-   - Un registro en `budgets` con `monthly_limit = 1000`, `currency = 'PEN'` (presupuesto por defecto).
+8. (PROPUESTO) El trigger `handle_new_user` inserta únicamente el registro en `profiles` con `display_name`, sin moneda ni presupuesto por defecto: ambos se definen en el primer ingreso (CU-021). *Código actual: también inserta `budgets` con `monthly_limit = 1000` y moneda fija.*
 9. El sistema invoca automáticamente `signIn(email, password)` → `supabase.auth.signInWithPassword()`.
 10. Supabase devuelve sesión activa.
 11. El sistema actualiza el store (`userId`, datos del usuario).
-12. El sistema redirige a `/` (dashboard).
+12. (PROPUESTO) El sistema redirige a la configuración inicial del primer ingreso (CU-021). *Código actual: redirige a `/` (dashboard).*
 
 ### Flujos alternativos
 - **Paso 5a — Contraseña < 6 caracteres:** el sistema muestra inline *"La contraseña debe tener al menos 6 caracteres"* y no envía la solicitud. *(Ref. histórica: BUG-009 — contraseña < 6 chars aceptada, fix: validación cliente.)*
 - **Paso 6a — Email ya existe:** Supabase devuelve error → el sistema muestra inline *"Este email ya está registrado"*.
 - **Paso 6b — Email con formato inválido:** el sistema muestra inline error de formato y no envía la solicitud.
-- **Paso 8a — Trigger falla al crear perfil/presupuesto:** el trigger captura el error con `EXCEPTION WHEN OTHERS` y retorna el usuario de todos modos (ver "Decisiones pendientes" al final de este archivo). El sistema muestra *"Error al crear perfil, contacta soporte"*. *(Ref. histórica: BUG-002 — trigger sin EXCEPTION handler; BUG-016 — trigger no insertaba en `budgets`, fix: migración 20261018000000.)*
+- **Paso 8a — Trigger falla al crear perfil:** el trigger captura el error con `EXCEPTION WHEN OTHERS` y retorna el usuario de todos modos (ver "Decisiones pendientes" al final de este archivo). El sistema muestra *"Error al crear perfil, contacta soporte"*. *(Ref. histórica: BUG-002 — trigger sin EXCEPTION handler; BUG-016 — trigger no insertaba en `budgets`, fix: migración 20261018000000. Con CU-021 el trigger dejará de crear presupuesto por defecto.)*
 - **Paso 9a — Error de red en signUp:** el sistema muestra toast *"Error al crear cuenta"* y permanece en el formulario.
 - **Paso 9b — Error en el auto-login (la cuenta ya fue creada):** el sistema muestra toast de error. El usuario puede volver a `/login` e ingresar manualmente con sus credenciales.
 
@@ -125,26 +123,23 @@ El usuario, estando en `/login`, pulsa "Crear cuenta" tras cambiar al modo "Regi
 - **Error inesperado de Supabase:** toast genérico de error; usuario permanece en `/login`.
 
 ### Postcondiciones
-- **En éxito:** usuario en `auth.users`, perfil en `profiles` con `display_name` y `currency = 'PEN'`, presupuesto default en `budgets` (`monthly_limit = 1000`, `currency = 'PEN'`), sesión activa en Supabase Auth, `userId ≠ null` en el store, usuario en `/`.
+- **En éxito (PROPUESTO):** usuario en `auth.users`, perfil en `profiles` con `display_name`, sesión activa en Supabase Auth, `userId ≠ null` en el store, usuario en la configuración inicial (CU-021). Sin presupuesto por defecto: moneda y presupuesto se crean en CU-021. *Código actual: también crea presupuesto default S/ 1000 y redirige a `/`.*
 - **En fallo (validación cliente):** usuario permanece en `/login` con mensaje inline; no se crea cuenta.
-- **En fallo (trigger):** cuenta creada en `auth.users` pero posiblemente sin perfil ni presupuesto; usuario NO entra al dashboard. Requiere soporte o reparación manual.
+- **En fallo (trigger):** cuenta creada en `auth.users` pero posiblemente sin perfil; usuario NO continúa a la configuración inicial. Requiere soporte o reparación manual.
 
 ### Reglas de negocio
 - Email con formato válido.
 - Contraseña ≥ 6 caracteres (cliente y servidor).
 - Nombre completo opcional, máximo 200 caracteres.
-- Al registrarse, el sistema crea automáticamente:
-  - Perfil en `profiles` con moneda principal `PEN`.
-  - Presupuesto por defecto en `budgets`: S/ 1000 en `PEN`.
+- (PROPUESTO) Al registrarse, el sistema crea automáticamente únicamente el perfil en `profiles`. La moneda principal y el presupuesto inicial los define el usuario en el primer ingreso (CU-021); ya no existe presupuesto default S/ 1000. *Código actual: también crea `budgets` con S/ 1000 y moneda fija.*
 - Tras el registro exitoso, el sistema ejecuta auto-login inmediato (no se solicita confirmación de email; Supabase está configurado sin confirmación obligatoria).
 
 ### Criterios de aceptación
 - Acepta email con formato válido.
 - Contraseña mínima de 6 caracteres (validada en cliente y servidor).
 - Nombre completo es opcional (máx 200 caracteres).
-- Tras el registro, se crea automáticamente un registro en `profiles` y uno en `budgets` default (S/ 1000).
+- (PROPUESTO) Tras el registro se crea el perfil y el usuario continúa a la configuración inicial de moneda y presupuesto (CU-021). *Código actual: se crea `budgets` default (S/ 1000) y entra al dashboard.*
 - Si el email ya existe → mensaje inline *"Este email ya está registrado"*.
-- Tras registro exitoso, el usuario entra al dashboard sin pasos adicionales.
 
 ### Preguntas pendientes
 - Ninguna específica de este caso.
@@ -546,13 +541,12 @@ El usuario pulsa "Continuar con Google" en `/login`.
 - **Impacto:** cuando se defina, se abrirá un inventario nuevo de casos de administración (gestión de usuarios, permisos, etc.).
 - **Estado:** PENDIENTE — fuera del MVP.
 
-### 4. Discrepancia de moneda: `'PEN'` (documentación) vs `'S/'` (código)
-- **Contexto:** la documentación oficial (estos casos de uso) usa el código ISO `'PEN'` para la moneda principal. El código real (tablas `profiles` y `budgets`, trigger `handle_new_user`) usa el símbolo `'S/'`.
-- **Decisión tomada:** mantener `'PEN'` en la documentación como convención ISO.
-- **Impacto:** el código debería alinearse eventualmente con la convención ISO, o la documentación debería actualizarse si se decide que `'S/'` es la convención oficial del proyecto.
-- **Estado:** PENDIENTE de alineación entre código y documentación.
+### 4. Discrepancia de moneda: `'PEN'` (documentación) vs `'S/'` (código) — REEMPLAZADA
+- **Estado:** REEMPLAZADA (29 oct 2026) por CU-021 a CU-023: la moneda principal la elige el usuario en el primer ingreso entre `S/`, `$` y `€`, y las monedas se gestionan a demanda. La convención ISO `'PEN'` deja de aplicar como decisión vigente; al implementar se usarán los símbolos definidos en los nuevos casos de uso.
+- **Histórico:** la documentación usaba `'PEN'` y el código `'S/'`; ya no aplica porque la moneda deja de ser fija.
 
 ### 5. Trigger `handle_new_user` tolerante a fallos
 - **Contexto:** el trigger `handle_new_user` captura errores con `EXCEPTION WHEN OTHERS` y retorna el usuario de todos modos (`RETURN NEW`). Esto significa que un usuario puede quedar creado en `auth.users` sin registro correspondiente en `profiles` ni `budgets`, pero el signup se considera exitoso desde la perspectiva de Supabase Auth.
-- **Impacto:** el sistema puede terminar con usuarios "huérfanos" de perfil/presupuesto. El CU-002 paso 8a contempla este caso, pero la detección y recuperación depende de la lógica de la aplicación (ej. verificar post-login que existan `profiles` y `budgets`).
+- **Impacto:** el sistema puede terminar con usuarios "huérfanos" de perfil. El CU-002 paso 8a contempla este caso, pero la detección y recuperación depende de la lógica de la aplicación (ej. verificar post-login que exista `profiles`).
+- **Actualización (29 oct 2026):** con CU-021 el trigger dejará de crear el presupuesto por defecto; la tolerancia a fallos seguirá aplicando solo a `profiles`.
 - **Estado:** PENDIENTE de revisión por backend — decidir si este comportamiento tolerante es aceptado o si se endurece el trigger.

@@ -45,7 +45,15 @@
 ├────────────────────────────────────────────────────────────────────────────────────┤
 │ [US-016] [US-017] [US-018]                                                         │
 └────────────────────────────────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────────────────────────────────┐
+│ RELEASE 4 — PROPUESTA (sin release asignada): monedas a demanda y categorías       │
+├────────────────────────────────────────────────────────────────────────────────────┤
+│ [US-019] [US-020] [US-021]                                                         │
+└────────────────────────────────────────────────────────────────────────────────────┘
 ```
+
+> **Tareas añadidas por la release propuesta (US-019 a US-021, 29 oct 2026):** A1 incluye la configuración inicial de moneda y presupuesto en el primer ingreso (CU-021); D4 Gestionar monedas a demanda (CU-022, CU-023); D5 Gestionar categorías personalizables (CU-024 a CU-026).
 
 ---
 
@@ -62,7 +70,7 @@
 - [ ] Acepta email con formato válido.
 - [ ] Contraseña mínima de 6 caracteres (validada en cliente y servidor).
 - [ ] Nombre completo es opcional (max 200 chars).
-- [ ] Tras el registro se crea automáticamente un registro en `profiles` y un `budgets` default (S/ 1000).
+- [ ] (PROPUESTO) Tras el registro se crea el perfil en `profiles`; la moneda principal y el presupuesto inicial se definen en el primer ingreso (CU-021). *Código actual: también crea `budgets` default (S/ 1000).*
 - [ ] Si el email ya existe → mensaje inline "Este email ya está registrado".
 - [ ] Auto-login inmediato tras registro exitoso (sin confirmación email).
 
@@ -158,8 +166,8 @@
 **Criterios de aceptación:**
 - [ ] Monto: teclado numérico decimal, formato `X.XX`, max 9 dígitos enteros.
 - [ ] Presets rápidos: `15.00 / 30.00 / 50.00 / 100.00` (en la moneda seleccionada).
-- [ ] Monedas disponibles: `S/` y `$` (toggle superior).
-- [ ] Categoría default: `food`; 5 opciones con icono (comida, transporte, servicios, ocio, otros).
+- [ ] Monedas disponibles: las activas del usuario (CU-021/CU-022, PROPUESTO; código actual: `S/` y `$`).
+- [ ] Categoría default: `food`; opciones = categorías por defecto + personalizadas del usuario (CU-024 a CU-026, PROPUESTO; código actual: 5 fijas).
 - [ ] Descripción opcional (max ~200 chars).
 - [ ] Fecha default: hoy; editable con picker nativo.
 - [ ] Botón "Guardar" deshabilitado si `monto ≤ 0`.
@@ -284,7 +292,7 @@
 **Como** usuario que maneja más de una moneda, **quiero** configurar un límite mensual distinto para cada una **para** que el dashboard evalúe cada presupuesto por separado.
 
 **Criterios de aceptación:**
-- [ ] Sección "💰 Presupuestos por moneda" con un bloque por moneda (`S/`, `$`).
+- [ ] Sección "💰 Presupuestos por moneda" con un bloque por cada moneda activa del usuario (PROPUESTO: CU-021/CU-022; código actual: `S/` y `$`).
 - [ ] Input numérico con símbolo de moneda a la izquierda (`step="0.01"`).
 - [ ] Botón "Guardar" deshabilitado si valor vacío o `≤ 0`.
 - [ ] Tras guardar → botón muestra "✓" por 2s como feedback.
@@ -342,6 +350,24 @@
 
 ---
 
+## 6.1 Historias propuestas (requisito de producto, 28–29 oct 2026)
+
+> Historias aprobadas por el usuario en conversación de definición. Comportamiento previsto, NO implementado. Sin release asignada.
+
+### US-019: Selección de moneda y presupuesto en el primer ingreso
+**Como** usuario recién registrado, **quiero** elegir mi moneda principal (S/, $ o €) y mi presupuesto mensual inicial al ingresar por primera vez **para** que la app trabaje con mis valores desde el inicio.
+**Ref:** [`CU-021`](onboarding/onboarding.md#cu-021-seleccionar-moneda-principal-y-presupuesto-en-el-primer-ingreso) · **Status:** 📝 PROPUESTO · Solo la primera vez; obligatorio para usar la app.
+
+### US-020: Gestión de monedas a demanda
+**Como** usuario, **quiero** agregar monedas (S/, $, €) desde ajustes solo cuando las necesite y quitarlas cuando deje de usarlas **para** trabajar únicamente con las monedas relevantes para mí.
+**Ref:** [`CU-022`](settings/settings.md#cu-022-agregar-moneda), [`CU-023`](settings/settings.md#cu-023-quitar-moneda) · **Status:** 📝 PROPUESTO · Quitar elimina gastos y presupuesto asociados con confirmación explícita (decisión del usuario); la moneda principal no se puede quitar.
+
+### US-021: Categorías personalizables
+**Como** usuario, **quiero** crear, editar y eliminar categorías con nombre, icono y color de fondo **para** clasificar mis gastos según mis necesidades.
+**Ref:** [`CU-024`](categories/categories.md#cu-024-crear-categoría), [`CU-025`](categories/categories.md#cu-025-editar-categoría), [`CU-026`](categories/categories.md#cu-026-eliminar-categoría) · **Status:** 📝 PROPUESTO · Incluye personalizar las 5 categorías por defecto; "Otros" protegida; al eliminar, los gastos se reasignan a "Otros" con advertencia previa; icono y color desde selectores cerrados.
+
+---
+
 ## 7. Tabla resumen de trazabilidad
 
 | Historia | Actividad | Tarea | Release | Ref CU | Estado |
@@ -364,8 +390,11 @@
 | US-016 | A | A6 Login social | v1.2 | CU-007 | 🔜 shortcut |
 | US-017 | B | B1 Offline-first | v1.2 | CU-019 | 🔜 pendiente |
 | US-018 | C | C3 Push notifications | v1.2 | CU-020 | 🔜 pendiente |
+| US-019 | A | A1 Primer ingreso | Propuesta | CU-021 | 📝 propuesto |
+| US-020 | D | D4 Gestionar monedas | Propuesta | CU-022, CU-023 | 📝 propuesto |
+| US-021 | D | D5 Gestionar categorías | Propuesta | CU-024, CU-025, CU-026 | 📝 propuesto |
 
-**Total:** 18 historias · 15 implementadas · 3 futuras (v1.2).
+**Total:** 21 historias · 15 implementadas · 3 futuras (v1.2) · 3 propuestas (sin release asignada).
 
 ---
 

@@ -1,8 +1,8 @@
 # Casos de Uso: Gastos
 
 > Módulo de gestión de gastos. CRUD atómico sobre el mes en curso.
-> Categorías del sistema (fuente de verdad: `src/lib/categories.ts`).
-> Monedas soportadas en MVP: `S/` (PEN) y `$` (USD).
+> Categorías: por defecto + personalizadas del usuario (CU-024 a CU-026, PROPUESTO). Código actual: 5 hardcodeadas en `src/lib/categories.ts`.
+> Monedas: las activas del usuario entre `S/`, `$` y `€` (CU-021 a CU-023, PROPUESTO). Código actual: `S/` y `$` fijas.
 
 ---
 
@@ -44,9 +44,9 @@ Usuario hace clic en FAB `+`, botón "Agregar gasto", o CTA en estado vacío.
    - Sistema formatea automáticamente como `X.XX` con separadores de miles
    - Input oculto con `opacity-0`, solo visible el display formateado
    - Usuario puede seleccionar preset rápido: `15.00 / 30.00 / 50.00 / 100.00` (en la moneda seleccionada)
-4. Usuario puede cambiar moneda (`S/` o `$`) con toggles superiores (botones redondeados)
+4. Usuario puede cambiar moneda con toggles superiores (botones redondeados) entre sus monedas activas (PROPUESTO: CU-021/CU-022; código actual: `S/` o `$`)
 5. Usuario puede completar descripción (opcional, max ~200 chars visibles)
-6. Usuario selecciona categoría tocando uno de los 5 tiles (icono + label):
+6. Usuario selecciona categoría tocando un tile (icono + label) entre las categorías por defecto y sus categorías personalizadas (PROPUESTO: CU-024 a CU-026). Código actual, 5 fijas:
    - 🍽️ Comida
    - 🚗 Transporte
    - 💡 Servicios
@@ -91,17 +91,17 @@ Usuario hace clic en FAB `+`, botón "Agregar gasto", o CTA en estado vacío.
 
 ### Reglas de negocio
 - Monto requerido, `> 0`, numérico, max 9 dígitos enteros, 2 decimales
-- Categoría requerida (default `food`); debe pertenecer a `EXPENSE_CATEGORIES`
+- Categoría requerida (default `food`); debe pertenecer a las categorías disponibles del usuario: por defecto + personalizadas (PROPUESTO: CU-024 a CU-026; código actual: `EXPENSE_CATEGORIES`)
 - Fecha requerida, formato `YYYY-MM-DD`, por defecto hoy
 - Descripción opcional, max 200 chars
-- Moneda requerida, debe estar en `CURRENCY_OPTIONS` (`S/` o `$`)
+- Moneda requerida, debe ser una de las monedas activas del usuario (PROPUESTO: CU-021/CU-022; código actual: `CURRENCY_OPTIONS` con `S/` o `$`)
 - Gasto siempre pertenece al usuario autenticado (`userId` inmutable)
 
 ### Criterios de aceptación
 - Usuario puede ingresar monto con teclado numérico decimal
 - Presets rápidos (`15/30/50/100`) funcionan y muestran monto en moneda seleccionada
-- Usuario puede cambiar moneda con toggles
-- Usuario puede seleccionar categoría de 5 opciones con icono + label
+- Usuario puede cambiar moneda con toggles entre sus monedas activas (código actual: `S/` o `$`)
+- Usuario puede seleccionar categoría entre las disponibles (por defecto + personalizadas, PROPUESTO; código actual: 5 opciones) con icono + label
 - Usuario puede cambiar fecha con picker nativo
 - Botón "Guardar" deshabilitado si `monto ≤ 0`
 - Toast de éxito mostrado por 2s tras guardar
@@ -110,7 +110,7 @@ Usuario hace clic en FAB `+`, botón "Agregar gasto", o CTA en estado vacío.
 - Gasto persistido en Supabase con todos los campos requeridos
 
 ### Preguntas pendientes
-1. **Botón "Agregar categoría" (+):** Originalmente documentado como "al final de las opciones de categoría debe haber un icono '+' que redirija a `/dashboard/settings`". **Estado: PENDIENTE** (no implementado en MVP actual).
+1. **Botón "Agregar categoría" (+):** RESUELTO (29 oct 2026) — la creación de categorías queda definida en CU-024 (PROPUESTO). Lo único PENDIENTE es la ubicación del acceso en la navegación (ver preguntas pendientes de CU-024).
 2. **Offline-first con estado optimista:** Originalmente documentado como "store mantiene estado optimista; toast de error; retry al reconectar". **Estado: FUTURO** (comportamiento actual es síncrono, sin cola de sync persistente).
 3. **Validación de descripción:** No hay validación explícita de longitud máxima en cliente. ¿Implementar validación de 200 chars?
 

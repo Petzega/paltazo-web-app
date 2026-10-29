@@ -8,7 +8,7 @@
 ## CU-015: Configurar presupuesto por moneda
 
 ### Objetivo
-Permitir al usuario definir o modificar el límite mensual de gasto para cada moneda soportada (S/ y $), de forma independiente.
+Permitir al usuario definir o modificar el límite mensual de gasto para cada moneda activa del usuario, de forma independiente. (PROPUESTO: monedas activas entre S/, $ y € según CU-021/CU-022; código actual: S/ y $ fijas).
 
 ### Alcance
 Módulo de configuración, sección "💰 Presupuestos por moneda".
@@ -33,7 +33,7 @@ Usuario accede a la sección de presupuestos en la página de ajustes.
 1. Sistema inicializa estado `budgetInputs` con valores actuales:
    - Si `budget.monthlyLimit > 0`, carga el valor en el input correspondiente a `budget.currency`.
    - Para cada `budgets[currency]` con `monthlyLimit > 0`, carga el valor en su input.
-2. Sistema renderiza sección "💰 Presupuestos por moneda" con un bloque por moneda en `CURRENCY_OPTIONS` (S/ y $).
+2. Sistema renderiza sección "💰 Presupuestos por moneda" con un bloque por moneda activa del usuario (PROPUESTO: CU-021/CU-022; código actual: un bloque por moneda en `CURRENCY_OPTIONS`, S/ y $).
 3. Cada bloque muestra:
    - Label de moneda (ej: "Soles (S/)").
    - Badge "Principal" (fondo `bg-primary/10`) si coincide con `budget.currency`.
@@ -70,12 +70,12 @@ Usuario accede a la sección de presupuestos en la página de ajustes.
 
 ### Reglas de negocio
 - Monto requerido, debe ser > 0, numérico con hasta 2 decimales (`step="0.01"`).
-- Moneda debe estar en `CURRENCY_OPTIONS` (S/ o $). No se permiten monedas personalizadas.
+- El presupuesto se configura solo sobre monedas activas del usuario (PROPUESTO: CU-021/CU-022; código actual: `CURRENCY_OPTIONS` con S/ o $). Monedas soportadas limitadas a S/, $ y €; no se permiten otras monedas.
 - Cada moneda tiene su propio presupuesto independiente (no hay límite global).
 - El presupuesto principal (`budget.currency`) se usa como referencia para alertas de umbral en CU-013.
 
 ### Criterios de aceptación
-- Usuario puede ver y modificar presupuestos para S/ y $ de forma independiente.
+- Usuario puede ver y modificar presupuestos de cada moneda activa de forma independiente (código actual: S/ y $).
 - Input muestra símbolo de moneda como prefijo visual.
 - Badge "Principal" aparece solo en la moneda configurada como principal (`budget.currency`).
 - Badge "Configurado" aparece en monedas secundarias que ya tienen un presupuesto definido.
@@ -84,7 +84,7 @@ Usuario accede a la sección de presupuestos en la página de ajustes.
 - Cambios se reflejan inmediatamente en el dashboard (CU-012).
 
 ### Preguntas pendientes
-—
+- Impacto técnico al implementar CU-021 a CU-023: esta sección deja de iterar el `CURRENCY_OPTIONS` fijo y pasa a iterar las monedas activas del usuario.
 
 ---
 
@@ -209,9 +209,128 @@ Usuario hace clic en el botón "Cerrar sesión" en la parte inferior de la pági
 2. **Consistencia con CU-005:** Sidebar usa mismo flujo (CU-005). Asegurar que ambos puntos de entrada redirijan a la misma pantalla de destino.
 
 ---
+
+## CU-022: Agregar moneda
+
+> **Estado: PROPUESTO** — comportamiento previsto, NO implementado.
+
+### Objetivo
+Permitir al usuario activar una moneda adicional (de S/, $, €) cuando la necesite, en lugar de mostrar todas las monedas siempre.
+
+### Alcance
+Módulo de configuración, sección de monedas en `/dashboard/settings`.
+
+### Actor principal
+Usuario autenticado.
+
+### Actores secundarios
+Ninguno.
+
+### Fuente
+- Requisito de producto comunicado por el usuario (28–29 oct 2026): monedas agregables a demanda desde configuraciones.
+- Comportamiento previsto, NO implementado. Reemplaza la decisión del handoff "Monedas: S/ y $ hardcoded, no configurables por usuario".
+
+### Precondiciones
+- Usuario autenticado con configuración inicial completada (CU-021).
+- Existe al menos una moneda soportada que el usuario no tiene activa.
+
+### Disparador
+El usuario pulsa "Agregar moneda" en ajustes.
+
+### Flujo principal
+1. El sistema muestra únicamente las monedas soportadas que el usuario no tiene activas.
+2. El usuario selecciona una y confirma.
+3. El sistema activa la moneda y la incorpora a los selectores de gastos y a la sección de presupuestos, sin presupuesto configurado inicialmente.
+
+### Flujos alternativos
+- **Paso 1a — Todas las monedas ya activas:** no se muestra la acción "Agregar moneda".
+- **Paso 2a — El usuario cancela:** sin cambios.
+
+### Excepciones
+- **Error al activar (paso 3):** mensaje de error; la moneda no queda activa.
+
+### Postcondiciones
+- **En éxito:** la moneda queda disponible para registrar gastos (CU-008) y configurar presupuesto (CU-015); persiste entre sesiones.
+- **En fallo:** sin cambios.
+
+### Reglas de negocio
+- (PROPUESTO) Monedas soportadas limitadas a S/, $, €.
+- (PROPUESTO) No se puede activar dos veces la misma moneda.
+- (PROPUESTO) Agregar una moneda no crea presupuesto automáticamente; el usuario lo define con CU-015.
+
+### Criterios de aceptación
+- Solo se ofrecen monedas no activas.
+- Tras agregar, la moneda aparece en alta de gasto y en presupuestos.
+- La activación persiste entre sesiones.
+
+### Preguntas pendientes
+Ninguna de negocio.
+
+---
+
+## CU-023: Quitar moneda
+
+> **Estado: PROPUESTO** — comportamiento previsto, NO implementado. ⚠️ Incluye eliminación definitiva de datos, decisión explícita del usuario.
+
+### Objetivo
+Permitir al usuario dejar de usar una moneda secundaria que ya no necesita, eliminando sus datos asociados.
+
+### Alcance
+Módulo de configuración, sección de monedas en `/dashboard/settings`.
+
+### Actor principal
+Usuario autenticado.
+
+### Actores secundarios
+Ninguno.
+
+### Fuente
+- Requisito de producto comunicado por el usuario (28–29 oct 2026): al quitar una moneda se eliminan también sus gastos y presupuesto, con confirmación explícita.
+- Comportamiento previsto, NO implementado.
+
+### Precondiciones
+- Usuario autenticado.
+- La moneda está activa y NO es la moneda principal.
+
+### Disparador
+El usuario pulsa "Quitar" sobre una moneda activa.
+
+### Flujo principal
+1. El sistema calcula los datos asociados: cantidad de gastos y presupuesto en esa moneda.
+2. El sistema muestra modal de confirmación: *"Se eliminarán N gastos y el presupuesto en {moneda}. Esta acción no se puede deshacer."*
+3. El usuario confirma.
+4. El sistema elimina los gastos y el presupuesto de esa moneda y la desactiva.
+5. El sistema actualiza selectores, historial y dashboard, que dejan de mostrar esa moneda.
+
+### Flujos alternativos
+- **Paso 3a — El usuario cancela:** no se elimina nada.
+- **Paso 1a — Moneda sin datos asociados:** mismo modal con N = 0 (confirmación obligatoria por convención de acciones destructivas).
+
+### Excepciones
+- **Fallo durante la eliminación (paso 4):** mensaje de error y estado sin cambios: o se eliminan todos los datos asociados o ninguno.
+
+### Postcondiciones
+- **En éxito:** no quedan gastos ni presupuesto en esa moneda; la moneda puede volver a agregarse (CU-022) partiendo de cero.
+- **En fallo:** moneda y datos quedan intactos.
+
+### Reglas de negocio
+- (PROPUESTO) La moneda principal no se puede quitar; siempre existe al menos una moneda activa.
+- (PROPUESTO) La eliminación de gastos y presupuesto es definitiva y siempre requiere confirmación explícita informando la cantidad de gastos.
+
+### Criterios de aceptación
+- El modal informa la cantidad de gastos antes de confirmar.
+- Cancelar no modifica ningún dato.
+- Tras confirmar, no quedan registros en esa moneda ni aparece en selectores, historial o dashboard.
+- No es posible quitar la moneda principal.
+
+### Preguntas pendientes
+Ninguna de negocio.
+
+---
 ## Notas técnicas
 
 **Monedas soportadas (hardcoded):**
+> Estado actual del código. Será reemplazado por CU-021 a CU-023 (PROPUESTO): selección inicial y gestión a demanda de S/, $ y €.
 ```ts
 const CURRENCY_OPTIONS = [
   { value: 'S/', label: 'Soles (S/)' },
