@@ -1,240 +1,312 @@
 # Casos de Uso: Gastos
 
 > Módulo de gestión de gastos. CRUD atómico sobre el mes en curso.
-> Categorías del sistema: comida, transporte, servicios, ocio, otros.
+> Categorías del sistema (fuente de verdad: `src/lib/categories.ts`).
 > Monedas soportadas en MVP: `S/` (PEN) y `$` (USD).
 
 ---
 
 ## CU-008: Crear gasto
 
-**Actor:** Usuario autenticado
+### Objetivo
+Registrar un nuevo gasto con monto, categoría, moneda y fecha para que se refleje en el presupuesto del mes.
 
-**Precondiciones:**
-- Usuario logueado (`userId ≠ null`)
-- Usuario está en `/dashboard/add-expense` (acceso desde FAB o botón "Agregar gasto")
+### Alcance
+Módulo de gastos (`/dashboard/add-expense`)
 
-**Flujo principal:**
-1. Usuario hace clic en FAB `+` o botón "Agregar gasto"
-2. Sistema redirige a `/dashboard/add-expense`
-3. Formulario se inicializa con:
-   - Moneda: `budget.currency` (principal del usuario)
+### Actor principal
+Usuario autenticado
+
+### Actores secundarios
+—
+
+### Fuente
+- `src/app/dashboard/add-expense/page.tsx` (comportamiento implementado)
+- `src/lib/store.tsx` → `addExpense()`
+- `src/lib/categories.ts` → `EXPENSE_CATEGORIES`
+
+### Precondiciones
+- Usuario autenticado (`userId ≠ null`)
+- Usuario navega a `/dashboard/add-expense` (desde FAB, botón "Agregar gasto" en header, o CTA en estado vacío)
+
+### Disparador
+Usuario hace clic en FAB `+`, botón "Agregar gasto", o CTA en estado vacío.
+
+### Flujo principal
+1. Sistema redirige a `/dashboard/add-expense`
+2. Formulario se inicializa con:
+   - Moneda: `budget.currency` (moneda principal del usuario)
    - Categoría: `food` (default)
    - Fecha: hoy (`new Date().toISOString().split('T')[0]`)
-   - Monto vacío, descripción vacía
-4. Usuario ingresa monto mediante teclado numérico decimal (input oculto con `inputMode="decimal"`)
-   - Formato automático `X.XX` con separadores de miles
-   - Opcionalmente selecciona preset rápido: `15.00 / 30.00 / 50.00 / 100.00`
-5. Usuario puede cambiar moneda (`S/` o `$`) con toggles superiores
-6. Usuario puede completar descripción (opcional, max ~200 chars visibles)
-7. Usuario selecciona categoría tocando uno de los 5 tiles (icono + label)
-8. Usuario puede cambiar fecha con picker nativo (`<input type="date">`)
-9. Usuario hace clic en "✓ Guardar y Continuar"
-10. Sistema valida `numericValue > 0`
-11. Sistema llama `store.addExpense({ amount, currency, category, description?, date })`
-12. Store persiste en Supabase (vía `repositories.ts`) y actualiza estado local
-13. Sistema muestra toast "✓ Gasto registrado" (2s)
-14. Sistema limpia el formulario (moneda vuelve a la inicial, resto se resetea)
-15. Dashboard recalcula gastos del mes automáticamente
+   - Monto: vacío
+   - Descripción: vacía
+3. Usuario ingresa monto mediante teclado numérico decimal (`inputMode="decimal"`)
+   - Sistema formatea automáticamente como `X.XX` con separadores de miles
+   - Input oculto con `opacity-0`, solo visible el display formateado
+   - Usuario puede seleccionar preset rápido: `15.00 / 30.00 / 50.00 / 100.00` (en la moneda seleccionada)
+4. Usuario puede cambiar moneda (`S/` o `$`) con toggles superiores (botones redondeados)
+5. Usuario puede completar descripción (opcional, max ~200 chars visibles)
+6. Usuario selecciona categoría tocando uno de los 5 tiles (icono + label):
+   - 🍽️ Comida
+   - 🚗 Transporte
+   - 💡 Servicios
+   - 🎬 Entretenimiento
+   - 📝 Otros
+7. Usuario puede cambiar fecha con picker nativo (`<input type="date">`)
+8. Usuario hace clic en "✓ Guardar y Continuar"
+9. Sistema valida `numericValue > 0`
+10. Sistema llama `store.addExpense({ amount, currency, category, description?, date })`
+11. Store persiste en Supabase (vía `repositories.addExpense()`) y actualiza estado local
+12. Sistema muestra toast "✓ Gasto registrado" (2s, posicionado fijo arriba centrado)
+13. Sistema limpia el formulario:
+    - Moneda vuelve a `initialCurrency`
+    - Resto se resetea a defaults
+14. Dashboard recalcula gastos del mes automáticamente
 
-**Flujos alternativos:**
-- **3a. Agregar categoría:** al final de todas las opciones de categoría debe haber un icono con el signo "+" del tamaño del resto de categorías con el nombre "Agregar". 
-	- Cuando se le de click a este botón se redireccionará a la vista de ajustes `/dashboard/settings`
-- **9a. Monto = 0 o vacío:** botón "Guardar" permanece `disabled` (`numericValue <= 0`)
-- **11a. Error de red al persistir:** store mantiene estado optimista; toast de error; retry al reconectar (offline-first)
-- **Usuario quiere descartar:** toca "←" o "Cancelar"
-  - Si hay cambios sin guardar → abre modal "¿Descartar cambios?" con opciones "Cancelar" / "Descartar"
-  - Si no hay cambios → `router.back()` inmediato
+### Flujos alternativos
 
-**Postcondiciones:**
-- Nuevo registro en tabla `expenses` con UUID, `user_id`, `amount`, `currency`, `category`, `description?`, `date`, `created_at`
-- `expenses` en store actualizado
-- Dashboard refleja nuevo acumulado y alerta si cruza umbral
+**Paso 3 — Usuario quiere descartar cambios:**
+- Condición: Usuario toca "←" (botón atrás) o "Cancelar"
+- Si `hasChanges = true` (monto, descripción, categoría o moneda cambiaron) → abre modal "¿Descartar cambios?" con opciones "Cancelar" / "Descartar"
+- Si `hasChanges = false` → `router.back()` inmediato
 
-**Validaciones:**
+**Paso 8 — Monto = 0 o vacío:**
+- Condición: `numericValue <= 0`
+- Comportamiento: Botón "Guardar y Continuar" permanece `disabled`
+
+**Paso 8 — Usuario limpia formulario manualmente:**
+- Condición: Usuario toca "🗑️ Limpiar"
+- Comportamiento: Ejecuta `handleClear()` → resetea todos los campos a defaults
+
+### Excepciones
+
+**Paso 11 — Error de red al persistir:**
+- Condición: `db.addExpense()` falla
+- Respuesta: Store lanza error, toast no se muestra, formulario mantiene valores ingresados
+- Estado final: Gasto NO registrado, usuario puede reintentar
+
+### Postcondiciones
+- **En éxito:** Nuevo registro en tabla `expenses` con UUID, `user_id`, `amount`, `currency`, `category`, `description?`, `date`, `created_at`. Toast de éxito por 2s. Formulario limpiado (moneda vuelve a inicial).
+- **En fallo:** Gasto NO persistido. Estado local NO modificado. Usuario puede reintentar.
+
+### Reglas de negocio
 - Monto requerido, `> 0`, numérico, max 9 dígitos enteros, 2 decimales
 - Categoría requerida (default `food`); debe pertenecer a `EXPENSE_CATEGORIES`
 - Fecha requerida, formato `YYYY-MM-DD`, por defecto hoy
 - Descripción opcional, max 200 chars
 - Moneda requerida, debe estar en `CURRENCY_OPTIONS` (`S/` o `$`)
+- Gasto siempre pertenece al usuario autenticado (`userId` inmutable)
 
-**UI/UX:**
-- Layout tipo panel lateral en desktop (`md:w-[420px] md:fixed md:right-0`)
-- Display de monto grande con efecto focus (ring primary)
-- Presets horizontales scrolleables
-- Grid de categorías 5 columnas con tile activo en `primary-container`
-- Sección informativa de sync "☁️ Sincronizado en la nube"
-- Tip motivacional inferior ("🌿 ¡Excelente hábito!")
-- Botones: "✓ Guardar y Continuar" (primario), "🗑️ Limpiar", "Cancelar"
+### Criterios de aceptación
+- Usuario puede ingresar monto con teclado numérico decimal
+- Presets rápidos (`15/30/50/100`) funcionan y muestran monto en moneda seleccionada
+- Usuario puede cambiar moneda con toggles
+- Usuario puede seleccionar categoría de 5 opciones con icono + label
+- Usuario puede cambiar fecha con picker nativo
+- Botón "Guardar" deshabilitado si `monto ≤ 0`
+- Toast de éxito mostrado por 2s tras guardar
+- Formulario se limpia tras guardar (moneda vuelve a inicial)
+- Modal de confirmación si usuario intenta salir con cambios sin guardar
+- Gasto persistido en Supabase con todos los campos requeridos
 
-**Relacionado:**
-- CU-012: Dashboard refleja el nuevo gasto inmediatamente
-- CU-013: Si el gasto cruza umbral 80% / 100% / >100%, se dispara alerta visual
-- Store: `addExpense()` en `src/lib/store.tsx`
-- Repositorio: `insertExpense()` en `src/lib/supabase/repositories.ts`
+### Preguntas pendientes
+1. **Botón "Agregar categoría" (+):** Originalmente documentado como "al final de las opciones de categoría debe haber un icono '+' que redirija a `/dashboard/settings`". **Estado: PENDIENTE** (no implementado en MVP actual).
+2. **Offline-first con estado optimista:** Originalmente documentado como "store mantiene estado optimista; toast de error; retry al reconectar". **Estado: FUTURO** (comportamiento actual es síncrono, sin cola de sync persistente).
+3. **Validación de descripción:** No hay validación explícita de longitud máxima en cliente. ¿Implementar validación de 200 chars?
 
 ---
 
 ## CU-009: Listar gastos del mes
 
-**Actor:** Usuario autenticado
+### Objetivo
+Ver todos los gastos del mes agrupados por fecha, con totales y acceso rápido a editar/eliminar.
 
-**Precondiciones:**
-- Usuario logueado
-- Usuario navega a `/dashboard/expenses` (desde botón "Ver reporte" en Dashboard o BottomNav)
+### Alcance
+Módulo de gastos (`/dashboard/expenses`)
 
-**Flujo principal:**
-1. Sistema carga `expenses` del store filtrados al mes actual (prefix `YYYY-MM`)
-2. Sistema calcula `monthlyTotal` en la moneda principal del usuario
-3. Sistema ordena gastos por fecha descendente
-4. Sistema agrupa gastos por fecha en estructura `Record<date, Expense[]>`
-5. Vista desktop: tabla con columnas Fecha | Categoría | Descripción | Monto | Acciones
-6. Vista mobile: cards agrupadas por fecha, cada grupo muestra subtotal en moneda principal
-7. Header muestra total de registros y total gastado vs. límite configurado
-8. Usuario puede hacer clic en "✏️" para editar inline (→ CU-010) o "🗑️" para eliminar (→ CU-011)
+### Actor principal
+Usuario autenticado
 
-**Flujos alternativos:**
-- **5a. No hay gastos:** se muestra estado vacío con emoji "📭", texto "No hay gastos registrados" y CTA "+ Agregar primer gasto"
+### Fuente
+- `src/app/dashboard/expenses/page.tsx` (comportamiento implementado)
 
-**Postcondiciones:**
-- Usuario ve listado completo de gastos del mes agrupado por fecha
-- Total acumulado visible en cabecera
+### Precondiciones
+- Usuario autenticado
+- Usuario navega a `/dashboard/expenses` (desde BottomNav o botón "Ver reporte")
 
-**Validaciones:**
-- Filtrado estricto por `user_id` (garantizado por Supabase RLS)
-- Mes corriente calculado desde `new Date()` del cliente
+### Disparador
+Navegación a `/dashboard/expenses`.
 
-**UI/UX:**
-- Card superior con "Total gastado (X)" + "Límite: X"
-- Desktop: tabla sobria con hover
-- Mobile: cards con icono de categoría, label, descripción (o "Sin descripción"), monto alineado a la derecha
-- Botón "➕ Agregar gasto" visible en header (desktop) y FAB flotante (mobile)
-- Cada grupo de fecha muestra subtotal en moneda principal
+### Flujo principal
+1. Sistema calcula `monthPrefix` del mes actual (`YYYY-MM`)
+2. Sistema filtra `expenses` del store al mes actual
+3. Sistema calcula `monthlyTotal` en moneda principal del usuario (`budget.currency`)
+4. Sistema ordena gastos por fecha descendente
+5. Sistema agrupa gastos por fecha en `Record<date, Expense[]>`
+6. **Vista desktop:** tabla con columnas Fecha | Categoría | Descripción | Monto | Acciones
+7. **Vista mobile:** cards agrupadas por fecha, cada grupo muestra subtotal en moneda principal
+8. Header muestra total de registros y total gastado vs. límite configurado
+9. Usuario puede hacer clic en "✏️" para editar inline (→ CU-010) o "🗑️" para eliminar (→ CU-011)
 
-**Relacionado:**
-- CU-008 (crear desde esta vista vía FAB)
-- CU-010 y CU-011 (acciones inline)
+### Flujos alternativos
+
+**Paso 6 — No hay gastos:**
+- Condición: `sorted.length === 0`
+- Comportamiento: Estado vacío con emoji "📭", texto "No hay gastos registrados" y CTA "+ Agregar primer gasto" (redirige a `/dashboard/add-expense`)
+
+### Excepciones
+—
+
+### Postcondiciones
+- **En éxito:** Usuario ve listado completo de gastos del mes agrupado por fecha. Total acumulado visible en cabecera.
+
+### Reglas de negocio
+- Filtrado estricto por mes actual (cliente)
+- `monthlyTotal` solo incluye gastos en `budget.currency` (moneda principal)
+- RLS garantiza que solo se muestran gastos del usuario autenticado
+
+### Criterios de aceptación
+- Listado ordenado por fecha descendente
+- Desktop: tabla con columnas correctas
+- Mobile: cards agrupadas con subtotal por fecha
+- Header muestra count + total gastado vs. límite
+- Empty state con CTA
+
+### Preguntas pendientes
+—
 
 ---
 
 ## CU-010: Editar gasto
 
-**Actor:** Usuario autenticado (propietario del gasto)
+### Objetivo
+Corregir un gasto existente inline sin salir de la vista de listado.
 
-**Precondiciones:**
+### Alcance
+Módulo de gastos (`/dashboard/expenses`, edición inline)
+
+### Actor principal
+Usuario autenticado (propietario del gasto)
+
+### Fuente
+- `src/app/dashboard/expenses/page.tsx` → `startEdit()` / `saveEdit()` (comportamiento implementado)
+
+### Precondiciones
 - Usuario en `/dashboard/expenses`
-- Gasto objetivo pertenece al usuario (RLS)
+- Gasto pertenece al usuario (RLS)
 
-**Flujo principal:**
-1. Usuario hace clic en botón "✏️" de un gasto
-2. Sistema setea `editingId = expense.id` y carga `editForm` con valores actuales (`amount`, `description`, `category`, `date`)
-3. Vista desktop: la fila de tabla se reemplaza por fila de edición con inputs inline (monto, descripción, categoría `<select>`, fecha) + botones "✓ Guardar" / "Cancelar"
-4. Vista mobile: la card se expande con grid de inputs (monto + fecha en 2 cols), descripción, categoría, botones
-5. Usuario modifica los campos deseados
-6. Usuario hace clic en "✓ Guardar"
-7. Sistema valida `editForm.amount > 0`
-8. Sistema llama `store.updateExpense(editingId, { amount, description?, category, date })`
-9. Store actualiza en Supabase y refleja cambios en lista
-10. Sistema setea `editingId = null` (vuelve a modo lectura)
+### Disparador
+Usuario hace clic en "✏️" de un gasto.
 
-**Flujos alternativos:**
-- **6a. Monto inválido (≤ 0 o vacío):** no se dispara `updateExpense`, botón permanece inoperativo
-- **8a. Error de red:** store mantiene cambio optimista, toast de error al fallar
-- **Usuario cancela:** clic en "Cancelar" → `editingId = null` sin persistir cambios
+### Flujo principal
+1. Sistema setea `editingId = expense.id` y carga `editForm` con valores actuales (`amount`, `description`, `category`, `date`)
+2. **Vista desktop:** fila de tabla se reemplaza por fila de edición con inputs inline (monto, descripción, categoría `<select>`, fecha) + botones "✓ Guardar" / "Cancelar"
+3. **Vista mobile:** card se expande con grid de inputs (monto + fecha en 2 cols), descripción, categoría `<select>`, botones
+4. Usuario modifica los campos deseados
+5. Usuario hace clic en "✓ Guardar"
+6. Sistema valida `editForm.amount > 0`
+7. Sistema llama `store.updateExpense(editingId, { amount, description?, category, date })`
+8. Store actualiza en Supabase y refleja cambios en lista
+9. Sistema setea `editingId = null` (vuelve a modo lectura)
 
-**Postcondiciones:**
-- Registro actualizado en Supabase con nuevos valores
-- `expenses` del store reflejan los cambios
-- Dashboard recalcula totales si corresponde
+### Flujos alternativos
 
-**Validaciones:**
+**Paso 5 — Monto inválido (≤ 0 o vacío):**
+- Condición: `!editForm.amount || parseFloat(editForm.amount) <= 0`
+- Comportamiento: No se ejecuta `updateExpense`, función retorna sin persistir
+
+**Paso 4 — Usuario cancela:**
+- Condición: Usuario hace clic en "Cancelar"
+- Comportamiento: `editingId = null` sin persistir cambios
+
+### Excepciones
+
+**Paso 7 — Error de red:**
+- Condición: `db.updateExpense()` falla
+- Respuesta: Store lanza error
+- Estado final: Gasto NO actualizado
+
+### Postcondiciones
+- **En éxito:** Registro actualizado en Supabase. `expenses` del store reflejan cambios. Dashboard recalcula totales.
+
+### Reglas de negocio
 - `amount > 0`, numérico
 - `category` perteneciente a `['food','transport','services','entertainment','other']`
 - `date` en formato `YYYY-MM-DD`
 - `description` opcional
+- **Moneda NO editable** (el gasto mantiene su moneda original)
 
-**UI/UX:**
+### Criterios de aceptación
 - Edición inline (no modal, no página nueva)
-- Inputs con `bg-surface-container border border-outline focus:border-primary`
-- Botones: "✓ Guardar" (primary), "Cancelar" (surface)
-- En mobile, layout de 2 columnas para monto/fecha, descripción full-width, categoría full-width
+- Desktop: inputs en fila de tabla
+- Mobile: grid de inputs expandido
+- Guardar deshabilitado si `amount ≤ 0`
+- Cancelar → modo lectura sin persistir
 
-**Relacionado:**
-- CU-009 (vista desde la cual se edita)
-- CU-012: Dashboard refleja cambios al volver
+### Preguntas pendientes
+—
 
 ---
 
 ## CU-011: Eliminar gasto
 
-**Actor:** Usuario autenticado (propietario del gasto)
+### Objetivo
+Eliminar un gasto existente con confirmación obligatoria.
 
-**Precondiciones:**
+### Alcance
+Módulo de gastos (`/dashboard/expenses`, modal de confirmación)
+
+### Actor principal
+Usuario autenticado (propietario del gasto)
+
+### Fuente
+- `src/app/dashboard/expenses/page.tsx` → `confirmDelete()` / `handleDelete()` (comportamiento implementado)
+
+### Precondiciones
 - Usuario en `/dashboard/expenses`
-- Gasto objetivo pertenece al usuario (RLS)
+- Gasto pertenece al usuario (RLS)
 
-**Flujo principal:**
-1. Usuario hace clic en botón "🗑️" del gasto
-2. Sistema setea `deletingId = expense.id`
-3. Modal de confirmación aparece con:
+### Disparador
+Usuario hace clic en "🗑️" del gasto.
+
+### Flujo principal
+1. Sistema setea `deletingId = expense.id`
+2. Modal de confirmación aparece con:
    - Título: "¿Eliminar gasto?"
    - Mensaje: "Esta acción no se puede deshacer."
    - Botones: "Cancelar" / "Eliminar"
-4. Usuario hace clic en "Eliminar"
-5. Sistema llama `store.deleteExpense(deletingId)`
-6. Store elimina registro en Supabase y remueve de `expenses`
-7. Sistema setea `deletingId = null` y `editingId = null` (si estaba en edición)
-8. Lista se actualiza, totales recalculados
+3. Usuario hace clic en "Eliminar"
+4. Sistema llama `store.deleteExpense(deletingId)`
+5. Store elimina registro en Supabase y remueve de `expenses`
+6. Sistema setea `deletingId = null` y `editingId = null` (si estaba en edición)
+7. Lista se actualiza, totales recalculados
 
-**Flujos alternativos:**
-- **3a. Usuario cierra modal tocando fuera:** `cancelDelete()` → `deletingId = null`
-- **5a. Error de red:** store mantiene estado optimista, toast de error; gasto reaparece al fallar rollback
+### Flujos alternativos
 
-**Postcondiciones:**
-- Registro eliminado de Supabase (hard delete)
-- `expenses` actualizado en store
-- Totales del dashboard recalculados
+**Paso 2 — Usuario cierra modal sin eliminar:**
+- Condición: Usuario toca fuera del modal (backdrop)
+- Comportamiento: `cancelDelete()` → `deletingId = null`
+- Nota: Click en contenido del modal no propaga (`e.stopPropagation()`)
 
-**Validaciones:**
+### Excepciones
+
+**Paso 5 — Error de red:**
+- Condición: `db.deleteExpense()` falla
+- Respuesta: Store lanza error
+- Estado final: Gasto NO eliminado
+
+### Postcondiciones
+- **En éxito:** Registro eliminado de Supabase (hard delete). `expenses` actualizado en store. Totales recalculados.
+
+### Reglas de negocio
 - Modal de confirmación **obligatorio** para acciones destructivas (convención global)
 
-**UI/UX:**
-- Modal centrado con backdrop `bg-black/40 backdrop-blur-sm`
-- Botón "Eliminar" en `bg-error-container text-on-error-container hover:bg-error`
-- Botón "Cancelar" neutro
+### Criterios de aceptación
+- Modal centrado con backdrop blur
+- Título y mensaje correctos
+- Botones "Cancelar" (neutro) / "Eliminar" (error-container)
+- Cerrar modal tocando fuera funciona
+- Lista actualizada tras eliminar
 
-**Relacionado:**
-- CU-009 (vista desde la cual se elimina)
-- Convención de modales destructivos (ver README use-case)
-
----
-
-## Notas técnicas
-
-**Modelo de datos (Expense):**
-```
-id: UUID (PK)
-user_id: UUID (FK profiles.id)
-amount: number
-currency: 'S/' | '$'
-category: 'food' | 'transport' | 'services' | 'entertainment' | 'other'
-description?: string
-date: string (YYYY-MM-DD)
-created_at: string
-```
-
-**Categorías (`EXPENSE_CATEGORIES` en `src/lib/categories.ts`):**
-- `food` 🍽️ Comida
-- `transport` 🚗 Transporte
-- `services` 💡 Servicios
-- `entertainment` 🎮 Ocio
-- `other` 📦 Otros
-
-**Estado global afectado:**
-- `expenses`: array completo filtrado por usuario
-- `budget`: objeto con `monthlyLimit` y `currency` principal
-- `budgets`: mapa de presupuestos por moneda
-
-**Offline-first:**
-- Las mutaciones pasan por el store, que mantiene estado optimista
-- Supabase es fuente de verdad; al fallar red, se reintenta al reconectar
+### Preguntas pendientes
+—

@@ -67,6 +67,16 @@ CREATE TABLE profiles (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+CREATE TABLE budgets (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  currency TEXT NOT NULL,
+  monthly_limit NUMERIC(10,2) NOT NULL DEFAULT 0,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  UNIQUE(user_id, currency)
+);
+
 CREATE TABLE expenses (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
@@ -101,6 +111,10 @@ CREATE TABLE push_subscriptions (
   UNIQUE (user_id, endpoint)
 );
 ```
+
+> El trigger `handle_new_user` inserta automáticamente:
+> - Un registro en `profiles` con `primary_currency = 'PEN'`
+> - Un registro en `budgets` con `monthly_limit = 1000`, `currency = 'PEN'`
 
 > `auth.users` es administrada por Supabase. `profiles` contiene los datos propios de Paltazo; no crear una tabla pública llamada `users`.
 

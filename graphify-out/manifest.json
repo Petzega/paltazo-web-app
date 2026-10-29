@@ -42,9 +42,9 @@
     "semantic_hash": ""
   },
   "docs/stack_tecnologico_paltazo.md": {
-    "mtime": 1792178272.7791584,
-    "seen": 1792447740.9909022,
-    "ast_hash": "5b970d70a209a914d4835414944e63b3",
+    "mtime": 1793207715.2273078,
+    "seen": 1793207834.5160706,
+    "ast_hash": "ad3b46043e37b25f9d08c2a0d0017883",
     "semantic_hash": ""
   },
   "next.config.ts": {
@@ -1236,9 +1236,9 @@
     "semantic_hash": ""
   },
   "docs/use-case/auth/auth.md": {
-    "mtime": 1792529978.6059968,
-    "seen": 1792532968.3696043,
-    "ast_hash": "40f287e6bdbd6c8fd2d209939c355585",
+    "mtime": 1793225716.6824677,
+    "seen": 1793225729.8581445,
+    "ast_hash": "1971b42e3b5715957f90ce8711d2583f",
     "semantic_hash": ""
   },
   "install-extensions.ps1": {
@@ -1248,27 +1248,51 @@
     "semantic_hash": ""
   },
   "docs/use-case/USER_STORY_MAP.md": {
-    "mtime": 1792523221.5967574,
-    "seen": 1792524594.904167,
-    "ast_hash": "11f79b115a18823e38591b7d93d9bc0d",
+    "mtime": 1793225679.6350334,
+    "seen": 1793225729.8581412,
+    "ast_hash": "1a9f7ae5fe7f89a3c2b0882a95b2647b",
     "semantic_hash": ""
   },
   "docs/use-case/dashboard/dashboard.md": {
-    "mtime": 1792529982.976139,
-    "seen": 1792532968.369609,
-    "ast_hash": "fa7fdb096baa2436ba792db8e4a4ac01",
+    "mtime": 1793216851.3790123,
+    "seen": 1793216864.9519196,
+    "ast_hash": "c3e2503448d5b1c5846deba865657da3",
     "semantic_hash": ""
   },
   "docs/use-case/expenses/expenses.md": {
-    "mtime": 1792523221.598016,
-    "seen": 1792524594.9043171,
-    "ast_hash": "193fbc47f0fd80ab11c4199f85cc9df9",
+    "mtime": 1793214770.8158612,
+    "seen": 1793214783.1006289,
+    "ast_hash": "967c947f7fd1112722a672a3d5297c12",
     "semantic_hash": ""
   },
   "docs/use-case/settings/settings.md": {
-    "mtime": 1792523221.5985537,
-    "seen": 1792524594.904318,
-    "ast_hash": "7a9c8144782423a28b859079d619e776",
+    "mtime": 1793223344.6859455,
+    "seen": 1793223360.3404493,
+    "ast_hash": "d1253826236532a0fa85597cd0e1a870",
+    "semantic_hash": ""
+  },
+  ".agents/skills/use-case-writer/SKILL.md": {
+    "mtime": 1793207102.022137,
+    "seen": 1793207834.514643,
+    "ast_hash": "a75adb826c671b5ef7922c3616f964c2",
+    "semantic_hash": ""
+  },
+  "HANDOFF_AUTH_REVIEW.md": {
+    "mtime": 1793207102.0246716,
+    "seen": 1793207834.5152323,
+    "ast_hash": "e9e74c63128e0013d7d4d90e74261c36",
+    "semantic_hash": ""
+  },
+  "docs/use-case/future/future.md": {
+    "mtime": 1793225649.7697024,
+    "seen": 1793225729.8584108,
+    "ast_hash": "a388c670b0f73ba76c227861842276c6",
+    "semantic_hash": ""
+  },
+  "docs/use-case/onboarding/onboarding.md": {
+    "mtime": 1793225611.0325265,
+    "seen": 1793225729.8584123,
+    "ast_hash": "6b6e8cf1b3c95c6f05b89403aefe869a",
     "semantic_hash": ""
   }
 }

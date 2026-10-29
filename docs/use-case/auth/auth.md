@@ -211,6 +211,7 @@ El usuario, estando en `/login` en modo "Ingresar", pulsa "¿Olvidaste tu clave?
 
 ### Preguntas pendientes
 - **Entorno de emails:** en desarrollo local, los emails se capturan en Inbucket (puerto 54334). En producción, Supabase Email Provider o SMTP custom. (Documentado, no bloquea.)
+- **Pantalla de confirmación post-solicitud:** ¿Qué ve exactamente el usuario después de solicitar el enlace? Actualmente se muestra un mensaje inline en la misma pantalla (línea 185). ¿Debería existir una pantalla dedicada `/recovery-email-sent` con instrucciones más claras y opción de reenviar? Ver sección 9.2 de USER_STORY_MAP.md.
 
 ---
 
@@ -346,6 +347,7 @@ El usuario pulsa "Cerrar sesión" desde cualquiera de los puntos de entrada: Sid
 
 ### Preguntas pendientes
 - **Ruta concreta de la pantalla "Sesión cerrada"** (PENDIENTE): se decidirá en la implementación (ej. `/logout-success`, `/session-closed`). No afecta a este caso de uso.
+- **Pantalla "Sesión cerrada" no existe en código:** Actualmente el logout redirige a `/onboarding` (ver `src/lib/store.tsx` línea 124). ¿Crear pantalla dedicada `/logout-success` o ajustar documentación para reflejar comportamiento actual? Ver sección 9.1 de USER_STORY_MAP.md.
 
 ---
 

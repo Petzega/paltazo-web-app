@@ -8,72 +8,116 @@
 
 ## CU-012: Visualizar dashboard mensual
 
-**Actor:** Usuario autenticado
+### Objetivo
+Ver en una mirada el estado del presupuesto mensual, gasto acumulado y remaining por cada moneda que el usuario maneja.
 
-**Precondiciones:**
-- Usuario logueado (`userId ≠ null`)
-- Usuario navega a `/dashboard` (ruta raíz post-login, redirigida por middleware)
+### Alcance
+Dashboard principal (`/dashboard` o `/`)
 
-**Flujo principal:**
-1. Sistema carga `expenses`, `budget` y `budgets` del store
-2. Sistema calcula `currentMonth` y `currentYear` desde `new Date()`
-3. Sistema filtra `monthlyExpenses` por prefijo `YYYY-MM`
-4. Sistema construye `currencySummaries`: un resumen por cada moneda con gastos en el mes + la moneda principal
-5. Para cada moneda calcula:
-   - `monthlyLimit`: presupuesto asignado (0 si no existe)
-   - `totalExpenses`: suma de gastos en esa moneda
-   - `percentage`: `min(totalExpenses / monthlyLimit * 100, 100)` (0 si no hay límite)
-   - `remaining`: `max(monthlyLimit - totalExpenses, 0)`
-   - `alertLevel`: `safe | warning | critical | exceeded`
-   - `alertMessage`: texto contextual
-6. Ordena monedas: `S/` primero, luego alfabético
-7. Vista renderiza:
-   - Saludo "¡Hola! 👋" + subtítulo "Mantén tu economía tan fresca como una palta"
-   - Card de alerta contextual con nivel y días restantes del mes
-   - Bloque "Presupuestos mensuales" con una sub-card por moneda (monto límite, barra de progreso, gastado/restante)
-   - Card "Días restantes del mes" con contador
-   - Botones "Ver reporte" → `/dashboard/expenses` y "Ajustes" → `/dashboard/settings`
-   - Gráfico de barras de los últimos 7 días (→ CU-014)
-   - Listado de gastos del día seleccionado en la barra
-   - Tip motivacional inferior
+### Actor principal
+Usuario autenticado
 
-**Flujos alternativos:**
-- **4a. Usuario sin presupuesto configurado (`monthlyLimit = 0`):** sub-card muestra "Sin límite" y total gastado sin barra de progreso
-- **5a. Moneda sin gastos y sin presupuesto:** no se muestra en el resumen (excepto la principal)
+### Fuente
+- `src/app/dashboard/page.tsx` (comportamiento implementado)
+- `src/lib/store.tsx` → `expenses`, `budget`, `budgets`
 
-**Postcondiciones:**
-- Usuario tiene visión completa de su situación mensual multi-moneda
+### Precondiciones
+- Usuario autenticado (`userId ≠ null`)
+- Datos cargados en store: `expenses`, `budget`, `budgets`
+
+### Disparador
+Usuario navega a `/dashboard` (ruta raíz post-login).
+
+### Flujo principal
+1. Sistema obtiene fecha actual (`new Date()`): `currentMonth`, `currentYear`, `daysInMonth`, `currentDay`, `daysRemaining`
+2. Sistema filtra `expenses` al mes actual usando prefijo `YYYY-MM` → `monthlyExpenses`
+3. Sistema construye `currencySummaries`:
+   - Recolecta monedas activas: monedas con gastos en el mes + moneda principal + monedas en `budgets`
+   - Para cada moneda calcula:
+     - `monthlyLimit`: presupuesto asignado (0 si no existe)
+     - `totalExpenses`: suma de gastos en esa moneda
+     - `percentage`: `min(totalExpenses / monthlyLimit * 100, 100)` (0 si no hay límite)
+     - `remaining`: `max(monthlyLimit - totalExpenses, 0)`
+     - `alertLevel`: `safe | warning | critical | exceeded`
+     - `alertMessage`: texto contextual según nivel
+4. Sistema ordena monedas: `S/` primero, luego alfabético
+5. Sistema identifica `primarySummary` (moneda principal o primera disponible)
+6. Vista renderiza:
+   - **Header:** Saludo "¡Hola! 👋" + subtítulo "Mantén tu economía tan fresca como una palta"
+   - **Card de alerta contextual:** `primarySummary.alertMessage` + badge "Quedan X días"
+   - **Bloque "Presupuestos mensuales":**
+     - Badge con count de monedas
+     - Una sub-card por moneda: monto límite, barra de progreso, gastado/restante
+     - **Días restantes del mes:** integrado dentro de este bloque (no es card separada)
+     - Botones "📊 Ver reporte" → `/dashboard/expenses` y "⚙️ Ajustes" → `/dashboard/settings`
+   - **Gráfico de barras** de los últimos 7 días (→ CU-014)
+   - **Listado de gastos** del día seleccionado en la barra
+   - **Tip motivacional inferior:** "💡 Consejo Paltazo del día"
+
+### Flujos alternativos
+
+**Paso 3 — Usuario sin presupuesto configurado (`monthlyLimit = 0`):**
+- Condición: `monthlyLimit === 0`
+- Comportamiento: Sub-card muestra "Sin límite" y total gastado sin barra de progreso. Mensaje: "{currency} {amount} registrados (sin presupuesto configurado)"
+
+**Paso 3 — Moneda sin gastos y sin presupuesto:**
+- Condición: Moneda no tiene gastos en el mes ni presupuesto
+- Comportamiento: No se muestra en el resumen (excepto la moneda principal que siempre aparece)
+
+**Paso 6 — Barra de gráfico sin gastos seleccionada:**
+- Condición: `selectedBarDateExpenses.length === 0`
+- Comportamiento: Estado vacío "📭 No hay gastos registrados para este día"
+
+### Excepciones
+—
+
+### Postcondiciones
+- **En éxito:** Usuario tiene visión completa de su situación mensual multi-moneda
 - `primarySummary` se usa como referencia para la card de alerta superior
 
-**Validaciones:**
+### Reglas de negocio
 - Cálculos puramente client-side sobre datos del store
 - Filtrado por mes basado en `YYYY-MM` prefix del campo `date`
+- Moneda principal siempre visible, incluso sin gastos
 
-**UI/UX:**
-- Layout responsive: mobile con max-width `xl` centrado; desktop en grid de 2 columnas
-- Paleta semántica: primary (safe), warning (80%), danger (100% / exceeded)
-- Barra de progreso con transición suave (`duration-700 ease-out`)
-- Badge de días restantes en card de alerta
-- Tip del día con icono 💡 y texto limitado a 1 línea (`line-clamp-1`)
-- FAB "Agregar gasto" flotante en esquina inferior derecha
+### Criterios de aceptación
+- ✅ Dashboard muestra una sub-card por moneda con gastos o presupuesto
+- ✅ Moneda principal (`S/`) aparece primero
+- ✅ Barra de progreso refleja porcentaje de gasto
+- ✅ Card de alerta contextual muestra mensaje según nivel
+- ✅ Badge de días restantes visible
+- ✅ Gráfico de barras interactivo (click para seleccionar día)
+- ✅ Listado inferior muestra gastos del día seleccionado
+- ✅ Botones de navegación a expenses y settings
 
-**Relacionado:**
-- CU-013 (alertas de umbral)
-- CU-014 (actividad últimos 7 días)
-- CU-008 (FAB → crear gasto)
+### Preguntas pendientes
+—
 
 ---
 
-## CU-013: Alertas de umbral (80% / 100% / >100%)
+## CU-013: Alertas de umbral
 
-**Actor:** Sistema (lógica de presentación reactiva)
+### Objetivo
+Alertas visuales reactivas cuando el gasto mensual cruza umbrales de 80%, 100% o >100%.
 
-**Precondiciones:**
+### Alcance
+Dashboard principal (lógica de presentación dentro de CU-012)
+
+### Actor principal
+Sistema (lógica reactiva, no interacción directa del usuario)
+
+### Fuente
+- `src/app/dashboard/page.tsx` → `CurrencySummary` interface y cálculos (comportamiento implementado)
+
+### Precondiciones
 - Dashboard renderizado (CU-012)
 - Al menos una moneda con `monthlyLimit > 0` y gastos registrados
 
-**Flujo principal:**
-1. Tras cada recálculo de `currencySummaries`, el sistema evalúa `percentage` por moneda
+### Disparador
+Recálculo de `currencySummaries` tras cualquier cambio en `expenses` o `budgets`.
+
+### Flujo principal
+1. Sistema evalúa `percentage` por moneda
 2. Asigna `alertLevel` según la regla:
    - `percentage >= 101` → `exceeded` (rojo intenso)
    - `percentage >= 100` → `critical` (rojo)
@@ -85,10 +129,10 @@
    - `warning`: "Ritmo de gasto moderado en {currency}"
    - `safe` con límite: "{currency} dentro del límite"
    - `safe` sin límite: "{currency} sin presupuesto configurado"
-4. Card superior muestra el mensaje de la `primarySummary` + días restantes
-5. Si `percentage >= 80`, el texto sugiere un gasto diario recomendado:
+4. Card superior muestra `primarySummary.alertMessage` + días restantes
+5. Si `percentage >= 80`, texto sugiere gasto diario recomendado:
    - `remaining / daysRemaining` formateado a 2 decimales
-6. Barra de progreso de cada moneda adopta el color del nivel:
+6. Barra de progreso adopta color del nivel:
    - `>= 100%` → `bg-danger`
    - `>= 80%` → `bg-warning`
    - `< 80%` → `bg-primary`
@@ -98,107 +142,118 @@
    - `< 100%` con límite: `bg-primary/15 text-primary`
    - sin límite: `bg-surface-container text-text-secondary`
 
-**Flujos alternativos:**
-- **1a. Sin presupuesto (`monthlyLimit = 0`):** `alertLevel = 'safe'`, no se muestra barra ni porcentaje
-- **1b. Múltiples monedas:** cada una tiene su propio nivel; la card superior usa `primarySummary`
+### Flujos alternativos
 
-**Postcondiciones:**
-- Usuario percibe visualmente el nivel de riesgo sin necesidad de leer números
+**Paso 1 — Sin presupuesto (`monthlyLimit = 0`):**
+- Condición: `monthlyLimit === 0`
+- Comportamiento: `alertLevel = 'safe'`, no se muestra barra ni porcentaje
+
+**Paso 1 — Múltiples monedas:**
+- Condición: Usuario tiene más de una moneda
+- Comportamiento: Cada moneda tiene su propio nivel; la card superior usa `primarySummary`
+
+### Excepciones
+
+**⚠️ BUG CONOCIDO: Nivel `exceeded` inalcanzable**
+- **Problema:** `percentage` se calcula con `Math.min((totalExpenses / monthlyLimit) * 100, 100)`, lo que capa el valor máximo en 100. Por lo tanto, `percentage >= 101` nunca se cumple.
+- **Impacto:** El nivel `exceeded` (rojo intenso para >100%) es código muerto. Usuarios que gasten 150% de su presupuesto solo ven `critical` (rojo), no `exceeded`.
+- **Estado:** BUG documentado. Requiere decisión: eliminar el cap de 100% en el cálculo, o eliminar el nivel `exceeded` de la documentación.
+- **Workaround actual:** El badge muestra ">100%" visualmente, pero el `alertLevel` interno nunca alcanza `exceeded`.
+
+### Postcondiciones
+- **En éxito:** Usuario percibe visualmente el nivel de riesgo sin necesidad de leer números
 - Sugerencia de gasto diario aparece solo cuando hay días restantes y saldo positivo
 
-**Validaciones:**
-- Cálculo de `percentage` capado en 100 para la barra (evita overflow visual)
+### Reglas de negocio
+- Cálculo de `percentage` capado en 100 para la barra (evita overflow visual) — **pero esto causa el BUG del nivel `exceeded`**
 - `remaining` acotado a 0 como mínimo (no muestra negativos)
+- **⚠️ Shortcut:** Alertas no idempotentes. El brief original propone banderas para evitar spam al oscilar el saldo. Implementación actual: reactiva, recalculada en cada render. Si el gasto baja del umbral y vuelve a subir en el mismo mes, la alerta se muestra de nuevo.
 
-**UI/UX:**
-- Card superior con fondo `bg-secondary-container/40`, icono 🌿, y dos líneas de texto
-- Transición suave entre niveles (colores cambian con cada recálculo)
-- No hay modales ni toasts para alertas (solo feedback visual en dashboard)
+### Criterios de aceptación
+- ✅ Card superior muestra mensaje contextual según nivel
+- ✅ Barra de progreso cambia de color según umbral
+- ✅ Badge de porcentaje adopta estilo del nivel
+- ✅ Sugerencia de gasto diario cuando aplica
+- ✅ Transición suave entre niveles
 
-**⚠️ Shortcut vs. brief:**
-- El brief original (`product-brief-paltazo.md`) propone banderas idempotentes (`alerta_80_disparada`, etc.) para evitar spam al oscilar el saldo.
-- Implementación actual: **reactiva, recalculada en cada render**. No persiste banderas.
-- Consecuencia: si el gasto baja del umbral y vuelve a subir en el mismo mes, la alerta se muestra de nuevo.
-- `shortcut: alertas no idempotentes — revisit when se necesite evitar re-notificación dentro del mismo mes`
-
-**Relacionado:**
-- CU-012 (dashboard como contexto de las alertas)
-- CU-015 (configurar presupuesto que define los umbrales)
+### Preguntas pendientes
+1. **BUG `exceeded`:** ¿Eliminar el cap de 100% en el cálculo, o eliminar el nivel `exceeded` de la documentación? (Requiere decisión de producto)
 
 ---
 
 ## CU-014: Consultar actividad de los últimos 7 días
 
-**Actor:** Usuario autenticado
+### Objetivo
+Visualizar en un gráfico de barras la distribución de gastos por día durante la última semana, permitiendo explorar el detalle de cada día.
 
-**Precondiciones:**
+### Alcance
+Dashboard principal (sección inferior)
+
+### Actor principal
+Usuario autenticado
+
+### Fuente
+- `src/app/dashboard/page.tsx` → `last7Days`, `selectedBarDate`, `selectedBarDateExpenses` (comportamiento implementado)
+
+### Precondiciones
 - Dashboard renderizado (CU-012)
 - `expenses` cargado en store
 
-**Flujo principal:**
-1. Sistema calcula `last7Days` desde hoy hacia atrás (inclusive)
-2. Para cada día:
-   - Fecha ISO (`YYYY-MM-DD`)
-   - Número de día del mes
-   - Nombre del día abreviado: `['D','L','M','X','J','V','S']`
-   - `count` = cantidad de gastos en esa fecha
-3. Sistema calcula `maxBarCount = max(...counts)` (mínimo 1 para evitar división por cero)
-4. Estado inicial `selectedBarDate = todayStr`
-5. Renderiza gráfico de barras horizontal:
-   - Cada barra tiene altura proporcional a `count / maxBarCount * 100` (mínimo 8% si hay gastos, 8% si no)
+### Disparador
+Dashboard carga datos iniciales.
+
+### Flujo principal
+1. Sistema calcula `last7Days` desde hoy hacia atrás (inclusive):
+   - Para cada día: `date` (ISO), `day` (número), `dayName` (D/L/M/X/J/V/S), `count` (cantidad de gastos)
+2. Sistema calcula `maxBarCount = max(...counts)` (mínimo 1 para evitar división por cero)
+3. Estado inicial `selectedBarDate = todayStr`
+4. Sistema renderiza gráfico de barras horizontal:
+   - Cada barra tiene altura proporcional a `count / maxBarCount * 100`
+   - Barras con gastos: altura mínima 8% si no hay gastos
    - Barra seleccionada: `bg-primary`
    - Barra de hoy (si no está seleccionada): `bg-secondary`
-   - Barras con gastos: `bg-surface-container-highest`
+   - Barras con gastos no seleccionadas: `bg-surface-container-highest` (hover → `bg-secondary`)
    - Barras vacías: `bg-surface-container-high`
-6. Debajo de cada barra: nombre del día + número
-7. Sobre la barra (si hay gastos): etiqueta con el count
-8. Al tocar una barra, sistema setea `selectedBarDate = day.date`
-9. Sección inferior "Gastos registrados para el día {fecha}" lista los gastos de ese día:
+5. Debajo de cada barra: nombre del día + número
+6. Sobre la barra (si hay gastos): etiqueta con el count
+7. Al tocar una barra, sistema setea `selectedBarDate = day.date`
+8. Sección inferior "Gastos registrados para el día {fecha}" lista los gastos de ese día:
    - Ordenados por `createdAt` descendente
-   - Header muestra contador
-   - Vista desktop: tabla (Categoría | Descripción | Monto | Acciones)
+   - Header muestra contador (badge)
+   - Vista desktop: tabla (Categoría | Descripción | Monto | Acciones "Editar")
    - Vista mobile: cards con icono de categoría, label, descripción, monto
-10. Botón "Ver todos →" (desktop) lleva a `/dashboard/expenses`
+9. Botón "Ver todos →" (desktop) lleva a `/dashboard/expenses`
 
-**Flujos alternativos:**
-- **9a. Sin gastos en la fecha seleccionada:** estado vacío "📭 No hay gastos registrados para este día"
-- **5a. Todos los días con 0 gastos:** barras se muestran en altura mínima con color neutro
+### Flujos alternativos
 
-**Postcondiciones:**
-- Usuario identifica visualmente qué días tuvo más actividad
-- Usuario puede navegar entre días tocando las barras
+**Paso 8 — Sin gastos en la fecha seleccionada:**
+- Condición: `selectedBarDateExpenses.length === 0`
+- Comportamiento: Estado vacío "📭 No hay gastos registrados para este día"
 
-**Validaciones:**
+**Paso 4 — Todos los días con 0 gastos:**
+- Condición: `maxBarCount === 1` (no hay gastos en los últimos 7 días)
+- Comportamiento: Barras se muestran en altura mínima (8%) con color neutro
+
+### Excepciones
+—
+
+### Postcondiciones
+- **En éxito:** Usuario identifica visualmente qué días tuvo más actividad. Usuario puede navegar entre días tocando las barras.
+
+### Reglas de negocio
 - `last7Days` incluye el día actual como último elemento
 - `maxBarCount` garantizado ≥ 1
+- Gastos del día se filtran por `date === selectedBarDate`
 
-**UI/UX:**
-- Card con fondo `bg-surface-container-low`, título "Actividad de los últimos 7 días"
-- Barras con `max-w-[40px]` y `rounded-t-lg`
-- Transición suave (`duration-200`) al seleccionar
-- Hover en barras no seleccionadas con gastos → `bg-secondary`
-- Listado inferior adaptativo (tabla vs. cards)
+### Criterios de aceptación
+- ✅ Gráfico muestra exactamente 7 barras (hoy inclusive)
+- ✅ Barras proporcionales al count de gastos
+- ✅ Barra seleccionada cambia de color (primary)
+- ✅ Barra de hoy se distingue (secondary) si no está seleccionada
+- ✅ Click en barra actualiza listado inferior
+- ✅ Listado muestra gastos del día seleccionado
+- ✅ Empty state cuando no hay gastos en el día
+- ✅ Botón "Ver todos" navega a vista completa
 
-**Relacionado:**
-- CU-012 (dashboard como contenedor)
-- CU-009 (listado completo al hacer clic en "Ver reporte")
-
----
-
-## Notas técnicas
-
-**Estado calculado (todo client-side):**
-- `monthlyExpenses`, `currencySummaries`, `last7Days`, `selectedBarDateExpenses` — todos en `useMemo`
-
-**Responsive:**
-- Mobile: `max-w-xl mx-auto`, padding `px-gutter`
-- Desktop: `md:max-w-none md:px-space-xl`, grid de 2 columnas
-
-**Navegación desde dashboard:**
-- `/dashboard/add-expense` (FAB o botón header desktop)
-- `/dashboard/expenses` ("Ver reporte" o "Ver todos →")
-- `/dashboard/settings` ("Ajustes")
-
-**Performance:**
-- `useMemo` sobre filtros pesados para evitar recálculos en cada render
-- `useCallback` para handlers (no aplicado en dashboard actual; candidato a refactor)
+### Preguntas pendientes
+—

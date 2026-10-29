@@ -37,13 +37,13 @@
 ┌────────────────────────────────────────────────────────────────────────────────────┐
 │ RELEASE 2 — v1.1 ACTUAL: multi-moneda, presets, gráficos, edición inline           │
 ├────────────────────────────────────────────────────────────────────────────────────┤
-│ [US-003] [US-006] [US-009] [US-010] [US-012] [US-015] [US-016]                    │
+│ [US-003] [US-006] [US-009] [US-010] [US-012] [US-015]                              │
 └────────────────────────────────────────────────────────────────────────────────────┘
 
 ┌────────────────────────────────────────────────────────────────────────────────────┐
 │ RELEASE 3 — v1.2 FUTURO: OAuth social, offline-first real, notificaciones push     │
 ├────────────────────────────────────────────────────────────────────────────────────┤
-│ [US-017] [US-018] [US-019]                                                         │
+│ [US-016] [US-017] [US-018]                                                         │
 └────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -64,7 +64,7 @@
 - [ ] Nombre completo es opcional (max 200 chars).
 - [ ] Tras el registro se crea automáticamente un registro en `profiles` y un `budgets` default (S/ 1000).
 - [ ] Si el email ya existe → mensaje inline "Este email ya está registrado".
-- [ ] Si requiere confirmación de email → mensaje "Revisa tu correo para confirmar tu cuenta".
+- [ ] Auto-login inmediato tras registro exitoso (sin confirmación email).
 
 **Ref:** [`CU-002`](auth/auth.md#cu-002-registro-crear-cuenta) · **Release:** MVP
 
@@ -76,7 +76,7 @@
 **Como** usuario registrado, **quiero** iniciar sesión con email y contraseña **para** acceder a mis gastos y presupuesto.
 
 **Criterios de aceptación:**
-- [ ] Credenciales válidas → redirige a `/dashboard`.
+- [ ] Credenciales válidas → redirige a `/` (dashboard).
 - [ ] Credenciales inválidas → mensaje inline "Email o contraseña incorrectos".
 - [ ] Cuenta no confirmada → mensaje "Confirma tu correo antes de iniciar sesión".
 - [ ] Botón deshabilitado mientras `loading = true`.
@@ -110,7 +110,7 @@
 **Criterios de aceptación:**
 - [ ] Invalida todas las sesiones del usuario en todos los dispositivos (`scope: global`).
 - [ ] Limpia estado global (`userId = null`, `expenses = []`).
-- [ ] Redirige a `/onboarding`.
+- [ ] Redirige a pantalla "Sesión cerrada" (con botón a `/login`).
 - [ ] Botón accesible desde Sidebar y desde Settings.
 
 **Ref:** [`CU-005`](auth/auth.md#cu-005-logout-cerrar-sesión), [`CU-017`](settings/settings.md#cu-017-cerrar-sesión-desde-ajustes) · **Release:** MVP
@@ -134,7 +134,7 @@
 
 ### Tarea A6 — Login social (futuro)
 
-#### US-017: Google OAuth
+#### US-016: Google OAuth
 **Como** usuario con cuenta Google, **quiero** iniciar sesión con un solo clic **para** evitar recordar otra contraseña.
 
 **Criterios de aceptación:**
@@ -318,8 +318,9 @@
 **Criterios de aceptación:**
 - [ ] Botón "Cerrar sesión" en la parte inferior de Settings.
 - [ ] Ejecuta `store.logout()` con `scope: global`.
-- [ ] Redirige a `/onboarding`.
+- [ ] Redirige a pantalla "Sesión cerrada" (con botón a `/login`).
 - [ ] Sin modal de confirmación (acción reversible).
+- [ ] (mismo flujo que CU-005)
 
 **Ref:** [`CU-017`](settings/settings.md#cu-017-cerrar-sesión-desde-ajustes), [`CU-005`](auth/auth.md#cu-005-logout-cerrar-sesión) · **Release:** MVP
 
@@ -361,7 +362,69 @@
 | US-014 | D | D2 Info de la app | v1.1 | CU-016 | ✅ |
 | US-015 | D | D3 Cerrar sesión (settings) | MVP | CU-017, CU-005 | ✅ |
 | US-016 | A | A6 Login social | v1.2 | CU-007 | 🔜 shortcut |
-| US-017 | B | B1 Offline-first | v1.2 | — | 🔜 pendiente |
-| US-018 | C | C3 Push notifications | v1.2 | — | 🔜 pendiente |
+| US-017 | B | B1 Offline-first | v1.2 | CU-019 | 🔜 pendiente |
+| US-018 | C | C3 Push notifications | v1.2 | CU-020 | 🔜 pendiente |
 
 **Total:** 18 historias · 15 implementadas · 3 futuras (v1.2).
+
+---
+
+## 8. Casos de uso auxiliares (sin historia de usuario)
+
+Estos casos de uso documentan pantallas o flujos de soporte que no corresponden a una historia de usuario específica, pero son necesarios para la experiencia completa.
+
+| CU | Nombre | Descripción | Estado |
+|----|--------|-------------|--------|
+| CU-018 | Visualizar pantalla de onboarding | Pantalla de bienvenida para usuarios no autenticados. Presenta propuesta de valor y CTAs a login. | ✅ Implementado |
+| CU-019 | Offline-first con cola de sync | Registro de gastos sin conexión con sincronización automática al recuperar conectividad. | 🔜 Futuro (v1.2) |
+| CU-020 | Notificaciones push al cruzar umbral | Envío de notificaciones push cuando gasto cruza umbrales de alerta (80%, 100%, >100%). | 🔜 Futuro (v1.2) |
+
+---
+
+## 9. Decisiones pendientes sobre pantallas inexistentes
+
+Las siguientes pantallas están mencionadas en la documentación pero **NO existen en el código actual**. Se requiere decisión de producto para definir si se implementan o se ajusta la documentación.
+
+### 9.1 Pantalla "Sesión cerrada" (post-logout)
+
+**Mencionado en:** CU-005 (Logout global), CU-017 (Cerrar sesión desde ajustes)
+
+**Documentación dice:** "Redirige a pantalla 'Sesión cerrada' (con botón a `/login`)"
+
+**Código actual:** Logout redirige a `/onboarding` (no hay pantalla dedicada de "Sesión cerrada")
+
+**Preguntas:**
+1. ¿Crear pantalla dedicada `/logout-success` o `/session-closed`?
+2. ¿O mantener redirect a `/onboarding` y ajustar documentación?
+3. Si se crea pantalla dedicada, ¿qué contenido debe mostrar? (solo mensaje + botón, o también opciones de registro, etc.)
+
+**Impacto:** UX post-logout. Actualmente usuario vuelve a onboarding, lo cual puede ser confuso si ya conoce la app.
+
+---
+
+### 9.2 Pantalla "Revisa tu correo" (post-recuperación)
+
+**Mencionado en:** CU-003 (Recuperar contraseña - solicitar enlace)
+
+**Documentación dice:** Flujo de recuperación envía enlace por email, pero no especifica qué ve el usuario después de solicitar el enlace.
+
+**Código actual:** Probablemente muestra mensaje inline o toast, pero no hay pantalla dedicada de confirmación.
+
+**Preguntas:**
+1. ¿Crear pantalla dedicada `/recovery-email-sent`?
+2. ¿O mantener feedback inline (toast/modal) en la misma pantalla de recuperación?
+3. Si se crea pantalla dedicada, ¿qué contenido debe mostrar? (instrucciones de revisar email, opción de reenviar, etc.)
+
+**Impacto:** UX de recuperación de contraseña. Buen practice mostrar pantalla de confirmación explícita para reducir ansiedad del usuario.
+
+---
+
+### 9.3 Resolución de decisiones
+
+**Acción requerida:** Decidir si implementar las pantallas inexistentes o ajustar la documentación para reflejar el comportamiento actual.
+
+**Opciones:**
+- **Opción A:** Implementar ambas pantallas como pantallas dedicadas (mejor UX, más trabajo)
+- **Opción B:** Mantener comportamiento actual y ajustar documentación (menos trabajo, UX menos pulida)
+- **Opción C:** Implementar solo "Sesión cerrada" (más importante para UX post-logout) y mantener feedback inline para recuperación (decisión pragmática)
+

@@ -7,206 +7,206 @@
 
 ## CU-015: Configurar presupuesto por moneda
 
-**Actor:** Usuario autenticado
+### Objetivo
+Permitir al usuario definir o modificar el límite mensual de gasto para cada moneda soportada (S/ y $), de forma independiente.
 
-**Precondiciones:**
-- Usuario logueado
-- Usuario en `/dashboard/settings` (acceso desde Dashboard → "Ajustes")
+### Alcance
+Módulo de configuración, sección "💰 Presupuestos por moneda".
 
-**Flujo principal:**
-1. Sistema inicializa `budgetInputs` con los valores actuales:
-   - Si `budget.monthlyLimit > 0` → input de `budget.currency` tiene ese valor
-   - Para cada budget en `budgets` con `monthlyLimit > 0` → input correspondiente
-2. Sistema renderiza sección "💰 Presupuestos por moneda" con un bloque por moneda en `CURRENCY_OPTIONS`:
-   - `S/` (Soles) y `$` (Dólares)
+### Actor principal
+Usuario autenticado.
+
+### Actores secundarios
+—
+
+### Fuente
+Código: `src/app/dashboard/settings/page.tsx` líneas 53-108.
+
+### Precondiciones
+- Usuario autenticado con sesión activa.
+- Usuario ha navegado a `/dashboard/settings` (acceso desde Dashboard → botón "Ajustes").
+
+### Disparador
+Usuario accede a la sección de presupuestos en la página de ajustes.
+
+### Flujo principal
+1. Sistema inicializa estado `budgetInputs` con valores actuales:
+   - Si `budget.monthlyLimit > 0`, carga el valor en el input correspondiente a `budget.currency`.
+   - Para cada `budgets[currency]` con `monthlyLimit > 0`, carga el valor en su input.
+2. Sistema renderiza sección "💰 Presupuestos por moneda" con un bloque por moneda en `CURRENCY_OPTIONS` (S/ y $).
 3. Cada bloque muestra:
-   - Label de moneda
-   - Badge "Principal" si coincide con `budget.currency`
-   - Badge "Configurado" si ya existe budget para esa moneda (y no es la principal)
-   - Input numérico con símbolo de moneda a la izquierda
-   - Botón "Guardar"
-4. Usuario modifica el valor de una moneda
-5. Usuario hace clic en "Guardar"
-6. Sistema valida `val > 0`
-7. Sistema llama `store.setBudget(val, currency)`
-8. Store persiste en Supabase (tabla `budgets`) y actualiza `budget` / `budgets` local
-9. Botón muestra "✓" por 2 segundos como feedback, luego vuelve a "Guardar"
-10. Dashboard refleja nuevo límite en próximo render
+   - Label de moneda (ej: "Soles (S/)").
+   - Badge "Principal" (fondo `bg-primary/10`) si coincide con `budget.currency`.
+   - Badge "Configurado" (fondo `bg-surface-container`) si existe budget para esa moneda y no es la principal.
+   - Input numérico (`type="number"`, `step="0.01"`) con símbolo de moneda como prefijo visual (`absolute left-3`).
+   - Botón "Guardar" (fondo `bg-primary`), deshabilitado si el valor está vacío o es ≤ 0.
+4. Usuario modifica el valor de una moneda en el input.
+5. Usuario hace clic en "Guardar".
+6. Sistema valida que `val > 0`.
+7. Sistema llama a `setBudget(val, currency)` del store.
+8. Store persiste en Supabase (tabla `budgets`) y actualiza `budget` / `budgets` local.
+9. Botón muestra "✓" por 2 segundos como feedback visual, luego vuelve a "Guardar".
+10. Dashboard (CU-012) refleja el nuevo límite en el próximo render al recalcular `currencySummaries`.
 
-**Flujos alternativos:**
-- **6a. Valor vacío o ≤ 0:** botón permanece `disabled`
-- **7a. Error de red:** toast de error; store mantiene estado optimista
-- **Usuario quiere ver el límite actual:** cada moneda muestra su valor persistido al cargar la página
+### Flujos alternativos
+**Paso 5 — Usuario deja el campo vacío o ingresa valor ≤ 0:**
+- Condición: `!currentValue || parseFloat(currentValue) <= 0`.
+- Comportamiento: Botón "Guardar" permanece `disabled` (opacidad 0.5). No se ejecuta ninguna acción.
 
-**Postcondiciones:**
-- Registro en `budgets` actualizado con `monthlyLimit` y `currency`
-- `budget` principal puede actualizarse si la moneda modificada es la principal
-- Dashboard recalcula `currencySummaries` con nuevo `monthlyLimit`
+**Paso 8 — Error de red o fallo en Supabase:**
+- Condición: Promesa `setBudget()` rechaza.
+- Comportamiento: Estado local no se actualiza. Usuario puede reintentar. (Nota: código actual no maneja error explícitamente con toast, pero store mantiene estado optimista).
 
-**Validaciones:**
-- Monto requerido, `> 0`, numérico (`step="0.01"`)
-- Moneda debe estar en `CURRENCY_OPTIONS` (`S/` o `$`)
+**Paso 1 — Usuario no tiene presupuestos previos:**
+- Condición: `budget.monthlyLimit === 0` y `budgets` vacío.
+- Comportamiento: Todos los inputs muestran valor vacío (placeholder "0.00"). Usuario ingresa primer presupuesto.
 
-**UI/UX:**
-- Card principal con grid responsivo
-- Input con prefijo visual de moneda (`absolute left-3`)
-- Botón "Guardar" en primary; cambia a "✓" temporalmente (2s)
-- Badge "Principal" en primary/10, "Configurado" en surface
-- Layout mobile apilado; desktop en grid de 2 columnas (sección ocupa ambos en `md:col-span-2`)
+### Excepciones
+—
 
-**Relacionado:**
-- CU-012 (dashboard consume los presupuestos)
-- CU-013 (umbrales dependen del `monthlyLimit`)
-- CU-002 (registro inicial crea presupuesto default S/ 1000)
+### Postcondiciones
+- **En éxito:** Registro en `budgets` actualizado con nuevo `monthlyLimit` y `currency`. Si la moneda modificada es la principal (`budget.currency`), el objeto `budget` también se actualiza. Dashboard recalcula `currencySummaries` con nuevo `monthlyLimit` (afecta CU-013 alertas de umbral).
+- **En fallo:** Estado local y Supabase permanecen sin cambios.
+
+### Reglas de negocio
+- Monto requerido, debe ser > 0, numérico con hasta 2 decimales (`step="0.01"`).
+- Moneda debe estar en `CURRENCY_OPTIONS` (S/ o $). No se permiten monedas personalizadas.
+- Cada moneda tiene su propio presupuesto independiente (no hay límite global).
+- El presupuesto principal (`budget.currency`) se usa como referencia para alertas de umbral en CU-013.
+
+### Criterios de aceptación
+- Usuario puede ver y modificar presupuestos para S/ y $ de forma independiente.
+- Input muestra símbolo de moneda como prefijo visual.
+- Badge "Principal" aparece solo en la moneda configurada como principal (`budget.currency`).
+- Badge "Configurado" aparece en monedas secundarias que ya tienen un presupuesto definido.
+- Botón "Guardar" se deshabilita si el valor está vacío o es ≤ 0.
+- Tras guardar exitosamente, botón muestra "✓" por 2 segundos como feedback.
+- Cambios se reflejan inmediatamente en el dashboard (CU-012).
+
+### Preguntas pendientes
+—
 
 ---
 
 ## CU-016: Consultar información de la app
 
-**Actor:** Usuario autenticado
+### Objetivo
+Mostrar al usuario información estática sobre la aplicación (versión, tipo, almacenamiento) y los umbrales de alerta de presupuesto.
 
-**Precondiciones:**
-- Usuario en `/dashboard/settings`
+### Alcance
+Módulo de configuración, secciones "📊 Niveles de alerta" y "🌿 Acerca de Paltazo".
 
-**Flujo principal:**
-1. Sistema renderiza sección "🌿 Acerca de Paltazo" con:
-   - Versión: `1.0.0`
-   - Tipo: "App web progresiva"
-   - Almacenamiento: "Supabase"
-2. Sistema renderiza sección "📊 Niveles de alerta" con referencia visual:
-   - 🟡 Advertencia: 80%
-   - 🔴 Límite alcanzado: 100%
-   - 🔴 Superado: 101%
-3. Usuario lee la información (solo lectura, no editable)
+### Actor principal
+Usuario autenticado.
 
-**Flujos alternativos:**
-- Ninguno (vista pasiva)
+### Actores secundarios
+—
 
-**Postcondiciones:**
-- Usuario conoce versión, tipo de app y proveedor de almacenamiento
-- Usuario entiende los umbrales de alerta
+### Fuente
+Código: `src/app/dashboard/settings/page.tsx` líneas 110-157.
 
-**Validaciones:**
-- Ninguna (información estática)
+### Precondiciones
+- Usuario autenticado con sesión activa.
+- Usuario ha navegado a `/dashboard/settings`.
 
-**UI/UX:**
-- Dos cards separadas: una con info técnica, otra con niveles de alerta
-- Niveles de alerta con dots de color semántico (`bg-warning`, `bg-danger`)
-- Layout responsive: apilado en mobile, grid de 2 columnas en desktop
+### Disparador
+Usuario accede a la página de ajustes.
 
-**Relacionado:**
-- CU-013 (los niveles mostrados aquí son los mismos que se aplican en dashboard)
+### Flujo principal
+1. Sistema renderiza sección "📊 Niveles de alerta" con tres niveles visuales:
+   - 🟡 **Advertencia** (80%): punto de color `bg-warning`, texto "Advertencia".
+   - 🔴 **Límite alcanzado** (100%): punto de color `bg-danger`, texto "Límite alcanzado".
+   - 🔴 **Superado** (101%): punto de color `bg-danger` con opacidad 0.7, texto "Superado".
+2. Sistema renderiza sección "🌿 Acerca de Paltazo" con:
+   - Versión: "1.0.0".
+   - Tipo: "App web progresiva".
+   - Almacenamiento: "Supabase".
+3. Usuario lee la información (vista de solo lectura, no editable).
+
+### Flujos alternativos
+—
+
+### Excepciones
+—
+
+### Postcondiciones
+- **En éxito:** Usuario conoce versión, tipo de app y proveedor de almacenamiento. Usuario entiende los umbrales de alerta (80%, 100%, 101%) que se aplican en el dashboard (CU-013).
+
+### Reglas de negocio
+- Información estática, no configurable por el usuario.
+- Niveles de alerta mostrados aquí son referencia visual de los umbrales aplicados en CU-013.
+
+### Criterios de aceptación
+- Sección "Niveles de alerta" muestra tres niveles con colores semánticos (warning, danger).
+- Sección "Acerca de Paltazo" muestra versión, tipo y almacenamiento.
+- Toda la información es de solo lectura (sin inputs ni botones de edición).
+- Layout responsive: apilado en mobile, grid de 2 columnas en desktop.
+
+### Preguntas pendientes
+—
 
 ---
 
 ## CU-017: Cerrar sesión desde ajustes
 
-**Referencia a:** [`CU-005 — Cerrar sesión`](../auth/auth.md#cu-005-cerrar-sesión)
+### Objetivo
+Permitir al usuario cerrar su sesión desde la página de ajustes, limpiando el estado local y redirigiendo a la pantalla de sesión cerrada.
 
-**Actor principal:** Usuario autenticado.
+### Alcance
+Módulo de configuración, botón "Cerrar sesión" en parte inferior de `/dashboard/settings`.
 
-**Punto de entrada específico:** Botón "Cerrar sesión" en la parte inferior de la página de Ajustes (`/dashboard/settings`).
+### Actor principal
+Usuario autenticado.
 
-**Comportamiento:** Idéntico a CU-005. Ejecuta `store.logout()` → `signOut({ scope: 'global' })`, limpia el store y redirige a la pantalla **"Sesión cerrada"** (con botón a `/login`).
+### Actores secundarios
+—
 
-**Notas:**
-- No requiere confirmación (acción reversible).
-- El detalle del flujo (pasos, flujos alternativos, postcondiciones, reglas) se encuentra en CU-005.
-- El otro punto de entrada equivalente es el Sidebar (icono 🚪).
+### Fuente
+Código: `src/app/dashboard/settings/page.tsx` líneas 160-170.
+Referencia cruzada: CU-005 (logout global desde sidebar).
 
----
+### Precondiciones
+- Usuario autenticado con sesión activa.
+- Usuario ha navegado a `/dashboard/settings`.
 
-## CU-018: Opción de agregar categorías
+### Disparador
+Usuario hace clic en el botón "Cerrar sesión" en la parte inferior de la página de ajustes.
 
-**Actor:** Usuario autenticado
+### Flujo principal
+1. Usuario hace clic en botón "Cerrar sesión" (fondo `bg-danger/10`, texto `text-danger`).
+2. Sistema ejecuta `logout()` del store, que internamente llama a `signOut({ scope: 'global' })` de Supabase.
+3. Store limpia estado local: `userId = null`, `expenses = []`, `budget` resetea a valores por defecto.
+4. Supabase invalida todas las sesiones del usuario en todos los dispositivos (scope global).
+5. Sistema redirige a la pantalla "Sesión cerrada" (ruta PENDIENTE de definir, ver preguntas pendientes).
+6. Pantalla "Sesión cerrada" muestra mensaje de confirmación y botón para volver a `/login`.
 
-**Precondiciones:**
-- Usuario logueado
-- Usuario en `/dashboard/settings`o Usuario redireccionado desde `add-expenses` al intentar agregar una nueva categoría
+### Flujos alternativos
+**Paso 3 — Error al cerrar sesión en Supabase:**
+- Condición: Promesa `signOut()` rechaza.
+- Comportamiento: Estado local se limpia de todos modos. Usuario es redirigido a pantalla de sesión cerrada. (Nota: código actual no maneja error explícitamente, pero redirección ocurre siempre).
 
-**Flujo principal:**
-1. El usuario se dirige a la sección de agregar categorías
-2. Verifica que su categoría no exista en el listado de las pildoras de categorías guardadas hasta el momento
-3. Ingresa el nombre de la categoría
-4. Selecciona una de los íconos predefinidos
-5. Selecciona el color del ícono para su categoría
-6. Da click al botón guardar para terminar la configuración de la categoría
-7. Da click al botón aceptar del modal de confirmación
-8. Al guardar se muestra el toast de exito con el mensaje: "Guardado exitoso."
-9. Se debe verificar que se haya guardado la pildora con la nueva categoría
+### Excepciones
+—
 
-**Flujos alternativos:**
-- **2a. Categorías predeterminadas:**  se deben tener categorías agregadas: Comida, Transporte, Servicios, Ocio, Salud y cada categoría debe poderse editar
-- **6a. Cancelar los datos:** al dar click al botón cancelar se borraran todos los datos ingresados, los iconos seleccionados y el color escogido
-- **7a. Cancelar el registro:** al dar click al botón cancelar del modal de confirmación se cerrara el modal de confirmación y se regresará a la seccion de agregar categoría con los datos ingresados previamente
+### Postcondiciones
+- **En éxito:** Sesión del usuario invalidada en Supabase. Estado local limpiado. Usuario redirigido a pantalla "Sesión cerrada" con botón a `/login`.
+- **En fallo:** (No aplica, redirección ocurre siempre).
 
-**Postcondiciones:**
-- Se debe guardar en la bd de supabase para mantener siempre las categorías en algun sitio
+### Reglas de negocio
+- No requiere confirmación (acción reversible: usuario puede volver a iniciar sesión).
+- Scope `global`: invalida sesiones en todos los dispositivos, no solo el actual.
+- Este es uno de los dos puntos de entrada para logout. El otro es el sidebar (icono 🚪, ver CU-005).
 
-**UI/UX:**
-- Se debe tener una seccion para agregar categorías
-- Se debe tener unas pildoras con las categorías y sus respectivos íconos
-- Se debe tener un input para agregar el nombre de la categoría
-- Al costado del input se debe tener una especie de combo box con las opciones de íconos predefinidos por la app para que el usuario pueda seleccionar
-- Se debe tener una pequeña sección de opciones de colores para que el usuario pueda personalizar la categoría que el decida
-- Se debe tener un botón para guardar las categorías
-- Al costado del botón guardar debe haber un botón para limpiar los datos ingresados
-- Se debe tener un modal de confirmación al momento de guardar con los botones de aceptar o cancelar
-- Se debe tener un toast de exito al momento de guardar la categoría
+### Criterios de aceptación
+- Botón "Cerrar sesión" visible en parte inferior de `/dashboard/settings`.
+- Al hacer clic, sesión se cierra inmediatamente (sin modal de confirmación).
+- Usuario es redirigido a pantalla "Sesión cerrada" (no a `/onboarding` ni `/login` directamente).
+- Estado local se limpia completamente (expenses, budget, userId).
+- Usuario puede volver a iniciar sesión desde la pantalla de sesión cerrada.
 
----
-## CU-019: Editar una categoría
-
-**Actor:** Usuario autenticado
-
-**Precondiciones:**
-- Usuario logueado
-- Usuario en `/dashboard/settings`o Usuario redireccionado desde `add-expenses` al intentar agregar una nueva categoría
-
-**Flujo principal:**
-1. El usuario se dirige a la sección de agregar categorías
-2. Verifica las categorías existentes
-3. Selecciona una categoría
-4. Se completan los datos en el formulario de la sección de agregar categoría
-5. El usuario podrá editar los datos que el crea conveniente
-6. Da click al botón guardar para terminar la configuración
-7. Da click al botón aceptar del modal de confirmación
-8. Al guardar se muestra el toast de exito con el mensaje: "Guardado exitoso."
-
-**Postcondiciones:**
-- Se debe guardar los datos editados en la bd de supabase para mantener siempre las categorías en algun sitio
-
-**Flujos alternativos:**
-- **2a. Categorías predeterminadas:**  se deben tener categorías agregadas: Comida, Transporte, Servicios, Ocio, Salud con la opcion de editar la categoría
-- **6a. Cancelar los datos:** al dar click al botón cancelar se borraran todos los datos ingresados, los iconos seleccionados y el color escogido
-- **7a. Cancelar el registro:** al dar click al botón cancelar del modal de confirmación se cerrara el modal de confirmación y se regresará a la seccion de agregar categoría con los datos ingresados previamente
-
----
-## CU-020: Eliminar una categoría
-
-**Actor:** Usuario autenticado
-
-**Precondiciones:**
-- Usuario logueado
-- Usuario en `/dashboard/settings`o Usuario redireccionado desde `add-expenses` al intentar agregar una nueva categoría
-
-**Flujo principal:**
-1. El usuario se dirige a la sección de agregar categorías
-2. Verifica las categorías existentes
-3. Mantiene seleccionado una pildora de categoría
-4. Da click en el botón aceptar del modal de confirmación
-5. Verifica que la pildora ya no se muestra
-
-**Flujos alternativos:**
-- **4a. Cancelar los datos:** al dar click al botón cancelar se borraran todos los datos ingresados, los iconos seleccionados, el color escogido y se deselecciona la pildora en cuestión
-
-**Postcondiciones:**
-- Se debe eliminar la categoría de la base de datos de supabase
-
-**UI/UX:**
-- Se debe tener una seccion para agregar categorías
-- Se debe tener unas pildoras con las categorías y sus respectivos íconos
-- Se debe tener un input para agregar el nombre de la categoría
+### Preguntas pendientes
+1. **Ruta de destino:** Código actual redirige a `/onboarding` (línea 164), pero handoff de autenticación indica que debería redirigir a pantalla "Sesión cerrada". ¿Definir ruta explícita (`/logout-success`, `/session-closed`, `/goodbye`) o reutilizar `/onboarding` con estado "sesión cerrada"?
+2. **Consistencia con CU-005:** Sidebar usa mismo flujo (CU-005). Asegurar que ambos puntos de entrada redirijan a la misma pantalla de destino.
 
 ---
 ## Notas técnicas

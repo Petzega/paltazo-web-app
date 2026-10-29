@@ -1,23 +1,23 @@
-# Graph Report - paltazo-web-app  (2026-10-20)
+# Graph Report - paltazo-web-app  (2026-10-28)
 
 ## Corpus Check
-- 205 files · ~105,030 words
+- 209 files · ~112,850 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 8 file(s) not represented in the graph (top: (none) 4, .example 2, .css 1)
 
 ## Summary
-- 1230 nodes · 1203 edges · 185 communities (64 shown, 121 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 27 edges (avg confidence: 0.95)
+- 1568 nodes · 1541 edges · 200 communities (77 shown, 123 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 31 edges (avg confidence: 0.95)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6492f0b8`
+- Built from commit: `96dc9d39`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - Supabase (MVP Backend)
-- store.tsx
+- CU-008: Crear gasto
 - Paltazo Application
 - Paltazo Design Tokens
 - Graphify Knowledge Graph
@@ -29,11 +29,12 @@
 - TypeScript (Strict Mode)
 - package.json
 - compilerOptions
-- Casos de Uso: Autenticación
-- 3. Server-Side Performance
+- Decisiones pendientes
+- UC-XXX: Nombre
+- CU-006: Proteger rutas con middleware
 - Paltazo — Bitácora de Avance
 - manifest.json
-- expenses/page.tsx
+- store.tsx
 - Paltazo Web App — Guía de Desarrollo
 - next-env.d.ts
 - ref_next_navigation
@@ -65,12 +66,12 @@
 - Sections
 - Section Definitions
 - Tailwind CSS Animations & Transitions
-- Tailwind CSS Component Patterns
+- tailwind-css-patterns/SKILL.md
 - Tailwind CSS Performance Optimization
 - Tailwind CSS Layout Patterns
 - User Story Map — Paltazo
 - Frontend Design
-- Casos de Uso: Gastos
+- CU-020: Notificaciones push al cruzar umbral 🔜 FUTURO
 - Sections
 - Node.js Backend Patterns
 - React Best Practices
@@ -78,9 +79,9 @@
 - async-cheap-condition-before-await.md
 - Prefer Statically Analyzable Paths
 - server-hoist-static-io.md
-- useAppState
-- store.tsx
-- repositories.ts
+- CU-010: Editar gasto
+- CU-015: Configurar presupuesto por moneda
+- CU-012: Visualizar dashboard mensual
 - architecture-avoid-boolean-props.md
 - architecture-compound-components.md
 - patterns-children-over-render-props.md
@@ -186,41 +187,56 @@
 - security-rls-basics.md
 - security-rls-performance.md
 - references/_template.md
-- login/page.tsx
-- Sidebar.tsx
-- Errores y soluciones
+- CU-018: Visualizar pantalla de onboarding
+- CU-009: Listar gastos del mes
+- CU-011: Eliminar gasto
 - 1. Eliminating Waterfalls
 - 2. Bundle Size Optimization
 - React Best Practices
 - 4. Client-Side Data Fetching
-- 8. Advanced Patterns
-- add-expense/page.tsx
+- Handoff: Revisión de Casos de Uso - Módulo Auth
+- CU-007: Iniciar sesión con Google (OAuth) — shortcut
 - ref_fs
 - ref_path
+- CU-001: Iniciar sesión con email y contraseña
+- CU-003: Solicitar enlace de recuperación de contraseña
+- CU-004: Establecer nueva contraseña con token de recuperación
+- CU-002: Registrarse con email y contraseña
+- CU-005: Cerrar sesión
+- scripts
+- Casos de Uso: Gastos
+- app/layout.tsx
+- devDependencies
+- dependencies
+- Casos de Uso: Autenticación
+- middleware.ts
+- Casos de Uso — Paltazo
+- next
+- tailwindcss
 
 ## God Nodes (most connected - your core abstractions)
 1. `Tailwind CSS Documentation` - 17 edges
-2. `compilerOptions` - 16 edges
-3. `5. Re-render Optimization` - 16 edges
-4. `Paltazo — Bitácora de Avance` - 16 edges
-5. `useAppState()` - 15 edges
-6. `7. JavaScript Performance` - 15 edges
-7. `Supabase Local — Guía de Desarrollo` - 15 edges
-8. `Node.js Best Practices` - 14 edges
-9. `Paltazo Web App — Guía de Desarrollo` - 14 edges
-10. `React Best Practices` - 12 edges
+2. `CU-006: Proteger rutas con middleware` - 17 edges
+3. `compilerOptions` - 16 edges
+4. `5. Re-render Optimization` - 16 edges
+5. `Paltazo — Bitácora de Avance` - 16 edges
+6. `CU-007: Iniciar sesión con Google (OAuth) — shortcut` - 16 edges
+7. `useAppState()` - 15 edges
+8. `7. JavaScript Performance` - 15 edges
+9. `UC-XXX: Nombre` - 15 edges
+10. `CU-001: Iniciar sesión con email y contraseña` - 15 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `CU-002: Registro (Crear cuenta)` --references--> `signUp()`  [INFERRED]
+- `Flujo principal` --references--> `signUp()`  [INFERRED]
   docs/use-case/auth/auth.md → src/lib/supabase/auth.ts
 - `Bug 5: Middleware no redirige después de logout (2026-10-08)` --references--> `signOut()`  [INFERRED]
   BITACORA.md → src/lib/supabase/auth.ts
-- `Protección de rutas` --references--> `signOut()`  [INFERRED]
-  DEVELOPMENT.md → src/lib/supabase/auth.ts
-- `CU-005: Logout (Cerrar sesión)` --references--> `signOut()`  [INFERRED]
-  docs/use-case/auth/auth.md → src/lib/supabase/auth.ts
 - `Auditoría de código — Actualización 2026-10-15` --references--> `AddExpenseFab()`  [INFERRED]
   BITACORA.md → src/components/ui/AddExpenseFab.tsx
+- `Auditoría de código — Actualización 2026-10-16` --references--> `getCategoryColorClass()`  [INFERRED]
+  BITACORA.md → src/lib/categories.ts
+- `Protección de rutas` --references--> `signOut()`  [INFERRED]
+  DEVELOPMENT.md → src/lib/supabase/auth.ts
 
 ## Import Cycles
 - None detected.
@@ -230,15 +246,15 @@
 - **Paltazo AI Agent Team** — docs_design_agentes_paltazo_wireframes_agent, docs_design_agentes_paltazo_frontend_agent, docs_design_agentes_paltazo_backend_agent, docs_necesidad_proyecto_paltazo_product_agent [EXTRACTED 1.00]
 - **Paltazo Database Schema Tables** — docs_stack_tecnologico_paltazo_profiles_table, docs_stack_tecnologico_paltazo_expenses_table, docs_stack_tecnologico_paltazo_budget_alerts_table, docs_stack_tecnologico_paltazo_push_subscriptions_table [EXTRACTED 1.00]
 
-## Communities (185 total, 121 thin omitted)
+## Communities (200 total, 123 thin omitted)
 
 ### Community 0 - "Supabase (MVP Backend)"
 Cohesion: 0.08
 Nodes (33): Backend Agent, budget_alerts table, check-budget Edge Function, expenses table, Frontend Agent, profiles table, push_subscriptions table, Row Level Security (RLS) (+25 more)
 
-### Community 1 - "store.tsx"
-Cohesion: 0.18
-Nodes (8): nextConfig, next, ref_next_font_google, src_app_globals, inter, metadata, viewport, ServiceWorkerRegistrar()
+### Community 1 - "CU-008: Crear gasto"
+Cohesion: 0.13
+Nodes (16): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-008: Crear gasto, Disparador, Excepciones, Flujo principal (+8 more)
 
 ### Community 2 - "Paltazo Application"
 Cohesion: 0.17
@@ -253,36 +269,40 @@ Cohesion: 0.67
 Nodes (3): Efficient Context Principle, Graphify Knowledge Graph, Minimalism & Safe Change Principle
 
 ### Community 11 - "package.json"
-Cohesion: 0.04
-Nodes (41): dependencies, next, react, react-dom, @supabase/ssr, @supabase/supabase-js, devDependencies, autoprefixer (+33 more)
+Cohesion: 0.17
+Nodes (11): name, private, version, autoprefixer, postcss, react-dom, @supabase/supabase-js, @types/node (+3 more)
 
 ### Community 12 - "compilerOptions"
 Cohesion: 0.11
 Nodes (18): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, lib, module (+10 more)
 
-### Community 13 - "Casos de Uso: Autenticación"
-Cohesion: 0.17
-Nodes (11): 3.8 Parallel Nested Data Fetching, Parallel Nested Data Fetching, Casos de Uso: Autenticación, CU-001: Login (Inicio de sesión), CU-002: Registro (Crear cuenta), CU-003: Recuperar contraseña (Solicitar enlace), CU-004: Nueva contraseña (Reset con token), CU-005: Logout (Cerrar sesión) (+3 more)
+### Community 13 - "Decisiones pendientes"
+Cohesion: 0.33
+Nodes (6): 1. Naming "dashboard" vs "home", 2. Ruta concreta de la pantalla "Sesión cerrada", 3. Alcance del rol admin, 4. Discrepancia de moneda: `'PEN'` (documentación) vs `'S/'` (código), 5. Trigger `handle_new_user` tolerante a fallos, Decisiones pendientes
 
-### Community 15 - "3. Server-Side Performance"
-Cohesion: 0.20
-Nodes (9): 3.10 Use after() for Non-Blocking Operations, 3.1 Authenticate Server Actions Like API Routes, 3.2 Avoid Duplicate Serialization in RSC Props, 3.3 Avoid Shared Module State for Request Data, 3.4 Cross-Request LRU Caching, 3.5 Hoist Static I/O to Module Level, 3.6 Minimize Serialization at RSC Boundaries, 3.7 Parallel Data Fetching with Component Composition (+1 more)
+### Community 14 - "UC-XXX: Nombre"
+Cohesion: 0.08
+Nodes (23): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, Disparador, Excepciones, Fase 1: Diagnóstico, Fase 2: Inventario (+15 more)
+
+### Community 15 - "CU-006: Proteger rutas con middleware"
+Cohesion: 0.07
+Nodes (29): 3.10 Use after() for Non-Blocking Operations, 3.1 Authenticate Server Actions Like API Routes, 3.2 Avoid Duplicate Serialization in RSC Props, 3.3 Avoid Shared Module State for Request Data, 3.4 Cross-Request LRU Caching, 3.5 Hoist Static I/O to Module Level, 3.6 Minimize Serialization at RSC Boundaries, 3.7 Parallel Data Fetching with Component Composition (+21 more)
 
 ### Community 16 - "Paltazo — Bitácora de Avance"
-Cohesion: 0.06
-Nodes (33): 20261008182458_create_schema.sql, 20261008190000_add_currency_to_expenses.sql, Archivos clave, Auditoría aplicada, Auditoría de código — Actualización 2026-10-15, Avances 2026-10-17/18, Base de datos, Bitácora de Bugs (+25 more)
+Cohesion: 0.05
+Nodes (39): 20261008182458_create_schema.sql, 20261008190000_add_currency_to_expenses.sql, Archivos clave, Auditoría aplicada, Auditoría de código — Actualización 2026-10-15, Avances 2026-10-17/18, Base de datos, Bitácora de Bugs (+31 more)
 
 ### Community 18 - "manifest.json"
 Cohesion: 0.20
 Nodes (9): background_color, description, display, icons, name, orientation, short_name, start_url (+1 more)
 
-### Community 19 - "expenses/page.tsx"
-Cohesion: 0.31
-Nodes (10): ref_next_navigation, ExpensesPage(), CurrencySummary, DashboardPage(), AddExpenseFab(), CATEGORY_COLOR_CLASSES, CategoryInfo, getCategoryColorClass() (+2 more)
+### Community 19 - "store.tsx"
+Cohesion: 0.07
+Nodes (43): Error 1: `login is not a function` en `src/app/login/page.tsx:14`, ref_next_navigation, react, AddExpensePage(), CURRENCY_OPTIONS, formatAmount(), ExpensesPage(), DashboardPage() (+35 more)
 
 ### Community 20 - "Paltazo Web App — Guía de Desarrollo"
 Cohesion: 0.10
-Nodes (20): 1. Instalación básica, 2. Desarrollo con Supabase Local, Autenticación, Comandos, Credenciales, Desarrollo, Design System, Estado de datos (+12 more)
+Nodes (19): 1. Instalación básica, 2. Desarrollo con Supabase Local, Autenticación, Comandos, Credenciales, Desarrollo, Design System, Estado de datos (+11 more)
 
 ### Community 22 - "ref_next_navigation"
 Cohesion: 0.05
@@ -396,12 +416,12 @@ Nodes (9): 1. Query Performance (query), 2. Connection Management (conn), 3. Sec
 Cohesion: 0.20
 Nodes (9): Basic Transitions, Built-in Animations, Common Use Cases, Custom Animations (v4.1+), Global Reduced Motion Support, Motion Preferences, Tailwind CSS Animations & Transitions, Transform Effects (+1 more)
 
-### Community 52 - "Tailwind CSS Component Patterns"
-Cohesion: 0.29
+### Community 52 - "tailwind-css-patterns/SKILL.md"
+Cohesion: 0.20
 Nodes (7): Card Component, Form Elements, Modal/Dialog, Navigation Bar, React Button Component with Variants, Responsive User Card, Tailwind CSS Component Patterns
 
 ### Community 53 - "Tailwind CSS Performance Optimization"
-Cohesion: 0.22
+Cohesion: 0.20
 Nodes (9): Best Practices for Performance, Bundle Size Optimization, Content Path Best Practices, CSS Optimization Techniques, Development Performance (v4.1+), Minification, Production Build Optimization, PurgeCSS Configuration (+1 more)
 
 ### Community 54 - "Tailwind CSS Layout Patterns"
@@ -409,16 +429,16 @@ Cohesion: 0.12
 Nodes (16): Background Colors, Colors, Container & Max Width, Flexbox Layouts, Font Size & Weight, Grid Layouts, Layout Utilities, Line Height & Letter Spacing (+8 more)
 
 ### Community 55 - "User Story Map — Paltazo"
-Cohesion: 0.05
-Nodes (43): 1. Mapa visual (backbone), 2. Actividad A — Acceder a la aplicación, 3. Actividad B — Registrar gastos, 4. Actividad C — Consultar estado del mes, 5. Actividad D — Configurar presupuesto, 6. Historias futuras (Release v1.2), 7. Tabla resumen de trazabilidad, Tarea A1 — Crear cuenta (+35 more)
+Cohesion: 0.04
+Nodes (48): 1. Mapa visual (backbone), 2. Actividad A — Acceder a la aplicación, 3. Actividad B — Registrar gastos, 4. Actividad C — Consultar estado del mes, 5. Actividad D — Configurar presupuesto, 6. Historias futuras (Release v1.2), 7. Tabla resumen de trazabilidad, 8. Casos de uso auxiliares (sin historia de usuario) (+40 more)
 
 ### Community 56 - "Frontend Design"
 Cohesion: 0.29
 Nodes (6): Design principles, Frontend Design, Ground your designs in the subject matter, More on writing in design, Process: plan, review against the brief, build, critique, Restraint and self-critique
 
-### Community 57 - "Casos de Uso: Gastos"
-Cohesion: 0.08
-Nodes (22): Casos de Uso: Dashboard, CU-012: Visualizar dashboard mensual, CU-013: Alertas de umbral (80% / 100% / >100%), CU-014: Consultar actividad de los últimos 7 días, Notas técnicas, Casos de Uso: Gastos, CU-008: Crear gasto, CU-009: Listar gastos del mes (+14 more)
+### Community 57 - "CU-020: Notificaciones push al cruzar umbral 🔜 FUTURO"
+Cohesion: 0.06
+Nodes (31): Actor principal, Actor principal, Actores secundarios, Alcance, Alcance, Casos de Uso: Features Futuras (v1.2+), Criterios de aceptación, Criterios de aceptación (+23 more)
 
 ### Community 58 - "Sections"
 Cohesion: 0.33
@@ -440,29 +460,29 @@ Nodes (5): How to Use, References, Rule Categories by Priority, Supabase Postgre
 Cohesion: 0.50
 Nodes (3): File-System Paths, Import Paths, Prefer Statically Analyzable Paths
 
-### Community 65 - "useAppState"
-Cohesion: 0.22
-Nodes (10): react, CURRENCY_OPTIONS, SettingsPage(), OnboardingPage(), Home(), Button(), ButtonProps, Variant (+2 more)
+### Community 65 - "CU-010: Editar gasto"
+Cohesion: 0.13
+Nodes (15): Actor principal, Alcance, Criterios de aceptación, CU-010: Editar gasto, Disparador, Excepciones, Flujo principal, Flujos alternativos (+7 more)
 
-### Community 66 - "store.tsx"
-Cohesion: 0.33
-Nodes (9): Auditoría de código — Actualización 2026-10-16, Notas técnicas, AppContext, AppProvider(), DEFAULT_BUDGET, loadUserData(), getSession(), onAuthStateChange() (+1 more)
+### Community 66 - "CU-015: Configurar presupuesto por moneda"
+Cohesion: 0.06
+Nodes (33): Actor principal, Actor principal, Actores secundarios, Actores secundarios, Alcance, Alcance, Casos de Uso: Configuración (Settings), Criterios de aceptación (+25 more)
 
-### Community 67 - "repositories.ts"
-Cohesion: 0.27
-Nodes (5): AppState, SupabaseBudgetRow, SupabaseExpenseRow, Budget, Expense
+### Community 67 - "CU-012: Visualizar dashboard mensual"
+Cohesion: 0.05
+Nodes (44): Actor principal, Actor principal, Actor principal, Alcance, Alcance, Alcance, Casos de Uso: Dashboard, Criterios de aceptación (+36 more)
 
-### Community 174 - "login/page.tsx"
-Cohesion: 0.50
-Nodes (6): Error 1: `login is not a function` en `src/app/login/page.tsx:14`, LoginPage(), resetPassword(), signIn(), signUp(), client
+### Community 174 - "CU-018: Visualizar pantalla de onboarding"
+Cohesion: 0.12
+Nodes (15): Actor principal, Alcance, Casos de Uso: Onboarding, Criterios de aceptación, CU-018: Visualizar pantalla de onboarding, Disparador, Excepciones, Flujo principal (+7 more)
 
-### Community 175 - "Sidebar.tsx"
-Cohesion: 0.32
-Nodes (4): BottomNav(), tabs, links, Sidebar()
+### Community 175 - "CU-009: Listar gastos del mes"
+Cohesion: 0.14
+Nodes (14): Actor principal, Alcance, Criterios de aceptación, CU-009: Listar gastos del mes, Disparador, Excepciones, Flujo principal, Flujos alternativos (+6 more)
 
-### Community 176 - "Errores y soluciones"
-Cohesion: 0.33
-Nodes (6): Bug 5: Middleware no redirige después de logout (2026-10-08), Bug 6: Vector (analytics) no arranca en Windows (2026-10-08), Error 2: `Database error saving new user` (HTTP 500 en `/auth/v1/signup`), Error 3: `Uncaught SyntaxError: Invalid or unexpected token (at layout.js:728:29)`, Error 4: `relation "pg_log" does not exist` en Supabase, Errores y soluciones
+### Community 176 - "CU-011: Eliminar gasto"
+Cohesion: 0.14
+Nodes (14): Actor principal, Alcance, Criterios de aceptación, CU-011: Eliminar gasto, Disparador, Excepciones, Flujo principal, Flujos alternativos (+6 more)
 
 ### Community 177 - "1. Eliminating Waterfalls"
 Cohesion: 0.29
@@ -473,40 +493,88 @@ Cohesion: 0.29
 Nodes (7): 2.1 Avoid Barrel File Imports, 2.2 Conditional Module Loading, 2.3 Defer Non-Critical Third-Party Libraries, 2.4 Dynamic Imports for Heavy Components, 2.5 Prefer Statically Analyzable Paths, 2.6 Preload Based on User Intent, 2. Bundle Size Optimization
 
 ### Community 179 - "React Best Practices"
-Cohesion: 0.40
-Nodes (4): Abstract, React Best Practices, References, Table of Contents
+Cohesion: 0.20
+Nodes (9): 8.1 Do Not Put Effect Events in Dependency Arrays, 8.2 Initialize App Once, Not Per Mount, 8.3 Store Event Handlers in Refs, 8.4 useEffectEvent for Stable Callback Refs, 8. Advanced Patterns, Abstract, React Best Practices, References (+1 more)
 
 ### Community 180 - "4. Client-Side Data Fetching"
 Cohesion: 0.40
 Nodes (5): 4.1 Deduplicate Global Event Listeners, 4.2 Use Passive Event Listeners for Scrolling Performance, 4.3 Use SWR for Automatic Deduplication, 4.4 Version and Minimize localStorage Data, 4. Client-Side Data Fetching
 
-### Community 181 - "8. Advanced Patterns"
-Cohesion: 0.40
-Nodes (5): 8.1 Do Not Put Effect Events in Dependency Arrays, 8.2 Initialize App Once, Not Per Mount, 8.3 Store Event Handlers in Refs, 8.4 useEffectEvent for Stable Callback Refs, 8. Advanced Patterns
+### Community 181 - "Handoff: Revisión de Casos de Uso - Módulo Auth"
+Cohesion: 0.09
+Nodes (21): 1. `docs/use-case/auth/auth.md` (COMPLETO), 2. `docs/use-case/settings/settings.md` (COMPLETO), 3. `docs/use-case/USER_STORY_MAP.md` (5 correcciones pendientes), 4. `docs/stack_tecnologico_paltazo.md` (3 cambios pendientes), 📚 Archivos de Referencia, 🔗 Contexto Adicional, 🎯 Decisiones Clave Tomadas, Documentación (+13 more)
 
-### Community 182 - "add-expense/page.tsx"
-Cohesion: 0.50
-Nodes (4): AddExpensePage(), CURRENCY_OPTIONS, formatAmount(), EXPENSE_CATEGORIES
+### Community 182 - "CU-007: Iniciar sesión con Google (OAuth) — shortcut"
+Cohesion: 0.12
+Nodes (16): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-007: Iniciar sesión con Google (OAuth) — shortcut, Disparador, Estado actual (shortcut), Excepciones (+8 more)
+
+### Community 185 - "CU-001: Iniciar sesión con email y contraseña"
+Cohesion: 0.13
+Nodes (15): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-001: Iniciar sesión con email y contraseña, Disparador, Excepciones, Flujo principal (+7 more)
+
+### Community 186 - "CU-003: Solicitar enlace de recuperación de contraseña"
+Cohesion: 0.13
+Nodes (15): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-003: Solicitar enlace de recuperación de contraseña, Disparador, Excepciones, Flujo principal (+7 more)
+
+### Community 187 - "CU-004: Establecer nueva contraseña con token de recuperación"
+Cohesion: 0.13
+Nodes (15): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-004: Establecer nueva contraseña con token de recuperación, Disparador, Excepciones, Flujo principal (+7 more)
+
+### Community 188 - "CU-002: Registrarse con email y contraseña"
+Cohesion: 0.13
+Nodes (15): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-002: Registrarse con email y contraseña, Disparador, Excepciones, Flujo principal (+7 more)
+
+### Community 189 - "CU-005: Cerrar sesión"
+Cohesion: 0.06
+Nodes (33): Auditoría de código — Actualización 2026-10-16, Protección de rutas, Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-005: Cerrar sesión, Disparador (+25 more)
+
+### Community 190 - "scripts"
+Cohesion: 0.18
+Nodes (11): scripts, build, dev, lint, start, supabase:push, supabase:reset, supabase:start (+3 more)
+
+### Community 192 - "app/layout.tsx"
+Cohesion: 0.25
+Nodes (6): ref_next_font_google, src_app_globals, inter, metadata, viewport, ServiceWorkerRegistrar()
+
+### Community 193 - "devDependencies"
+Cohesion: 0.25
+Nodes (8): devDependencies, autoprefixer, postcss, tailwindcss, @types/node, @types/react, @types/react-dom, typescript
+
+### Community 194 - "dependencies"
+Cohesion: 0.33
+Nodes (6): dependencies, next, react, react-dom, @supabase/ssr, @supabase/supabase-js
+
+### Community 195 - "Casos de Uso: Autenticación"
+Cohesion: 0.67
+Nodes (3): Anexo: Notas técnicas, Casos de Uso: Autenticación, onAuthStateChange()
+
+### Community 196 - "middleware.ts"
+Cohesion: 0.40
+Nodes (3): ref_next_server, @supabase/ssr, config
+
+### Community 197 - "Casos de Uso — Paltazo"
+Cohesion: 0.67
+Nodes (3): Casos de Uso — Paltazo, Convenciones, Módulos
 
 ## Knowledge Gaps
-- **758 isolated node(s):** `$schema`, `nextConfig`, `name`, `version`, `private` (+753 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 917 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **121 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **1055 isolated node(s):** `$schema`, `nextConfig`, `name`, `version`, `private` (+1050 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1217 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **123 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `3. Server-Side Performance` connect `3. Server-Side Performance` to `React Best Practices`, `Casos de Uso: Autenticación`?**
-  _High betweenness centrality (0.038) - this node is a cross-community bridge._
-- **Why does `React Best Practices` connect `React Best Practices` to `Paltazo Application`, `5. Re-render Optimization`, `7. JavaScript Performance`, `3. Server-Side Performance`, `1. Eliminating Waterfalls`, `2. Bundle Size Optimization`, `4. Client-Side Data Fetching`, `8. Advanced Patterns`?**
-  _High betweenness centrality (0.037) - this node is a cross-community bridge._
-- **Why does `getUser()` connect `Casos de Uso: Autenticación` to `login/page.tsx`?**
-  _High betweenness centrality (0.037) - this node is a cross-community bridge._
+- **Why does `Casos de Uso: Autenticación` connect `Casos de Uso: Autenticación` to `Decisiones pendientes`, `CU-006: Proteger rutas con middleware`, `CU-007: Iniciar sesión con Google (OAuth) — shortcut`, `CU-001: Iniciar sesión con email y contraseña`, `CU-003: Solicitar enlace de recuperación de contraseña`, `CU-004: Establecer nueva contraseña con token de recuperación`, `CU-002: Registrarse con email y contraseña`, `CU-005: Cerrar sesión`, `Casos de Uso: Gastos`?**
+  _High betweenness centrality (0.062) - this node is a cross-community bridge._
+- **Why does `3. Server-Side Performance` connect `CU-006: Proteger rutas con middleware` to `React Best Practices`?**
+  _High betweenness centrality (0.048) - this node is a cross-community bridge._
+- **Why does `getUser()` connect `CU-006: Proteger rutas con middleware` to `store.tsx`?**
+  _High betweenness centrality (0.048) - this node is a cross-community bridge._
 - **What connects `$schema`, `nextConfig`, `name` to the rest of the system?**
-  _758 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1055 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Supabase (MVP Backend)` be split into smaller, more focused modules?**
   _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
-- **Should `package.json` be split into smaller, more focused modules?**
-  _Cohesion score 0.044444444444444446 - nodes in this community are weakly interconnected._
+- **Should `CU-008: Crear gasto` be split into smaller, more focused modules?**
+  _Cohesion score 0.13333333333333333 - nodes in this community are weakly interconnected._
 - **Should `compilerOptions` be split into smaller, more focused modules?**
   _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
