@@ -14,6 +14,14 @@ export async function signUp(email: string, password: string, displayName?: stri
   return { user: data.user, error }
 }
 
+export async function signInWithGoogle() {
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: { redirectTo: `${window.location.origin}/` }
+  })
+  return { error }
+}
+
 export async function signOut() {
   const { error } = await supabase.auth.signOut({ scope: 'global' })
   return { error }

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
-import { signIn, signUp, resetPassword } from '@/lib/supabase/auth'
+import { signIn, signUp, resetPassword, signInWithGoogle } from '@/lib/supabase/auth'
 import supabase from '@/lib/supabase/client'
 
 export default function LoginPage() {
@@ -284,12 +284,21 @@ export default function LoginPage() {
           <div className="flex-1 h-px bg-surface-variant" />
         </div>
 
-        {/* shortcut: Google OAuth pendiente — revisit when se active integración social */}
         <button
           type="button"
-          className="w-full h-12 rounded-full bg-surface-container text-on-surface text-label-lg flex items-center justify-center gap-space-sm hover:bg-surface-container-high transition-colors active:scale-[0.99]"
+          onClick={async () => {
+            setError('')
+            setLoading(true)
+            const { error } = await signInWithGoogle()
+            if (error) {
+              setError(error.message)
+              setLoading(false)
+            }
+          }}
+          disabled={loading}
+          className="w-full h-12 rounded-full bg-surface-container text-on-surface text-label-lg flex items-center justify-center gap-space-sm hover:bg-surface-container-high transition-colors active:scale-[0.99] disabled:opacity-50"
         >
-          <span className="text-lg">🔐</span>
+          {loading ? '⏳' : '🔐'}
           Continuar con Google
         </button>
         </>

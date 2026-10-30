@@ -18,7 +18,7 @@ const CATEGORY_COLORS = ['red', 'orange', 'amber', 'emerald', 'teal', 'blue', 'i
 
 export default function SettingsPage() {
   const router = useRouter()
-  const { budget, budgets, setBudget, addCurrency, removeCurrency, categories, addCategory, updateCategory, deleteCategory, logout, userId } = useAppState()
+  const { budget, budgets, setBudget, addCurrency, removeCurrency, categories, addCategory, updateCategory, deleteCategory, logout, userId, notificationPermission, requestNotificationPermission } = useAppState()
   const [budgetInputs, setBudgetInputs] = useState<Record<string, string>>(() => {
     const inputs: Record<string, string> = {}
     if (budget.monthlyLimit > 0) inputs[budget.currency] = budget.monthlyLimit.toString()
@@ -350,6 +350,43 @@ export default function SettingsPage() {
             </div>
           </section>
         </div>
+
+        {/* Notificaciones */}
+        <section className="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm">
+          <h3 className="text-label-lg text-on-surface font-semibold mb-space-sm flex items-center gap-2">
+            🔔 Notificaciones
+          </h3>
+          <p className="text-body-sm text-on-surface-variant mb-space-md">
+            Recibe alertas cuando te acerques a tu límite de presupuesto mensual.
+          </p>
+          <button
+            onClick={async () => {
+              if (notificationPermission === 'granted') {
+                alert('Las notificaciones ya están activadas')
+                return
+              }
+              if (notificationPermission === 'unsupported') {
+                alert('Tu navegador no soporta notificaciones push')
+                return
+              }
+              const perm = await requestNotificationPermission()
+              if (perm === 'granted') {
+                alert('✅ Notificaciones activadas')
+              } else if (perm === 'denied') {
+                alert('❌ Notificaciones bloqueadas. Actívalas en la configuración del navegador.')
+              }
+            }}
+            disabled={notificationPermission === 'granted'}
+            className="w-full py-3 rounded-xl bg-primary text-on-primary text-label-lg font-semibold hover:bg-secondary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {notificationPermission === 'granted' ? '✓ Notificaciones activadas' : 'Activar notificaciones'}
+          </button>
+          {notificationPermission === 'denied' && (
+            <p className="text-body-sm text-error mt-2">
+              Las notificaciones están bloqueadas. Habilítalas en la configuración de tu navegador.
+            </p>
+          )}
+        </section>
 
         <div className="mt-space-lg">
           <button

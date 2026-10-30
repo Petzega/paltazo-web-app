@@ -85,16 +85,12 @@ export async function updateCategory(id: string, userId: string, changes: Partia
 }
 
 export async function deleteCategory(id: string, userId: string, otrosId: string) {
-  // Reasignar gastos a "Otros" antes de borrar (CU-026)
-  const { error: reassignError } = await supabase
-    .from('expenses')
-    .update({ category_id: otrosId })
-    .eq('category_id', id)
-    .eq('user_id', userId)
-
-  if (reassignError) throw reassignError
-
-  const { error } = await supabase.from('categories').delete().eq('id', id).eq('user_id', userId)
+  // Transacción atómica: reasigna gastos a "Otros" y elimina categoría (CU-026)
+  const { error } = await supabase.rpc('delete_category_reassigning_expenses', {
+    p_category_id: id,
+    p_user_id: userId,
+    p_otros_id: otrosId,
+  })
   if (error) throw error
 }
 
@@ -201,25 +197,14 @@ export async function upsertBudget(budget: Budget) {
   if (error) throw error
 }
 
-export async function deleteBudgetByCurrency(userId: string, currency: string) {
-  const { error } = await supabase
-    .from('budgets')
-    .delete()
-    .eq('user_id', userId)
-    .eq('currency', currency)
-
+export async function deleteCurrencyWithPurge(userId: string, currency: string): Promise<number> {
+  // Transacción atómica: elimina expenses + budget de la moneda (CU-023)
+  const { data, error } = await supabase.rpc('delete_currency_purging_data', {
+    p_user_id: userId,
+    p_currency: currency,
+  })
   if (error) throw error
-}
-
-export async function deleteExpensesByCurrency(userId: string, currency: string) {
-  const { count, error } = await supabase
-    .from('expenses')
-    .delete({ count: 'exact' })
-    .eq('user_id', userId)
-    .eq('currency', currency)
-
-  if (error) throw error
-  return count ?? 0
+  return (data as number) ?? 0
 }
 
 export async function countExpensesByCurrency(userId: string, currency: string): Promise<number> {
@@ -271,3 +256,30 @@ export async function completeOnboardingProfile(userId: string, currency: string
 
   if (error) throw error
 }
+
+// ── Push Subscriptions ──
+
+export async function savePushSubscription(
+  userId: string,
+  endpoint: string,
+  p256dh: string,
+  auth: string
+) {
+  const { error } = await supabase.from('push_subscriptions').insert({
+    user_id: userId,
+    endpoint,
+    p256dh,
+    auth,
+  })
+  if (error) throw error
+}
+
+export async function removePushSubscription(userId: string, endpoint: string) {
+  const { error } = await supabase
+    .from('push_subscriptions')
+    .delete()
+    .eq('user_id', userId)
+    .eq('endpoint', endpoint)
+  if (error) throw error
+}
+

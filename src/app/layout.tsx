@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { AppProvider } from '@/lib/store'
 import { ServiceWorkerRegistrar } from '@/components/providers/ServiceWorkerRegistrar'
+import { ConnectionIndicator } from '@/components/ui/ConnectionIndicator'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -36,6 +37,7 @@ export default function RootLayout({
         <AppProvider>
           <ServiceWorkerRegistrar />
           {children}
+          <ConnectionIndicator />
         </AppProvider>
       </body>
     </html>
