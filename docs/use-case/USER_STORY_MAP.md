@@ -118,7 +118,7 @@
 **Criterios de aceptación:**
 - [ ] Invalida todas las sesiones del usuario en todos los dispositivos (`scope: global`).
 - [ ] Limpia estado global (`userId = null`, `expenses = []`).
-- [ ] Redirige a pantalla "Sesión cerrada" (con botón a `/login`).
+- [ ] Redirige a pantalla "Sesión cerrada" (`/session-closed`, con botón a `/login`).
 - [ ] Botón accesible desde Sidebar y desde Settings.
 
 **Ref:** [`CU-005`](auth/auth.md#cu-005-logout-cerrar-sesión), [`CU-017`](settings/settings.md#cu-017-cerrar-sesión-desde-ajustes) · **Release:** MVP
@@ -326,7 +326,7 @@
 **Criterios de aceptación:**
 - [ ] Botón "Cerrar sesión" en la parte inferior de Settings.
 - [ ] Ejecuta `store.logout()` con `scope: global`.
-- [ ] Redirige a pantalla "Sesión cerrada" (con botón a `/login`).
+- [ ] Redirige a pantalla "Sesión cerrada" (`/session-closed`, con botón a `/login`).
 - [ ] Sin modal de confirmación (acción reversible).
 - [ ] (mismo flujo que CU-005)
 
@@ -410,50 +410,40 @@ Estos casos de uso documentan pantallas o flujos de soporte que no corresponden 
 
 ---
 
-## 9. Decisiones pendientes sobre pantallas inexistentes
+## 9. Pantallas inexistentes: estado de decisión
 
-Las siguientes pantallas están mencionadas en la documentación pero **NO existen en el código actual**. Se requiere decisión de producto para definir si se implementan o se ajusta la documentación.
+> Estas pantallas se mencionan en la documentación funcional pero **NO existen en el código actual**. Cada una tiene su decisión tomada; lo pendiente es la implementación en código.
 
-### 9.1 Pantalla "Sesión cerrada" (post-logout)
+### 9.1 Pantalla "Sesión cerrada" (post-logout) — RUTA DECIDIDA
 
 **Mencionado en:** CU-005 (Logout global), CU-017 (Cerrar sesión desde ajustes)
 
 **Documentación dice:** "Redirige a pantalla 'Sesión cerrada' (con botón a `/login`)"
 
-**Código actual:** Logout redirige a `/onboarding` (no hay pantalla dedicada de "Sesión cerrada")
+**Decisión:** pantalla dedicada en **`/session-closed`** (ruta pública), con botón para volver a `/login`. Definido en `auth/auth.md` — CU-005 y sección "Decisiones pendientes" §2.
 
-**Preguntas:**
-1. ¿Crear pantalla dedicada `/logout-success` o `/session-closed`?
-2. ¿O mantener redirect a `/onboarding` y ajustar documentación?
-3. Si se crea pantalla dedicada, ¿qué contenido debe mostrar? (solo mensaje + botón, o también opciones de registro, etc.)
+**Código actual:** el logout redirige a `/onboarding` (`Sidebar.tsx:46`, `settings/page.tsx:164`) — brecha P0 a implementar.
 
-**Impacto:** UX post-logout. Actualmente usuario vuelve a onboarding, lo cual puede ser confuso si ya conoce la app.
+**Impacto:** UX post-logout. Actualmente el usuario vuelve a onboarding, lo cual resulta confuso si ya conoce la app.
 
 ---
 
-### 9.2 Pantalla "Revisa tu correo" (post-recuperación)
+### 9.2 Pantalla "Revisa tu correo" (post-recuperación) — FEEDBACK INLINE
 
 **Mencionado en:** CU-003 (Recuperar contraseña - solicitar enlace)
 
-**Documentación dice:** Flujo de recuperación envía enlace por email, pero no especifica qué ve el usuario después de solicitar el enlace.
+**Decisión:** se mantiene el **feedback inline** en `/login` ("Revisa tu correo para continuar"), sin pantalla intermedia. Definido en `auth/auth.md` — CU-003, "Preguntas pendientes".
 
-**Código actual:** Probablemente muestra mensaje inline o toast, pero no hay pantalla dedicada de confirmación.
+**Código actual:** ya implementado con feedback inline; sin trabajo pendiente.
 
-**Preguntas:**
-1. ¿Crear pantalla dedicada `/recovery-email-sent`?
-2. ¿O mantener feedback inline (toast/modal) en la misma pantalla de recuperación?
-3. Si se crea pantalla dedicada, ¿qué contenido debe mostrar? (instrucciones de revisar email, opción de reenviar, etc.)
-
-**Impacto:** UX de recuperación de contraseña. Buen practice mostrar pantalla de confirmación explícita para reducir ansiedad del usuario.
+**Impacto:** ninguno.
 
 ---
 
-### 9.3 Resolución de decisiones
+### 9.3 Estado consolidado
 
-**Acción requerida:** Decidir si implementar las pantallas inexistentes o ajustar la documentación para reflejar el comportamiento actual.
-
-**Opciones:**
-- **Opción A:** Implementar ambas pantallas como pantallas dedicadas (mejor UX, más trabajo)
-- **Opción B:** Mantener comportamiento actual y ajustar documentación (menos trabajo, UX menos pulida)
-- **Opción C:** Implementar solo "Sesión cerrada" (más importante para UX post-logout) y mantener feedback inline para recuperación (decisión pragmática)
+| Pantalla | Ruta / decisión | Estado |
+|----------|-----------------|--------|
+| Sesión cerrada | `/session-closed` | 📐 Decidido · código pendiente (P0) |
+| Revisa tu correo | Feedback inline en `/login` | ✅ Resuelto · sin código pendiente |
 

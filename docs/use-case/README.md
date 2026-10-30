@@ -7,6 +7,10 @@
 
 [Abrir la red de casos de uso en Obsidian Canvas](RED_CASOS_DE_USO.canvas): módulos, casos de uso, historias y relaciones en un solo grafo navegable.
 
+## Pendientes
+
+La lista vigente de trabajo pendiente (código, implementación de CUs propuestos, decisiones de producto y tooling) está en [`PENDIENTES.md`](../../PENDIENTES.md) en la raíz del repo.
+
 ## Módulos
 
 | Módulo | Archivo | Casos | Estado |

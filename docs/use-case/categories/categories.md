@@ -90,7 +90,7 @@ El usuario pulsa "Agregar categoría".
 
 ### Preguntas pendientes
 - Ninguna pendiente de diseño para creación o edición.
-- Impacto técnico anotado para implementación: requiere tabla de categorías en Supabase y eliminar el `CHECK` actual de `expenses.category`.
+- Impacto técnico anotado para implementación (no es una pregunta de negocio): requiere tabla de categorías en Supabase y eliminar el `CHECK` actual de `expenses.category`. Ver `HANDOFF_AUTH_REVIEW.md` §5.
 
 ---
 

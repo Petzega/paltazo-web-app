@@ -1,16 +1,19 @@
-export type ExpenseCategory =
-  | 'food'
-  | 'transport'
-  | 'services'
-  | 'entertainment'
-  | 'other'
+export interface Category {
+  id: string
+  userId: string
+  name: string
+  icon: string
+  color: string
+  isDefault: boolean
+  isProtected: boolean
+}
 
 export interface Expense {
   id: string
   userId: string
   amount: number
   currency: string
-  category: ExpenseCategory
+  categoryId: string
   description?: string
   date: string
   createdAt: string

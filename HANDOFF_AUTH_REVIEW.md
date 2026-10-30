@@ -5,6 +5,10 @@
 > **Convención:** todo lo marcado **PROPUESTO** está documentado y aprobado por producto, pero **NO implementado**. Lo marcado "código actual" describe el comportamiento real de hoy.
 > **Cómo retomar:** leer este checkpoint → `docs/use-case/README.md` → el CU a implementar → el código referenciado. Consultar Graphify antes de explorar el repo.
 
+> ⚠️ **Este checkpoint quedó parcialmente desactualizado** tras la unificación de contradicciones del 29 oct 2026.
+> **Para la lista vigente de pendientes, ver [`PENDIENTES.md`](PENDIENTES.md).**
+> Secciones de este documento que ya no reflejan el estado actual: **§6** (decisiones de UX de pantallas post-logout/post-recuperación), **§7.1** (catálogo de emojis y paleta) y **§7.2** (ubicación de la gestión de categorías) — los tres están resueltos. **§7.5** solo conserva pendiente BUG-001.
+
 ---
 
 ## 1. Estado en una mirada
@@ -123,18 +127,21 @@ Documentación **centralizada**: `docs/use-case/` es la única fuente de verdad 
 - CU-002 exige nombre máx. 200 caracteres; el input no tiene `maxLength`.
 
 ### Decisiones de UX aún abiertas
-- **Pantalla "Sesión cerrada":** la doc la exige; el código redirige a `/onboarding`. Opciones: crear `/session-closed` o ajustar doc.
-- **Pantalla "Revisa tu correo":** la doc la menciona; el código usa feedback inline. Opciones: crear pantalla o mantener inline (recomendado).
+> ✅ **RESUELTO (29 oct 2026)** — ver detalle en `PENDIENTES.md` §C.
+- **Pantalla "Sesión cerrada":** ✅ decided → ruta dedicada **`/session-closed`** (pública, con botón a `/login`). Definido en `auth.md` CU-005 y §Decisiones pendientes 2; `settings.md` CU-017 y `USER_STORY_MAP.md` §9 alineados. *El código todavía redirige a `/onboarding` — brecha P0 en `PENDIENTES.md` A2.*
+- **Pantalla "Revisa tu correo":** ✅ decided → se mantiene el **feedback inline** en `/login` ("Revisa tu correo para continuar"), sin pantalla intermedia. Definido en `auth.md` CU-003. *Sin trabajo de código pendiente.*
 
 ---
 
 ## 7. Pendientes de producto y diseño
 
-1. Catálogo exacto de emojis y paleta de colores para categorías.
-2. Ubicación de la gestión de categorías en la navegación (ajustes o selector de gasto).
-3. Asignar release a CU-021 a CU-026.
-4. Diseño del schema de categorías y del flag de configuración inicial.
-5. Resolver BUG-001 y las pantallas post-logout/post-recuperación.
+> 📌 **Actualizado (29 oct 2026).** Los ítems 1 y 2 están resueltos; la lista vigente está en [`PENDIENTES.md`](PENDIENTES.md) §C.
+
+1. ~~Catálogo exacto de emojis y paleta de colores para categorías.~~ ✅ **RESUELTO** — 16 emojis y 8 colores Tailwind definidos en `docs/use-case/categories/categories.md`.
+2. ~~Ubicación de la gestión de categorías en la navegación.~~ ✅ **RESUELTO** — panel en `/dashboard/settings` + acceso rápido `+ Nueva categoría` desde el selector de gasto (`categories.md` CU-024).
+3. **Pendiente:** Asignar release a CU-021 a CU-026.
+4. **Pendiente:** Diseño del schema de categorías y del flag de configuración inicial. *(resuelto en `docs/architecture/ARCHITECTURE_SPEC.md` §1 — pendiente de implementar)*
+5. **Pendiente:** Resolver BUG-001. *(las pantallas post-logout y post-recuperación ya están resueltas)*
 
 ---
 

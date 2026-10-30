@@ -3,16 +3,16 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAppState } from '@/lib/store'
-import { getCategoryInfo, getCategoryColorClass } from '@/lib/categories'
+import { findCategory, getCategoryColorClass } from '@/lib/categories'
 import { AddExpenseFab } from '@/components/ui/AddExpenseFab'
-import type { Expense, ExpenseCategory } from '@/types'
+import type { Expense } from '@/types'
 
 export default function ExpensesPage() {
   const router = useRouter()
-  const { expenses, budget, updateExpense, deleteExpense } = useAppState()
+  const { expenses, budget, categories, updateExpense, deleteExpense } = useAppState()
   const [editingId, setEditingId] = useState<string | null>(null)
   const [deletingId, setDeletingId] = useState<string | null>(null)
-  const [editForm, setEditForm] = useState({ amount: '', description: '', category: '' as ExpenseCategory, date: '' })
+  const [editForm, setEditForm] = useState({ amount: '', description: '', categoryId: '', date: '' })
 
   const monthPrefix = `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}`
   const monthlyTotal = expenses
@@ -30,7 +30,7 @@ export default function ExpensesPage() {
 
   const startEdit = (exp: Expense) => {
     setEditingId(exp.id)
-    setEditForm({ amount: exp.amount.toString(), description: exp.description || '', category: exp.category, date: exp.date })
+    setEditForm({ amount: exp.amount.toString(), description: exp.description || '', categoryId: exp.categoryId, date: exp.date })
   }
 
   const saveEdit = async () => {
@@ -38,7 +38,7 @@ export default function ExpensesPage() {
     await updateExpense(editingId, {
       amount: parseFloat(editForm.amount),
       description: editForm.description || undefined,
-      category: editForm.category,
+      categoryId: editForm.categoryId,
       date: editForm.date,
     })
     setEditingId(null)
@@ -118,7 +118,7 @@ export default function ExpensesPage() {
                 </thead>
                 <tbody>
                   {sorted.map((expense) => {
-                    const catInfo = getCategoryInfo(expense.category)
+                    const catInfo = findCategory(categories, expense.categoryId)
                     const isEditing = editingId === expense.id
 
                     if (isEditing) {
@@ -149,12 +149,12 @@ export default function ExpensesPage() {
                               <div className="flex-1 min-w-[120px]">
                                 <label className="text-label-sm text-text-secondary block mb-1">Categoría</label>
                                 <select
-                                  value={editForm.category}
-                                  onChange={(e) => setEditForm({ ...editForm, category: e.target.value as ExpenseCategory })}
+                                  value={editForm.categoryId}
+                                  onChange={(e) => setEditForm({ ...editForm, categoryId: e.target.value })}
                                   className="w-full px-3 py-2 rounded-xl bg-surface-container border border-outline text-on-surface text-body-md focus:outline-none focus:border-primary"
                                 >
-                                  {['food', 'transport', 'services', 'entertainment', 'other'].map((c) => (
-                                    <option key={c} value={c}>{getCategoryInfo(c as ExpenseCategory).label}</option>
+                                  {categories.map((c) => (
+                                    <option key={c.id} value={c.id}>{c.name}</option>
                                   ))}
                                 </select>
                               </div>
@@ -189,7 +189,7 @@ export default function ExpensesPage() {
                         <td className="px-4 py-3">
                           <span className="inline-flex items-center gap-1.5 text-label-md text-on-surface">
                             <span className="text-[16px]">{catInfo.icon}</span>
-                            {catInfo.label}
+                            {catInfo.name}
                           </span>
                         </td>
                         <td className="px-4 py-3 text-body-md text-on-surface-variant">
@@ -234,7 +234,7 @@ export default function ExpensesPage() {
                   </div>
                   <div className="space-y-space-xs">
                     {dayExpenses.map((expense) => {
-                      const catInfo = getCategoryInfo(expense.category)
+                      const catInfo = findCategory(categories, expense.categoryId)
                       const isEditing = editingId === expense.id
 
                       if (isEditing) {
@@ -264,12 +264,12 @@ export default function ExpensesPage() {
                               placeholder="Descripción"
                             />
                             <select
-                              value={editForm.category}
-                              onChange={(e) => setEditForm({ ...editForm, category: e.target.value as ExpenseCategory })}
+                              value={editForm.categoryId}
+                              onChange={(e) => setEditForm({ ...editForm, categoryId: e.target.value })}
                               className="w-full px-3 py-2 rounded-xl bg-surface-container-lowest border border-outline text-on-surface text-body-md focus:outline-none focus:border-primary"
                             >
-                              {['food', 'transport', 'services', 'entertainment', 'other'].map((c) => (
-                                <option key={c} value={c}>{getCategoryInfo(c as ExpenseCategory).label}</option>
+                              {categories.map((c) => (
+                                <option key={c.id} value={c.id}>{c.name}</option>
                               ))}
                             </select>
                             <div className="flex gap-space-sm">
@@ -290,12 +290,12 @@ export default function ExpensesPage() {
                           className="p-3 rounded-2xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors flex items-center justify-between gap-3 shadow-sm"
                         >
                           <div className="flex items-center gap-3 min-w-0">
-                            <div className={`w-11 h-11 rounded-2xl flex items-center justify-center text-[22px] shrink-0 ${getCategoryColorClass(expense.category)}`}>
+                            <div className={`w-11 h-11 rounded-2xl flex items-center justify-center text-[22px] shrink-0 ${getCategoryColorClass(catInfo.color)}`}>
                               {catInfo.icon}
                             </div>
                             <div className="min-w-0">
                               <h4 className="text-label-lg text-on-surface font-semibold truncate">
-                                {catInfo.label}
+                                {catInfo.name}
                               </h4>
                               <div className="flex items-center gap-2 mt-0.5">
                                 <span className="text-label-sm px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant">

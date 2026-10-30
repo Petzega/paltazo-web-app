@@ -43,7 +43,11 @@ export function Sidebar() {
 
       <div className="pt-space-md border-t border-surface-container-high mt-space-md flex flex-col gap-space-xs">
         <button
-          onClick={async () => { await logout(); window.location.href = '/onboarding' }}
+          onClick={async () => {
+            const { error } = await logout()
+            if (error) return alert(error)
+            window.location.href = '/session-closed'
+          }}
           className="flex items-center gap-3 px-4 py-3 rounded-xl text-left text-text-secondary hover:bg-danger/10 hover:text-danger transition-colors"
         >
           <span className="text-[22px]">🚪</span>

@@ -3,13 +3,15 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAppState } from '@/lib/store'
-import { EXPENSE_CATEGORIES } from '@/lib/categories'
-import type { ExpenseCategory } from '@/types'
+import { findCategory, getCategoryColorClass } from '@/lib/categories'
 
 const CURRENCY_OPTIONS = [
   { value: 'S/', label: 'S/' },
   { value: '$', label: '$' },
 ]
+
+const CATEGORY_EMOJIS = ['🍔', '🚗', '🏠', '🎬', '🛒', '💊', '✈️', '📚', '💼', '🐾', '🎁', '💡', '⚽', '☕', '📱', '📦']
+const CATEGORY_COLORS = ['red', 'orange', 'amber', 'emerald', 'teal', 'blue', 'indigo', 'purple']
 
 function formatAmount(digits: string): string {
   if (!digits) return '0.00'
@@ -21,17 +23,21 @@ function formatAmount(digits: string): string {
 
 export default function AddExpensePage() {
   const router = useRouter()
-  const { addExpense, budget } = useAppState()
+  const { addExpense, budget, categories, addCategory } = useAppState()
   const [digits, setDigits] = useState('')
   const [currency, setCurrency] = useState(budget.currency || 'S/')
   const [initialCurrency] = useState(budget.currency || 'S/')
-  const [category, setCategory] = useState<ExpenseCategory>('food')
+  const [categoryId, setCategoryId] = useState('')
   const [description, setDescription] = useState('')
   const [date, setDate] = useState(new Date().toISOString().split('T')[0])
   const [focused, setFocused] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showNewCategoryModal, setShowNewCategoryModal] = useState(false)
+  const [newCategoryName, setNewCategoryName] = useState('')
+  const [newCategoryIcon, setNewCategoryIcon] = useState(CATEGORY_EMOJIS[0])
+  const [newCategoryColor, setNewCategoryColor] = useState(CATEGORY_COLORS[0])
   const successTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   useEffect(() => {
@@ -56,7 +62,7 @@ export default function AddExpensePage() {
     await addExpense({
       amount: numericValue,
       currency,
-      category,
+      categoryId,
       description: description || undefined,
       date,
     })
@@ -70,12 +76,12 @@ export default function AddExpensePage() {
   const handleClear = () => {
     setDigits('')
     setDescription('')
-    setCategory('food')
+    setCategoryId(categories[0]?.id || '')
     setCurrency(initialCurrency)
     setDate(new Date().toISOString().split('T')[0])
   }
 
-  const hasChanges = digits !== '' || description !== '' || category !== 'food' || currency !== initialCurrency
+  const hasChanges = digits !== '' || description !== '' || categoryId !== (categories[0]?.id || '') || currency !== initialCurrency
 
   const handleBack = () => {
     if (hasChanges) {
@@ -86,6 +92,23 @@ export default function AddExpensePage() {
   }
 
   const displayText = formatAmount(digits)
+
+  const handleCreateCategory = async () => {
+    if (!newCategoryName.trim()) return
+    try {
+      await addCategory({
+        name: newCategoryName.trim(),
+        icon: newCategoryIcon,
+        color: newCategoryColor,
+      })
+      setShowNewCategoryModal(false)
+      setNewCategoryName('')
+      setNewCategoryIcon(CATEGORY_EMOJIS[0])
+      setNewCategoryColor(CATEGORY_COLORS[0])
+    } catch (err) {
+      console.error('Error creating category:', err)
+    }
+  }
 
   return (
     <>
@@ -214,32 +237,44 @@ export default function AddExpensePage() {
             <div className="flex flex-col gap-space-sm">
               <div className="flex items-center justify-between px-space-xs">
                 <label className="text-label-lg text-on-surface font-semibold">Categoría</label>
-                <span className="text-label-sm text-primary font-bold">{EXPENSE_CATEGORIES.find(c => c.id === category)?.label}</span>
+                <span className="text-label-sm text-primary font-bold">{findCategory(categories, categoryId).name}</span>
               </div>
               <div className="grid grid-cols-5 gap-space-xs">
-                {EXPENSE_CATEGORIES.map((cat) => (
+                {categories.map((cat) => (
                   <button
                     key={cat.id}
                     type="button"
-                    onClick={() => setCategory(cat.id)}
+                    onClick={() => setCategoryId(cat.id)}
                     className={`flex flex-col items-center justify-center p-space-sm rounded-xl shadow-sm transition-all duration-150 transform active:scale-95 ${
-                      category === cat.id
+                      categoryId === cat.id
                         ? 'bg-primary-container text-on-primary-container'
                         : 'bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high'
                     }`}
                   >
                     <div className={`w-10 h-10 rounded-full flex items-center justify-center text-[22px] mb-1 ${
-                      category === cat.id ? 'bg-surface-container-lowest/80' : 'bg-surface-container'
+                      categoryId === cat.id ? 'bg-surface-container-lowest/80' : 'bg-surface-container'
                     }`}>
                       {cat.icon}
                     </div>
                     <span className={`text-label-sm font-medium truncate w-full text-center ${
-                      category === cat.id ? 'font-semibold' : ''
+                      categoryId === cat.id ? 'font-semibold' : ''
                     }`}>
-                      {cat.label}
+                      {cat.name}
                     </span>
                   </button>
                 ))}
+                <button
+                  type="button"
+                  onClick={() => setShowNewCategoryModal(true)}
+                  className="flex flex-col items-center justify-center p-space-sm rounded-xl shadow-sm transition-all duration-150 transform active:scale-95 bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high border-2 border-dashed border-outline-variant"
+                >
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-[22px] mb-1 bg-surface-container">
+                    +
+                  </div>
+                  <span className="text-label-sm font-medium truncate w-full text-center">
+                    Nueva
+                  </span>
+                </button>
               </div>
             </div>
 
@@ -348,6 +383,79 @@ export default function AddExpensePage() {
               >
                 Descartar
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showNewCategoryModal && (
+        <div className="fixed inset-0 z-[300] flex items-center justify-center bg-black/40 backdrop-blur-sm p-gutter" onClick={() => setShowNewCategoryModal(false)}>
+          <div className="bg-surface-container-lowest rounded-2xl p-space-md max-w-md w-full shadow-2xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <h3 className="text-headline-sm text-on-surface font-bold mb-4">Nueva categoría</h3>
+            <div className="space-y-4">
+              <div>
+                <label className="text-label-lg text-on-surface font-semibold block mb-2">Nombre</label>
+                <input
+                  type="text"
+                  value={newCategoryName}
+                  onChange={(e) => setNewCategoryName(e.target.value)}
+                  maxLength={30}
+                  className="w-full px-4 py-3 rounded-xl bg-surface-container border border-outline text-on-surface text-body-md focus:outline-none focus:border-primary transition-colors"
+                  placeholder="Ej: Compras"
+                  autoFocus
+                />
+              </div>
+              <div>
+                <label className="text-label-lg text-on-surface font-semibold block mb-2">Icono</label>
+                <div className="grid grid-cols-8 gap-2">
+                  {CATEGORY_EMOJIS.map((emoji) => (
+                    <button
+                      key={emoji}
+                      type="button"
+                      onClick={() => setNewCategoryIcon(emoji)}
+                      className={`w-10 h-10 rounded-lg flex items-center justify-center text-2xl transition-all ${
+                        newCategoryIcon === emoji
+                          ? 'bg-primary-container ring-2 ring-primary scale-110'
+                          : 'bg-surface-container hover:bg-surface-container-high'
+                      }`}
+                    >
+                      {emoji}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <label className="text-label-lg text-on-surface font-semibold block mb-2">Color</label>
+                <div className="grid grid-cols-8 gap-2">
+                  {CATEGORY_COLORS.map((color) => (
+                    <button
+                      key={color}
+                      type="button"
+                      onClick={() => setNewCategoryColor(color)}
+                      className={`w-10 h-10 rounded-lg transition-all ${getCategoryColorClass(color)} ${
+                        newCategoryColor === color
+                          ? 'ring-2 ring-primary scale-110'
+                          : 'hover:scale-105'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className="flex gap-space-sm pt-2">
+                <button
+                  onClick={() => setShowNewCategoryModal(false)}
+                  className="flex-1 h-11 rounded-full bg-surface-container text-on-surface text-label-lg font-medium hover:bg-surface-container-high transition-colors"
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={handleCreateCategory}
+                  disabled={!newCategoryName.trim()}
+                  className="flex-1 h-11 rounded-full bg-primary text-on-primary text-label-lg font-semibold hover:bg-secondary transition-colors disabled:opacity-50"
+                >
+                  Crear
+                </button>
+              </div>
             </div>
           </div>
         </div>

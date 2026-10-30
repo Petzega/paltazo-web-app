@@ -311,7 +311,7 @@ El usuario pulsa "Cerrar sesión" desde cualquiera de los puntos de entrada: Sid
 2. El sistema invoca `store.logout()` → `signOut({ scope: 'global' })`.
 3. Supabase invalida todas las sesiones del usuario en todos los dispositivos.
 4. El sistema limpia el store: `userId = null`, `expenses = []`.
-5. El sistema redirige a la pantalla **"Sesión cerrada"**.
+5. El sistema redirige a la pantalla **"Sesión cerrada"** (`/session-closed`).
 6. El usuario ve el mensaje de cierre y un botón para volver a iniciar sesión.
 7. El usuario pulsa el botón y el sistema lo redirige a `/login`.
 
@@ -331,17 +331,18 @@ El usuario pulsa "Cerrar sesión" desde cualquiera de los puntos de entrada: Sid
 - `signOut({ scope: 'global' })` invalida todas las sesiones del usuario en todos los dispositivos.
 - El logout **no requiere confirmación** (acción reversible; convención de producto).
 - El logout se centraliza en `store.logout()`; todos los puntos de entrada (Sidebar, Ajustes) invocan la misma función (ver también CU-017).
-- Tras el logout, el usuario **no** va directamente a `/login`, sino a una pantalla intermedia de "Sesión cerrada".
+- Tras el logout, el usuario **no** va directamente a `/login`, sino a la pantalla intermedia `/session-closed`.
+- `/session-closed` es ruta pública: debe ser accesible sin sesión activa.
 
 ### Criterios de aceptación
 - Invalida todas las sesiones del usuario en todos los dispositivos (`scope: global`).
 - Limpia estado global (`userId = null`, `expenses = []`).
-- Redirige a la pantalla "Sesión cerrada", con botón a `/login`.
+- Redirige a la pantalla "Sesión cerrada" (`/session-closed`), con botón a `/login`.
 - Botón accesible desde Sidebar y desde Ajustes.
 - No requiere modal de confirmación.
 
 ### Preguntas pendientes
-- **Ruta concreta de la pantalla "Sesión cerrada" (RESUELTO):** Se ratifica el requisito de una pantalla dedicada `/session-closed` (o `/logout-success`) con botón para volver a `/login`.
+- **Ruta concreta de la pantalla "Sesión cerrada" (RESUELTO):** pantalla dedicada en `/session-closed`, con botón para volver a `/login`.
 - **Deuda técnica en código:** Actualmente el logout redirige a `/onboarding` (`Sidebar.tsx`, `settings/page.tsx`). Esto queda clasificado como brecha P0 a implementar en código para cumplir con la especificación.
 
 ---
@@ -532,9 +533,10 @@ El usuario pulsa "Continuar con Google" en `/login`.
 - **Estado:** PENDIENTE.
 
 ### 2. Ruta concreta de la pantalla "Sesión cerrada"
-- **Contexto:** CU-005 establece que el logout redirige a una pantalla intermedia "Sesión cerrada" con botón a `/login`. La ruta específica (`/logout-success`, `/session-closed`, `/goodbye`, etc.) no está decidida.
+- **Contexto:** CU-005 establece que el logout redirige a una pantalla intermedia "Sesión cerrada" con botón a `/login`.
+- **Decisión:** pantalla dedicada en `/session-closed` (ruta pública).
 - **Impacto:** decisión de routing, no de caso de uso.
-- **Estado:** PENDIENTE.
+- **Estado:** RESUELTO (29 oct 2026).
 
 ### 3. Alcance del rol admin
 - **Contexto:** se mencionó la posibilidad de introducir un rol `admin` además del rol `user`. No hay casos de uso de administración definidos.

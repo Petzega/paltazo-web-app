@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useState, useMemo } from 'react'
 import { useAppState } from '@/lib/store'
-import { getCategoryInfo, getCategoryColorClass } from '@/lib/categories'
+import { findCategory, getCategoryColorClass } from '@/lib/categories'
 import { AddExpenseFab } from '@/components/ui/AddExpenseFab'
 
 interface CurrencySummary {
@@ -18,7 +18,7 @@ interface CurrencySummary {
 
 export default function DashboardPage() {
   const router = useRouter()
-  const { expenses, budget, budgets } = useAppState()
+  const { expenses, budget, budgets, categories } = useAppState()
 
   const now = new Date()
   const currentMonth = now.getMonth()
@@ -45,7 +45,7 @@ export default function DashboardPage() {
       const totalExpenses = monthlyExpenses
         .filter((e) => e.currency === currency)
         .reduce((sum, e) => sum + e.amount, 0)
-      const percentage = monthlyLimit > 0 ? Math.min((totalExpenses / monthlyLimit) * 100, 100) : 0
+      const percentage = monthlyLimit > 0 ? (totalExpenses / monthlyLimit) * 100 : 0
       const remaining = Math.max(monthlyLimit - totalExpenses, 0)
       const alertLevel: CurrencySummary['alertLevel'] = percentage >= 101 ? 'exceeded' : percentage >= 100 ? 'critical' : percentage >= 80 ? 'warning' : 'safe'
       const alertMessage = alertLevel === 'exceeded'
@@ -345,13 +345,13 @@ export default function DashboardPage() {
                   </thead>
                   <tbody>
                     {selectedBarDateExpenses.map((expense) => {
-                      const catInfo = getCategoryInfo(expense.category)
+                      const catInfo = findCategory(categories, expense.categoryId)
                       return (
                         <tr key={expense.id} className="border-b border-surface-container-last hover:bg-surface-container-low transition-colors last:border-0">
                           <td className="px-4 py-3">
                             <span className="inline-flex items-center gap-1.5 text-label-md text-on-surface">
                               <span className="text-[16px]">{catInfo.icon}</span>
-                              {catInfo.label}
+                              {catInfo.name}
                             </span>
                           </td>
                           <td className="px-4 py-3 text-body-md text-on-surface-variant">
@@ -377,19 +377,19 @@ export default function DashboardPage() {
 
               <div className="md:hidden space-y-space-xs">
                 {selectedBarDateExpenses.map((expense) => {
-                  const catInfo = getCategoryInfo(expense.category)
+                  const catInfo = findCategory(categories, expense.categoryId)
                   return (
                     <div
                       key={expense.id}
                       className="p-3 rounded-2xl bg-surface-container-lowest hover:bg-surface-container-low transition-colors flex items-center justify-between gap-3 shadow-sm"
                     >
                       <div className="flex items-center gap-3 min-w-0">
-                        <div className={`w-11 h-11 rounded-2xl flex items-center justify-center text-[22px] shrink-0 ${getCategoryColorClass(expense.category)}`}>
+                        <div className={`w-11 h-11 rounded-2xl flex items-center justify-center text-[22px] shrink-0 ${getCategoryColorClass(catInfo.color)}`}>
                           {catInfo.icon}
                         </div>
                         <div className="min-w-0">
                           <h4 className="text-label-lg text-on-surface font-semibold truncate">
-                            {catInfo.label}
+                            {catInfo.name}
                           </h4>
                           <div className="flex items-center gap-2 mt-0.5">
                             <span className="text-label-sm px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant">

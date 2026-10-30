@@ -110,7 +110,7 @@ Usuario hace clic en FAB `+`, botón "Agregar gasto", o CTA en estado vacío.
 - Gasto persistido en Supabase con todos los campos requeridos
 
 ### Preguntas pendientes
-1. **Botón "Agregar categoría" (+):** RESUELTO (29 oct 2026) — la creación de categorías queda definida en CU-024 (PROPUESTO). Lo único PENDIENTE es la ubicación del acceso en la navegación (ver preguntas pendientes de CU-024).
+1. **Botón "Agregar categoría" (+):** RESUELTO (29 oct 2026) — la creación de categorías queda definida en CU-024 (PROPUESTO), con acceso rápido `+ Nueva categoría` desde el selector/modal de categoría al registrar gasto. Ubicación en navegación definida en `categories/categories.md` — CU-024, "Alcance".
 2. **Offline-first con estado optimista:** Originalmente documentado como "store mantiene estado optimista; toast de error; retry al reconectar". **Estado: FUTURO** (comportamiento actual es síncrono, sin cola de sync persistente).
 3. **Validación de descripción:** No hay validación explícita de longitud máxima en cliente. ¿Implementar validación de 200 chars?
 

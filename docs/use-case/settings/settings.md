@@ -177,7 +177,7 @@ Usuario hace clic en el botón "Cerrar sesión" en la parte inferior de la pági
 2. Sistema ejecuta `logout()` del store, que internamente llama a `signOut({ scope: 'global' })` de Supabase.
 3. Store limpia estado local: `userId = null`, `expenses = []`, `budget` resetea a valores por defecto.
 4. Supabase invalida todas las sesiones del usuario en todos los dispositivos (scope global).
-5. Sistema redirige a la pantalla "Sesión cerrada" (ruta PENDIENTE de definir, ver preguntas pendientes).
+5. Sistema redirige a la pantalla "Sesión cerrada" (`/session-closed`).
 6. Pantalla "Sesión cerrada" muestra mensaje de confirmación y botón para volver a `/login`.
 
 ### Flujos alternativos
@@ -200,13 +200,13 @@ Usuario hace clic en el botón "Cerrar sesión" en la parte inferior de la pági
 ### Criterios de aceptación
 - Botón "Cerrar sesión" visible en parte inferior de `/dashboard/settings`.
 - Al hacer clic, sesión se cierra inmediatamente (sin modal de confirmación).
-- Usuario es redirigido a pantalla "Sesión cerrada" (no a `/onboarding` ni `/login` directamente).
+- Usuario es redirigido a pantalla "Sesión cerrada" (`/session-closed`), no a `/onboarding` ni `/login` directamente.
 - Estado local se limpia completamente (expenses, budget, userId).
 - Usuario puede volver a iniciar sesión desde la pantalla de sesión cerrada.
 
 ### Preguntas pendientes
-1. **Ruta de destino:** Código actual redirige a `/onboarding` (línea 164), pero handoff de autenticación indica que debería redirigir a pantalla "Sesión cerrada". ¿Definir ruta explícita (`/logout-success`, `/session-closed`, `/goodbye`) o reutilizar `/onboarding` con estado "sesión cerrada"?
-2. **Consistencia con CU-005:** Sidebar usa mismo flujo (CU-005). Asegurar que ambos puntos de entrada redirijan a la misma pantalla de destino.
+1. **Ruta de destino (RESUELTO):** `/session-closed`. Definido en `auth/auth.md` — CU-005 y sección "Decisiones pendientes" §2. *Código actual redirige a `/onboarding` (línea 164): brecha P0 a implementar en código.*
+2. **Consistencia con CU-005 (RESUELTO):** Sidebar y Settings invocan el mismo `store.logout()` y deben redirigir ambos a `/session-closed`.
 
 ---
 

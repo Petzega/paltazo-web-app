@@ -1,7 +1,6 @@
 # Paltazo Web App
 
 - Responde siempre en español.
-- Sé directo y conciso: elimina cortesías, preámbulos y conclusiones redundantes.
 
 ## Eficiencia y contexto
 
