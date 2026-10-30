@@ -1,5 +1,5 @@
 import supabase from './client'
-import type { Expense, Budget, Category } from '@/types'
+import type { Expense, Budget, Category, Income, IncomeCategory } from '@/types'
 
 interface SupabaseExpenseRow {
   id: string
@@ -281,5 +281,185 @@ export async function removePushSubscription(userId: string, endpoint: string) {
     .eq('user_id', userId)
     .eq('endpoint', endpoint)
   if (error) throw error
+}
+
+// ── Income Categories ──
+
+interface SupabaseIncomeCategoryRow {
+  id: string
+  user_id: string
+  name: string
+  icon: string
+  color: string
+  is_default: boolean
+  is_protected: boolean
+}
+
+interface SupabaseIncomeRow {
+  id: string
+  user_id: string
+  amount: string | number
+  currency: string
+  category_id: string
+  description: string | null
+  date: string
+  created_at: string
+  updated_at: string
+}
+
+function toIncomeCategory(row: SupabaseIncomeCategoryRow): IncomeCategory {
+  return {
+    id: row.id,
+    userId: row.user_id,
+    name: row.name,
+    icon: row.icon,
+    color: row.color,
+    isDefault: row.is_default,
+    isProtected: row.is_protected,
+  }
+}
+
+function toIncome(row: SupabaseIncomeRow): Income {
+  return {
+    id: row.id,
+    userId: row.user_id,
+    amount: Number(row.amount),
+    currency: row.currency,
+    categoryId: row.category_id,
+    description: row.description ?? undefined,
+    date: row.date,
+    createdAt: row.created_at,
+    updatedAt: row.updated_at,
+  }
+}
+
+export async function getIncomeCategories(userId: string): Promise<IncomeCategory[]> {
+  const { data, error } = await supabase
+    .from('income_categories')
+    .select('*')
+    .eq('user_id', userId)
+    .order('is_default', { ascending: false })
+    .order('name')
+
+  if (error) throw error
+  return data.map((row: SupabaseIncomeCategoryRow) => toIncomeCategory(row))
+}
+
+export async function addIncomeCategory(cat: Omit<IncomeCategory, 'id' | 'userId' | 'isDefault' | 'isProtected'> & { userId: string }) {
+  const { data, error } = await supabase
+    .from('income_categories')
+    .insert({
+      user_id: cat.userId,
+      name: cat.name,
+      icon: cat.icon,
+      color: cat.color,
+    })
+    .select()
+    .single()
+
+  if (error) throw error
+  return toIncomeCategory(data as SupabaseIncomeCategoryRow)
+}
+
+export async function updateIncomeCategory(id: string, userId: string, changes: Partial<Pick<IncomeCategory, 'name' | 'icon' | 'color'>>) {
+  const payload: Record<string, unknown> = { updated_at: new Date().toISOString() }
+  if (changes.name !== undefined) payload.name = changes.name
+  if (changes.icon !== undefined) payload.icon = changes.icon
+  if (changes.color !== undefined) payload.color = changes.color
+
+  const { error } = await supabase.from('income_categories').update(payload).eq('id', id).eq('user_id', userId)
+  if (error) throw error
+}
+
+// shortcut: no es atómico (a diferencia de deleteCategory que usa RPC). Si falla entre UPDATE y DELETE, el usuario puede reintentar. Revisit: crear función atómica cuando haya casos de uso reales de fallo.
+export async function deleteIncomeCategory(id: string, userId: string, otrosId: string) {
+  // Reasigna incomes a "Otros"
+  const { error: reassignError } = await supabase
+    .from('incomes')
+    .update({ category_id: otrosId, updated_at: new Date().toISOString() })
+    .eq('category_id', id)
+    .eq('user_id', userId)
+  if (reassignError) throw reassignError
+
+  // Elimina la categoría
+  const { error: deleteError } = await supabase
+    .from('income_categories')
+    .delete()
+    .eq('id', id)
+    .eq('user_id', userId)
+  if (deleteError) throw deleteError
+}
+
+export async function countIncomesByCategory(userId: string, categoryId: string): Promise<number> {
+  const { count, error } = await supabase
+    .from('incomes')
+    .select('*', { count: 'exact', head: true })
+    .eq('user_id', userId)
+    .eq('category_id', categoryId)
+
+  if (error) throw error
+  return count ?? 0
+}
+
+// ── Incomes ──
+
+export async function getIncomes(userId: string): Promise<Income[]> {
+  const { data, error } = await supabase
+    .from('incomes')
+    .select('*')
+    .eq('user_id', userId)
+    .order('date', { ascending: false })
+
+  if (error) throw error
+  return data.map((row: SupabaseIncomeRow) => toIncome(row))
+}
+
+export async function addIncome(income: Omit<Income, 'id' | 'createdAt' | 'updatedAt'>): Promise<Income> {
+  const now = new Date().toISOString()
+  const { data, error } = await supabase
+    .from('incomes')
+    .insert({
+      user_id: income.userId,
+      amount: income.amount,
+      currency: income.currency,
+      category_id: income.categoryId,
+      description: income.description ?? null,
+      date: income.date,
+      created_at: now,
+      updated_at: now,
+    })
+    .select()
+    .single()
+
+  if (error) throw error
+  return toIncome(data as SupabaseIncomeRow)
+}
+
+export async function updateIncome(id: string, userId: string, changes: Partial<Income>) {
+  const payload: Record<string, unknown> = { updated_at: new Date().toISOString() }
+  if (changes.amount !== undefined) payload.amount = changes.amount
+  if (changes.currency !== undefined) payload.currency = changes.currency
+  if (changes.categoryId !== undefined) payload.category_id = changes.categoryId
+  if (changes.description !== undefined) payload.description = changes.description
+  if (changes.date !== undefined) payload.date = changes.date
+
+  const { error } = await supabase.from('incomes').update(payload).eq('id', id).eq('user_id', userId)
+  if (error) throw error
+}
+
+export async function deleteIncome(id: string, userId: string) {
+  const { error } = await supabase.from('incomes').delete().eq('id', id).eq('user_id', userId)
+  if (error) throw error
+}
+
+export async function countIncomesByCurrency(userId: string, currency: string): Promise<number> {
+  const { count, error } = await supabase
+    .from('incomes')
+    .select('*', { count: 'exact', head: true })
+    .eq('user_id', userId)
+    .eq('currency', currency)
+
+  if (error) throw error
+  return count ?? 0
 }
 

@@ -39,6 +39,7 @@ export default function AddExpensePage() {
   const [newCategoryIcon, setNewCategoryIcon] = useState(CATEGORY_EMOJIS[0])
   const [newCategoryColor, setNewCategoryColor] = useState(CATEGORY_COLORS[0])
   const successTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+  const dateRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     return () => {
@@ -295,17 +296,21 @@ export default function AddExpensePage() {
                     </span>
                   </div>
                 </div>
-                <label className="relative cursor-pointer">
-                  <span className="px-space-md py-1.5 rounded-full bg-surface-container text-secondary text-label-md flex items-center gap-1 hover:bg-surface-container-high transition-colors">
+                <div className="relative cursor-pointer">
+                  <span
+                    className="px-space-md py-1.5 rounded-full bg-surface-container text-secondary text-label-md flex items-center gap-1 hover:bg-surface-container-high transition-colors"
+                    onClick={() => dateRef.current?.showPicker()}
+                  >
                     Cambiar ▾
                   </span>
                   <input
+                    ref={dateRef}
                     type="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
-                    className="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
+                    className="hidden"
                   />
-                </label>
+                </div>
               </div>
               <div className="w-full h-px bg-surface-container-low" />
               <div className="flex items-center justify-between">

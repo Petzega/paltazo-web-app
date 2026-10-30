@@ -7,7 +7,7 @@ const DB_VERSION = 1
 
 export interface PendingOperation {
   id: string
-  type: 'addExpense' | 'updateExpense' | 'deleteExpense' | 'setBudget' | 'addCategory' | 'updateCategory' | 'deleteCategory'
+  type: 'addExpense' | 'updateExpense' | 'deleteExpense' | 'setBudget' | 'addCategory' | 'updateCategory' | 'deleteCategory' | 'addIncome' | 'updateIncome' | 'deleteIncome'
   payload: unknown
   timestamp: number
 }

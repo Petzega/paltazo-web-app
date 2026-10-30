@@ -16,9 +16,16 @@ interface CurrencySummary {
   alertMessage: string
 }
 
-export default function DashboardPage() {
+interface BalanceSummary {
+  currency: string
+  totalIncome: number
+  totalExpense: number
+  balance: number
+}
+
+function BalanceSection() {
   const router = useRouter()
-  const { expenses, budget, budgets, categories } = useAppState()
+  const { expenses, incomes, budget, budgets } = useAppState()
 
   const now = new Date()
   const currentMonth = now.getMonth()
@@ -31,6 +38,11 @@ export default function DashboardPage() {
     const prefix = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}`
     return expenses.filter((exp) => exp.date.startsWith(prefix))
   }, [expenses, currentMonth, currentYear])
+
+  const monthlyIncomes = useMemo(() => {
+    const prefix = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}`
+    return incomes.filter((inc) => inc.date.startsWith(prefix))
+  }, [incomes, currentMonth, currentYear])
 
   const currencySummaries: CurrencySummary[] = useMemo(() => {
     const activeCurrencies = new Set(monthlyExpenses.map((e) => e.currency))
@@ -69,8 +81,187 @@ export default function DashboardPage() {
     return summaries
   }, [monthlyExpenses, budget, budgets])
 
-  const primarySummary = currencySummaries.find((s) => s.currency === budget.currency) || currencySummaries[0]
+  const balanceSummaries: BalanceSummary[] = useMemo(() => {
+    const activeCurrencies = new Set([...monthlyExpenses.map((e) => e.currency), ...monthlyIncomes.map((i) => i.currency)])
+    activeCurrencies.add(budget.currency)
+    if (Object.keys(budgets).length > 0) {
+      Object.keys(budgets).forEach((c) => activeCurrencies.add(c))
+    }
 
+    const summaries = Array.from(activeCurrencies).map((currency) => {
+      const totalIncome = monthlyIncomes
+        .filter((i) => i.currency === currency)
+        .reduce((sum, i) => sum + i.amount, 0)
+      const totalExpense = monthlyExpenses
+        .filter((e) => e.currency === currency)
+        .reduce((sum, e) => sum + e.amount, 0)
+      const balance = totalIncome - totalExpense
+      return { currency, totalIncome, totalExpense, balance }
+    })
+
+    summaries.sort((a, b) => {
+      if (a.currency === 'S/') return -1
+      if (b.currency === 'S/') return 1
+      return a.currency.localeCompare(b.currency)
+    })
+
+    return summaries
+  }, [monthlyExpenses, monthlyIncomes, budget, budgets])
+
+  return (
+    <div className="grid md:grid-cols-2 md:gap-space-lg">
+      <div className="relative overflow-hidden rounded-3xl bg-surface-container-low p-space-lg shadow-sm mb-space-lg md:mb-0">
+        <div className="absolute -right-8 -bottom-10 w-44 h-44 rounded-full bg-emerald-fixed/20 blur-2xl pointer-events-none" />
+        <div className="flex items-center justify-between mb-space-md">
+          <div>
+            <span className="text-label-sm text-text-secondary uppercase tracking-wider block">
+              💵 Balance del mes
+            </span>
+          </div>
+          <span className="text-label-sm px-2 py-0.5 rounded-full bg-emerald/15 text-emerald font-medium">
+            {balanceSummaries.length} {balanceSummaries.length === 1 ? 'moneda' : 'monedas'}
+          </span>
+        </div>
+
+        <div className="space-y-4 mb-space-lg">
+          {balanceSummaries.map((summary) => (
+            <div key={summary.currency} className="bg-surface-container-lowest rounded-2xl p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-headline-sm font-bold text-on-surface">
+                  {summary.currency}
+                </span>
+                <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-label-sm ${
+                  summary.balance > 0
+                    ? 'bg-emerald/15 text-emerald'
+                    : summary.balance < 0
+                    ? 'bg-danger/15 text-danger'
+                    : 'bg-surface-container text-text-secondary'
+                }`}>
+                  {summary.balance > 0 ? '+' : ''}{summary.balance.toFixed(2)}
+                </span>
+              </div>
+              <div className="grid grid-cols-2 gap-2 text-body-sm">
+                <div>
+                  <span className="text-on-surface-variant block">Ingresos</span>
+                  <span className="text-emerald font-semibold">+{summary.totalIncome.toFixed(2)}</span>
+                </div>
+                <div>
+                  <span className="text-on-surface-variant block">Gastos</span>
+                  <span className="text-danger font-semibold">-{summary.totalExpense.toFixed(2)}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <button
+          onClick={() => router.push('/dashboard/incomes')}
+          className="w-full py-2.5 px-3 rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface text-label-md flex items-center justify-center gap-1.5 transition-colors active:scale-95"
+        >
+          <span className="inline-flex h-[18px] items-center text-emerald text-[18px]">📥</span>
+          <span>Ver todos →</span>
+        </button>
+      </div>
+
+      <div className="relative overflow-hidden rounded-3xl bg-surface-container-low p-space-lg shadow-sm mb-space-lg md:mb-0">
+        <div className="absolute -right-8 -bottom-10 w-44 h-44 rounded-full bg-primary-fixed/20 blur-2xl pointer-events-none" />
+        <div className="flex items-center justify-between mb-space-md">
+          <div>
+            <span className="text-label-sm text-text-secondary uppercase tracking-wider block">
+              Presupuestos mensuales
+            </span>
+          </div>
+          <span className="text-label-sm px-2 py-0.5 rounded-full bg-secondary/15 text-secondary font-medium">
+            {currencySummaries.length} {currencySummaries.length === 1 ? 'moneda' : 'monedas'}
+          </span>
+        </div>
+
+        <div className="space-y-4 mb-space-lg">
+          {currencySummaries.map((summary) => (
+            <div key={summary.currency} className="bg-surface-container-lowest rounded-2xl p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-headline-sm font-bold text-on-surface">
+                  {summary.currency} {summary.monthlyLimit.toFixed(2)}
+                </span>
+                <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-label-sm ${
+                  summary.percentage >= 100
+                    ? 'bg-danger/15 text-danger'
+                    : summary.percentage >= 80
+                    ? 'bg-warning/15 text-warning'
+                    : summary.monthlyLimit > 0
+                    ? 'bg-primary/15 text-primary'
+                    : 'bg-surface-container text-text-secondary'
+                }`}>
+                  {summary.monthlyLimit > 0 ? `${summary.percentage.toFixed(0)}%` : 'Sin límite'}
+                </span>
+              </div>
+              {summary.monthlyLimit > 0 && (
+                <>
+                  <div className="w-full h-2.5 bg-surface-container-highest rounded-full overflow-hidden mb-2">
+                    <div
+                      className={`h-full rounded-full transition-all duration-700 ease-out ${
+                        summary.percentage >= 100 ? 'bg-danger' : summary.percentage >= 80 ? 'bg-warning' : 'bg-primary'
+                      }`}
+                      style={{ width: `${summary.percentage}%` }}
+                    />
+                  </div>
+                  <div className="flex justify-between items-center text-body-sm">
+                    <span className="text-on-surface-variant">
+                      {summary.currency} {summary.totalExpenses.toFixed(2)} gastados
+                    </span>
+                    <span className="text-text-secondary">
+                      {summary.currency} {summary.remaining.toFixed(2)} restantes
+                    </span>
+                  </div>
+                </>
+              )}
+              {summary.monthlyLimit === 0 && summary.totalExpenses > 0 && (
+                <div className="text-body-sm text-on-surface-variant">
+                  {summary.currency} {summary.totalExpenses.toFixed(2)} registrados (sin presupuesto configurado)
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div className="p-space-md rounded-2xl bg-surface-container-lowest flex items-center justify-between shadow-sm">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-primary-fixed flex items-center justify-center text-primary shrink-0">
+              📅
+            </div>
+            <div>
+              <span className="text-label-sm text-text-secondary block">Días restantes del mes</span>
+              <span className="text-headline-sm text-secondary font-bold">{daysRemaining} días</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-space-sm mt-space-md">
+          <button
+            onClick={() => router.push('/dashboard/expenses')}
+            className="w-full py-2.5 px-3 rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface text-label-md flex items-center justify-center gap-1.5 transition-colors active:scale-95"
+          >
+            <span className="inline-flex h-[18px] items-center text-primary text-[18px]">📊</span>
+            <span>Ver reporte</span>
+          </button>
+          <button
+            onClick={() => router.push('/dashboard/settings')}
+            className="w-full py-2.5 px-3 rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface text-label-md flex items-center justify-center gap-1.5 transition-colors active:scale-95"
+          >
+            <span className="inline-flex h-[18px] items-center text-secondary text-[18px]">⚙️</span>
+            <span>Ajustes</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default function DashboardPage() {
+  const router = useRouter()
+  const { expenses, categories } = useAppState()
+
+  const now = new Date()
   const todayStr = now.toISOString().split('T')[0]
   const [selectedBarDate, setSelectedBarDate] = useState(todayStr)
 
@@ -132,124 +323,7 @@ export default function DashboardPage() {
           Mantén tu economía tan fresca como una palta
         </p>
 
-        <div className="mb-space-md p-space-md rounded-2xl bg-secondary-container/40 flex items-start gap-3">
-          <div className="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
-            🌿
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center justify-between">
-              <p className="text-label-lg text-on-secondary-container font-semibold">
-                {primarySummary.alertMessage}
-              </p>
-              <span className="text-label-sm px-2 py-0.5 rounded-full bg-secondary/15 text-secondary font-medium">
-                Quedan {daysRemaining} días
-              </span>
-            </div>
-            <p className="text-body-sm text-on-surface-variant mt-0.5 leading-relaxed">
-              {primarySummary.percentage >= 80
-                ? `Has alcanzado el ${primarySummary.percentage.toFixed(0)}% de tu presupuesto en ${primarySummary.currency}. ${
-                    daysRemaining > 0 && primarySummary.remaining / daysRemaining > 0
-                      ? `Te sugerimos mantener tus consumos diarios en ${primarySummary.currency} ${(primarySummary.remaining / daysRemaining).toFixed(2)} para cerrar el mes en verde.`
-                      : ''
-                  }`
-                : `Has gastado el ${primarySummary.percentage.toFixed(0)}% de tu presupuesto en ${primarySummary.currency}. ¡Sigue así!`
-              }
-            </p>
-          </div>
-        </div>
-
-        <div className="grid md:grid-cols-2 md:gap-space-lg">
-          <div className="relative overflow-hidden rounded-3xl bg-surface-container-low p-space-lg shadow-sm mb-space-lg md:mb-0">
-            <div className="absolute -right-8 -bottom-10 w-44 h-44 rounded-full bg-primary-fixed/20 blur-2xl pointer-events-none" />
-            <div className="flex items-center justify-between mb-space-md">
-              <div>
-                <span className="text-label-sm text-text-secondary uppercase tracking-wider block">
-                  Presupuestos mensuales
-                </span>
-              </div>
-              <span className="text-label-sm px-2 py-0.5 rounded-full bg-secondary/15 text-secondary font-medium">
-                {currencySummaries.length} {currencySummaries.length === 1 ? 'moneda' : 'monedas'}
-              </span>
-            </div>
-
-            <div className="space-y-4 mb-space-lg">
-              {currencySummaries.map((summary) => (
-                <div key={summary.currency} className="bg-surface-container-lowest rounded-2xl p-4 shadow-sm">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-headline-sm font-bold text-on-surface">
-                      {summary.currency} {summary.monthlyLimit.toFixed(2)}
-                    </span>
-                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-label-sm ${
-                      summary.percentage >= 100
-                        ? 'bg-danger/15 text-danger'
-                        : summary.percentage >= 80
-                        ? 'bg-warning/15 text-warning'
-                        : summary.monthlyLimit > 0
-                        ? 'bg-primary/15 text-primary'
-                        : 'bg-surface-container text-text-secondary'
-                    }`}>
-                      {summary.monthlyLimit > 0 ? `${summary.percentage.toFixed(0)}%` : 'Sin límite'}
-                    </span>
-                  </div>
-                  {summary.monthlyLimit > 0 && (
-                    <>
-                      <div className="w-full h-2.5 bg-surface-container-highest rounded-full overflow-hidden mb-2">
-                        <div
-                          className={`h-full rounded-full transition-all duration-700 ease-out ${
-                            summary.percentage >= 100 ? 'bg-danger' : summary.percentage >= 80 ? 'bg-warning' : 'bg-primary'
-                          }`}
-                          style={{ width: `${summary.percentage}%` }}
-                        />
-                      </div>
-                      <div className="flex justify-between items-center text-body-sm">
-                        <span className="text-on-surface-variant">
-                          {summary.currency} {summary.totalExpenses.toFixed(2)} gastados
-                        </span>
-                        <span className="text-text-secondary">
-                          {summary.currency} {summary.remaining.toFixed(2)} restantes
-                        </span>
-                      </div>
-                    </>
-                  )}
-                  {summary.monthlyLimit === 0 && summary.totalExpenses > 0 && (
-                    <div className="text-body-sm text-on-surface-variant">
-                      {summary.currency} {summary.totalExpenses.toFixed(2)} registrados (sin presupuesto configurado)
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            <div className="p-space-md rounded-2xl bg-surface-container-lowest flex items-center justify-between shadow-sm">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-primary-fixed flex items-center justify-center text-primary shrink-0">
-                  📅
-                </div>
-                <div>
-                  <span className="text-label-sm text-text-secondary block">Días restantes del mes</span>
-                  <span className="text-headline-sm text-secondary font-bold">{daysRemaining} días</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-space-sm mt-space-md">
-              <button
-                onClick={() => router.push('/dashboard/expenses')}
-                className="w-full py-2.5 px-3 rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface text-label-md flex items-center justify-center gap-1.5 transition-colors active:scale-95"
-              >
-                <span className="inline-flex h-[18px] items-center text-primary text-[18px]">📊</span>
-                <span>Ver reporte</span>
-              </button>
-              <button
-                onClick={() => router.push('/dashboard/settings')}
-                className="w-full py-2.5 px-3 rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface text-label-md flex items-center justify-center gap-1.5 transition-colors active:scale-95"
-              >
-                <span className="inline-flex h-[18px] items-center text-secondary text-[18px]">⚙️</span>
-                <span>Ajustes</span>
-              </button>
-            </div>
-          </div>
-        </div>
+        <BalanceSection />
 
         <div className="mb-space-lg p-space-lg rounded-2xl bg-surface-container-low shadow-sm">
           <h2 className="text-label-lg font-semibold text-on-surface mb-4">Actividad de los últimos 7 días</h2>

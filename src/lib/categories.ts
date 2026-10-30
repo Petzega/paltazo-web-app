@@ -8,6 +8,6 @@ export function getCategoryColorClass(color: string): string {
   return `bg-${color}-500/15 text-${color}-600 dark:text-${color}-400`
 }
 
-export function findCategory(categories: Category[], id: string): Category {
+export function findCategory<T extends { id: string; isProtected: boolean }>(categories: T[], id: string): T {
   return categories.find((c) => c.id === id) ?? categories.find((c) => c.isProtected) ?? categories[0]
 }

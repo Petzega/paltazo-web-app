@@ -3,14 +3,16 @@
 import { createContext, useContext, useEffect, useState, useCallback, useRef, ReactNode } from 'react'
 import * as db from '@/lib/supabase/repositories'
 import { onAuthStateChange, getSession, signOut } from '@/lib/supabase/auth'
-import type { Expense, Budget, Category } from '@/types'
+import type { Expense, Income, Budget, Category, IncomeCategory } from '@/types'
 import * as offline from '@/lib/offline'
 
 interface AppState {
   expenses: Expense[]
+  incomes: Income[]
   budget: Budget
   budgets: Record<string, Budget>
   categories: Category[]
+  incomeCategories: IncomeCategory[]
   hasCompletedOnboarding: boolean
   isLoggedIn: boolean
   userId: string | null
@@ -20,10 +22,16 @@ interface AppState {
   addExpense: (expense: Omit<Expense, 'id' | 'createdAt' | 'userId'>) => Promise<void>
   updateExpense: (id: string, changes: Partial<Expense>) => Promise<void>
   deleteExpense: (id: string) => Promise<void>
+  addIncome: (income: Omit<Income, 'id' | 'createdAt' | 'updatedAt' | 'userId'>) => Promise<void>
+  updateIncome: (id: string, changes: Partial<Income>) => Promise<void>
+  deleteIncome: (id: string) => Promise<void>
   setBudget: (monthlyLimit: number, currency?: string) => Promise<void>
   addCategory: (cat: { name: string; icon: string; color: string }) => Promise<void>
   updateCategory: (id: string, changes: Partial<Pick<Category, 'name' | 'icon' | 'color'>>) => Promise<void>
   deleteCategory: (id: string) => Promise<void>
+  addIncomeCategory: (cat: { name: string; icon: string; color: string }) => Promise<void>
+  updateIncomeCategory: (id: string, changes: Partial<Pick<IncomeCategory, 'name' | 'icon' | 'color'>>) => Promise<void>
+  deleteIncomeCategory: (id: string) => Promise<void>
   addCurrency: (currency: string) => Promise<void>
   removeCurrency: (currency: string) => Promise<void>
   completeOnboarding: (currency: string, monthlyLimit: number) => Promise<void>
@@ -43,20 +51,31 @@ const DEFAULT_BUDGET: Budget = {
 }
 
 async function loadUserData(id: string) {
-  const [expensesData, budgetsData, categoriesData, profileData] = await Promise.all([
+  const [expensesData, incomesData, budgetsData, categoriesData, incomeCategoriesData, profileData] = await Promise.all([
     db.getExpenses(id),
+    db.getIncomes(id),
     db.getBudgets(id),
     db.getCategories(id),
+    db.getIncomeCategories(id),
     db.getProfileOnboarding(id),
   ])
-  return { expenses: expensesData, budgets: budgetsData, categories: categoriesData, profile: profileData }
+  return { 
+    expenses: expensesData, 
+    incomes: incomesData,
+    budgets: budgetsData, 
+    categories: categoriesData, 
+    incomeCategories: incomeCategoriesData,
+    profile: profileData 
+  }
 }
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [expenses, setExpenses] = useState<Expense[]>([])
+  const [incomes, setIncomes] = useState<Income[]>([])
   const [budget, setBudgetState] = useState<Budget>(DEFAULT_BUDGET)
   const [budgets, setBudgets] = useState<Record<string, Budget>>({})
   const [categories, setCategories] = useState<Category[]>([])
+  const [incomeCategories, setIncomeCategories] = useState<IncomeCategory[]>([])
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(false)
   const [userId, setUserId] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -71,9 +90,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setUserId(id)
     if (id) {
       loadUserData(id)
-        .then(({ expenses: e, budgets: bs, categories: cats, profile }) => {
+        .then(({ expenses: e, incomes: i, budgets: bs, categories: cats, incomeCategories: incCats, profile }) => {
           setExpenses(e)
+          setIncomes(i)
           setCategories(cats)
+          setIncomeCategories(incCats)
           setHasCompletedOnboarding(profile.hasCompletedOnboarding)
           const budgetsMap: Record<string, Budget> = {}
           for (const b of bs) {
@@ -95,9 +116,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
         })
     } else {
       setExpenses([])
+      setIncomes([])
       setBudgetState(DEFAULT_BUDGET)
       setBudgets({})
       setCategories([])
+      setIncomeCategories([])
       setHasCompletedOnboarding(false)
       setIsLoading(false)
     }
@@ -177,6 +200,68 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  const addIncome = async (income: Omit<Income, 'id' | 'createdAt' | 'updatedAt' | 'userId'>) => {
+    if (!userId) return
+    const now = new Date().toISOString()
+    const tempId = crypto.randomUUID()
+    const optimisticIncome: Income = {
+      ...income,
+      id: tempId,
+      userId,
+      currency: income.currency || budget.currency,
+      createdAt: now,
+      updatedAt: now,
+    }
+    setIncomes((prev) => [optimisticIncome, ...prev])
+
+    if (offline.isOnline()) {
+      try {
+        const newIncome = await db.addIncome(optimisticIncome)
+        setIncomes((prev) => prev.map((i) => i.id === tempId ? newIncome : i))
+      } catch {
+        await offline.addOperation({ type: 'addIncome', payload: income })
+        setPendingCount((prev) => prev + 1)
+      }
+    } else {
+      await offline.addOperation({ type: 'addIncome', payload: income })
+      setPendingCount((prev) => prev + 1)
+    }
+  }
+
+  const updateIncome = async (id: string, changes: Partial<Income>) => {
+    if (!userId) return
+    setIncomes((prev) => prev.map((i) => i.id === id ? { ...i, ...changes } : i))
+    
+    if (offline.isOnline()) {
+      try {
+        await db.updateIncome(id, userId, changes)
+      } catch {
+        await offline.addOperation({ type: 'updateIncome', payload: { id, changes } })
+        setPendingCount((prev) => prev + 1)
+      }
+    } else {
+      await offline.addOperation({ type: 'updateIncome', payload: { id, changes } })
+      setPendingCount((prev) => prev + 1)
+    }
+  }
+
+  const deleteIncome = async (id: string) => {
+    if (!userId) return
+    setIncomes((prev) => prev.filter((i) => i.id !== id))
+    
+    if (offline.isOnline()) {
+      try {
+        await db.deleteIncome(id, userId)
+      } catch {
+        await offline.addOperation({ type: 'deleteIncome', payload: { id } })
+        setPendingCount((prev) => prev + 1)
+      }
+    } else {
+      await offline.addOperation({ type: 'deleteIncome', payload: { id } })
+      setPendingCount((prev) => prev + 1)
+    }
+  }
+
   const setBudget = async (monthlyLimit: number, currency?: string) => {
     if (!userId) return
     if (isNaN(monthlyLimit) || monthlyLimit <= 0) return
@@ -211,7 +296,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const removeCurrency = async (currency: string) => {
     if (!userId) return
     if (currency === budget.currency) return // No se puede eliminar la principal
-    // Transacción atómica: elimina gastos + presupuesto de esa moneda
+    // Transacción atómica: elimina gastos, ingresos + presupuesto de esa moneda
     await db.deleteCurrencyWithPurge(userId, currency)
     // Actualizar estado local
     setBudgets((prev) => {
@@ -220,6 +305,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       return next
     })
     setExpenses((prev) => prev.filter((e) => e.currency !== currency))
+    setIncomes((prev) => prev.filter((i) => i.currency !== currency))
   }
 
   const addCategory = async (cat: { name: string; icon: string; color: string }) => {
@@ -240,6 +326,26 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (!otros) return
     await db.deleteCategory(id, userId, otros.id)
     setCategories((prev) => prev.filter((c) => c.id !== id))
+  }
+
+  const addIncomeCategory = async (cat: { name: string; icon: string; color: string }) => {
+    if (!userId) return
+    const newCat = await db.addIncomeCategory({ ...cat, userId })
+    setIncomeCategories((prev) => [...prev, newCat])
+  }
+
+  const updateIncomeCategory = async (id: string, changes: Partial<Pick<IncomeCategory, 'name' | 'icon' | 'color'>>) => {
+    if (!userId) return
+    await db.updateIncomeCategory(id, userId, changes)
+    setIncomeCategories((prev) => prev.map((c) => c.id === id ? { ...c, ...changes } : c))
+  }
+
+  const deleteIncomeCategory = async (id: string) => {
+    if (!userId) return
+    const otros = incomeCategories.find((c) => c.isProtected)
+    if (!otros) return
+    await db.deleteIncomeCategory(id, userId, otros.id)
+    setIncomeCategories((prev) => prev.filter((c) => c.id !== id))
   }
 
   const completeOnboarding = async (currency: string, monthlyLimit: number) => {
@@ -268,6 +374,19 @@ export function AppProvider({ children }: { children: ReactNode }) {
             case 'deleteExpense': {
               const { id } = op.payload as { id: string }
               await db.deleteExpense(id, userId)
+              break
+            }
+            case 'addIncome':
+              await db.addIncome({ ...(op.payload as Omit<Income, 'id' | 'createdAt' | 'updatedAt' | 'userId'>), userId })
+              break
+            case 'updateIncome': {
+              const { id, changes } = op.payload as { id: string; changes: Partial<Income> }
+              await db.updateIncome(id, userId, changes)
+              break
+            }
+            case 'deleteIncome': {
+              const { id } = op.payload as { id: string }
+              await db.deleteIncome(id, userId)
               break
             }
           }
@@ -366,7 +485,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (error) return { error: error.message }
     setUserId(null)
     setExpenses([])
+    setIncomes([])
     setCategories([])
+    setIncomeCategories([])
     return { error: null }
   }
 
@@ -374,10 +495,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   return (
     <AppContext.Provider value={{
-      expenses, budget, budgets, categories, hasCompletedOnboarding,
+      expenses, incomes, budget, budgets, categories, incomeCategories, hasCompletedOnboarding,
       isLoggedIn: !!userId, userId, isOnline, pendingCount, notificationPermission,
       addExpense, updateExpense, deleteExpense, setBudget,
+      addIncome, updateIncome, deleteIncome,
       addCategory, updateCategory, deleteCategory,
+      addIncomeCategory, updateIncomeCategory, deleteIncomeCategory,
       addCurrency, removeCurrency,
       completeOnboarding,
       logout, syncPending, requestNotificationPermission, isLoading

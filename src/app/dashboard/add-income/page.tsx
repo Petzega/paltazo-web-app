@@ -1,0 +1,449 @@
+'use client'
+
+import { useState, useCallback, useRef, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { useAppState } from '@/lib/store'
+import { findCategory, getCategoryColorClass } from '@/lib/categories'
+
+const CURRENCY_OPTIONS = [
+  { value: 'S/', label: 'S/' },
+  { value: '$', label: '$' },
+]
+
+const CATEGORY_EMOJIS = ['🍔', '🚗', '🏠', '🎬', '🛒', '💊', '✈️', '📚', '💼', '🐾', '🎁', '💡', '⚽', '☕', '📱', '📦']
+const CATEGORY_COLORS = ['red', 'orange', 'amber', 'emerald', 'teal', 'blue', 'indigo', 'purple']
+
+function formatAmount(digits: string): string {
+  if (!digits) return '0.00'
+  const padded = digits.padStart(3, '0')
+  const intPart = padded.slice(0, -2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  const decPart = padded.slice(-2)
+  return `${intPart}.${decPart}`
+}
+
+export default function AddIncomePage() {
+  const router = useRouter()
+  const { addIncome, budget, incomeCategories, addIncomeCategory } = useAppState()
+  const [digits, setDigits] = useState('')
+  const [currency, setCurrency] = useState(budget.currency || 'S/')
+  const [initialCurrency] = useState(budget.currency || 'S/')
+  const [categoryId, setCategoryId] = useState('')
+  const [description, setDescription] = useState('')
+  const [date, setDate] = useState(new Date().toISOString().split('T')[0])
+  const [focused, setFocused] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
+  const [showConfirm, setShowConfirm] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showNewCategoryModal, setShowNewCategoryModal] = useState(false)
+  const [newCategoryName, setNewCategoryName] = useState('')
+  const [newCategoryIcon, setNewCategoryIcon] = useState(CATEGORY_EMOJIS[0])
+  const [newCategoryColor, setNewCategoryColor] = useState(CATEGORY_COLORS[0])
+  const successTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+  const dateRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    return () => {
+      if (successTimerRef.current) clearTimeout(successTimerRef.current)
+    }
+  }, [])
+
+  const numericValue = digits ? parseFloat(formatAmount(digits).replace(/,/g, '')) : 0
+
+  const handleSave = async () => {
+    if (numericValue <= 0 || isSubmitting) return
+    setIsSubmitting(true)
+    await addIncome({
+      amount: numericValue,
+      currency,
+      categoryId,
+      description: description || undefined,
+      date,
+    })
+    setIsSubmitting(false)
+    setShowSuccess(true)
+    if (successTimerRef.current) clearTimeout(successTimerRef.current)
+    successTimerRef.current = setTimeout(() => setShowSuccess(false), 2000)
+    handleClear()
+  }
+
+  const handleClear = () => {
+    setDigits('')
+    setDescription('')
+    setCategoryId(incomeCategories[0]?.id || '')
+    setCurrency(initialCurrency)
+    setDate(new Date().toISOString().split('T')[0])
+  }
+
+  const hasChanges = digits !== '' || description !== '' || categoryId !== (incomeCategories[0]?.id || '') || currency !== initialCurrency
+
+  const handleBack = () => {
+    if (hasChanges) {
+      setShowConfirm(true)
+    } else {
+      router.back()
+    }
+  }
+
+  const displayText = formatAmount(digits)
+
+  const handleCreateCategory = async () => {
+    if (!newCategoryName.trim()) return
+    try {
+      await addIncomeCategory({
+        name: newCategoryName.trim(),
+        icon: newCategoryIcon,
+        color: newCategoryColor,
+      })
+      setShowNewCategoryModal(false)
+      setNewCategoryName('')
+      setNewCategoryIcon(CATEGORY_EMOJIS[0])
+      setNewCategoryColor(CATEGORY_COLORS[0])
+    } catch (err) {
+      console.error('Error creating category:', err)
+    }
+  }
+
+  return (
+    <>
+      <div
+        className="hidden md:block fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+        onClick={handleBack}
+      />
+      <main className="min-h-screen bg-surface pb-24 max-w-xl mx-auto px-gutter md:fixed md:right-0 md:top-0 md:bottom-0 md:w-[420px] md:max-w-none md:z-50 md:overflow-y-auto md:shadow-[-8px_0_24px_rgba(0,0,0,0.1)] md:bg-surface md:pb-space-xl">
+        <div className="flex flex-col pt-16 pb-6 md:pt-space-lg">
+          <div className="flex items-center justify-between py-space-sm mb-space-md">
+            <button
+              onClick={handleBack}
+              className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-variant transition-colors"
+            >
+              ←
+            </button>
+            <div className="flex flex-col items-center">
+              <h1 className="text-headline-sm text-on-surface font-bold tracking-tight">Nuevo Ingreso</h1>
+              <span className="text-label-sm text-secondary font-medium">Registra tu ingreso</span>
+            </div>
+            <div className="w-10 h-10" aria-hidden="true" />
+          </div>
+
+          <form onSubmit={(e) => { e.preventDefault(); handleSave() }} className="flex flex-col gap-space-lg">
+            {showSuccess && (
+              <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[100] px-6 py-3 rounded-full bg-secondary-fixed text-on-secondary-fixed shadow-lg animate-in fade-in slide-in-from-top-2 duration-300 flex items-center gap-2">
+                <span className="text-lg">✓</span>
+                <span className="text-body-md font-medium">Ingreso registrado</span>
+              </div>
+            )}
+            <div className="relative overflow-hidden bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col items-center justify-center gap-space-xs text-center">
+              <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-secondary-fixed/30 pointer-events-none blur-2xl" />
+              <div className="absolute -bottom-10 -left-10 w-28 h-28 rounded-full bg-primary-fixed/40 pointer-events-none blur-xl" />
+              <span className="text-label-md text-text-secondary tracking-wide uppercase">Monto a registrar</span>
+
+              <div className="flex items-center justify-center gap-space-sm w-full relative z-10 my-space-xs">
+                <div className="flex gap-1">
+                  {CURRENCY_OPTIONS.map((c) => (
+                    <button
+                      key={c.value}
+                      type="button"
+                      onClick={() => setCurrency(c.value)}
+                      className={`min-w-[52px] px-3 py-1 rounded-full text-label-lg font-bold transition-all ${
+                        currency === c.value
+                          ? 'bg-primary-container text-on-primary-container'
+                          : 'bg-surface-container text-text-secondary hover:bg-surface-container-high'
+                      }`}
+                    >
+                      {c.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div
+                className={`w-full relative z-10 my-space-xs rounded-lg px-3 py-2 transition-all duration-200 ${
+                  focused
+                    ? 'bg-primary-container/20 shadow-sm ring-1 ring-primary-container/40'
+                    : 'bg-transparent'
+                }`}
+              >
+                <div className="flex items-center justify-center gap-2">
+                  <span
+                    className={`text-headline-lg-mobile font-bold select-none transition-colors duration-200 ${
+                      focused ? 'text-primary' : 'text-outline-variant'
+                    }`}
+                  >
+                    {currency}
+                  </span>
+                  <div className="relative flex-1 flex items-center justify-center max-w-[200px]">
+                    <span
+                      className={`text-headline-xl-mobile font-bold tracking-tight transition-all duration-200 ${
+                        digits ? 'text-on-surface' : focused ? 'text-on-surface-variant' : 'text-outline-variant'
+                      }`}
+                    >
+                      {displayText}
+                    </span>
+                    <input
+                      type="text"
+                      inputMode="decimal"
+                      pattern="[0-9]*"
+                      value={digits}
+                      onFocus={() => setFocused(true)}
+                      onBlur={() => setFocused(false)}
+                      onChange={(e) => {
+                        const raw = e.target.value.replace(/[^0-9]/g, '').slice(0, 9)
+                        setDigits(raw.replace(/^0+(?=\d)/, ''))
+                      }}
+                      placeholder=""
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-text caret-transparent focus:outline-none"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-space-xs">
+              <label className="text-label-lg text-on-surface font-semibold px-space-xs flex items-center justify-between">
+                <span>Descripción</span>
+                <span className="text-label-sm text-text-secondary font-normal">Opcional pero útil</span>
+              </label>
+              <div className="relative flex items-center bg-surface-container-lowest rounded-xl shadow-sm px-space-md py-1 focus-within:bg-surface-container-low transition-colors">
+                <span className="text-outline-variant mr-space-sm text-[20px]">✏️</span>
+                <input
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  className="w-full h-12 bg-transparent text-on-surface placeholder:text-text-secondary text-body-md focus:outline-none"
+                  placeholder="Ej. Salario, freelance, devolución"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-space-sm">
+              <div className="flex items-center justify-between px-space-xs">
+                <label className="text-label-lg text-on-surface font-semibold">Categoría</label>
+                <span className="text-label-sm text-primary font-bold">{findCategory(incomeCategories, categoryId).name}</span>
+              </div>
+              <div className="grid grid-cols-5 gap-space-xs">
+                {incomeCategories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    onClick={() => setCategoryId(cat.id)}
+                    className={`flex flex-col items-center justify-center p-space-sm rounded-xl shadow-sm transition-all duration-150 transform active:scale-95 ${
+                      categoryId === cat.id
+                        ? 'bg-primary-container text-on-primary-container'
+                        : 'bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high'
+                    }`}
+                  >
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-[22px] mb-1 ${
+                      categoryId === cat.id ? 'bg-surface-container-lowest/80' : 'bg-surface-container'
+                    }`}>
+                      {cat.icon}
+                    </div>
+                    <span className={`text-label-sm font-medium truncate w-full text-center ${
+                      categoryId === cat.id ? 'font-semibold' : ''
+                    }`}>
+                      {cat.name}
+                    </span>
+                  </button>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => setShowNewCategoryModal(true)}
+                  className="flex flex-col items-center justify-center p-space-sm rounded-xl shadow-sm transition-all duration-150 transform active:scale-95 bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high border-2 border-dashed border-outline-variant"
+                >
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-[22px] mb-1 bg-surface-container">
+                    +
+                  </div>
+                  <span className="text-label-sm font-medium truncate w-full text-center">
+                    Nueva
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <div className="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-space-sm">
+                  <div className="w-9 h-9 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+                    📅
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-label-sm text-text-secondary">Fecha del ingreso</span>
+                    <span className="text-body-md font-semibold text-on-surface">
+                      {new Date(date).toLocaleDateString('es-PE', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
+                      })}
+                    </span>
+                  </div>
+                </div>
+                <div className="relative cursor-pointer">
+                  <span
+                    className="px-space-md py-1.5 rounded-full bg-surface-container text-secondary text-label-md flex items-center gap-1 hover:bg-surface-container-high transition-colors"
+                    onClick={() => dateRef.current?.showPicker()}
+                  >
+                    Cambiar ▾
+                  </span>
+                  <input
+                    ref={dateRef}
+                    type="date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    className="hidden"
+                  />
+                </div>
+              </div>
+              <div className="w-full h-px bg-surface-container-low" />
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-space-sm">
+                  <div className="w-9 h-9 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+                    ☁️
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-label-sm font-semibold text-on-surface">Sincronizado en la nube</span>
+                    <span className="text-body-sm text-text-secondary">Guardado en Supabase</span>
+                  </div>
+                </div>
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed-variant text-label-sm font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
+                  Listo
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-space-sm p-space-md rounded-xl bg-surface-container-low text-on-surface-variant">
+              <div className="w-8 h-8 shrink-0 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+                🌿
+              </div>
+              <p className="text-body-sm text-on-surface-variant">
+                ¡Excelente hábito! Registrar tus ingresos te da claridad financiera y te ayuda a planificar mejor.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-space-sm mt-space-xs">
+              <button
+                type="submit"
+                disabled={numericValue <= 0 || isSubmitting}
+                className="w-full h-12 rounded-full bg-primary-container text-on-primary text-headline-sm flex items-center justify-center gap-space-xs shadow-sm hover:opacity-95 active:scale-[0.99] transition-all disabled:opacity-50"
+              >
+                {isSubmitting ? '⏳' : '✓'} Guardar y Continuar
+              </button>
+              <div className="grid grid-cols-2 gap-space-sm">
+                <button
+                  type="button"
+                  onClick={handleClear}
+                  className="h-11 rounded-full bg-surface-container text-on-surface text-label-md font-medium flex items-center justify-center gap-1.5 hover:bg-surface-container-high transition-colors"
+                >
+                  🗑️ Limpiar
+                </button>
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  className="h-11 rounded-full bg-surface-container text-on-surface text-label-md font-medium flex items-center justify-center hover:bg-surface-container-high transition-colors"
+                >
+                  Cancelar
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </main>
+
+      {showConfirm && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/40 backdrop-blur-sm p-gutter" onClick={() => setShowConfirm(false)}>
+          <div className="bg-surface-container-lowest rounded-2xl p-space-md max-w-sm w-full shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <h3 className="text-headline-sm text-on-surface font-bold mb-2">¿Descartar cambios?</h3>
+            <p className="text-body-sm text-text-secondary mb-6">
+              Se perderá la información del ingreso que estás registrando.
+            </p>
+            <div className="flex gap-space-sm">
+              <button
+                onClick={() => setShowConfirm(false)}
+                className="flex-1 h-11 rounded-full bg-surface-container text-on-surface text-label-lg font-medium hover:bg-surface-container-high transition-colors"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={() => router.back()}
+                className="flex-1 h-11 rounded-full bg-error-container text-on-error-container text-label-lg font-medium hover:bg-error hover:text-on-error transition-colors"
+              >
+                Descartar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showNewCategoryModal && (
+        <div className="fixed inset-0 z-[300] flex items-center justify-center bg-black/40 backdrop-blur-sm p-gutter" onClick={() => setShowNewCategoryModal(false)}>
+          <div className="bg-surface-container-lowest rounded-2xl p-space-md max-w-md w-full shadow-2xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <h3 className="text-headline-sm text-on-surface font-bold mb-4">Nueva categoría de ingreso</h3>
+            <div className="space-y-4">
+              <div>
+                <label className="text-label-lg text-on-surface font-semibold block mb-2">Nombre</label>
+                <input
+                  type="text"
+                  value={newCategoryName}
+                  onChange={(e) => setNewCategoryName(e.target.value)}
+                  maxLength={30}
+                  className="w-full px-4 py-3 rounded-xl bg-surface-container border border-outline text-on-surface text-body-md focus:outline-none focus:border-primary transition-colors"
+                  placeholder="Ej: Freelance"
+                  autoFocus
+                />
+              </div>
+              <div>
+                <label className="text-label-lg text-on-surface font-semibold block mb-2">Icono</label>
+                <div className="grid grid-cols-8 gap-2">
+                  {CATEGORY_EMOJIS.map((emoji) => (
+                    <button
+                      key={emoji}
+                      type="button"
+                      onClick={() => setNewCategoryIcon(emoji)}
+                      className={`w-10 h-10 rounded-lg flex items-center justify-center text-2xl transition-all ${
+                        newCategoryIcon === emoji
+                          ? 'bg-primary-container ring-2 ring-primary scale-110'
+                          : 'bg-surface-container hover:bg-surface-container-high'
+                      }`}
+                    >
+                      {emoji}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <label className="text-label-lg text-on-surface font-semibold block mb-2">Color</label>
+                <div className="grid grid-cols-8 gap-2">
+                  {CATEGORY_COLORS.map((color) => (
+                    <button
+                      key={color}
+                      type="button"
+                      onClick={() => setNewCategoryColor(color)}
+                      className={`w-10 h-10 rounded-lg transition-all ${getCategoryColorClass(color)} ${
+                        newCategoryColor === color
+                          ? 'ring-2 ring-primary scale-110'
+                          : 'hover:scale-105'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className="flex gap-space-sm pt-2">
+                <button
+                  onClick={() => setShowNewCategoryModal(false)}
+                  className="flex-1 h-11 rounded-full bg-surface-container text-on-surface text-label-lg font-medium hover:bg-surface-container-high transition-colors"
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={handleCreateCategory}
+                  disabled={!newCategoryName.trim()}
+                  className="flex-1 h-11 rounded-full bg-primary text-on-primary text-label-lg font-semibold hover:bg-secondary transition-colors disabled:opacity-50"
+                >
+                  Crear
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  )
+}

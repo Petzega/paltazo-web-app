@@ -51,6 +51,12 @@
 ├────────────────────────────────────────────────────────────────────────────────────┤
 │ [US-019] [US-020] [US-021]                                                         │
 └────────────────────────────────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────────────────────────────────┐
+│ RELEASE 5 — PROPUESTA (30 oct 2026): registro de ingresos y balance real           │
+├────────────────────────────────────────────────────────────────────────────────────┤
+│ [US-022] [US-023] [US-024] [US-025] [US-026] [US-027]                              │
+└────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 > **Tareas añadidas por la release propuesta (US-019 a US-021, 29 oct 2026):** A1 incluye la configuración inicial de moneda y presupuesto en el primer ingreso (CU-021); D4 Gestionar monedas a demanda (CU-022, CU-023); D5 Gestionar categorías personalizables (CU-024 a CU-026).
@@ -368,6 +374,36 @@
 
 ---
 
+## 6.3 Historias propuestas — Módulo de ingresos (30 oct 2026)
+
+> Historias aprobadas en sesión de definición del 30 oct 2026. Comportamiento previsto, NO implementado.
+
+### US-022: Registrar ingreso con categoría
+**Como** usuario, **quiero** registrar ingresos esporádicos (sueldo, devoluciones, ventas) con monto, categoría, moneda, fecha y descripción **para** tener calidad de mis datos financieros.
+**Ref:** [`CU-027`](incomes/incomes.md#cu-027-registrar-ingreso) · **Status:** 📝 PROPUESTO · Sin presets rápidos. Acceso rápido `+ Nueva categoría` desde selector.
+
+### US-023: Editar ingreso
+**Como** usuario, **quiero** corregir un ingreso mal registrado **para** que mi balance sea exacto.
+**Ref:** [`CU-028`](incomes/incomes.md#cu-028-editar-ingreso) · **Status:** 📝 PROPUESTO · Edición inline (no modal), consistente con CU-010.
+
+### US-024: Eliminar ingreso
+**Como** usuario, **quiero** eliminar un ingreso registrado por error **para** que no afecte mi balance.
+**Ref:** [`CU-029`](incomes/incomes.md#cu-029-eliminar-ingreso) · **Status:** 📝 PROPUESTO · Modal de confirmación obligatorio.
+
+### US-025: Listar ingresos del mes
+**Como** usuario, **quiero** ver el historial de ingresos del mes agrupados por fecha **para** saber cuánto he ingresado.
+**Ref:** [`CU-030`](incomes/incomes.md#cu-030-listar-ingresos-del-mes) · **Status:** 📝 PROPUESTO · Consistente con CU-009.
+
+### US-026: Gestionar categorías de ingreso
+**Como** usuario, **quiero** crear, editar y eliminar categorías de ingreso con nombre, icono y color **para** clasificar mis ingresos según mis necesidades.
+**Ref:** [`CU-031`](incomes/incomes.md#cu-031-crear-categoría-de-ingreso), [`CU-032`](incomes/incomes.md#cu-032-editar-categoría-de-ingreso), [`CU-033`](incomes/incomes.md#cu-033-eliminar-categoría-de-ingreso) · **Status:** 📝 PROPUESTO · CRUD paralelo al de gastos; tablas separadas (`income_categories` vs `categories`); "Otros" protegida; mismo catálogo 16 emojis / 8 colores.
+
+### US-027: Consultar balance real
+**Como** usuario, **quiero** ver ingresos vs gastos vs balance neto en el dashboard **para** saber cuánto me queda realmente.
+**Ref:** [`CU-034`](dashboard/dashboard.md#cu-034-visualizar-balance-real-en-dashboard) · **Status:** 📝 PROPUESTO · Sección "💵 Balance del mes" antes de "Presupuestos mensuales". Balance por moneda.
+
+---
+
 ## 7. Tabla resumen de trazabilidad
 
 | Historia | Actividad | Tarea | Release | Ref CU | Estado |
@@ -393,8 +429,14 @@
 | US-019 | A | A1 Primer ingreso | Propuesta | CU-021 | 📝 propuesto |
 | US-020 | D | D4 Gestionar monedas | Propuesta | CU-022, CU-023 | 📝 propuesto |
 | US-021 | D | D5 Gestionar categorías | Propuesta | CU-024, CU-025, CU-026 | 📝 propuesto |
+| US-022 | B | B5 Registrar ingreso | Propuesta | CU-027 | 📝 propuesto |
+| US-023 | B | B6 Editar ingreso | Propuesta | CU-028 | 📝 propuesto |
+| US-024 | B | B7 Eliminar ingreso | Propuesta | CU-029 | 📝 propuesto |
+| US-025 | C | C4 Listar ingresos | Propuesta | CU-030 | 📝 propuesto |
+| US-026 | D | D6 Gestionar categorías de ingreso | Propuesta | CU-031, CU-032, CU-033 | 📝 propuesto |
+| US-027 | C | C5 Consultar balance real | Propuesta | CU-034 | 📝 propuesto |
 
-**Total:** 21 historias · 15 implementadas · 3 futuras (v1.2) · 3 propuestas (sin release asignada).
+**Total:** 27 historias · 15 implementadas · 3 futuras (v1.2) · 9 propuestas (sin release asignada).
 
 ---
 

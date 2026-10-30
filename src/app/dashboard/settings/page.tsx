@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAppState } from '@/lib/store'
-import { countExpensesByCurrency, countExpensesByCategory } from '@/lib/supabase/repositories'
+import { countExpensesByCurrency, countExpensesByCategory, countIncomesByCategory } from '@/lib/supabase/repositories'
 import { getCategoryColorClass } from '@/lib/categories'
 import type { Category } from '@/types'
 
@@ -18,7 +18,7 @@ const CATEGORY_COLORS = ['red', 'orange', 'amber', 'emerald', 'teal', 'blue', 'i
 
 export default function SettingsPage() {
   const router = useRouter()
-  const { budget, budgets, setBudget, addCurrency, removeCurrency, categories, addCategory, updateCategory, deleteCategory, logout, userId, notificationPermission, requestNotificationPermission } = useAppState()
+  const { budget, budgets, setBudget, addCurrency, removeCurrency, categories, addCategory, updateCategory, deleteCategory, incomeCategories, addIncomeCategory, updateIncomeCategory, deleteIncomeCategory, logout, userId, notificationPermission, requestNotificationPermission } = useAppState()
   const [budgetInputs, setBudgetInputs] = useState<Record<string, string>>(() => {
     const inputs: Record<string, string> = {}
     if (budget.monthlyLimit > 0) inputs[budget.currency] = budget.monthlyLimit.toString()
@@ -37,6 +37,12 @@ export default function SettingsPage() {
   const [showDeleteCategoryConfirm, setShowDeleteCategoryConfirm] = useState<string | null>(null)
   const [deleteCategoryCount, setDeleteCategoryCount] = useState<number>(0)
   const [isDeletingCategory, setIsDeletingCategory] = useState(false)
+  const [showIncomeCategoryModal, setShowIncomeCategoryModal] = useState<{ mode: 'create' | 'edit'; categoryId?: string } | null>(null)
+  const [incomeCategoryForm, setIncomeCategoryForm] = useState<{ name: string; icon: string; color: string }>({ name: '', icon: CATEGORY_EMOJIS[0], color: CATEGORY_COLORS[0] })
+  const [incomeCategoryError, setIncomeCategoryError] = useState<string>('')
+  const [showDeleteIncomeCategoryConfirm, setShowDeleteIncomeCategoryConfirm] = useState<string | null>(null)
+  const [deleteIncomeCategoryCount, setDeleteIncomeCategoryCount] = useState<number>(0)
+  const [isDeletingIncomeCategory, setIsDeletingIncomeCategory] = useState(false)
 
   const activeCurrencies = Object.keys(budgets)
   const availableCurrencies = SUPPORTED_CURRENCIES.filter(
@@ -142,6 +148,73 @@ export default function SettingsPage() {
       alert('Error al eliminar la categoría. Intenta de nuevo.')
     } finally {
       setIsDeletingCategory(false)
+    }
+  }
+
+  const handleOpenCreateIncomeCategory = () => {
+    setIncomeCategoryForm({ name: '', icon: CATEGORY_EMOJIS[0], color: CATEGORY_COLORS[0] })
+    setIncomeCategoryError('')
+    setShowIncomeCategoryModal({ mode: 'create' })
+  }
+
+  const handleOpenEditIncomeCategory = (cat: typeof incomeCategories[0]) => {
+    setIncomeCategoryForm({ name: cat.name, icon: cat.icon, color: cat.color })
+    setIncomeCategoryError('')
+    setShowIncomeCategoryModal({ mode: 'edit', categoryId: cat.id })
+  }
+
+  const handleSaveIncomeCategory = async () => {
+    if (!showIncomeCategoryModal) return
+    const trimmedName = incomeCategoryForm.name.trim()
+    if (!trimmedName) {
+      setIncomeCategoryError('El nombre es obligatorio')
+      return
+    }
+    if (trimmedName.length > 30) {
+      setIncomeCategoryError('Máximo 30 caracteres')
+      return
+    }
+    const isDuplicate = incomeCategories.some(
+      (c) => c.name.toLowerCase() === trimmedName.toLowerCase() && c.id !== showIncomeCategoryModal.categoryId
+    )
+    if (isDuplicate) {
+      setIncomeCategoryError('Ya existe una categoría con ese nombre')
+      return
+    }
+    try {
+      if (showIncomeCategoryModal.mode === 'create') {
+        await addIncomeCategory({ name: trimmedName, icon: incomeCategoryForm.icon, color: incomeCategoryForm.color })
+      } else if (showIncomeCategoryModal.categoryId) {
+        await updateIncomeCategory(showIncomeCategoryModal.categoryId, { name: trimmedName, icon: incomeCategoryForm.icon, color: incomeCategoryForm.color })
+      }
+      setShowIncomeCategoryModal(null)
+      setIncomeCategoryForm({ name: '', icon: CATEGORY_EMOJIS[0], color: CATEGORY_COLORS[0] })
+      setIncomeCategoryError('')
+    } catch (err) {
+      console.error('Error saving income category:', err)
+      setIncomeCategoryError('Error al guardar. Intenta de nuevo.')
+    }
+  }
+
+  const handleDeleteIncomeCategoryClick = async (categoryId: string) => {
+    if (!userId) return
+    const count = await countIncomesByCategory(userId, categoryId)
+    setDeleteIncomeCategoryCount(count)
+    setShowDeleteIncomeCategoryConfirm(categoryId)
+  }
+
+  const handleDeleteIncomeCategoryConfirm = async () => {
+    if (!showDeleteIncomeCategoryConfirm || isDeletingIncomeCategory) return
+    setIsDeletingIncomeCategory(true)
+    try {
+      await deleteIncomeCategory(showDeleteIncomeCategoryConfirm)
+      setShowDeleteIncomeCategoryConfirm(null)
+      setDeleteIncomeCategoryCount(0)
+    } catch (err) {
+      console.error('Error deleting income category:', err)
+      alert('Error al eliminar la categoría. Intenta de nuevo.')
+    } finally {
+      setIsDeletingIncomeCategory(false)
     }
   }
 
@@ -252,7 +325,7 @@ export default function SettingsPage() {
 
           <section className="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm md:col-span-2">
             <h3 className="text-label-lg text-on-surface font-semibold mb-space-sm flex items-center gap-2">
-              🏷️ Categorías
+              🏷️ Categorías de Gasto
             </h3>
             <p className="text-body-sm text-on-surface-variant mb-space-md">
               Personaliza las categorías para clasificar tus gastos.
@@ -297,6 +370,57 @@ export default function SettingsPage() {
                 className="w-full py-3 rounded-xl bg-secondary-container text-on-secondary-container text-label-lg font-semibold hover:bg-tertiary-container transition-colors"
               >
                 + Nueva categoría
+              </button>
+            </div>
+          </section>
+
+          <section className="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm md:col-span-2">
+            <h3 className="text-label-lg text-on-surface font-semibold mb-space-sm flex items-center gap-2">
+              💰 Categorías de Ingreso
+            </h3>
+            <p className="text-body-sm text-on-surface-variant mb-space-md">
+              Personaliza las categorías para clasificar tus ingresos.
+            </p>
+            <div className="space-y-space-sm">
+              {incomeCategories.map((cat) => {
+                const isProtected = cat.isProtected
+                return (
+                  <div key={cat.id} className="flex items-center justify-between p-space-md rounded-xl bg-surface-container-lowest">
+                    <div className="flex items-center gap-space-sm">
+                      <div className={`w-11 h-11 rounded-2xl flex items-center justify-center text-[22px] shrink-0 ${getCategoryColorClass(cat.color)}`}>
+                        {cat.icon}
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-label-lg text-on-surface font-semibold">{cat.name}</span>
+                        {isProtected && (
+                          <span className="text-label-sm text-text-secondary">Protegida</span>
+                        )}
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-space-xs">
+                      <button
+                        onClick={() => handleOpenEditIncomeCategory(cat)}
+                        disabled={isProtected}
+                        className="px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant text-label-md hover:bg-surface-container-high transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                      >
+                        Editar
+                      </button>
+                      <button
+                        onClick={() => handleDeleteIncomeCategoryClick(cat.id)}
+                        disabled={isProtected}
+                        className="px-3 py-1.5 rounded-lg bg-danger/10 text-danger text-label-md hover:bg-danger/20 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                      >
+                        Eliminar
+                      </button>
+                    </div>
+                  </div>
+                )
+              })}
+              <button
+                onClick={handleOpenCreateIncomeCategory}
+                className="w-full py-3 rounded-xl bg-secondary-container text-on-secondary-container text-label-lg font-semibold hover:bg-tertiary-container transition-colors"
+              >
+                + Nueva categoría de ingreso
               </button>
             </div>
           </section>
@@ -559,6 +683,131 @@ export default function SettingsPage() {
                 className="flex-1 h-11 rounded-full bg-error-container text-on-error-container text-label-lg font-medium hover:bg-error hover:text-on-error transition-colors disabled:opacity-50"
               >
                 {isDeletingCategory ? 'Eliminando...' : 'Eliminar'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal de formulario para crear/editar categoría de ingreso */}
+      {showIncomeCategoryModal && (
+        <div
+          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/40 backdrop-blur-sm p-gutter"
+          onClick={() => setShowIncomeCategoryModal(null)}
+        >
+          <div
+            className="bg-surface-container-lowest rounded-2xl p-space-md max-w-md w-full shadow-2xl max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 className="text-headline-sm text-on-surface font-bold mb-4">
+              {showIncomeCategoryModal.mode === 'create' ? 'Nueva categoría de ingreso' : 'Editar categoría de ingreso'}
+            </h3>
+            <div className="space-y-4">
+              <div>
+                <label className="text-label-lg text-on-surface font-semibold block mb-2">
+                  Nombre
+                </label>
+                <input
+                  type="text"
+                  value={incomeCategoryForm.name}
+                  onChange={(e) => { setIncomeCategoryForm({ ...incomeCategoryForm, name: e.target.value }); setIncomeCategoryError('') }}
+                  maxLength={30}
+                  className="w-full px-4 py-3 rounded-xl bg-surface-container border border-outline text-on-surface text-body-md focus:outline-none focus:border-primary transition-colors"
+                  placeholder="Ej: Freelance"
+                />
+                {incomeCategoryError && (
+                  <p className="text-body-sm text-error mt-1">{incomeCategoryError}</p>
+                )}
+              </div>
+              <div>
+                <label className="text-label-lg text-on-surface font-semibold block mb-2">
+                  Icono
+                </label>
+                <div className="grid grid-cols-8 gap-2">
+                  {CATEGORY_EMOJIS.map((emoji) => (
+                    <button
+                      key={emoji}
+                      type="button"
+                      onClick={() => setIncomeCategoryForm({ ...incomeCategoryForm, icon: emoji })}
+                      className={`w-10 h-10 rounded-lg flex items-center justify-center text-2xl transition-all ${
+                        incomeCategoryForm.icon === emoji
+                          ? 'bg-primary-container ring-2 ring-primary scale-110'
+                          : 'bg-surface-container hover:bg-surface-container-high'
+                      }`}
+                    >
+                      {emoji}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <label className="text-label-lg text-on-surface font-semibold block mb-2">
+                  Color
+                </label>
+                <div className="grid grid-cols-8 gap-2">
+                  {CATEGORY_COLORS.map((color) => (
+                    <button
+                      key={color}
+                      type="button"
+                      onClick={() => setIncomeCategoryForm({ ...incomeCategoryForm, color })}
+                      className={`w-10 h-10 rounded-lg transition-all ${getCategoryColorClass(color)} ${
+                        incomeCategoryForm.color === color
+                          ? 'ring-2 ring-primary scale-110'
+                          : 'hover:scale-105'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className="flex gap-space-sm pt-2">
+                <button
+                  onClick={() => { setShowIncomeCategoryModal(null); setIncomeCategoryError('') }}
+                  className="flex-1 h-11 rounded-full bg-surface-container text-on-surface text-label-lg font-medium hover:bg-surface-container-high transition-colors"
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={handleSaveIncomeCategory}
+                  className="flex-1 h-11 rounded-full bg-primary text-on-primary text-label-lg font-semibold hover:bg-secondary transition-colors"
+                >
+                  Guardar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal de confirmación para eliminar categoría de ingreso */}
+      {showDeleteIncomeCategoryConfirm && (
+        <div
+          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/40 backdrop-blur-sm p-gutter"
+          onClick={() => !isDeletingIncomeCategory && setShowDeleteIncomeCategoryConfirm(null)}
+        >
+          <div
+            className="bg-surface-container-lowest rounded-2xl p-space-md max-w-sm w-full shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 className="text-headline-sm text-on-surface font-bold mb-2">
+              ¿Eliminar categoría de ingreso?
+            </h3>
+            <p className="text-body-sm text-text-secondary mb-4">
+              Los {deleteIncomeCategoryCount} ingreso{deleteIncomeCategoryCount === 1 ? '' : 's'} asociados a esta categoría pasarán a 'Otros'. Esta acción no se puede deshacer.
+            </p>
+            <div className="flex gap-space-sm">
+              <button
+                onClick={() => setShowDeleteIncomeCategoryConfirm(null)}
+                disabled={isDeletingIncomeCategory}
+                className="flex-1 h-11 rounded-full bg-surface-container text-on-surface text-label-lg font-medium hover:bg-surface-container-high transition-colors disabled:opacity-50"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={handleDeleteIncomeCategoryConfirm}
+                disabled={isDeletingIncomeCategory}
+                className="flex-1 h-11 rounded-full bg-error-container text-on-error-container text-label-lg font-medium hover:bg-error hover:text-on-error transition-colors disabled:opacity-50"
+              >
+                {isDeletingIncomeCategory ? 'Eliminando...' : 'Eliminar'}
               </button>
             </div>
           </div>
