@@ -12,11 +12,17 @@ export interface PendingOperation {
   timestamp: number
 }
 
+let _db: IDBDatabase | null = null
+
 function openDB(): Promise<IDBDatabase> {
+  if (_db) return Promise.resolve(_db)
   return new Promise((resolve, reject) => {
     const request = indexedDB.open(DB_NAME, DB_VERSION)
     request.onerror = () => reject(request.error)
-    request.onsuccess = () => resolve(request.result)
+    request.onsuccess = () => {
+      _db = request.result
+      resolve(_db)
+    }
     request.onupgradeneeded = (event) => {
       const db = (event.target as IDBOpenDBRequest).result
       if (!db.objectStoreNames.contains(STORE_NAME)) {
@@ -40,7 +46,6 @@ export async function addOperation(op: Omit<PendingOperation, 'id' | 'timestamp'
     request.onerror = () => reject(request.error)
     request.onsuccess = () => resolve()
   })
-  db.close()
 }
 
 export async function getPendingOperations(): Promise<PendingOperation[]> {
@@ -52,7 +57,6 @@ export async function getPendingOperations(): Promise<PendingOperation[]> {
     request.onerror = () => reject(request.error)
     request.onsuccess = () => resolve(request.result)
   })
-  db.close()
   return operations.sort((a, b) => a.timestamp - b.timestamp)
 }
 
@@ -65,7 +69,6 @@ export async function removeOperation(id: string): Promise<void> {
     request.onerror = () => reject(request.error)
     request.onsuccess = () => resolve()
   })
-  db.close()
 }
 
 export async function clearOperations(): Promise<void> {
@@ -77,7 +80,6 @@ export async function clearOperations(): Promise<void> {
     request.onerror = () => reject(request.error)
     request.onsuccess = () => resolve()
   })
-  db.close()
 }
 
 export function isOnline(): boolean {

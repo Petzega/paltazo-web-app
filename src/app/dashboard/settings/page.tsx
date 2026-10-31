@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useAppState } from '@/lib/store'
 import { countExpensesByCurrency, countExpensesByCategory, countIncomesByCategory } from '@/lib/supabase/repositories'
 import { getCategoryColorClass } from '@/lib/categories'
+import { CATEGORY_EMOJIS, CATEGORY_COLORS } from '@/lib/expenseConstants'
 import type { Category } from '@/types'
 
 const SUPPORTED_CURRENCIES = [
@@ -12,9 +13,6 @@ const SUPPORTED_CURRENCIES = [
   { value: '$', label: 'Dólares ($)' },
   { value: '€', label: 'Euros (€)' },
 ]
-
-const CATEGORY_EMOJIS = ['🍔', '🚗', '🏠', '🎬', '🛒', '💊', '✈️', '📚', '💼', '🐾', '🎁', '💡', '⚽', '☕', '📱', '📦']
-const CATEGORY_COLORS = ['red', 'orange', 'amber', 'emerald', 'teal', 'blue', 'indigo', 'purple']
 
 export default function SettingsPage() {
   const router = useRouter()

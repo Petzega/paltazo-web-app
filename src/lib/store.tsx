@@ -45,7 +45,7 @@ const AppContext = createContext<AppState | undefined>(undefined)
 
 const DEFAULT_BUDGET: Budget = {
   userId: '',
-  monthlyLimit: 500,
+  monthlyLimit: 0,
   currency: 'S/',
   updatedAt: new Date().toISOString(),
 }
@@ -150,12 +150,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
       syncedAt: undefined,
     }
     setExpenses((prev) => [optimisticExpense, ...prev])
+    checkBudgetThreshold(optimisticExpense.currency, optimisticExpense.amount)
 
     if (offline.isOnline()) {
       try {
         const newExpense = await db.addExpense(optimisticExpense)
         setExpenses((prev) => prev.map((e) => e.id === tempId ? newExpense : e))
-        checkBudgetThreshold(optimisticExpense.currency, optimisticExpense.amount)
       } catch {
         await offline.addOperation({ type: 'addExpense', payload: expense })
         setPendingCount((prev) => prev + 1)
@@ -326,6 +326,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (!otros) return
     await db.deleteCategory(id, userId, otros.id)
     setCategories((prev) => prev.filter((c) => c.id !== id))
+    setExpenses((prev) => prev.map((e) => e.categoryId === id ? { ...e, categoryId: otros.id } : e))
   }
 
   const addIncomeCategory = async (cat: { name: string; icon: string; color: string }) => {
@@ -346,6 +347,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (!otros) return
     await db.deleteIncomeCategory(id, userId, otros.id)
     setIncomeCategories((prev) => prev.filter((c) => c.id !== id))
+    setIncomes((prev) => prev.map((i) => i.categoryId === id ? { ...i, categoryId: otros.id } : i))
   }
 
   const completeOnboarding = async (currency: string, monthlyLimit: number) => {
@@ -394,7 +396,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
           setPendingCount((prev) => prev - 1)
         } catch (err) {
           console.error(`Failed to sync operation ${op.id}`, err)
-          break
+          continue
         }
       }
     } finally {
@@ -464,7 +466,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (!currentBudget?.monthlyLimit) return
     const monthlySpent = expenses
       .filter((e) => {
-        const expDate = new Date(e.createdAt)
+        const expDate = new Date(e.date)
         const now = new Date()
         return e.currency === currency && expDate.getMonth() === now.getMonth() && expDate.getFullYear() === now.getFullYear()
       })

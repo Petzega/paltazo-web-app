@@ -4,22 +4,12 @@ import { useState, useCallback, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAppState } from '@/lib/store'
 import { findCategory, getCategoryColorClass } from '@/lib/categories'
+import { formatAmount, CATEGORY_EMOJIS, CATEGORY_COLORS } from '@/lib/expenseConstants'
 
 const CURRENCY_OPTIONS = [
   { value: 'S/', label: 'S/' },
   { value: '$', label: '$' },
 ]
-
-const CATEGORY_EMOJIS = ['🍔', '🚗', '🏠', '🎬', '🛒', '💊', '✈️', '📚', '💼', '🐾', '🎁', '💡', '⚽', '☕', '📱', '📦']
-const CATEGORY_COLORS = ['red', 'orange', 'amber', 'emerald', 'teal', 'blue', 'indigo', 'purple']
-
-function formatAmount(digits: string): string {
-  if (!digits) return '0.00'
-  const padded = digits.padStart(3, '0')
-  const intPart = padded.slice(0, -2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-  const decPart = padded.slice(-2)
-  return `${intPart}.${decPart}`
-}
 
 export default function AddIncomePage() {
   const router = useRouter()
@@ -28,6 +18,7 @@ export default function AddIncomePage() {
   const [currency, setCurrency] = useState(budget.currency || 'S/')
   const [initialCurrency] = useState(budget.currency || 'S/')
   const [categoryId, setCategoryId] = useState('')
+  const [initialCategoryId, setInitialCategoryId] = useState('')
   const [description, setDescription] = useState('')
   const [date, setDate] = useState(new Date().toISOString().split('T')[0])
   const [focused, setFocused] = useState(false)
@@ -39,7 +30,30 @@ export default function AddIncomePage() {
   const [newCategoryIcon, setNewCategoryIcon] = useState(CATEGORY_EMOJIS[0])
   const [newCategoryColor, setNewCategoryColor] = useState(CATEGORY_COLORS[0])
   const successTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
-  const dateRef = useRef<HTMLInputElement>(null)
+  const carouselRef = useRef<HTMLDivElement>(null)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(false)
+
+  useEffect(() => {
+    if (incomeCategories.length > 0 && !initialCategoryId) {
+      setInitialCategoryId(incomeCategories[0].id)
+      setCategoryId(incomeCategories[0].id)
+    }
+  }, [incomeCategories, initialCategoryId])
+
+  useEffect(() => {
+    const el = carouselRef.current
+    if (!el) return
+
+    const update = () => {
+      setCanScrollLeft(el.scrollLeft > 0)
+      setCanScrollRight(el.scrollWidth - el.clientWidth - el.scrollLeft > 1)
+    }
+
+    update()
+    el.addEventListener('scroll', update)
+    return () => el.removeEventListener('scroll', update)
+  }, [incomeCategories])
 
   useEffect(() => {
     return () => {
@@ -69,12 +83,12 @@ export default function AddIncomePage() {
   const handleClear = () => {
     setDigits('')
     setDescription('')
-    setCategoryId(incomeCategories[0]?.id || '')
+    setCategoryId(initialCategoryId)
     setCurrency(initialCurrency)
     setDate(new Date().toISOString().split('T')[0])
   }
 
-  const hasChanges = digits !== '' || description !== '' || categoryId !== (incomeCategories[0]?.id || '') || currency !== initialCurrency
+  const hasChanges = digits !== '' || description !== '' || categoryId !== initialCategoryId || currency !== initialCurrency
 
   const handleBack = () => {
     if (hasChanges) {
@@ -219,42 +233,64 @@ export default function AddIncomePage() {
                 <label className="text-label-lg text-on-surface font-semibold">Categoría</label>
                 <span className="text-label-sm text-primary font-bold">{findCategory(incomeCategories, categoryId).name}</span>
               </div>
-              <div className="grid grid-cols-5 gap-space-xs">
-                {incomeCategories.map((cat) => (
+              <div className="relative">
+                <div ref={carouselRef} className="flex gap-space-xs overflow-x-auto pb-space-xs px-space-xs no-scrollbar">
+                  {incomeCategories.map((cat) => (
+                    <button
+                      key={cat.id}
+                      type="button"
+                      onClick={() => setCategoryId(cat.id)}
+                      className={`flex-shrink-0 w-20 flex flex-col items-center justify-center p-space-sm rounded-xl shadow-sm transition-all duration-150 transform active:scale-95 ${
+                        categoryId === cat.id
+                          ? 'bg-primary-container text-on-primary-container'
+                          : 'bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high'
+                      }`}
+                    >
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center text-[22px] mb-1 ${
+                        categoryId === cat.id ? 'bg-surface-container-lowest/80' : 'bg-surface-container'
+                      }`}>
+                        {cat.icon}
+                      </div>
+                      <span className={`text-label-xs font-medium truncate w-full text-center ${
+                        categoryId === cat.id ? 'font-semibold' : ''
+                      }`}>
+                        {cat.name}
+                      </span>
+                    </button>
+                  ))}
                   <button
-                    key={cat.id}
                     type="button"
-                    onClick={() => setCategoryId(cat.id)}
-                    className={`flex flex-col items-center justify-center p-space-sm rounded-xl shadow-sm transition-all duration-150 transform active:scale-95 ${
-                      categoryId === cat.id
-                        ? 'bg-primary-container text-on-primary-container'
-                        : 'bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high'
-                    }`}
+                    onClick={() => setShowNewCategoryModal(true)}
+                    className="flex-shrink-0 w-20 flex flex-col items-center justify-center p-space-sm rounded-xl shadow-sm transition-all duration-150 transform active:scale-95 bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high border-2 border-dashed border-outline-variant"
                   >
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-[22px] mb-1 ${
-                      categoryId === cat.id ? 'bg-surface-container-lowest/80' : 'bg-surface-container'
-                    }`}>
-                      {cat.icon}
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-[22px] mb-1 bg-surface-container">
+                      +
                     </div>
-                    <span className={`text-label-sm font-medium truncate w-full text-center ${
-                      categoryId === cat.id ? 'font-semibold' : ''
-                    }`}>
-                      {cat.name}
+                    <span className="text-label-xs font-medium truncate w-full text-center">
+                      Nueva
                     </span>
                   </button>
-                ))}
-                <button
-                  type="button"
-                  onClick={() => setShowNewCategoryModal(true)}
-                  className="flex flex-col items-center justify-center p-space-sm rounded-xl shadow-sm transition-all duration-150 transform active:scale-95 bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high border-2 border-dashed border-outline-variant"
-                >
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-[22px] mb-1 bg-surface-container">
-                    +
-                  </div>
-                  <span className="text-label-sm font-medium truncate w-full text-center">
-                    Nueva
-                  </span>
-                </button>
+                </div>
+                {canScrollLeft && (
+                  <button
+                    type="button"
+                    onClick={() => carouselRef.current?.scrollBy({ left: -80, behavior: 'smooth' })}
+                    className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-7 h-7 flex items-center justify-center bg-surface rounded-full shadow-md text-on-surface hover:bg-surface-container-high transition-opacity cursor-pointer"
+                    aria-label="Ver categorías anteriores"
+                  >
+                    ‹
+                  </button>
+                )}
+                {canScrollRight && (
+                  <button
+                    type="button"
+                    onClick={() => carouselRef.current?.scrollBy({ left: 80, behavior: 'smooth' })}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-7 h-7 flex items-center justify-center bg-surface rounded-full shadow-md text-on-surface hover:bg-surface-container-high transition-opacity cursor-pointer"
+                    aria-label="Ver más categorías"
+                  >
+                    ›
+                  </button>
+                )}
               </div>
             </div>
 
@@ -277,17 +313,15 @@ export default function AddIncomePage() {
                 </div>
                 <div className="relative cursor-pointer">
                   <span
-                    className="px-space-md py-1.5 rounded-full bg-surface-container text-secondary text-label-md flex items-center gap-1 hover:bg-surface-container-high transition-colors"
-                    onClick={() => dateRef.current?.showPicker()}
+                    className="px-space-md py-1.5 rounded-full bg-surface-container text-secondary text-label-md flex items-center gap-1 hover:bg-surface-container-high transition-colors pointer-events-none"
                   >
                     Cambiar ▾
                   </span>
                   <input
-                    ref={dateRef}
                     type="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
-                    className="hidden"
+                    className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
                   />
                 </div>
               </div>

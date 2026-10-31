@@ -1,7 +1,7 @@
 # Casos de Uso: Gastos
 
 > Módulo de gestión de gastos. CRUD atómico sobre el mes en curso.
-> Categorías: por defecto + personalizadas del usuario (CU-024 a CU-026, PROPUESTO). Código actual: 5 hardcodeadas en `src/lib/categories.ts`.
+> Categorías: por defecto + personalizadas del usuario (CU-024 a CU-026, PROPUESTO). Selector en carrusel horizontal scrolleable.
 > Monedas: las activas del usuario entre `S/`, `$` y `€` (CU-021 a CU-023, PROPUESTO). Código actual: `S/` y `$` fijas.
 
 ---
@@ -46,12 +46,13 @@ Usuario hace clic en FAB `+`, botón "Agregar gasto", o CTA en estado vacío.
    - Usuario puede seleccionar preset rápido: `15.00 / 30.00 / 50.00 / 100.00` (en la moneda seleccionada)
 4. Usuario puede cambiar moneda con toggles superiores (botones redondeados) entre sus monedas activas (PROPUESTO: CU-021/CU-022; código actual: `S/` o `$`)
 5. Usuario puede completar descripción (opcional, max ~200 chars visibles)
-6. Usuario selecciona categoría tocando un tile (icono + label) entre las categorías por defecto y sus categorías personalizadas (PROPUESTO: CU-024 a CU-026). Código actual, 5 fijas:
+6. Usuario selecciona categoría tocando un tile (icono + label) en un carrusel horizontal scrolleable entre las categorías por defecto y sus categorías personalizadas (PROPUESTO: CU-024 a CU-026). Código actual, 5 fijas:
    - 🍽️ Comida
    - 🚗 Transporte
    - 💡 Servicios
    - 🎬 Entretenimiento
    - 📝 Otros
+   - Botón "+ Nueva" al final del carrusel para crear categoría personalizada (→ CU-024)
 7. Usuario puede cambiar fecha con picker nativo (`<input type="date">`)
 8. Usuario hace clic en "✓ Guardar y Continuar"
 9. Sistema valida `numericValue > 0`
@@ -101,7 +102,8 @@ Usuario hace clic en FAB `+`, botón "Agregar gasto", o CTA en estado vacío.
 - Usuario puede ingresar monto con teclado numérico decimal
 - Presets rápidos (`15/30/50/100`) funcionan y muestran monto en moneda seleccionada
 - Usuario puede cambiar moneda con toggles entre sus monedas activas (código actual: `S/` o `$`)
-- Usuario puede seleccionar categoría entre las disponibles (por defecto + personalizadas, PROPUESTO; código actual: 5 opciones) con icono + label
+- Usuario puede seleccionar categoría entre las disponibles (por defecto + personalizadas, PROPUESTO; código actual: 5 opciones) en carrusel horizontal scrolleable con icono + label
+- Usuario puede crear nueva categoría desde el botón "+ Nueva" al final del carrusel (→ CU-024)
 - Usuario puede cambiar fecha con picker nativo
 - Botón "Guardar" deshabilitado si `monto ≤ 0`
 - Toast de éxito mostrado por 2s tras guardar

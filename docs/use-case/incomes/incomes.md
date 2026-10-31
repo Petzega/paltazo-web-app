@@ -2,6 +2,7 @@
 
 > Módulo de gestión de ingresos. Registro de ingresos esporádicos (sueldo, devoluciones, ventas, etc.) con categorías propias, separadas de las de gasto.
 > **Estado del módulo:** PROPUESTO — comportamiento previsto, NO implementado. Aprobado en sesión de definición del 30 oct 2026.
+> **Selector de categorías:** carrusel horizontal scrolleable con botón "+ Nueva" al final.
 
 ---
 
@@ -43,9 +44,9 @@ Usuario pulsa botón `+ Ingreso` en dashboard (FAB o botón en sección Balance)
 3. Usuario ingresa monto mediante teclado numérico decimal (`inputMode="decimal"`).
    - Sistema formatea automáticamente como `X.XX` con separadores de miles.
 4. Usuario puede cambiar moneda entre sus monedas activas (toggles).
-5. Usuario selecciona categoría de ingreso entre las disponibles (tiles icono + label).
-   - El selector muestra las 5 categorías default + personalizadas del usuario.
-   - Incluye botón `+ Nueva categoría` en el selector (acceso rápido inline).
+5. Usuario selecciona categoría de ingreso en un carrusel horizontal scrolleable entre las disponibles (tiles icono + label).
+   - El carrusel muestra las 5 categorías default + personalizadas del usuario.
+   - Incluye botón `+ Nueva categoría` al final del carrusel (acceso rápido inline → CU-031).
 6. Usuario puede completar descripción (opcional, max 200 chars).
 7. Usuario puede cambiar fecha con picker nativo (`<input type="date">`).
 8. Usuario pulsa "✓ Guardar".
@@ -93,8 +94,8 @@ Usuario pulsa botón `+ Ingreso` en dashboard (FAB o botón en sección Balance)
 ### Criterios de aceptación
 - Usuario puede ingresar monto con teclado numérico decimal.
 - Usuario puede cambiar moneda con toggles entre sus monedas activas.
-- Selector de categorías muestra solo categorías de ingreso (no mezcla con gastos).
-- Botón `+ Nueva categoría` visible en el selector (acceso rápido inline).
+- Selector de categorías en carrusel horizontal scrolleable, mostrando solo categorías de ingreso (no mezcla con gastos).
+- Botón `+ Nueva categoría` visible al final del carrusel (acceso rápido inline → CU-031).
 - Usuario puede cambiar fecha con picker nativo.
 - Botón "Guardar" deshabilitado si `monto ≤ 0`.
 - Toast de éxito mostrado por 2s tras guardar.
