@@ -1,7 +1,7 @@
-# CHECKPOINT: Estado Actual de Paltazo (29 oct 2026)
+# CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)
 
-> **Estado:** Roadmap 100% completado  
-> **Última actualización:** 29 oct 2026  
+> **Estado:** Roadmap 100% completado + bugs críticos corregidos
+> **Última actualización:** 31 oct 2026
 > **Próximo dev:** Este documento es tu punto de partida
 
 ---
@@ -19,6 +19,7 @@ Paltazo está al **100% del spec funcional**. Se implementaron 18/21 User Storie
 **Bugs corregidos:**
 - BUG-001: Cap en cálculo de porcentaje de presupuesto (Fase 1)
 - BUG-002: Flash redirect a /setup tras recargar (Fase 4)
+- BUG-003: Fechas mostradas como día anterior por zona horaria UTC (Post-audit, 31 oct 2026)
 
 ---
 
@@ -227,15 +228,25 @@ src/
 │   └── dashboard/
 │       ├── layout.tsx ← modificado: integra OnboardingGuard
 │       ├── OnboardingGuard.tsx ← NUEVO: redirect si onboarding incompleto
-│       ├── page.tsx ← modificado: usa findCategory(categories, categoryId)
-│       ├── add-expense/page.tsx ← modificado: selector dinámico + modal "+ Nueva"
-│       ├── expenses/page.tsx ← modificado: usa categorías dinámicas
+│       ├── page.tsx ← modificado: usa findCategory(categories, categoryId), getLocalDate()
+│       ├── add-expense/page.tsx ← modificado: selector dinámico + modal "+ Nueva", DatePicker custom, getLocalDate()
+│       ├── add-income/page.tsx ← modificado: selector dinámico + modal "+ Nueva", DatePicker custom, getLocalDate()
+│       ├── expenses/page.tsx ← modificado: usa categorías dinámicas, fix UTC en display
 │       └── settings/page.tsx ← modificado: gestión de monedas + CRUD categorías
+├── components/
+│   ├── ui/
+│   │   ├── DatePicker.tsx ← NUEVO: calendario custom con navegación de mes/año
+│   │   └── ... (otros componentes)
+│   └── providers/
 ├── lib/
-│   ├── store.tsx ← modificado: categorías, onboarding, CRUD methods
+│   ├── store.tsx ← modificado: categorías, onboarding, CRUD methods, fix sync queue, fix budget threshold
 │   ├── categories.ts ← modificado: findCategory, getCategoryColorClass dinámicos
+│   ├── expenseConstants.ts ← NUEVO: formatAmount, CATEGORY_EMOJIS, CATEGORY_COLORS, getLocalDate()
+│   ├── offline.ts ← modificado: cache de conexión IndexedDB
 │   └── supabase/
-│       └── repositories.ts ← modificado: queries categories, onboarding
+│       ├── client.ts
+│       ├── auth.ts
+│       └── repositories.ts ← modificado: queries categories, onboarding, fix auth server route
 └── types/
     └── index.ts ← modificado: Category interface, Expense.categoryId
 
@@ -254,7 +265,8 @@ docs/
 │   └── settings/settings.md
 └── bugs/
     ├── BUG-001_dashboard_percentage_cap.md (resuelto)
-    └── BUG-002_setup_redirect_flash.md (resuelto)
+    ├── BUG-002_setup_redirect_flash.md (resuelto)
+    └── BUG-003_date_timezone_utc.md (resuelto, 31 oct 2026)
 ```
 
 ---
