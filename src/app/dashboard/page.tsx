@@ -5,6 +5,7 @@ import { useState, useMemo } from 'react'
 import { useAppState } from '@/lib/store'
 import { findCategory, getCategoryColorClass } from '@/lib/categories'
 import { AddExpenseFab } from '@/components/ui/AddExpenseFab'
+import { getLocalDate } from '@/lib/expenseConstants'
 
 interface CurrencySummary {
   currency: string
@@ -262,7 +263,7 @@ export default function DashboardPage() {
   const { expenses, categories } = useAppState()
 
   const now = new Date()
-  const todayStr = now.toISOString().split('T')[0]
+  const todayStr = getLocalDate()
   const [selectedBarDate, setSelectedBarDate] = useState(todayStr)
 
   const last7Days = useMemo(() => {
@@ -270,7 +271,7 @@ export default function DashboardPage() {
     return Array.from({ length: 7 }, (_, i) => {
     const d = new Date(today)
     d.setDate(d.getDate() - (6 - i))
-    const ds = d.toISOString().split('T')[0]
+    const ds = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
     const dayExpenses = expenses.filter((e) => e.date === ds)
     const dayNames = ['D', 'L', 'M', 'X', 'J', 'V', 'S']
     const dayName = dayNames[d.getDay()]

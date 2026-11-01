@@ -44,7 +44,7 @@ Usuario hace clic en FAB `+`, botón "Agregar gasto", o CTA en estado vacío.
    - Sistema formatea automáticamente como `X.XX` con separadores de miles
    - Input oculto con `opacity-0`, solo visible el display formateado
    - Usuario puede seleccionar preset rápido: `15.00 / 30.00 / 50.00 / 100.00` (en la moneda seleccionada)
-4. Usuario puede cambiar moneda con toggles superiores (botones redondeados) entre sus monedas activas (PROPUESTO: CU-021/CU-022; código actual: `S/` o `$`)
+4. Usuario puede cambiar moneda con toggles superiores (botones redondeados) entre sus monedas activas configuradas en Ajustes (CU-022/CU-023). Si solo tiene una moneda configurada, el toggle muestra únicamente esa opción.
 5. Usuario puede completar descripción (opcional, max ~200 chars visibles)
 6. Usuario selecciona categoría tocando un tile (icono + label) en un carrusel horizontal scrolleable entre las categorías por defecto y sus categorías personalizadas (PROPUESTO: CU-024 a CU-026). Código actual, 5 fijas:
    - 🍽️ Comida
@@ -101,7 +101,7 @@ Usuario hace clic en FAB `+`, botón "Agregar gasto", o CTA en estado vacío.
 ### Criterios de aceptación
 - Usuario puede ingresar monto con teclado numérico decimal
 - Presets rápidos (`15/30/50/100`) funcionan y muestran monto en moneda seleccionada
-- Usuario puede cambiar moneda con toggles entre sus monedas activas (código actual: `S/` o `$`)
+- Usuario puede cambiar moneda con toggles entre sus monedas activas configuradas en Ajustes (solo aparecen las monedas que el usuario ha registrado)
 - Usuario puede seleccionar categoría entre las disponibles (por defecto + personalizadas, PROPUESTO; código actual: 5 opciones) en carrusel horizontal scrolleable con icono + label
 - Usuario puede crear nueva categoría desde el botón "+ Nueva" al final del carrusel (→ CU-024)
 - Usuario puede cambiar fecha con picker nativo

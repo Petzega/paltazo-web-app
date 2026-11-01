@@ -24661,7 +24661,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/add-expense/page.tsx",
-      "source_location": "L472",
+      "source_location": "L474",
       "weight": 1.0
     },
     {
@@ -24709,7 +24709,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/add-income/page.tsx",
-      "source_location": "L451",
+      "source_location": "L453",
       "weight": 1.0
     },
     {

@@ -90,9 +90,9 @@
     "semantic_hash": ""
   },
   "src/app/dashboard/page.tsx": {
-    "mtime": 1793408020.5554612,
-    "seen": 1793417002.871537,
-    "ast_hash": "fb7ebce222da8d5908f03bb52b88c800",
+    "mtime": 1793501734.5765433,
+    "seen": 1793501759.8696847,
+    "ast_hash": "d5576ed4b9fc70da02336b5ddcbe3be1",
     "semantic_hash": ""
   },
   "src/app/login/page.tsx": {
@@ -114,9 +114,9 @@
     "semantic_hash": ""
   },
   "src/app/dashboard/add-expense/page.tsx": {
-    "mtime": 1793422178.7589443,
-    "seen": 1793422233.9824846,
-    "ast_hash": "f4a78329486bab64a9ab013b60b5ccf8",
+    "mtime": 1793501681.4425714,
+    "seen": 1793501759.8695323,
+    "ast_hash": "11f7b4907ca55d1a4aed29ee72dc85de",
     "semantic_hash": ""
   },
   "src/lib/categories.ts": {
@@ -228,9 +228,9 @@
     "semantic_hash": ""
   },
   "src/app/dashboard/expenses/page.tsx": {
-    "mtime": 1793328659.2356992,
-    "seen": 1793417002.8715298,
-    "ast_hash": "7b41f6b225ddfb0cca2120f94be889cd",
+    "mtime": 1793497886.2459524,
+    "seen": 1793497917.7165332,
+    "ast_hash": "1e80dafe06d1bce460d01bb3f2c41a0c",
     "semantic_hash": ""
   },
   "src/app/dashboard/settings/page.tsx": {
@@ -1260,9 +1260,9 @@
     "semantic_hash": ""
   },
   "docs/use-case/expenses/expenses.md": {
-    "mtime": 1793421119.9202387,
-    "seen": 1793421139.7987397,
-    "ast_hash": "8919426b389b57df837a8c34b96eb10b",
+    "mtime": 1793422525.5733206,
+    "seen": 1793422545.356636,
+    "ast_hash": "47730aaca40a9f5422d73c672c383145",
     "semantic_hash": ""
   },
   "docs/use-case/settings/settings.md": {
@@ -1392,27 +1392,39 @@
     "semantic_hash": ""
   },
   "docs/use-case/incomes/incomes.md": {
-    "mtime": 1793421127.8293755,
-    "seen": 1793421139.7987714,
-    "ast_hash": "877cb58908d533b56b083309d8c3dc5b",
+    "mtime": 1793422537.1355033,
+    "seen": 1793422545.3566804,
+    "ast_hash": "2bf6f255067f6b908816d8b6b80b159a",
     "semantic_hash": ""
   },
   "src/app/dashboard/add-income/page.tsx": {
-    "mtime": 1793422205.6993568,
-    "seen": 1793422233.98249,
-    "ast_hash": "365d2e5341624d9c05260a4b161ef1a7",
+    "mtime": 1793501701.774991,
+    "seen": 1793501759.8695364,
+    "ast_hash": "680247653d5620a4c908e9d458e8baf4",
     "semantic_hash": ""
   },
   "src/app/dashboard/incomes/page.tsx": {
-    "mtime": 1793408020.555251,
-    "seen": 1793417002.8715322,
-    "ast_hash": "ea950d95b0fb757084066ec6f635eda8",
+    "mtime": 1793497892.3560386,
+    "seen": 1793497917.7165349,
+    "ast_hash": "21b27352396b7c63af56fa93a5298fce",
     "semantic_hash": ""
   },
   "src/lib/expenseConstants.ts": {
-    "mtime": 1793419516.0703356,
-    "seen": 1793419567.8909643,
-    "ast_hash": "cd0ec92a905173fe830284a2579f84c0",
+    "mtime": 1793501661.6993165,
+    "seen": 1793501759.870352,
+    "ast_hash": "7be2aa06a6685d3c58546470ef65a745",
+    "semantic_hash": ""
+  },
+  "src/components/ui/DatePicker.tsx": {
+    "mtime": 1793500904.4434385,
+    "seen": 1793500936.3558185,
+    "ast_hash": "f50d87772dedf59c22780dea035b1340",
+    "semantic_hash": ""
+  },
+  "CACHE.md": {
+    "mtime": 1793500506.0326242,
+    "seen": 1793500936.3597164,
+    "ast_hash": "de00a1c02fdec3cb361615987c9b5757",
     "semantic_hash": ""
   }
 }

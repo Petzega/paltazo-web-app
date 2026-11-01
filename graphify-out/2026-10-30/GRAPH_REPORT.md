@@ -1,7 +1,7 @@
 # Graph Report - paltazo-web-app  (2026-10-30)
 
 ## Corpus Check
-- 241 files · ~141,575 words
+- 241 files · ~141,577 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 9 file(s) not represented in the graph (top: (none) 4, .example 2, .canvas 1)
 

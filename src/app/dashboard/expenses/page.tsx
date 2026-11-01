@@ -184,7 +184,7 @@ export default function ExpensesPage() {
                     return (
                       <tr key={expense.id} className="border-b border-surface-container-last hover:bg-surface-container-low transition-colors last:border-0">
                         <td className="px-4 py-3 text-body-md text-on-surface">
-                          {new Date(expense.date).toLocaleDateString('es-PE')}
+                          {new Date(expense.date + 'T12:00:00').toLocaleDateString('es-PE')}
                         </td>
                         <td className="px-4 py-3">
                           <span className="inline-flex items-center gap-1.5 text-label-md text-on-surface">

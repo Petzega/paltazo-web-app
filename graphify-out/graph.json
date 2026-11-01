@@ -124,7 +124,7 @@
       "file_type": "code",
       "norm_label": "currencysummary",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L9"
+      "source_location": "L10"
     },
     {
       "id": "src_lib_offline_pendingoperation",
@@ -150,7 +150,7 @@
       "file_type": "code",
       "norm_label": "balancesummary",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L19"
+      "source_location": "L20"
     },
     {
       "id": "src_components_ui_button_buttonprops",
@@ -177,6 +177,19 @@
       "norm_label": "variant",
       "source_file": "src/components/ui/Button.tsx",
       "source_location": "L3"
+    },
+    {
+      "id": "src_components_ui_datepicker_datepickerprops",
+      "label": "DatePickerProps",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 237,
+      "community_name": "DatePicker.tsx",
+      "file_type": "code",
+      "norm_label": "datepickerprops",
+      "source_file": "src/components/ui/DatePicker.tsx",
+      "source_location": "L5"
     },
     {
       "id": "src_lib_store_appstate",
@@ -339,6 +352,18 @@
       "norm_label": "addcategory()",
       "source_file": "src/lib/supabase/repositories.ts",
       "source_location": "L61"
+    },
+    {
+      "id": "src_lib_supabase_repositories_addincome",
+      "label": "addIncome()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "repositories.ts",
+      "file_type": "code",
+      "norm_label": "addincome()",
+      "source_file": "src/lib/supabase/repositories.ts",
+      "source_location": "L417"
     },
     {
       "id": "src_lib_supabase_repositories_addincomecategory",
@@ -509,6 +534,18 @@
       "source_location": "L336"
     },
     {
+      "id": "src_lib_supabase_repositories_getincomes",
+      "label": "getIncomes()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "repositories.ts",
+      "file_type": "code",
+      "norm_label": "getincomes()",
+      "source_file": "src/lib/supabase/repositories.ts",
+      "source_location": "L406"
+    },
+    {
       "id": "src_lib_supabase_repositories_removepushsubscription",
       "label": "removePushSubscription()",
       "_callable": true,
@@ -545,6 +582,18 @@
       "source_location": "L35"
     },
     {
+      "id": "src_lib_supabase_repositories_toincome",
+      "label": "toIncome()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "repositories.ts",
+      "file_type": "code",
+      "norm_label": "toincome()",
+      "source_file": "src/lib/supabase/repositories.ts",
+      "source_location": "L322"
+    },
+    {
       "id": "src_lib_supabase_repositories_toincomecategory",
       "label": "toIncomeCategory()",
       "_callable": true,
@@ -579,6 +628,18 @@
       "norm_label": "updateincomecategory()",
       "source_file": "src/lib/supabase/repositories.ts",
       "source_location": "L364"
+    },
+    {
+      "id": "src_lib_supabase_repositories_upsertbudget",
+      "label": "upsertBudget()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "repositories.ts",
+      "file_type": "code",
+      "norm_label": "upsertbudget()",
+      "source_file": "src/lib/supabase/repositories.ts",
+      "source_location": "L185"
     },
     {
       "id": "src_lib_offline_addoperation",
@@ -653,16 +714,112 @@
       "source_location": "L63"
     },
     {
-      "id": "src_lib_supabase_repositories_upsertbudget",
-      "label": "upsertBudget()",
+      "id": "src_lib_supabase_repositories_updateincome",
+      "label": "updateIncome()",
       "_callable": true,
       "_origin": "ast",
-      "community": 199,
-      "community_name": "Casos de Uso: Configuraci\u00f3n (Settings)",
+      "community": 212,
+      "community_name": "CU-028: Editar ingreso",
       "file_type": "code",
-      "norm_label": "upsertbudget()",
+      "norm_label": "updateincome()",
       "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L185"
+      "source_location": "L438"
+    },
+    {
+      "id": "src_app_dashboard_add_expense_page_addexpensepage",
+      "label": "AddExpensePage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 221,
+      "community_name": "add-expense/page.tsx",
+      "file_type": "code",
+      "norm_label": "addexpensepage()",
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "source_location": "L10"
+    },
+    {
+      "id": "src_app_dashboard_add_income_page_addincomepage",
+      "label": "AddIncomePage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 221,
+      "community_name": "add-expense/page.tsx",
+      "file_type": "code",
+      "norm_label": "addincomepage()",
+      "source_file": "src/app/dashboard/add-income/page.tsx",
+      "source_location": "L10"
+    },
+    {
+      "id": "src_app_dashboard_incomes_page_incomespage",
+      "label": "IncomesPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 221,
+      "community_name": "add-expense/page.tsx",
+      "file_type": "code",
+      "norm_label": "incomespage()",
+      "source_file": "src/app/dashboard/incomes/page.tsx",
+      "source_location": "L9"
+    },
+    {
+      "id": "src_app_dashboard_page_dashboardpage",
+      "label": "DashboardPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 221,
+      "community_name": "add-expense/page.tsx",
+      "file_type": "code",
+      "norm_label": "dashboardpage()",
+      "source_file": "src/app/dashboard/page.tsx",
+      "source_location": "L261"
+    },
+    {
+      "id": "src_lib_categories_findcategory",
+      "label": "findCategory()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 221,
+      "community_name": "add-expense/page.tsx",
+      "file_type": "code",
+      "norm_label": "findcategory()",
+      "source_file": "src/lib/categories.ts",
+      "source_location": "L11"
+    },
+    {
+      "id": "src_lib_categories_getcategorycolorclass",
+      "label": "getCategoryColorClass()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 221,
+      "community_name": "add-expense/page.tsx",
+      "file_type": "code",
+      "norm_label": "getcategorycolorclass()",
+      "source_file": "src/lib/categories.ts",
+      "source_location": "L6"
+    },
+    {
+      "id": "src_lib_expenseconstants_formatamount",
+      "label": "formatAmount()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 221,
+      "community_name": "add-expense/page.tsx",
+      "file_type": "code",
+      "norm_label": "formatamount()",
+      "source_file": "src/lib/expenseConstants.ts",
+      "source_location": "L6"
+    },
+    {
+      "id": "src_lib_expenseconstants_getlocaldate",
+      "label": "getLocalDate()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 221,
+      "community_name": "add-expense/page.tsx",
+      "file_type": "code",
+      "norm_label": "getlocaldate()",
+      "source_file": "src/lib/expenseConstants.ts",
+      "source_location": "L1"
     },
     {
       "id": "src_app_layout_rootlayout",
@@ -701,100 +858,40 @@
       "source_location": "L5"
     },
     {
-      "id": "src_app_dashboard_add_expense_page_addexpensepage",
-      "label": "AddExpensePage()",
+      "id": "src_app_dashboard_layout_dashboardlayout",
+      "label": "DashboardLayout()",
       "_callable": true,
       "_origin": "ast",
       "community": 223,
-      "community_name": "getCategoryColorClass",
+      "community_name": "dashboard/layout.tsx",
       "file_type": "code",
-      "norm_label": "addexpensepage()",
-      "source_file": "src/app/dashboard/add-expense/page.tsx",
-      "source_location": "L14"
+      "norm_label": "dashboardlayout()",
+      "source_file": "src/app/dashboard/layout.tsx",
+      "source_location": "L5"
     },
     {
-      "id": "src_app_dashboard_add_income_page_addincomepage",
-      "label": "AddIncomePage()",
+      "id": "src_components_ui_bottomnav_bottomnav",
+      "label": "BottomNav()",
       "_callable": true,
       "_origin": "ast",
       "community": 223,
-      "community_name": "getCategoryColorClass",
+      "community_name": "dashboard/layout.tsx",
       "file_type": "code",
-      "norm_label": "addincomepage()",
-      "source_file": "src/app/dashboard/add-income/page.tsx",
-      "source_location": "L14"
-    },
-    {
-      "id": "src_app_dashboard_expenses_page_expensespage",
-      "label": "ExpensesPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 223,
-      "community_name": "getCategoryColorClass",
-      "file_type": "code",
-      "norm_label": "expensespage()",
-      "source_file": "src/app/dashboard/expenses/page.tsx",
-      "source_location": "L10"
-    },
-    {
-      "id": "src_app_dashboard_incomes_page_incomespage",
-      "label": "IncomesPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 223,
-      "community_name": "getCategoryColorClass",
-      "file_type": "code",
-      "norm_label": "incomespage()",
-      "source_file": "src/app/dashboard/incomes/page.tsx",
-      "source_location": "L9"
-    },
-    {
-      "id": "src_app_dashboard_page_dashboardpage",
-      "label": "DashboardPage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 223,
-      "community_name": "getCategoryColorClass",
-      "file_type": "code",
-      "norm_label": "dashboardpage()",
-      "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L260"
-    },
-    {
-      "id": "src_lib_categories_findcategory",
-      "label": "findCategory()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 223,
-      "community_name": "getCategoryColorClass",
-      "file_type": "code",
-      "norm_label": "findcategory()",
-      "source_file": "src/lib/categories.ts",
+      "norm_label": "bottomnav()",
+      "source_file": "src/components/ui/BottomNav.tsx",
       "source_location": "L11"
     },
     {
-      "id": "src_lib_categories_getcategorycolorclass",
-      "label": "getCategoryColorClass()",
+      "id": "src_components_ui_sidebar_sidebar",
+      "label": "Sidebar()",
       "_callable": true,
       "_origin": "ast",
       "community": 223,
-      "community_name": "getCategoryColorClass",
+      "community_name": "dashboard/layout.tsx",
       "file_type": "code",
-      "norm_label": "getcategorycolorclass()",
-      "source_file": "src/lib/categories.ts",
-      "source_location": "L6"
-    },
-    {
-      "id": "src_lib_expenseconstants_formatamount",
-      "label": "formatAmount()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 223,
-      "community_name": "getCategoryColorClass",
-      "file_type": "code",
-      "norm_label": "formatamount()",
-      "source_file": "src/lib/expenseConstants.ts",
-      "source_location": "L1"
+      "norm_label": "sidebar()",
+      "source_file": "src/components/ui/Sidebar.tsx",
+      "source_location": "L12"
     },
     {
       "id": "src_app_login_page_loginpage",
@@ -905,6 +1002,30 @@
       "source_location": "L8"
     },
     {
+      "id": "src_app_dashboard_expenses_page_expensespage",
+      "label": "ExpensesPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 227,
+      "community_name": "useAppState",
+      "file_type": "code",
+      "norm_label": "expensespage()",
+      "source_file": "src/app/dashboard/expenses/page.tsx",
+      "source_location": "L10"
+    },
+    {
+      "id": "src_app_dashboard_onboardingguard_onboardingguard",
+      "label": "OnboardingGuard()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 227,
+      "community_name": "useAppState",
+      "file_type": "code",
+      "norm_label": "onboardingguard()",
+      "source_file": "src/app/dashboard/OnboardingGuard.tsx",
+      "source_location": "L7"
+    },
+    {
       "id": "src_app_dashboard_page_balancesection",
       "label": "BalanceSection()",
       "_callable": true,
@@ -914,7 +1035,7 @@
       "file_type": "code",
       "norm_label": "balancesection()",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L26"
+      "source_location": "L27"
     },
     {
       "id": "src_app_onboarding_page_onboardingpage",
@@ -1001,100 +1122,52 @@
       "source_location": "L515"
     },
     {
-      "id": "src_lib_supabase_repositories_addincome",
-      "label": "addIncome()",
+      "id": "src_components_ui_datepicker_datepicker",
+      "label": "DatePicker()",
       "_callable": true,
       "_origin": "ast",
-      "community": 238,
-      "community_name": "store.tsx",
+      "community": 237,
+      "community_name": "DatePicker.tsx",
       "file_type": "code",
-      "norm_label": "addincome()",
-      "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L417"
+      "norm_label": "datepicker()",
+      "source_file": "src/components/ui/DatePicker.tsx",
+      "source_location": "L32"
     },
     {
-      "id": "src_lib_supabase_repositories_getincomes",
-      "label": "getIncomes()",
+      "id": "src_components_ui_datepicker_formatday",
+      "label": "formatDay()",
       "_callable": true,
       "_origin": "ast",
-      "community": 238,
-      "community_name": "store.tsx",
+      "community": 237,
+      "community_name": "DatePicker.tsx",
       "file_type": "code",
-      "norm_label": "getincomes()",
-      "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L406"
+      "norm_label": "formatday()",
+      "source_file": "src/components/ui/DatePicker.tsx",
+      "source_location": "L23"
     },
     {
-      "id": "src_lib_supabase_repositories_toincome",
-      "label": "toIncome()",
+      "id": "src_components_ui_datepicker_getlocaltoday",
+      "label": "getLocalToday()",
       "_callable": true,
       "_origin": "ast",
-      "community": 238,
-      "community_name": "store.tsx",
+      "community": 237,
+      "community_name": "DatePicker.tsx",
       "file_type": "code",
-      "norm_label": "toincome()",
-      "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L322"
+      "norm_label": "getlocaltoday()",
+      "source_file": "src/components/ui/DatePicker.tsx",
+      "source_location": "L27"
     },
     {
-      "id": "src_lib_supabase_repositories_updateincome",
-      "label": "updateIncome()",
+      "id": "src_components_ui_datepicker_parsedate",
+      "label": "parseDate()",
       "_callable": true,
       "_origin": "ast",
-      "community": 238,
-      "community_name": "store.tsx",
+      "community": 237,
+      "community_name": "DatePicker.tsx",
       "file_type": "code",
-      "norm_label": "updateincome()",
-      "source_file": "src/lib/supabase/repositories.ts",
-      "source_location": "L438"
-    },
-    {
-      "id": "src_app_dashboard_layout_dashboardlayout",
-      "label": "DashboardLayout()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 239,
-      "community_name": "dashboard/layout.tsx",
-      "file_type": "code",
-      "norm_label": "dashboardlayout()",
-      "source_file": "src/app/dashboard/layout.tsx",
-      "source_location": "L5"
-    },
-    {
-      "id": "src_app_dashboard_onboardingguard_onboardingguard",
-      "label": "OnboardingGuard()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 239,
-      "community_name": "dashboard/layout.tsx",
-      "file_type": "code",
-      "norm_label": "onboardingguard()",
-      "source_file": "src/app/dashboard/OnboardingGuard.tsx",
-      "source_location": "L7"
-    },
-    {
-      "id": "src_components_ui_bottomnav_bottomnav",
-      "label": "BottomNav()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 239,
-      "community_name": "dashboard/layout.tsx",
-      "file_type": "code",
-      "norm_label": "bottomnav()",
-      "source_file": "src/components/ui/BottomNav.tsx",
-      "source_location": "L11"
-    },
-    {
-      "id": "src_components_ui_sidebar_sidebar",
-      "label": "Sidebar()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 239,
-      "community_name": "dashboard/layout.tsx",
-      "file_type": "code",
-      "norm_label": "sidebar()",
-      "source_file": "src/components/ui/Sidebar.tsx",
-      "source_location": "L12"
+      "norm_label": "parsedate()",
+      "source_file": "src/components/ui/DatePicker.tsx",
+      "source_location": "L18"
     },
     {
       "id": "src_app_api_notifications_subscribe_route_post",
@@ -4400,6 +4473,18 @@
       "source_location": "L348"
     },
     {
+      "id": "bitacora_auditor\u00eda_de_c\u00f3digo_actualizaci\u00f3n_2026_10_16",
+      "label": "Auditor\u00eda de c\u00f3digo \u2014 Actualizaci\u00f3n 2026-10-16",
+      "_origin": "ast",
+      "community": 16,
+      "community_name": "Paltazo \u2014 Bit\u00e1cora de Avance",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "auditoria de codigo \u2014 actualizacion 2026-10-16",
+      "source_file": "BITACORA.md",
+      "source_location": "L378"
+    },
+    {
       "id": "bitacora_avances_2026_10_17_18",
       "label": "Avances 2026-10-17/18",
       "_origin": "ast",
@@ -5357,18 +5442,6 @@
       "norm_label": "posibles soluciones",
       "source_file": "docs/bugs/BUG-002_setup_redirect_flash.md",
       "source_location": "L85"
-    },
-    {
-      "id": "docs_bugs_bug_002_setup_redirect_flash_resoluci\u00f3n",
-      "label": "Resoluci\u00f3n",
-      "_origin": "ast",
-      "community": 174,
-      "community_name": "BUG-002: Flash de redirect a /setup tras completar onboarding y recargar p\u00e1gina",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "resolucion",
-      "source_file": "docs/bugs/BUG-002_setup_redirect_flash.md",
-      "source_location": "L115"
     },
     {
       "id": "docs_bugs_bug_002_setup_redirect_flash_resumen",
@@ -7686,6 +7759,42 @@
       "source_location": "L1"
     },
     {
+      "id": "docs_architecture_architecture_spec_4_matriz_de_deuda_t\u00e9cnica_y_plan_de_implementaci\u00f3n_por_fases",
+      "label": "4. Matriz de Deuda T\u00e9cnica y Plan de Implementaci\u00f3n por Fases",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "repositories.ts",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "4. matriz de deuda tecnica y plan de implementacion por fases",
+      "source_file": "docs/architecture/ARCHITECTURE_SPEC.md",
+      "source_location": "L371"
+    },
+    {
+      "id": "docs_use_case_incomes_incomes_flujo_principal",
+      "label": "Flujo principal",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "repositories.ts",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "flujo principal",
+      "source_file": "docs/use-case/incomes/incomes.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "docs_use_case_settings_settings_notas_t\u00e9cnicas",
+      "label": "Notas t\u00e9cnicas",
+      "_origin": "ast",
+      "community": 19,
+      "community_name": "repositories.ts",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "notas tecnicas",
+      "source_file": "docs/use-case/settings/settings.md",
+      "source_location": "L330"
+    },
+    {
       "id": "pendientes_0_resumen_ejecutivo",
       "label": "0. Resumen ejecutivo",
       "_origin": "ast",
@@ -8418,184 +8527,172 @@
       "source_location": "L166"
     },
     {
-      "id": "docs_use_case_categories_categories_actor_principal_105",
+      "id": "docs_use_case_onboarding_onboarding_actor_principal",
       "label": "Actor principal",
       "_origin": "ast",
       "community": 194,
-      "community_name": "CU-025: Editar categor\u00eda",
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "actor principal",
-      "source_file": "docs/use-case/categories/categories.md",
-      "source_location": "L105"
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L16"
     },
     {
-      "id": "docs_use_case_categories_categories_actores_secundarios_108",
-      "label": "Actores secundarios",
-      "_origin": "ast",
-      "community": 194,
-      "community_name": "CU-025: Editar categor\u00eda",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "actores secundarios",
-      "source_file": "docs/use-case/categories/categories.md",
-      "source_location": "L108"
-    },
-    {
-      "id": "docs_use_case_categories_categories_alcance_102",
+      "id": "docs_use_case_onboarding_onboarding_alcance",
       "label": "Alcance",
       "_origin": "ast",
       "community": 194,
-      "community_name": "CU-025: Editar categor\u00eda",
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "alcance",
-      "source_file": "docs/use-case/categories/categories.md",
-      "source_location": "L102"
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L13"
     },
     {
-      "id": "docs_use_case_categories_categories_criterios_de_aceptaci\u00f3n_144",
+      "id": "docs_use_case_onboarding_onboarding_criterios_de_aceptaci\u00f3n",
       "label": "Criterios de aceptaci\u00f3n",
       "_origin": "ast",
       "community": 194,
-      "community_name": "CU-025: Editar categor\u00eda",
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "criterios de aceptacion",
-      "source_file": "docs/use-case/categories/categories.md",
-      "source_location": "L144"
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L62"
     },
     {
-      "id": "docs_use_case_categories_categories_cu_025_editar_categor\u00eda",
-      "label": "CU-025: Editar categor\u00eda",
+      "id": "docs_use_case_onboarding_onboarding_cu_018_visualizar_pantalla_de_onboarding",
+      "label": "CU-018: Visualizar pantalla de onboarding",
       "_origin": "ast",
       "community": 194,
-      "community_name": "CU-025: Editar categor\u00eda",
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "cu-025: editar categoria",
-      "source_file": "docs/use-case/categories/categories.md",
-      "source_location": "L97"
+      "norm_label": "cu-018: visualizar pantalla de onboarding",
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L8"
     },
     {
-      "id": "docs_use_case_categories_categories_disparador_119",
+      "id": "docs_use_case_onboarding_onboarding_disparador",
       "label": "Disparador",
       "_origin": "ast",
       "community": 194,
-      "community_name": "CU-025: Editar categor\u00eda",
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "disparador",
-      "source_file": "docs/use-case/categories/categories.md",
-      "source_location": "L119"
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L26"
     },
     {
-      "id": "docs_use_case_categories_categories_excepciones_132",
+      "id": "docs_use_case_onboarding_onboarding_excepciones",
       "label": "Excepciones",
       "_origin": "ast",
       "community": 194,
-      "community_name": "CU-025: Editar categor\u00eda",
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "excepciones",
-      "source_file": "docs/use-case/categories/categories.md",
-      "source_location": "L132"
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L50"
     },
     {
-      "id": "docs_use_case_categories_categories_flujo_principal_122",
+      "id": "docs_use_case_onboarding_onboarding_flujo_principal",
       "label": "Flujo principal",
       "_origin": "ast",
       "community": 194,
-      "community_name": "CU-025: Editar categor\u00eda",
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "flujo principal",
-      "source_file": "docs/use-case/categories/categories.md",
-      "source_location": "L122"
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L29"
     },
     {
-      "id": "docs_use_case_categories_categories_flujos_alternativos_128",
+      "id": "docs_use_case_onboarding_onboarding_flujos_alternativos",
       "label": "Flujos alternativos",
       "_origin": "ast",
       "community": 194,
-      "community_name": "CU-025: Editar categor\u00eda",
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "flujos alternativos",
-      "source_file": "docs/use-case/categories/categories.md",
-      "source_location": "L128"
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L43"
     },
     {
-      "id": "docs_use_case_categories_categories_fuente_111",
+      "id": "docs_use_case_onboarding_onboarding_fuente",
       "label": "Fuente",
       "_origin": "ast",
       "community": 194,
-      "community_name": "CU-025: Editar categor\u00eda",
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "fuente",
-      "source_file": "docs/use-case/categories/categories.md",
-      "source_location": "L111"
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L19"
     },
     {
-      "id": "docs_use_case_categories_categories_objetivo_99",
+      "id": "docs_use_case_onboarding_onboarding_objetivo",
       "label": "Objetivo",
       "_origin": "ast",
       "community": 194,
-      "community_name": "CU-025: Editar categor\u00eda",
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "objetivo",
-      "source_file": "docs/use-case/categories/categories.md",
-      "source_location": "L99"
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L10"
     },
     {
-      "id": "docs_use_case_categories_categories_postcondiciones_135",
+      "id": "docs_use_case_onboarding_onboarding_postcondiciones",
       "label": "Postcondiciones",
       "_origin": "ast",
       "community": 194,
-      "community_name": "CU-025: Editar categor\u00eda",
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "postcondiciones",
-      "source_file": "docs/use-case/categories/categories.md",
-      "source_location": "L135"
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L53"
     },
     {
-      "id": "docs_use_case_categories_categories_precondiciones_115",
+      "id": "docs_use_case_onboarding_onboarding_precondiciones",
       "label": "Precondiciones",
       "_origin": "ast",
       "community": 194,
-      "community_name": "CU-025: Editar categor\u00eda",
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "precondiciones",
-      "source_file": "docs/use-case/categories/categories.md",
-      "source_location": "L115"
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L22"
     },
     {
-      "id": "docs_use_case_categories_categories_preguntas_pendientes_150",
+      "id": "docs_use_case_onboarding_onboarding_preguntas_pendientes",
       "label": "Preguntas pendientes",
       "_origin": "ast",
       "community": 194,
-      "community_name": "CU-025: Editar categor\u00eda",
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "preguntas pendientes",
-      "source_file": "docs/use-case/categories/categories.md",
-      "source_location": "L150"
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L69"
     },
     {
-      "id": "docs_use_case_categories_categories_reglas_de_negocio_139",
+      "id": "docs_use_case_onboarding_onboarding_reglas_de_negocio",
       "label": "Reglas de negocio",
       "_origin": "ast",
       "community": 194,
-      "community_name": "CU-025: Editar categor\u00eda",
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "reglas de negocio",
-      "source_file": "docs/use-case/categories/categories.md",
-      "source_location": "L139"
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L57"
     },
     {
       "id": "docs_use_case_categories_categories_actor_principal",
@@ -9057,18 +9154,6 @@
       "source_location": "L1"
     },
     {
-      "id": "docs_use_case_settings_settings_notas_t\u00e9cnicas",
-      "label": "Notas t\u00e9cnicas",
-      "_origin": "ast",
-      "community": 199,
-      "community_name": "Casos de Uso: Configuraci\u00f3n (Settings)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "notas tecnicas",
-      "source_file": "docs/use-case/settings/settings.md",
-      "source_location": "L330"
-    },
-    {
       "id": "agents_skills_react_best_practices_agents_6_10_use_react_dom_resource_hints",
       "label": "6.10 Use React DOM Resource Hints",
       "_origin": "ast",
@@ -9391,18 +9476,6 @@
       "norm_label": "produccion (supabase cloud)",
       "source_file": "DEVELOPMENT.md",
       "source_location": "L47"
-    },
-    {
-      "id": "development_protecci\u00f3n_de_rutas",
-      "label": "Protecci\u00f3n de rutas",
-      "_origin": "ast",
-      "community": 20,
-      "community_name": "Paltazo Web App \u2014 Gu\u00eda de Desarrollo",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "proteccion de rutas",
-      "source_file": "DEVELOPMENT.md",
-      "source_location": "L70"
     },
     {
       "id": "development_pwa",
@@ -11345,6 +11418,18 @@
       "source_location": "L136"
     },
     {
+      "id": "docs_use_case_incomes_incomes_flujos_alternativos_147",
+      "label": "Flujos alternativos",
+      "_origin": "ast",
+      "community": 212,
+      "community_name": "CU-028: Editar ingreso",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "flujos alternativos",
+      "source_file": "docs/use-case/incomes/incomes.md",
+      "source_location": "L147"
+    },
+    {
       "id": "docs_use_case_incomes_incomes_fuente_125",
       "label": "Fuente",
       "_origin": "ast",
@@ -12137,10 +12222,190 @@
       "source_location": "L92"
     },
     {
-      "id": "docs_use_case_categories_categories_actor_principal_163",
+      "id": "docs_use_case_categories_categories_actor_principal_105",
       "label": "Actor principal",
       "_origin": "ast",
       "community": 218,
+      "community_name": "CU-025: Editar categor\u00eda",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "actor principal",
+      "source_file": "docs/use-case/categories/categories.md",
+      "source_location": "L105"
+    },
+    {
+      "id": "docs_use_case_categories_categories_actores_secundarios_108",
+      "label": "Actores secundarios",
+      "_origin": "ast",
+      "community": 218,
+      "community_name": "CU-025: Editar categor\u00eda",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "actores secundarios",
+      "source_file": "docs/use-case/categories/categories.md",
+      "source_location": "L108"
+    },
+    {
+      "id": "docs_use_case_categories_categories_alcance_102",
+      "label": "Alcance",
+      "_origin": "ast",
+      "community": 218,
+      "community_name": "CU-025: Editar categor\u00eda",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "alcance",
+      "source_file": "docs/use-case/categories/categories.md",
+      "source_location": "L102"
+    },
+    {
+      "id": "docs_use_case_categories_categories_criterios_de_aceptaci\u00f3n_144",
+      "label": "Criterios de aceptaci\u00f3n",
+      "_origin": "ast",
+      "community": 218,
+      "community_name": "CU-025: Editar categor\u00eda",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "criterios de aceptacion",
+      "source_file": "docs/use-case/categories/categories.md",
+      "source_location": "L144"
+    },
+    {
+      "id": "docs_use_case_categories_categories_cu_025_editar_categor\u00eda",
+      "label": "CU-025: Editar categor\u00eda",
+      "_origin": "ast",
+      "community": 218,
+      "community_name": "CU-025: Editar categor\u00eda",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "cu-025: editar categoria",
+      "source_file": "docs/use-case/categories/categories.md",
+      "source_location": "L97"
+    },
+    {
+      "id": "docs_use_case_categories_categories_disparador_119",
+      "label": "Disparador",
+      "_origin": "ast",
+      "community": 218,
+      "community_name": "CU-025: Editar categor\u00eda",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "disparador",
+      "source_file": "docs/use-case/categories/categories.md",
+      "source_location": "L119"
+    },
+    {
+      "id": "docs_use_case_categories_categories_excepciones_132",
+      "label": "Excepciones",
+      "_origin": "ast",
+      "community": 218,
+      "community_name": "CU-025: Editar categor\u00eda",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "excepciones",
+      "source_file": "docs/use-case/categories/categories.md",
+      "source_location": "L132"
+    },
+    {
+      "id": "docs_use_case_categories_categories_flujo_principal_122",
+      "label": "Flujo principal",
+      "_origin": "ast",
+      "community": 218,
+      "community_name": "CU-025: Editar categor\u00eda",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "flujo principal",
+      "source_file": "docs/use-case/categories/categories.md",
+      "source_location": "L122"
+    },
+    {
+      "id": "docs_use_case_categories_categories_flujos_alternativos_128",
+      "label": "Flujos alternativos",
+      "_origin": "ast",
+      "community": 218,
+      "community_name": "CU-025: Editar categor\u00eda",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "flujos alternativos",
+      "source_file": "docs/use-case/categories/categories.md",
+      "source_location": "L128"
+    },
+    {
+      "id": "docs_use_case_categories_categories_fuente_111",
+      "label": "Fuente",
+      "_origin": "ast",
+      "community": 218,
+      "community_name": "CU-025: Editar categor\u00eda",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "fuente",
+      "source_file": "docs/use-case/categories/categories.md",
+      "source_location": "L111"
+    },
+    {
+      "id": "docs_use_case_categories_categories_objetivo_99",
+      "label": "Objetivo",
+      "_origin": "ast",
+      "community": 218,
+      "community_name": "CU-025: Editar categor\u00eda",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "objetivo",
+      "source_file": "docs/use-case/categories/categories.md",
+      "source_location": "L99"
+    },
+    {
+      "id": "docs_use_case_categories_categories_postcondiciones_135",
+      "label": "Postcondiciones",
+      "_origin": "ast",
+      "community": 218,
+      "community_name": "CU-025: Editar categor\u00eda",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "postcondiciones",
+      "source_file": "docs/use-case/categories/categories.md",
+      "source_location": "L135"
+    },
+    {
+      "id": "docs_use_case_categories_categories_precondiciones_115",
+      "label": "Precondiciones",
+      "_origin": "ast",
+      "community": 218,
+      "community_name": "CU-025: Editar categor\u00eda",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "precondiciones",
+      "source_file": "docs/use-case/categories/categories.md",
+      "source_location": "L115"
+    },
+    {
+      "id": "docs_use_case_categories_categories_preguntas_pendientes_150",
+      "label": "Preguntas pendientes",
+      "_origin": "ast",
+      "community": 218,
+      "community_name": "CU-025: Editar categor\u00eda",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "preguntas pendientes",
+      "source_file": "docs/use-case/categories/categories.md",
+      "source_location": "L150"
+    },
+    {
+      "id": "docs_use_case_categories_categories_reglas_de_negocio_139",
+      "label": "Reglas de negocio",
+      "_origin": "ast",
+      "community": 218,
+      "community_name": "CU-025: Editar categor\u00eda",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "reglas de negocio",
+      "source_file": "docs/use-case/categories/categories.md",
+      "source_location": "L139"
+    },
+    {
+      "id": "docs_use_case_categories_categories_actor_principal_163",
+      "label": "Actor principal",
+      "_origin": "ast",
+      "community": 219,
       "community_name": "CU-026: Eliminar categor\u00eda",
       "file_type": "document",
       "node_kind": "heading",
@@ -12152,7 +12417,7 @@
       "id": "docs_use_case_categories_categories_actores_secundarios_166",
       "label": "Actores secundarios",
       "_origin": "ast",
-      "community": 218,
+      "community": 219,
       "community_name": "CU-026: Eliminar categor\u00eda",
       "file_type": "document",
       "node_kind": "heading",
@@ -12164,7 +12429,7 @@
       "id": "docs_use_case_categories_categories_alcance_160",
       "label": "Alcance",
       "_origin": "ast",
-      "community": 218,
+      "community": 219,
       "community_name": "CU-026: Eliminar categor\u00eda",
       "file_type": "document",
       "node_kind": "heading",
@@ -12176,7 +12441,7 @@
       "id": "docs_use_case_categories_categories_criterios_de_aceptaci\u00f3n_204",
       "label": "Criterios de aceptaci\u00f3n",
       "_origin": "ast",
-      "community": 218,
+      "community": 219,
       "community_name": "CU-026: Eliminar categor\u00eda",
       "file_type": "document",
       "node_kind": "heading",
@@ -12188,7 +12453,7 @@
       "id": "docs_use_case_categories_categories_cu_026_eliminar_categor\u00eda",
       "label": "CU-026: Eliminar categor\u00eda",
       "_origin": "ast",
-      "community": 218,
+      "community": 219,
       "community_name": "CU-026: Eliminar categor\u00eda",
       "file_type": "document",
       "node_kind": "heading",
@@ -12200,7 +12465,7 @@
       "id": "docs_use_case_categories_categories_disparador_177",
       "label": "Disparador",
       "_origin": "ast",
-      "community": 218,
+      "community": 219,
       "community_name": "CU-026: Eliminar categor\u00eda",
       "file_type": "document",
       "node_kind": "heading",
@@ -12212,7 +12477,7 @@
       "id": "docs_use_case_categories_categories_excepciones_191",
       "label": "Excepciones",
       "_origin": "ast",
-      "community": 218,
+      "community": 219,
       "community_name": "CU-026: Eliminar categor\u00eda",
       "file_type": "document",
       "node_kind": "heading",
@@ -12224,7 +12489,7 @@
       "id": "docs_use_case_categories_categories_flujo_principal_180",
       "label": "Flujo principal",
       "_origin": "ast",
-      "community": 218,
+      "community": 219,
       "community_name": "CU-026: Eliminar categor\u00eda",
       "file_type": "document",
       "node_kind": "heading",
@@ -12236,7 +12501,7 @@
       "id": "docs_use_case_categories_categories_flujos_alternativos_187",
       "label": "Flujos alternativos",
       "_origin": "ast",
-      "community": 218,
+      "community": 219,
       "community_name": "CU-026: Eliminar categor\u00eda",
       "file_type": "document",
       "node_kind": "heading",
@@ -12248,7 +12513,7 @@
       "id": "docs_use_case_categories_categories_fuente_169",
       "label": "Fuente",
       "_origin": "ast",
-      "community": 218,
+      "community": 219,
       "community_name": "CU-026: Eliminar categor\u00eda",
       "file_type": "document",
       "node_kind": "heading",
@@ -12260,7 +12525,7 @@
       "id": "docs_use_case_categories_categories_objetivo_157",
       "label": "Objetivo",
       "_origin": "ast",
-      "community": 218,
+      "community": 219,
       "community_name": "CU-026: Eliminar categor\u00eda",
       "file_type": "document",
       "node_kind": "heading",
@@ -12272,7 +12537,7 @@
       "id": "docs_use_case_categories_categories_postcondiciones_194",
       "label": "Postcondiciones",
       "_origin": "ast",
-      "community": 218,
+      "community": 219,
       "community_name": "CU-026: Eliminar categor\u00eda",
       "file_type": "document",
       "node_kind": "heading",
@@ -12284,7 +12549,7 @@
       "id": "docs_use_case_categories_categories_precondiciones_173",
       "label": "Precondiciones",
       "_origin": "ast",
-      "community": 218,
+      "community": 219,
       "community_name": "CU-026: Eliminar categor\u00eda",
       "file_type": "document",
       "node_kind": "heading",
@@ -12296,7 +12561,7 @@
       "id": "docs_use_case_categories_categories_preguntas_pendientes_211",
       "label": "Preguntas pendientes",
       "_origin": "ast",
-      "community": 218,
+      "community": 219,
       "community_name": "CU-026: Eliminar categor\u00eda",
       "file_type": "document",
       "node_kind": "heading",
@@ -12308,73 +12573,13 @@
       "id": "docs_use_case_categories_categories_reglas_de_negocio_198",
       "label": "Reglas de negocio",
       "_origin": "ast",
-      "community": 218,
+      "community": 219,
       "community_name": "CU-026: Eliminar categor\u00eda",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "reglas de negocio",
       "source_file": "docs/use-case/categories/categories.md",
       "source_location": "L198"
-    },
-    {
-      "id": "docs_use_case_readme_casos_de_uso_paltazo",
-      "label": "Casos de Uso \u2014 Paltazo",
-      "_origin": "ast",
-      "community": 219,
-      "community_name": "Casos de Uso \u2014 Paltazo",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "casos de uso \u2014 paltazo",
-      "source_file": "docs/use-case/README.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_use_case_readme_convenciones",
-      "label": "Convenciones",
-      "_origin": "ast",
-      "community": 219,
-      "community_name": "Casos de Uso \u2014 Paltazo",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "convenciones",
-      "source_file": "docs/use-case/README.md",
-      "source_location": "L26"
-    },
-    {
-      "id": "docs_use_case_readme_m\u00f3dulos",
-      "label": "M\u00f3dulos",
-      "_origin": "ast",
-      "community": 219,
-      "community_name": "Casos de Uso \u2014 Paltazo",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "modulos",
-      "source_file": "docs/use-case/README.md",
-      "source_location": "L14"
-    },
-    {
-      "id": "docs_use_case_readme_pendientes",
-      "label": "Pendientes",
-      "_origin": "ast",
-      "community": 219,
-      "community_name": "Casos de Uso \u2014 Paltazo",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "pendientes",
-      "source_file": "docs/use-case/README.md",
-      "source_location": "L10"
-    },
-    {
-      "id": "docs_use_case_readme_visualizaci\u00f3n",
-      "label": "Visualizaci\u00f3n",
-      "_origin": "ast",
-      "community": 219,
-      "community_name": "Casos de Uso \u2014 Paltazo",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "visualizacion",
-      "source_file": "docs/use-case/README.md",
-      "source_location": "L6"
     },
     {
       "id": "agents_skills_nodejs_best_practices_skill",
@@ -13032,194 +13237,92 @@
       "source_location": "L242"
     },
     {
-      "id": "docs_use_case_onboarding_onboarding_actor_principal",
-      "label": "Actor principal",
+      "id": "src_app_dashboard_add_expense_page",
+      "label": "add-expense/page.tsx",
       "_origin": "ast",
       "community": 221,
-      "community_name": "CU-018: Visualizar pantalla de onboarding",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "actor principal",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L16"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_alcance",
-      "label": "Alcance",
-      "_origin": "ast",
-      "community": 221,
-      "community_name": "CU-018: Visualizar pantalla de onboarding",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "alcance",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L13"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_criterios_de_aceptaci\u00f3n",
-      "label": "Criterios de aceptaci\u00f3n",
-      "_origin": "ast",
-      "community": 221,
-      "community_name": "CU-018: Visualizar pantalla de onboarding",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "criterios de aceptacion",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L62"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_cu_018_visualizar_pantalla_de_onboarding",
-      "label": "CU-018: Visualizar pantalla de onboarding",
-      "_origin": "ast",
-      "community": 221,
-      "community_name": "CU-018: Visualizar pantalla de onboarding",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "cu-018: visualizar pantalla de onboarding",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L8"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_disparador",
-      "label": "Disparador",
-      "_origin": "ast",
-      "community": 221,
-      "community_name": "CU-018: Visualizar pantalla de onboarding",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "disparador",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L26"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_excepciones",
-      "label": "Excepciones",
-      "_origin": "ast",
-      "community": 221,
-      "community_name": "CU-018: Visualizar pantalla de onboarding",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "excepciones",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L50"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_flujo_principal",
-      "label": "Flujo principal",
-      "_origin": "ast",
-      "community": 221,
-      "community_name": "CU-018: Visualizar pantalla de onboarding",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "flujo principal",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L29"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_flujos_alternativos",
-      "label": "Flujos alternativos",
-      "_origin": "ast",
-      "community": 221,
-      "community_name": "CU-018: Visualizar pantalla de onboarding",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "flujos alternativos",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L43"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_fuente",
-      "label": "Fuente",
-      "_origin": "ast",
-      "community": 221,
-      "community_name": "CU-018: Visualizar pantalla de onboarding",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "fuente",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L19"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_objetivo",
-      "label": "Objetivo",
-      "_origin": "ast",
-      "community": 221,
-      "community_name": "CU-018: Visualizar pantalla de onboarding",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "objetivo",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L10"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_postcondiciones",
-      "label": "Postcondiciones",
-      "_origin": "ast",
-      "community": 221,
-      "community_name": "CU-018: Visualizar pantalla de onboarding",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "postcondiciones",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L53"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_precondiciones",
-      "label": "Precondiciones",
-      "_origin": "ast",
-      "community": 221,
-      "community_name": "CU-018: Visualizar pantalla de onboarding",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "precondiciones",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L22"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_preguntas_pendientes",
-      "label": "Preguntas pendientes",
-      "_origin": "ast",
-      "community": 221,
-      "community_name": "CU-018: Visualizar pantalla de onboarding",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "preguntas pendientes",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L69"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_reglas_de_negocio",
-      "label": "Reglas de negocio",
-      "_origin": "ast",
-      "community": 221,
-      "community_name": "CU-018: Visualizar pantalla de onboarding",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "reglas de negocio",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L57"
-    },
-    {
-      "id": "next_config",
-      "label": "next.config.ts",
-      "_origin": "ast",
-      "community": 222,
-      "community_name": "app/layout.tsx",
+      "community_name": "add-expense/page.tsx",
       "file_type": "code",
-      "norm_label": "next.config.ts",
-      "source_file": "next.config.ts",
+      "norm_label": "add-expense/page.tsx",
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
       "source_location": "L1"
     },
     {
-      "id": "next_config_nextconfig",
-      "label": "nextConfig",
+      "id": "src_app_dashboard_add_income_page",
+      "label": "add-income/page.tsx",
       "_origin": "ast",
-      "community": 222,
-      "community_name": "app/layout.tsx",
+      "community": 221,
+      "community_name": "add-expense/page.tsx",
       "file_type": "code",
-      "norm_label": "nextconfig",
-      "source_file": "next.config.ts",
-      "source_location": "L3"
+      "norm_label": "add-income/page.tsx",
+      "source_file": "src/app/dashboard/add-income/page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_app_dashboard_incomes_page",
+      "label": "incomes/page.tsx",
+      "_origin": "ast",
+      "community": 221,
+      "community_name": "add-expense/page.tsx",
+      "file_type": "code",
+      "norm_label": "incomes/page.tsx",
+      "source_file": "src/app/dashboard/incomes/page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_lib_categories",
+      "label": "categories.ts",
+      "_origin": "ast",
+      "community": 221,
+      "community_name": "add-expense/page.tsx",
+      "file_type": "code",
+      "norm_label": "categories.ts",
+      "source_file": "src/lib/categories.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_lib_categories_tailwind_colors",
+      "label": "TAILWIND_COLORS",
+      "_origin": "ast",
+      "community": 221,
+      "community_name": "add-expense/page.tsx",
+      "file_type": "code",
+      "norm_label": "tailwind_colors",
+      "source_file": "src/lib/categories.ts",
+      "source_location": "L4"
+    },
+    {
+      "id": "src_lib_expenseconstants",
+      "label": "expenseConstants.ts",
+      "_origin": "ast",
+      "community": 221,
+      "community_name": "add-expense/page.tsx",
+      "file_type": "code",
+      "norm_label": "expenseconstants.ts",
+      "source_file": "src/lib/expenseConstants.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_lib_expenseconstants_category_colors",
+      "label": "CATEGORY_COLORS",
+      "_origin": "ast",
+      "community": 221,
+      "community_name": "add-expense/page.tsx",
+      "file_type": "code",
+      "norm_label": "category_colors",
+      "source_file": "src/lib/expenseConstants.ts",
+      "source_location": "L16"
+    },
+    {
+      "id": "src_lib_expenseconstants_category_emojis",
+      "label": "CATEGORY_EMOJIS",
+      "_origin": "ast",
+      "community": 221,
+      "community_name": "add-expense/page.tsx",
+      "file_type": "code",
+      "norm_label": "category_emojis",
+      "source_file": "src/lib/expenseConstants.ts",
+      "source_location": "L14"
     },
     {
       "id": "src_app_layout",
@@ -13288,293 +13391,71 @@
       "source_location": "L1"
     },
     {
-      "id": "ref_next",
-      "label": "next",
-      "_origin": "ast",
-      "community": 222,
-      "community_name": "app/layout.tsx",
-      "file_type": "concept",
-      "norm_label": "next",
-      "source_file": "package.json",
-      "source_location": "L23"
-    },
-    {
-      "id": "src_app_dashboard_add_expense_page",
-      "label": "add-expense/page.tsx",
+      "id": "src_app_dashboard_layout",
+      "label": "dashboard/layout.tsx",
       "_origin": "ast",
       "community": 223,
-      "community_name": "getCategoryColorClass",
+      "community_name": "dashboard/layout.tsx",
       "file_type": "code",
-      "norm_label": "add-expense/page.tsx",
-      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "norm_label": "dashboard/layout.tsx",
+      "source_file": "src/app/dashboard/layout.tsx",
       "source_location": "L1"
     },
     {
-      "id": "src_app_dashboard_add_expense_page_currency_options",
-      "label": "CURRENCY_OPTIONS",
+      "id": "src_components_ui_bottomnav",
+      "label": "BottomNav.tsx",
       "_origin": "ast",
       "community": 223,
-      "community_name": "getCategoryColorClass",
+      "community_name": "dashboard/layout.tsx",
       "file_type": "code",
-      "norm_label": "currency_options",
-      "source_file": "src/app/dashboard/add-expense/page.tsx",
-      "source_location": "L9"
-    },
-    {
-      "id": "src_app_dashboard_add_income_page",
-      "label": "add-income/page.tsx",
-      "_origin": "ast",
-      "community": 223,
-      "community_name": "getCategoryColorClass",
-      "file_type": "code",
-      "norm_label": "add-income/page.tsx",
-      "source_file": "src/app/dashboard/add-income/page.tsx",
+      "norm_label": "bottomnav.tsx",
+      "source_file": "src/components/ui/BottomNav.tsx",
       "source_location": "L1"
     },
     {
-      "id": "src_app_dashboard_add_income_page_currency_options",
-      "label": "CURRENCY_OPTIONS",
+      "id": "src_components_ui_bottomnav_tabs",
+      "label": "tabs",
       "_origin": "ast",
       "community": 223,
-      "community_name": "getCategoryColorClass",
+      "community_name": "dashboard/layout.tsx",
       "file_type": "code",
-      "norm_label": "currency_options",
-      "source_file": "src/app/dashboard/add-income/page.tsx",
-      "source_location": "L9"
+      "norm_label": "tabs",
+      "source_file": "src/components/ui/BottomNav.tsx",
+      "source_location": "L5"
     },
     {
-      "id": "src_app_dashboard_incomes_page",
-      "label": "incomes/page.tsx",
+      "id": "src_components_ui_sidebar",
+      "label": "Sidebar.tsx",
       "_origin": "ast",
       "community": 223,
-      "community_name": "getCategoryColorClass",
+      "community_name": "dashboard/layout.tsx",
       "file_type": "code",
-      "norm_label": "incomes/page.tsx",
-      "source_file": "src/app/dashboard/incomes/page.tsx",
+      "norm_label": "sidebar.tsx",
+      "source_file": "src/components/ui/Sidebar.tsx",
       "source_location": "L1"
     },
     {
-      "id": "src_lib_categories",
-      "label": "categories.ts",
+      "id": "src_components_ui_sidebar_links",
+      "label": "links",
       "_origin": "ast",
       "community": 223,
-      "community_name": "getCategoryColorClass",
+      "community_name": "dashboard/layout.tsx",
       "file_type": "code",
-      "norm_label": "categories.ts",
-      "source_file": "src/lib/categories.ts",
+      "norm_label": "links",
+      "source_file": "src/components/ui/Sidebar.tsx",
+      "source_location": "L6"
+    },
+    {
+      "id": "cache",
+      "label": "CACHE.md",
+      "_origin": "ast",
+      "community": 224,
+      "community_name": "CACHE.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "cache.md",
+      "source_file": "CACHE.md",
       "source_location": "L1"
-    },
-    {
-      "id": "src_lib_categories_tailwind_colors",
-      "label": "TAILWIND_COLORS",
-      "_origin": "ast",
-      "community": 223,
-      "community_name": "getCategoryColorClass",
-      "file_type": "code",
-      "norm_label": "tailwind_colors",
-      "source_file": "src/lib/categories.ts",
-      "source_location": "L4"
-    },
-    {
-      "id": "src_lib_expenseconstants",
-      "label": "expenseConstants.ts",
-      "_origin": "ast",
-      "community": 223,
-      "community_name": "getCategoryColorClass",
-      "file_type": "code",
-      "norm_label": "expenseconstants.ts",
-      "source_file": "src/lib/expenseConstants.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_lib_expenseconstants_category_colors",
-      "label": "CATEGORY_COLORS",
-      "_origin": "ast",
-      "community": 223,
-      "community_name": "getCategoryColorClass",
-      "file_type": "code",
-      "norm_label": "category_colors",
-      "source_file": "src/lib/expenseConstants.ts",
-      "source_location": "L11"
-    },
-    {
-      "id": "src_lib_expenseconstants_category_emojis",
-      "label": "CATEGORY_EMOJIS",
-      "_origin": "ast",
-      "community": 223,
-      "community_name": "getCategoryColorClass",
-      "file_type": "code",
-      "norm_label": "category_emojis",
-      "source_file": "src/lib/expenseConstants.ts",
-      "source_location": "L9"
-    },
-    {
-      "id": "docs_use_case_future_future_actor_principal",
-      "label": "Actor principal",
-      "_origin": "ast",
-      "community": 224,
-      "community_name": "CU-019: Offline-first con cola de sincronizaci\u00f3n \ud83d\udd1c FUTURO",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "actor principal",
-      "source_file": "docs/use-case/future/future.md",
-      "source_location": "L15"
-    },
-    {
-      "id": "docs_use_case_future_future_alcance",
-      "label": "Alcance",
-      "_origin": "ast",
-      "community": 224,
-      "community_name": "CU-019: Offline-first con cola de sincronizaci\u00f3n \ud83d\udd1c FUTURO",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "alcance",
-      "source_file": "docs/use-case/future/future.md",
-      "source_location": "L12"
-    },
-    {
-      "id": "docs_use_case_future_future_criterios_de_aceptaci\u00f3n",
-      "label": "Criterios de aceptaci\u00f3n",
-      "_origin": "ast",
-      "community": 224,
-      "community_name": "CU-019: Offline-first con cola de sincronizaci\u00f3n \ud83d\udd1c FUTURO",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "criterios de aceptacion",
-      "source_file": "docs/use-case/future/future.md",
-      "source_location": "L73"
-    },
-    {
-      "id": "docs_use_case_future_future_cu_019_offline_first_con_cola_de_sincronizaci\u00f3n_futuro",
-      "label": "CU-019: Offline-first con cola de sincronizaci\u00f3n \ud83d\udd1c FUTURO",
-      "_origin": "ast",
-      "community": 224,
-      "community_name": "CU-019: Offline-first con cola de sincronizaci\u00f3n \ud83d\udd1c FUTURO",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "cu-019: offline-first con cola de sincronizacion \ud83d\udd1c futuro",
-      "source_file": "docs/use-case/future/future.md",
-      "source_location": "L7"
-    },
-    {
-      "id": "docs_use_case_future_future_disparador",
-      "label": "Disparador",
-      "_origin": "ast",
-      "community": 224,
-      "community_name": "CU-019: Offline-first con cola de sincronizaci\u00f3n \ud83d\udd1c FUTURO",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "disparador",
-      "source_file": "docs/use-case/future/future.md",
-      "source_location": "L27"
-    },
-    {
-      "id": "docs_use_case_future_future_excepciones",
-      "label": "Excepciones",
-      "_origin": "ast",
-      "community": 224,
-      "community_name": "CU-019: Offline-first con cola de sincronizaci\u00f3n \ud83d\udd1c FUTURO",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "excepciones",
-      "source_file": "docs/use-case/future/future.md",
-      "source_location": "L55"
-    },
-    {
-      "id": "docs_use_case_future_future_flujo_principal",
-      "label": "Flujo principal",
-      "_origin": "ast",
-      "community": 224,
-      "community_name": "CU-019: Offline-first con cola de sincronizaci\u00f3n \ud83d\udd1c FUTURO",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "flujo principal",
-      "source_file": "docs/use-case/future/future.md",
-      "source_location": "L30"
-    },
-    {
-      "id": "docs_use_case_future_future_flujos_alternativos",
-      "label": "Flujos alternativos",
-      "_origin": "ast",
-      "community": 224,
-      "community_name": "CU-019: Offline-first con cola de sincronizaci\u00f3n \ud83d\udd1c FUTURO",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "flujos alternativos",
-      "source_file": "docs/use-case/future/future.md",
-      "source_location": "L43"
-    },
-    {
-      "id": "docs_use_case_future_future_fuente",
-      "label": "Fuente",
-      "_origin": "ast",
-      "community": 224,
-      "community_name": "CU-019: Offline-first con cola de sincronizaci\u00f3n \ud83d\udd1c FUTURO",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "fuente",
-      "source_file": "docs/use-case/future/future.md",
-      "source_location": "L18"
-    },
-    {
-      "id": "docs_use_case_future_future_objetivo",
-      "label": "Objetivo",
-      "_origin": "ast",
-      "community": 224,
-      "community_name": "CU-019: Offline-first con cola de sincronizaci\u00f3n \ud83d\udd1c FUTURO",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "objetivo",
-      "source_file": "docs/use-case/future/future.md",
-      "source_location": "L9"
-    },
-    {
-      "id": "docs_use_case_future_future_postcondiciones",
-      "label": "Postcondiciones",
-      "_origin": "ast",
-      "community": 224,
-      "community_name": "CU-019: Offline-first con cola de sincronizaci\u00f3n \ud83d\udd1c FUTURO",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "postcondiciones",
-      "source_file": "docs/use-case/future/future.md",
-      "source_location": "L62"
-    },
-    {
-      "id": "docs_use_case_future_future_precondiciones",
-      "label": "Precondiciones",
-      "_origin": "ast",
-      "community": 224,
-      "community_name": "CU-019: Offline-first con cola de sincronizaci\u00f3n \ud83d\udd1c FUTURO",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "precondiciones",
-      "source_file": "docs/use-case/future/future.md",
-      "source_location": "L22"
-    },
-    {
-      "id": "docs_use_case_future_future_preguntas_pendientes",
-      "label": "Preguntas pendientes",
-      "_origin": "ast",
-      "community": 224,
-      "community_name": "CU-019: Offline-first con cola de sincronizaci\u00f3n \ud83d\udd1c FUTURO",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "preguntas pendientes",
-      "source_file": "docs/use-case/future/future.md",
-      "source_location": "L81"
-    },
-    {
-      "id": "docs_use_case_future_future_reglas_de_negocio",
-      "label": "Reglas de negocio",
-      "_origin": "ast",
-      "community": 224,
-      "community_name": "CU-019: Offline-first con cola de sincronizaci\u00f3n \ud83d\udd1c FUTURO",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "reglas de negocio",
-      "source_file": "docs/use-case/future/future.md",
-      "source_location": "L66"
     },
     {
       "id": "src_app_login_page",
@@ -13619,18 +13500,6 @@
       "norm_label": "client",
       "source_file": "src/lib/supabase/client.ts",
       "source_location": "L3"
-    },
-    {
-      "id": "bitacora_auditor\u00eda_de_c\u00f3digo_actualizaci\u00f3n_2026_10_16",
-      "label": "Auditor\u00eda de c\u00f3digo \u2014 Actualizaci\u00f3n 2026-10-16",
-      "_origin": "ast",
-      "community": 225,
-      "community_name": "signOut",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "auditoria de codigo \u2014 actualizacion 2026-10-16",
-      "source_file": "BITACORA.md",
-      "source_location": "L378"
     },
     {
       "id": "bitacora_bug_5_middleware_no_redirige_despu\u00e9s_de_logout_2026_10_08",
@@ -13715,6 +13584,18 @@
       "norm_label": "errores y soluciones",
       "source_file": "BITACORA.md",
       "source_location": "L110"
+    },
+    {
+      "id": "development_protecci\u00f3n_de_rutas",
+      "label": "Protecci\u00f3n de rutas",
+      "_origin": "ast",
+      "community": 225,
+      "community_name": "signOut",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "proteccion de rutas",
+      "source_file": "DEVELOPMENT.md",
+      "source_location": "L70"
     },
     {
       "id": "docs_use_case_auth_auth_actor_principal_293",
@@ -13921,136 +13802,64 @@
       "source_location": "L183"
     },
     {
-      "id": "docs_use_case_categories_categories",
-      "label": "categories.md",
+      "id": "docs_use_case_readme_casos_de_uso_paltazo",
+      "label": "Casos de Uso \u2014 Paltazo",
       "_origin": "ast",
       "community": 226,
-      "community_name": "use-case/README.md",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "categories.md",
-      "source_file": "docs/use-case/categories/categories.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_use_case_categories_categories_casos_de_uso_categor\u00edas",
-      "label": "Casos de Uso: Categor\u00edas",
-      "_origin": "ast",
-      "community": 226,
-      "community_name": "use-case/README.md",
+      "community_name": "Casos de Uso \u2014 Paltazo",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "casos de uso: categorias",
-      "source_file": "docs/use-case/categories/categories.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_use_case_future_future",
-      "label": "future.md",
-      "_origin": "ast",
-      "community": 226,
-      "community_name": "use-case/README.md",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "future.md",
-      "source_file": "docs/use-case/future/future.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_use_case_future_future_casos_de_uso_features_futuras_v1_2",
-      "label": "Casos de Uso: Features Futuras (v1.2+)",
-      "_origin": "ast",
-      "community": 226,
-      "community_name": "use-case/README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "casos de uso: features futuras (v1.2+)",
-      "source_file": "docs/use-case/future/future.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_use_case_future_future_notas_sobre_features_futuras",
-      "label": "Notas sobre features futuras",
-      "_origin": "ast",
-      "community": 226,
-      "community_name": "use-case/README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "notas sobre features futuras",
-      "source_file": "docs/use-case/future/future.md",
-      "source_location": "L189"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding",
-      "label": "onboarding.md",
-      "_origin": "ast",
-      "community": 226,
-      "community_name": "use-case/README.md",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "onboarding.md",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_casos_de_uso_onboarding",
-      "label": "Casos de Uso: Onboarding",
-      "_origin": "ast",
-      "community": 226,
-      "community_name": "use-case/README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "casos de uso: onboarding",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_use_case_readme",
-      "label": "use-case/README.md",
-      "_origin": "ast",
-      "community": 226,
-      "community_name": "use-case/README.md",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "use-case/readme.md",
+      "norm_label": "casos de uso \u2014 paltazo",
       "source_file": "docs/use-case/README.md",
       "source_location": "L1"
     },
     {
-      "id": "docs_use_case_user_story_map",
-      "label": "USER_STORY_MAP.md",
+      "id": "docs_use_case_readme_convenciones",
+      "label": "Convenciones",
       "_origin": "ast",
       "community": 226,
-      "community_name": "use-case/README.md",
+      "community_name": "Casos de Uso \u2014 Paltazo",
       "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "user_story_map.md",
-      "source_file": "docs/use-case/USER_STORY_MAP.md",
-      "source_location": "L1"
+      "node_kind": "heading",
+      "norm_label": "convenciones",
+      "source_file": "docs/use-case/README.md",
+      "source_location": "L26"
     },
     {
-      "id": "handoff_auth_review",
-      "label": "HANDOFF_AUTH_REVIEW.md",
+      "id": "docs_use_case_readme_m\u00f3dulos",
+      "label": "M\u00f3dulos",
       "_origin": "ast",
       "community": 226,
-      "community_name": "use-case/README.md",
+      "community_name": "Casos de Uso \u2014 Paltazo",
       "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "handoff_auth_review.md",
-      "source_file": "HANDOFF_AUTH_REVIEW.md",
-      "source_location": "L1"
+      "node_kind": "heading",
+      "norm_label": "modulos",
+      "source_file": "docs/use-case/README.md",
+      "source_location": "L14"
     },
     {
-      "id": "pendientes",
-      "label": "PENDIENTES.md",
+      "id": "docs_use_case_readme_pendientes",
+      "label": "Pendientes",
       "_origin": "ast",
       "community": 226,
-      "community_name": "use-case/README.md",
+      "community_name": "Casos de Uso \u2014 Paltazo",
       "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "pendientes.md",
-      "source_file": "PENDIENTES.md",
-      "source_location": "L1"
+      "node_kind": "heading",
+      "norm_label": "pendientes",
+      "source_file": "docs/use-case/README.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "docs_use_case_readme_visualizaci\u00f3n",
+      "label": "Visualizaci\u00f3n",
+      "_origin": "ast",
+      "community": 226,
+      "community_name": "Casos de Uso \u2014 Paltazo",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "visualizacion",
+      "source_file": "docs/use-case/README.md",
+      "source_location": "L6"
     },
     {
       "id": "src_app_dashboard_expenses_page",
@@ -14061,6 +13870,17 @@
       "file_type": "code",
       "norm_label": "expenses/page.tsx",
       "source_file": "src/app/dashboard/expenses/page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_app_dashboard_onboardingguard",
+      "label": "OnboardingGuard.tsx",
+      "_origin": "ast",
+      "community": 227,
+      "community_name": "useAppState",
+      "file_type": "code",
+      "norm_label": "onboardingguard.tsx",
+      "source_file": "src/app/dashboard/OnboardingGuard.tsx",
       "source_location": "L1"
     },
     {
@@ -14172,6 +13992,18 @@
       "norm_label": "react",
       "source_file": "package.json",
       "source_location": "L24"
+    },
+    {
+      "id": "docs_bugs_bug_002_setup_redirect_flash_resoluci\u00f3n",
+      "label": "Resoluci\u00f3n",
+      "_origin": "ast",
+      "community": 227,
+      "community_name": "useAppState",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "resolucion",
+      "source_file": "docs/bugs/BUG-002_setup_redirect_flash.md",
+      "source_location": "L115"
     },
     {
       "id": "agents_skills_accessibility_references_a11y_patterns_accessibility_code_patterns",
@@ -14474,27 +14306,123 @@
       "source_location": "L401"
     },
     {
-      "id": "docs_use_case_expenses_expenses",
-      "label": "expenses.md",
+      "id": "docs_use_case_categories_categories",
+      "label": "categories.md",
       "_origin": "ast",
       "community": 231,
-      "community_name": "Casos de Uso: Gastos",
+      "community_name": "use-case/README.md",
       "file_type": "document",
       "node_kind": "page",
-      "norm_label": "expenses.md",
-      "source_file": "docs/use-case/expenses/expenses.md",
+      "norm_label": "categories.md",
+      "source_file": "docs/use-case/categories/categories.md",
       "source_location": "L1"
     },
     {
-      "id": "docs_use_case_expenses_expenses_casos_de_uso_gastos",
-      "label": "Casos de Uso: Gastos",
+      "id": "docs_use_case_categories_categories_casos_de_uso_categor\u00edas",
+      "label": "Casos de Uso: Categor\u00edas",
       "_origin": "ast",
       "community": 231,
-      "community_name": "Casos de Uso: Gastos",
+      "community_name": "use-case/README.md",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "casos de uso: gastos",
-      "source_file": "docs/use-case/expenses/expenses.md",
+      "norm_label": "casos de uso: categorias",
+      "source_file": "docs/use-case/categories/categories.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_use_case_dashboard_dashboard",
+      "label": "dashboard.md",
+      "_origin": "ast",
+      "community": 231,
+      "community_name": "use-case/README.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "dashboard.md",
+      "source_file": "docs/use-case/dashboard/dashboard.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_use_case_dashboard_dashboard_casos_de_uso_dashboard",
+      "label": "Casos de Uso: Dashboard",
+      "_origin": "ast",
+      "community": 231,
+      "community_name": "use-case/README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "casos de uso: dashboard",
+      "source_file": "docs/use-case/dashboard/dashboard.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_use_case_onboarding_onboarding",
+      "label": "onboarding.md",
+      "_origin": "ast",
+      "community": 231,
+      "community_name": "use-case/README.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "onboarding.md",
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_use_case_onboarding_onboarding_casos_de_uso_onboarding",
+      "label": "Casos de Uso: Onboarding",
+      "_origin": "ast",
+      "community": 231,
+      "community_name": "use-case/README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "casos de uso: onboarding",
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_use_case_readme",
+      "label": "use-case/README.md",
+      "_origin": "ast",
+      "community": 231,
+      "community_name": "use-case/README.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "use-case/readme.md",
+      "source_file": "docs/use-case/README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_use_case_user_story_map",
+      "label": "USER_STORY_MAP.md",
+      "_origin": "ast",
+      "community": 231,
+      "community_name": "use-case/README.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "user_story_map.md",
+      "source_file": "docs/use-case/USER_STORY_MAP.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "handoff_auth_review",
+      "label": "HANDOFF_AUTH_REVIEW.md",
+      "_origin": "ast",
+      "community": 231,
+      "community_name": "use-case/README.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "handoff_auth_review.md",
+      "source_file": "HANDOFF_AUTH_REVIEW.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "pendientes",
+      "label": "PENDIENTES.md",
+      "_origin": "ast",
+      "community": 231,
+      "community_name": "use-case/README.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "pendientes.md",
+      "source_file": "PENDIENTES.md",
       "source_location": "L1"
     },
     {
@@ -14798,6 +14726,39 @@
       "source_location": "L405"
     },
     {
+      "id": "src_components_ui_datepicker",
+      "label": "DatePicker.tsx",
+      "_origin": "ast",
+      "community": 237,
+      "community_name": "DatePicker.tsx",
+      "file_type": "code",
+      "norm_label": "datepicker.tsx",
+      "source_file": "src/components/ui/DatePicker.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_components_ui_datepicker_days",
+      "label": "DAYS",
+      "_origin": "ast",
+      "community": 237,
+      "community_name": "DatePicker.tsx",
+      "file_type": "code",
+      "norm_label": "days",
+      "source_file": "src/components/ui/DatePicker.tsx",
+      "source_location": "L12"
+    },
+    {
+      "id": "src_components_ui_datepicker_months",
+      "label": "MONTHS",
+      "_origin": "ast",
+      "community": 237,
+      "community_name": "DatePicker.tsx",
+      "file_type": "code",
+      "norm_label": "months",
+      "source_file": "src/components/ui/DatePicker.tsx",
+      "source_location": "L13"
+    },
+    {
       "id": "src_lib_store",
       "label": "store.tsx",
       "_origin": "ast",
@@ -14842,18 +14803,6 @@
       "source_location": "L1"
     },
     {
-      "id": "docs_architecture_architecture_spec_4_matriz_de_deuda_t\u00e9cnica_y_plan_de_implementaci\u00f3n_por_fases",
-      "label": "4. Matriz de Deuda T\u00e9cnica y Plan de Implementaci\u00f3n por Fases",
-      "_origin": "ast",
-      "community": 238,
-      "community_name": "store.tsx",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "4. matriz de deuda tecnica y plan de implementacion por fases",
-      "source_file": "docs/architecture/ARCHITECTURE_SPEC.md",
-      "source_location": "L371"
-    },
-    {
       "id": "docs_architecture_implementation_roadmap_fase_3_contratos_typescript_y_estado_global",
       "label": "Fase 3: Contratos TypeScript y estado global",
       "_origin": "ast",
@@ -14866,94 +14815,52 @@
       "source_location": "L130"
     },
     {
-      "id": "docs_use_case_incomes_incomes_flujo_principal",
-      "label": "Flujo principal",
+      "id": "agents_skills_tailwind_css_patterns_skill_dark_mode_toggle",
+      "label": "Dark Mode Toggle",
       "_origin": "ast",
-      "community": 238,
-      "community_name": "store.tsx",
+      "community": 239,
+      "community_name": "Examples",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "flujo principal",
-      "source_file": "docs/use-case/incomes/incomes.md",
-      "source_location": "L36"
+      "norm_label": "dark mode toggle",
+      "source_file": ".agents/skills/tailwind-css-patterns/SKILL.md",
+      "source_location": "L84"
     },
     {
-      "id": "docs_use_case_incomes_incomes_flujos_alternativos_147",
-      "label": "Flujos alternativos",
+      "id": "agents_skills_tailwind_css_patterns_skill_examples",
+      "label": "Examples",
       "_origin": "ast",
-      "community": 238,
-      "community_name": "store.tsx",
+      "community": 239,
+      "community_name": "Examples",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "flujos alternativos",
-      "source_file": "docs/use-case/incomes/incomes.md",
-      "source_location": "L147"
+      "norm_label": "examples",
+      "source_file": ".agents/skills/tailwind-css-patterns/SKILL.md",
+      "source_location": "L64"
     },
     {
-      "id": "src_app_dashboard_layout",
-      "label": "dashboard/layout.tsx",
+      "id": "agents_skills_tailwind_css_patterns_skill_form_input",
+      "label": "Form Input",
       "_origin": "ast",
       "community": 239,
-      "community_name": "dashboard/layout.tsx",
-      "file_type": "code",
-      "norm_label": "dashboard/layout.tsx",
-      "source_file": "src/app/dashboard/layout.tsx",
-      "source_location": "L1"
+      "community_name": "Examples",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "form input",
+      "source_file": ".agents/skills/tailwind-css-patterns/SKILL.md",
+      "source_location": "L92"
     },
     {
-      "id": "src_app_dashboard_onboardingguard",
-      "label": "OnboardingGuard.tsx",
+      "id": "agents_skills_tailwind_css_patterns_skill_responsive_card_component",
+      "label": "Responsive Card Component",
       "_origin": "ast",
       "community": 239,
-      "community_name": "dashboard/layout.tsx",
-      "file_type": "code",
-      "norm_label": "onboardingguard.tsx",
-      "source_file": "src/app/dashboard/OnboardingGuard.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_components_ui_bottomnav",
-      "label": "BottomNav.tsx",
-      "_origin": "ast",
-      "community": 239,
-      "community_name": "dashboard/layout.tsx",
-      "file_type": "code",
-      "norm_label": "bottomnav.tsx",
-      "source_file": "src/components/ui/BottomNav.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_components_ui_bottomnav_tabs",
-      "label": "tabs",
-      "_origin": "ast",
-      "community": 239,
-      "community_name": "dashboard/layout.tsx",
-      "file_type": "code",
-      "norm_label": "tabs",
-      "source_file": "src/components/ui/BottomNav.tsx",
-      "source_location": "L5"
-    },
-    {
-      "id": "src_components_ui_sidebar",
-      "label": "Sidebar.tsx",
-      "_origin": "ast",
-      "community": 239,
-      "community_name": "dashboard/layout.tsx",
-      "file_type": "code",
-      "norm_label": "sidebar.tsx",
-      "source_file": "src/components/ui/Sidebar.tsx",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_components_ui_sidebar_links",
-      "label": "links",
-      "_origin": "ast",
-      "community": 239,
-      "community_name": "dashboard/layout.tsx",
-      "file_type": "code",
-      "norm_label": "links",
-      "source_file": "src/components/ui/Sidebar.tsx",
-      "source_location": "L6"
+      "community_name": "Examples",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "responsive card component",
+      "source_file": ".agents/skills/tailwind-css-patterns/SKILL.md",
+      "source_location": "L66"
     },
     {
       "id": "stitch_paltazo_design",
@@ -15005,6 +14912,39 @@
       "norm_label": "paltazo design system",
       "source_file": "stitch/paltazo/DESIGN.md",
       "source_location": "L136"
+    },
+    {
+      "id": "next_config",
+      "label": "next.config.ts",
+      "_origin": "ast",
+      "community": 240,
+      "community_name": "next",
+      "file_type": "code",
+      "norm_label": "next.config.ts",
+      "source_file": "next.config.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "next_config_nextconfig",
+      "label": "nextConfig",
+      "_origin": "ast",
+      "community": 240,
+      "community_name": "next",
+      "file_type": "code",
+      "norm_label": "nextconfig",
+      "source_file": "next.config.ts",
+      "source_location": "L3"
+    },
+    {
+      "id": "ref_next",
+      "label": "next",
+      "_origin": "ast",
+      "community": 240,
+      "community_name": "next",
+      "file_type": "concept",
+      "norm_label": "next",
+      "source_file": "package.json",
+      "source_location": "L23"
     },
     {
       "id": "package",
@@ -15376,6 +15316,30 @@
       "norm_label": "@supabase/supabase-js",
       "source_file": "package.json",
       "source_location": "L22"
+    },
+    {
+      "id": "docs_use_case_expenses_expenses",
+      "label": "expenses.md",
+      "_origin": "ast",
+      "community": 246,
+      "community_name": "Casos de Uso: Gastos",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "expenses.md",
+      "source_file": "docs/use-case/expenses/expenses.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_use_case_expenses_expenses_casos_de_uso_gastos",
+      "label": "Casos de Uso: Gastos",
+      "_origin": "ast",
+      "community": 246,
+      "community_name": "Casos de Uso: Gastos",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "casos de uso: gastos",
+      "source_file": "docs/use-case/expenses/expenses.md",
+      "source_location": "L1"
     },
     {
       "id": "playwright_config",
@@ -15910,30 +15874,6 @@
       "norm_label": "tailwindcss",
       "source_file": "package.json",
       "source_location": "L34"
-    },
-    {
-      "id": "docs_use_case_dashboard_dashboard",
-      "label": "dashboard.md",
-      "_origin": "ast",
-      "community": 257,
-      "community_name": "Casos de Uso: Dashboard",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "dashboard.md",
-      "source_file": "docs/use-case/dashboard/dashboard.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_use_case_dashboard_dashboard_casos_de_uso_dashboard",
-      "label": "Casos de Uso: Dashboard",
-      "_origin": "ast",
-      "community": 257,
-      "community_name": "Casos de Uso: Dashboard",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "casos de uso: dashboard",
-      "source_file": "docs/use-case/dashboard/dashboard.md",
-      "source_location": "L1"
     },
     {
       "id": "agents_skills_seo_skill",
@@ -17542,30 +17482,6 @@
       "source_location": "L123"
     },
     {
-      "id": "agents_skills_tailwind_css_patterns_skill_dark_mode_toggle",
-      "label": "Dark Mode Toggle",
-      "_origin": "ast",
-      "community": 31,
-      "community_name": "Tailwind CSS Development Patterns",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "dark mode toggle",
-      "source_file": ".agents/skills/tailwind-css-patterns/SKILL.md",
-      "source_location": "L84"
-    },
-    {
-      "id": "agents_skills_tailwind_css_patterns_skill_examples",
-      "label": "Examples",
-      "_origin": "ast",
-      "community": 31,
-      "community_name": "Tailwind CSS Development Patterns",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "examples",
-      "source_file": ".agents/skills/tailwind-css-patterns/SKILL.md",
-      "source_location": "L64"
-    },
-    {
       "id": "agents_skills_tailwind_css_patterns_skill_external_resources",
       "label": "External Resources",
       "_origin": "ast",
@@ -17576,18 +17492,6 @@
       "norm_label": "external resources",
       "source_file": ".agents/skills/tailwind-css-patterns/SKILL.md",
       "source_location": "L148"
-    },
-    {
-      "id": "agents_skills_tailwind_css_patterns_skill_form_input",
-      "label": "Form Input",
-      "_origin": "ast",
-      "community": 31,
-      "community_name": "Tailwind CSS Development Patterns",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "form input",
-      "source_file": ".agents/skills/tailwind-css-patterns/SKILL.md",
-      "source_location": "L92"
     },
     {
       "id": "agents_skills_tailwind_css_patterns_skill_instructions",
@@ -17648,18 +17552,6 @@
       "norm_label": "responsive breakpoints",
       "source_file": ".agents/skills/tailwind-css-patterns/SKILL.md",
       "source_location": "L25"
-    },
-    {
-      "id": "agents_skills_tailwind_css_patterns_skill_responsive_card_component",
-      "label": "Responsive Card Component",
-      "_origin": "ast",
-      "community": 31,
-      "community_name": "Tailwind CSS Development Patterns",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "responsive card component",
-      "source_file": ".agents/skills/tailwind-css-patterns/SKILL.md",
-      "source_location": "L66"
     },
     {
       "id": "agents_skills_tailwind_css_patterns_skill_responsive_styles_not_working",
@@ -21555,6 +21447,30 @@
       "source_location": "L57"
     },
     {
+      "id": "docs_use_case_future_future",
+      "label": "future.md",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "CU-020: Notificaciones push al cruzar umbral \ud83d\udd1c FUTURO",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "future.md",
+      "source_file": "docs/use-case/future/future.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_use_case_future_future_actor_principal",
+      "label": "Actor principal",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "CU-020: Notificaciones push al cruzar umbral \ud83d\udd1c FUTURO",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "actor principal",
+      "source_file": "docs/use-case/future/future.md",
+      "source_location": "L15"
+    },
+    {
       "id": "docs_use_case_future_future_actor_principal_99",
       "label": "Actor principal",
       "_origin": "ast",
@@ -21579,6 +21495,18 @@
       "source_location": "L102"
     },
     {
+      "id": "docs_use_case_future_future_alcance",
+      "label": "Alcance",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "CU-020: Notificaciones push al cruzar umbral \ud83d\udd1c FUTURO",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "alcance",
+      "source_file": "docs/use-case/future/future.md",
+      "source_location": "L12"
+    },
+    {
       "id": "docs_use_case_future_future_alcance_96",
       "label": "Alcance",
       "_origin": "ast",
@@ -21589,6 +21517,30 @@
       "norm_label": "alcance",
       "source_file": "docs/use-case/future/future.md",
       "source_location": "L96"
+    },
+    {
+      "id": "docs_use_case_future_future_casos_de_uso_features_futuras_v1_2",
+      "label": "Casos de Uso: Features Futuras (v1.2+)",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "CU-020: Notificaciones push al cruzar umbral \ud83d\udd1c FUTURO",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "casos de uso: features futuras (v1.2+)",
+      "source_file": "docs/use-case/future/future.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_use_case_future_future_criterios_de_aceptaci\u00f3n",
+      "label": "Criterios de aceptaci\u00f3n",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "CU-020: Notificaciones push al cruzar umbral \ud83d\udd1c FUTURO",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "criterios de aceptacion",
+      "source_file": "docs/use-case/future/future.md",
+      "source_location": "L73"
     },
     {
       "id": "docs_use_case_future_future_criterios_de_aceptaci\u00f3n_171",
@@ -21603,6 +21555,18 @@
       "source_location": "L171"
     },
     {
+      "id": "docs_use_case_future_future_cu_019_offline_first_con_cola_de_sincronizaci\u00f3n_futuro",
+      "label": "CU-019: Offline-first con cola de sincronizaci\u00f3n \ud83d\udd1c FUTURO",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "CU-020: Notificaciones push al cruzar umbral \ud83d\udd1c FUTURO",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "cu-019: offline-first con cola de sincronizacion \ud83d\udd1c futuro",
+      "source_file": "docs/use-case/future/future.md",
+      "source_location": "L7"
+    },
+    {
       "id": "docs_use_case_future_future_cu_020_notificaciones_push_al_cruzar_umbral_futuro",
       "label": "CU-020: Notificaciones push al cruzar umbral \ud83d\udd1c FUTURO",
       "_origin": "ast",
@@ -21613,6 +21577,18 @@
       "norm_label": "cu-020: notificaciones push al cruzar umbral \ud83d\udd1c futuro",
       "source_file": "docs/use-case/future/future.md",
       "source_location": "L91"
+    },
+    {
+      "id": "docs_use_case_future_future_disparador",
+      "label": "Disparador",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "CU-020: Notificaciones push al cruzar umbral \ud83d\udd1c FUTURO",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "disparador",
+      "source_file": "docs/use-case/future/future.md",
+      "source_location": "L27"
     },
     {
       "id": "docs_use_case_future_future_disparador_115",
@@ -21627,6 +21603,18 @@
       "source_location": "L115"
     },
     {
+      "id": "docs_use_case_future_future_excepciones",
+      "label": "Excepciones",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "CU-020: Notificaciones push al cruzar umbral \ud83d\udd1c FUTURO",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "excepciones",
+      "source_file": "docs/use-case/future/future.md",
+      "source_location": "L55"
+    },
+    {
       "id": "docs_use_case_future_future_excepciones_148",
       "label": "Excepciones",
       "_origin": "ast",
@@ -21637,6 +21625,18 @@
       "norm_label": "excepciones",
       "source_file": "docs/use-case/future/future.md",
       "source_location": "L148"
+    },
+    {
+      "id": "docs_use_case_future_future_flujo_principal",
+      "label": "Flujo principal",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "CU-020: Notificaciones push al cruzar umbral \ud83d\udd1c FUTURO",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "flujo principal",
+      "source_file": "docs/use-case/future/future.md",
+      "source_location": "L30"
     },
     {
       "id": "docs_use_case_future_future_flujo_principal_118",
@@ -21651,6 +21651,18 @@
       "source_location": "L118"
     },
     {
+      "id": "docs_use_case_future_future_flujos_alternativos",
+      "label": "Flujos alternativos",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "CU-020: Notificaciones push al cruzar umbral \ud83d\udd1c FUTURO",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "flujos alternativos",
+      "source_file": "docs/use-case/future/future.md",
+      "source_location": "L43"
+    },
+    {
       "id": "docs_use_case_future_future_flujos_alternativos_131",
       "label": "Flujos alternativos",
       "_origin": "ast",
@@ -21661,6 +21673,18 @@
       "norm_label": "flujos alternativos",
       "source_file": "docs/use-case/future/future.md",
       "source_location": "L131"
+    },
+    {
+      "id": "docs_use_case_future_future_fuente",
+      "label": "Fuente",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "CU-020: Notificaciones push al cruzar umbral \ud83d\udd1c FUTURO",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "fuente",
+      "source_file": "docs/use-case/future/future.md",
+      "source_location": "L18"
     },
     {
       "id": "docs_use_case_future_future_fuente_105",
@@ -21675,6 +21699,30 @@
       "source_location": "L105"
     },
     {
+      "id": "docs_use_case_future_future_notas_sobre_features_futuras",
+      "label": "Notas sobre features futuras",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "CU-020: Notificaciones push al cruzar umbral \ud83d\udd1c FUTURO",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "notas sobre features futuras",
+      "source_file": "docs/use-case/future/future.md",
+      "source_location": "L189"
+    },
+    {
+      "id": "docs_use_case_future_future_objetivo",
+      "label": "Objetivo",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "CU-020: Notificaciones push al cruzar umbral \ud83d\udd1c FUTURO",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "objetivo",
+      "source_file": "docs/use-case/future/future.md",
+      "source_location": "L9"
+    },
+    {
       "id": "docs_use_case_future_future_objetivo_93",
       "label": "Objetivo",
       "_origin": "ast",
@@ -21685,6 +21733,18 @@
       "norm_label": "objetivo",
       "source_file": "docs/use-case/future/future.md",
       "source_location": "L93"
+    },
+    {
+      "id": "docs_use_case_future_future_postcondiciones",
+      "label": "Postcondiciones",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "CU-020: Notificaciones push al cruzar umbral \ud83d\udd1c FUTURO",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "postcondiciones",
+      "source_file": "docs/use-case/future/future.md",
+      "source_location": "L62"
     },
     {
       "id": "docs_use_case_future_future_postcondiciones_160",
@@ -21699,6 +21759,18 @@
       "source_location": "L160"
     },
     {
+      "id": "docs_use_case_future_future_precondiciones",
+      "label": "Precondiciones",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "CU-020: Notificaciones push al cruzar umbral \ud83d\udd1c FUTURO",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "precondiciones",
+      "source_file": "docs/use-case/future/future.md",
+      "source_location": "L22"
+    },
+    {
       "id": "docs_use_case_future_future_precondiciones_109",
       "label": "Precondiciones",
       "_origin": "ast",
@@ -21711,6 +21783,18 @@
       "source_location": "L109"
     },
     {
+      "id": "docs_use_case_future_future_preguntas_pendientes",
+      "label": "Preguntas pendientes",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "CU-020: Notificaciones push al cruzar umbral \ud83d\udd1c FUTURO",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "preguntas pendientes",
+      "source_file": "docs/use-case/future/future.md",
+      "source_location": "L81"
+    },
+    {
       "id": "docs_use_case_future_future_preguntas_pendientes_179",
       "label": "Preguntas pendientes",
       "_origin": "ast",
@@ -21721,6 +21805,18 @@
       "norm_label": "preguntas pendientes",
       "source_file": "docs/use-case/future/future.md",
       "source_location": "L179"
+    },
+    {
+      "id": "docs_use_case_future_future_reglas_de_negocio",
+      "label": "Reglas de negocio",
+      "_origin": "ast",
+      "community": 57,
+      "community_name": "CU-020: Notificaciones push al cruzar umbral \ud83d\udd1c FUTURO",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "reglas de negocio",
+      "source_file": "docs/use-case/future/future.md",
+      "source_location": "L66"
     },
     {
       "id": "docs_use_case_future_future_reglas_de_negocio_164",
@@ -24637,7 +24733,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/add-expense/page.tsx",
-      "source_location": "L16",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_add_expense_page_addexpensepage",
+      "target": "src_lib_expenseconstants_getlocaldate",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -24649,7 +24757,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/add-expense/page.tsx",
-      "source_location": "L255",
+      "source_location": "L256",
       "weight": 1.0
     },
     {
@@ -24661,7 +24769,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/add-expense/page.tsx",
-      "source_location": "L474",
+      "source_location": "L455",
       "weight": 1.0
     },
     {
@@ -24673,7 +24781,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/add-expense/page.tsx",
-      "source_location": "L66",
+      "source_location": "L67",
       "weight": 1.0
     },
     {
@@ -24685,7 +24793,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/add-income/page.tsx",
-      "source_location": "L16",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_add_income_page_addincomepage",
+      "target": "src_lib_expenseconstants_getlocaldate",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app/dashboard/add-income/page.tsx",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -24697,7 +24817,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/add-income/page.tsx",
-      "source_location": "L234",
+      "source_location": "L235",
       "weight": 1.0
     },
     {
@@ -24709,7 +24829,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/add-income/page.tsx",
-      "source_location": "L453",
+      "source_location": "L434",
       "weight": 1.0
     },
     {
@@ -24721,7 +24841,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/add-income/page.tsx",
-      "source_location": "L64",
+      "source_location": "L65",
       "weight": 1.0
     },
     {
@@ -24817,7 +24937,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -24829,7 +24949,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L262",
+      "source_location": "L263",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_page_dashboardpage",
+      "target": "src_lib_expenseconstants_getlocaldate",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/app/dashboard/page.tsx",
+      "source_location": "L266",
       "weight": 1.0
     },
     {
@@ -24841,7 +24973,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L422",
+      "source_location": "L423",
       "weight": 1.0
     },
     {
@@ -24853,7 +24985,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L461",
+      "source_location": "L462",
       "weight": 1.0
     },
     {
@@ -25082,6 +25214,42 @@
       "context": "call",
       "source_file": "src/components/ui/ConnectionIndicator.tsx",
       "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_datepicker_datepicker",
+      "target": "src_components_ui_datepicker_parsedate",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/components/ui/DatePicker.tsx",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_datepicker_datepicker",
+      "target": "src_components_ui_datepicker_getlocaltoday",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/components/ui/DatePicker.tsx",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_datepicker_datepicker",
+      "target": "src_components_ui_datepicker_formatday",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/components/ui/DatePicker.tsx",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -25613,6 +25781,30 @@
       "weight": 1.0
     },
     {
+      "source": "src_app_dashboard_add_expense_page",
+      "target": "src_lib_expenseconstants_getlocaldate",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_add_expense_page",
+      "target": "src_components_ui_datepicker_datepicker",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
       "source": "src_app_dashboard_add_income_page",
       "target": "src_lib_store_useappstate",
       "relation": "imports",
@@ -25682,6 +25874,30 @@
       "context": "import",
       "source_file": "src/app/dashboard/add-income/page.tsx",
       "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_add_income_page",
+      "target": "src_lib_expenseconstants_getlocaldate",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/dashboard/add-income/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_add_income_page",
+      "target": "src_components_ui_datepicker_datepicker",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/dashboard/add-income/page.tsx",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -25886,6 +26102,18 @@
       "context": "import",
       "source_file": "src/app/dashboard/page.tsx",
       "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_page",
+      "target": "src_lib_expenseconstants_getlocaldate",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/dashboard/page.tsx",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -26514,6 +26742,18 @@
       "weight": 1.0
     },
     {
+      "source": "src_app_dashboard_add_expense_page",
+      "target": "src_components_ui_datepicker",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/dashboard/add-expense/page.tsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
       "source": "src_app_dashboard_add_income_page",
       "target": "ref_react",
       "relation": "imports_from",
@@ -26571,6 +26811,18 @@
       "context": "import",
       "source_file": "src/app/dashboard/add-income/page.tsx",
       "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_add_income_page",
+      "target": "src_components_ui_datepicker",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/dashboard/add-income/page.tsx",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -26837,6 +27089,18 @@
       "context": "import",
       "source_file": "src/app/dashboard/page.tsx",
       "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_page",
+      "target": "src_lib_expenseconstants",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/app/dashboard/page.tsx",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -27258,6 +27522,18 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/components/ui/ConnectionIndicator.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_datepicker",
+      "target": "ref_react",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "src/components/ui/DatePicker.tsx",
       "source_location": "L3",
       "weight": 1.0
     },
@@ -44350,18 +44626,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/dashboard/add-expense/page.tsx",
-      "source_location": "L14",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_dashboard_add_expense_page",
-      "target": "src_app_dashboard_add_expense_page_currency_options",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/dashboard/add-expense/page.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0
     },
     {
@@ -44372,18 +44637,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/dashboard/add-income/page.tsx",
-      "source_location": "L14",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_dashboard_add_income_page",
-      "target": "src_app_dashboard_add_income_page_currency_options",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/dashboard/add-income/page.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0
     },
     {
@@ -44432,24 +44686,24 @@
     },
     {
       "source": "src_app_dashboard_page",
+      "target": "src_app_dashboard_page_currencysummary",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/app/dashboard/page.tsx",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_page",
       "target": "src_app_dashboard_page_balancesummary",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L19",
-      "weight": 1.0
-    },
-    {
-      "source": "src_app_dashboard_page",
-      "target": "src_app_dashboard_page_balancesection",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L26",
+      "source_location": "L20",
       "weight": 1.0
     },
     {
@@ -44460,18 +44714,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L260",
+      "source_location": "L261",
       "weight": 1.0
     },
     {
       "source": "src_app_dashboard_page",
-      "target": "src_app_dashboard_page_currencysummary",
+      "target": "src_app_dashboard_page_balancesection",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L9",
+      "source_location": "L27",
       "weight": 1.0
     },
     {
@@ -44706,6 +44960,83 @@
       "weight": 1.0
     },
     {
+      "source": "src_components_ui_datepicker",
+      "target": "src_components_ui_datepicker_days",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/ui/DatePicker.tsx",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_datepicker",
+      "target": "src_components_ui_datepicker_months",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/ui/DatePicker.tsx",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_datepicker",
+      "target": "src_components_ui_datepicker_parsedate",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/ui/DatePicker.tsx",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_datepicker",
+      "target": "src_components_ui_datepicker_formatday",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/ui/DatePicker.tsx",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_datepicker",
+      "target": "src_components_ui_datepicker_getlocaltoday",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/ui/DatePicker.tsx",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_datepicker",
+      "target": "src_components_ui_datepicker_datepicker",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/ui/DatePicker.tsx",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_ui_datepicker",
+      "target": "src_components_ui_datepicker_datepickerprops",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/ui/DatePicker.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
       "source": "src_components_ui_sidebar",
       "target": "src_components_ui_sidebar_sidebar",
       "relation": "contains",
@@ -44762,7 +45093,7 @@
     },
     {
       "source": "src_lib_expenseconstants",
-      "target": "src_lib_expenseconstants_formatamount",
+      "target": "src_lib_expenseconstants_getlocaldate",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -44773,24 +45104,35 @@
     },
     {
       "source": "src_lib_expenseconstants",
-      "target": "src_lib_expenseconstants_category_colors",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/lib/expenseConstants.ts",
-      "source_location": "L11",
-      "weight": 1.0
-    },
-    {
-      "source": "src_lib_expenseconstants",
       "target": "src_lib_expenseconstants_category_emojis",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/lib/expenseConstants.ts",
-      "source_location": "L9",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_expenseconstants",
+      "target": "src_lib_expenseconstants_category_colors",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/lib/expenseConstants.ts",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_expenseconstants",
+      "target": "src_lib_expenseconstants_formatamount",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/lib/expenseConstants.ts",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -47774,5 +48116,5 @@
       "source_file": "docs/stack_tecnologico_paltazo.md"
     }
   ],
-  "built_at_commit": "1941683e0e88abccb88ce29dc74c40f612d6ece8"
+  "built_at_commit": "82a6c276433c94ad78401b0b4166369b2769a557"
 }

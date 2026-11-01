@@ -43,7 +43,7 @@ Usuario pulsa botón `+ Ingreso` en dashboard (FAB o botón en sección Balance)
    - Descripción: vacía.
 3. Usuario ingresa monto mediante teclado numérico decimal (`inputMode="decimal"`).
    - Sistema formatea automáticamente como `X.XX` con separadores de miles.
-4. Usuario puede cambiar moneda entre sus monedas activas (toggles).
+4. Usuario puede cambiar moneda entre sus monedas activas configuradas en Ajustes (CU-022/CU-023). Si solo tiene una moneda configurada, el toggle muestra únicamente esa opción.
 5. Usuario selecciona categoría de ingreso en un carrusel horizontal scrolleable entre las disponibles (tiles icono + label).
    - El carrusel muestra las 5 categorías default + personalizadas del usuario.
    - Incluye botón `+ Nueva categoría` al final del carrusel (acceso rápido inline → CU-031).
@@ -93,7 +93,7 @@ Usuario pulsa botón `+ Ingreso` en dashboard (FAB o botón en sección Balance)
 
 ### Criterios de aceptación
 - Usuario puede ingresar monto con teclado numérico decimal.
-- Usuario puede cambiar moneda con toggles entre sus monedas activas.
+- Usuario puede cambiar moneda con toggles entre sus monedas activas configuradas en Ajustes (solo aparecen las monedas que el usuario ha registrado).
 - Selector de categorías en carrusel horizontal scrolleable, mostrando solo categorías de ingreso (no mezcla con gastos).
 - Botón `+ Nueva categoría` visible al final del carrusel (acceso rápido inline → CU-031).
 - Usuario puede cambiar fecha con picker nativo.

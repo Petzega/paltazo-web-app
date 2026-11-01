@@ -1,26 +1,26 @@
 'use client'
 
-import { useState, useCallback, useRef, useEffect } from 'react'
+import { useState, useCallback, useRef, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAppState } from '@/lib/store'
 import { findCategory, getCategoryColorClass } from '@/lib/categories'
-import { formatAmount, CATEGORY_EMOJIS, CATEGORY_COLORS } from '@/lib/expenseConstants'
-
-const CURRENCY_OPTIONS = [
-  { value: 'S/', label: 'S/' },
-  { value: '$', label: '$' },
-]
+import { formatAmount, CATEGORY_EMOJIS, CATEGORY_COLORS, getLocalDate } from '@/lib/expenseConstants'
+import { DatePicker } from '@/components/ui/DatePicker'
 
 export default function AddIncomePage() {
   const router = useRouter()
-  const { addIncome, budget, incomeCategories, addIncomeCategory } = useAppState()
+  const { addIncome, budget, budgets, incomeCategories, addIncomeCategory } = useAppState()
   const [digits, setDigits] = useState('')
+  const availableCurrencies = useMemo(() => {
+    const keys = Object.keys(budgets)
+    return keys.length > 0 ? keys : [budget.currency || 'S/']
+  }, [budgets, budget.currency])
   const [currency, setCurrency] = useState(budget.currency || 'S/')
   const [initialCurrency] = useState(budget.currency || 'S/')
   const [categoryId, setCategoryId] = useState('')
   const [initialCategoryId, setInitialCategoryId] = useState('')
   const [description, setDescription] = useState('')
-  const [date, setDate] = useState(new Date().toISOString().split('T')[0])
+  const [date, setDate] = useState(getLocalDate())
   const [focused, setFocused] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
@@ -29,6 +29,7 @@ export default function AddIncomePage() {
   const [newCategoryName, setNewCategoryName] = useState('')
   const [newCategoryIcon, setNewCategoryIcon] = useState(CATEGORY_EMOJIS[0])
   const [newCategoryColor, setNewCategoryColor] = useState(CATEGORY_COLORS[0])
+  const [showDatePicker, setShowDatePicker] = useState(false)
   const successTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const carouselRef = useRef<HTMLDivElement>(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
@@ -85,7 +86,7 @@ export default function AddIncomePage() {
     setDescription('')
     setCategoryId(initialCategoryId)
     setCurrency(initialCurrency)
-    setDate(new Date().toISOString().split('T')[0])
+    setDate(getLocalDate())
   }
 
   const hasChanges = digits !== '' || description !== '' || categoryId !== initialCategoryId || currency !== initialCurrency
@@ -153,18 +154,18 @@ export default function AddIncomePage() {
 
               <div className="flex items-center justify-center gap-space-sm w-full relative z-10 my-space-xs">
                 <div className="flex gap-1">
-                  {CURRENCY_OPTIONS.map((c) => (
+                  {availableCurrencies.map((c) => (
                     <button
-                      key={c.value}
+                      key={c}
                       type="button"
-                      onClick={() => setCurrency(c.value)}
+                      onClick={() => setCurrency(c)}
                       className={`min-w-[52px] px-3 py-1 rounded-full text-label-lg font-bold transition-all ${
-                        currency === c.value
+                        currency === c
                           ? 'bg-primary-container text-on-primary-container'
                           : 'bg-surface-container text-text-secondary hover:bg-surface-container-high'
                       }`}
                     >
-                      {c.label}
+                      {c}
                     </button>
                   ))}
                 </div>
@@ -303,7 +304,7 @@ export default function AddIncomePage() {
                   <div className="flex flex-col">
                     <span className="text-label-sm text-text-secondary">Fecha del ingreso</span>
                     <span className="text-body-md font-semibold text-on-surface">
-                      {new Date(date).toLocaleDateString('es-PE', {
+                      {new Date(date + 'T12:00:00').toLocaleDateString('es-PE', {
                         day: 'numeric',
                         month: 'long',
                         year: 'numeric'
@@ -311,35 +312,15 @@ export default function AddIncomePage() {
                     </span>
                   </div>
                 </div>
-                <div className="relative cursor-pointer">
-                  <span
-                    className="px-space-md py-1.5 rounded-full bg-surface-container text-secondary text-label-md flex items-center gap-1 hover:bg-surface-container-high transition-colors pointer-events-none"
+                <div className="relative">
+                  <button
+                    type="button"
+                    onClick={() => setShowDatePicker(true)}
+                    className="px-space-md py-1.5 rounded-full bg-surface-container text-secondary text-label-md flex items-center gap-1 hover:bg-surface-container-high transition-colors"
                   >
                     Cambiar ▾
-                  </span>
-                  <input
-                    type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
-                  />
+                  </button>
                 </div>
-              </div>
-              <div className="w-full h-px bg-surface-container-low" />
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-space-sm">
-                  <div className="w-9 h-9 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
-                    ☁️
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-label-sm font-semibold text-on-surface">Sincronizado en la nube</span>
-                    <span className="text-body-sm text-text-secondary">Guardado en Supabase</span>
-                  </div>
-                </div>
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed-variant text-label-sm font-medium">
-                  <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
-                  Listo
-                </span>
               </div>
             </div>
 
@@ -478,6 +459,12 @@ export default function AddIncomePage() {
           </div>
         </div>
       )}
+      <DatePicker
+        value={date}
+        onChange={setDate}
+        isOpen={showDatePicker}
+        onClose={() => setShowDatePicker(false)}
+      />
     </>
   )
 }
