@@ -1,4 +1,4 @@
-# BUG-002: Flash de redirect a /setup tras completar onboarding y recargar página
+# BUG-002: Flash de redirect a /setup tras completar onboarding — Fix: validación de onboarding completado en el guard
 
 > **Estado:** ✅ Resuelto  
 > **Severidad:** Medium (UX molesto, no bloqueante)  

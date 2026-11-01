@@ -1,4 +1,4 @@
-# BUG-003: Fechas mostradas como día anterior por zona horaria UTC
+# BUG-003: Fechas mostradas como día anterior por zona horaria UTC — Fix: uso de hora local y parseo con T12:00:00
 
 > **Estado:** ✅ Resuelto
 > **Severidad:** High (datos incorrectos, afecta registros de gastos)

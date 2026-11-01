@@ -295,17 +295,25 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const removeCurrency = async (currency: string) => {
     if (!userId) return
-    if (currency === budget.currency) return // No se puede eliminar la principal
     // Transacción atómica: elimina gastos, ingresos + presupuesto de esa moneda
     await db.deleteCurrencyWithPurge(userId, currency)
     // Actualizar estado local
-    setBudgets((prev) => {
-      const next = { ...prev }
-      delete next[currency]
-      return next
-    })
+    const nextBudgets: Record<string, Budget> = {}
+    for (const [key, val] of Object.entries(budgets)) {
+      if (key !== currency) nextBudgets[key] = val
+    }
+    setBudgets(nextBudgets)
     setExpenses((prev) => prev.filter((e) => e.currency !== currency))
     setIncomes((prev) => prev.filter((i) => i.currency !== currency))
+    // Si se eliminó la moneda principal, promover la siguiente disponible
+    if (currency === budget.currency) {
+      const nextCurrency = Object.keys(nextBudgets)[0]
+      if (nextCurrency && nextBudgets[nextCurrency]) {
+        setBudgetState(nextBudgets[nextCurrency])
+      } else {
+        setBudgetState(DEFAULT_BUDGET)
+      }
+    }
   }
 
   const addCategory = async (cat: { name: string; icon: string; color: string }) => {

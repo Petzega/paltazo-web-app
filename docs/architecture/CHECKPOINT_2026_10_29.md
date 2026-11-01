@@ -18,8 +18,9 @@ Paltazo está al **100% del spec funcional**. Se implementaron 18/21 User Storie
 
 **Bugs corregidos:**
 - BUG-001: Cap en cálculo de porcentaje de presupuesto (Fase 1)
-- BUG-002: Flash redirect a /setup tras recargar (Fase 4)
-- BUG-003: Fechas mostradas como día anterior por zona horaria UTC (Post-audit, 31 oct 2026)
+- BUG-002: Flash redirect a /setup tras recargar — Fix: validación de onboarding (Fase 4)
+- BUG-003: Fechas mostradas como día anterior por UTC — Fix: hora local y parseo T12:00:00 (31 oct 2026)
+- BUG-004: No se puede eliminar moneda principal — Fix: promoción automática + botón Quitar (01 nov 2026)
 
 ---
 
@@ -265,8 +266,9 @@ docs/
 │   └── settings/settings.md
 └── bugs/
     ├── BUG-001_dashboard_percentage_cap.md (resuelto)
-    ├── BUG-002_setup_redirect_flash.md (resuelto)
-    └── BUG-003_date_timezone_utc.md (resuelto, 31 oct 2026)
+    ├── BUG-002_setup_redirect_flash.md — Fix: validación de onboarding (resuelto)
+    ├── BUG-003_date_timezone_utc.md — Fix: hora local y T12:00:00 (resuelto)
+    └── BUG-004_remove_primary_currency.md — Fix: promoción + botón Quitar (resuelto)
 ```
 
 ---

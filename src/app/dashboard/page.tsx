@@ -379,12 +379,10 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between mb-space-sm">
             <div className="flex items-center gap-2">
               <h2 className="text-headline-sm text-on-surface font-bold">
-                Gastos registrados para el día{' '}
                 {new Date(selectedBarDate + 'T12:00:00').toLocaleDateString('es-PE', { 
                   weekday: 'long', 
                   day: 'numeric', 
-                  month: 'numeric', 
-                  year: 'numeric' 
+                  month: 'long'
                 })}
               </h2>
               <span className="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm">

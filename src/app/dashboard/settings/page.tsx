@@ -260,19 +260,17 @@ export default function SettingsPage() {
                             Principal
                           </span>
                         )}
-                        {existingBudget && !isPrimary && (
+                        {existingBudget && (
                           <span className="text-label-sm px-2 py-0.5 rounded-full bg-surface-container text-text-secondary">
                             Configurado
                           </span>
                         )}
-                        {!isPrimary && (
-                          <button
-                            onClick={() => handleRemoveClick(value)}
-                            className="text-label-sm px-2 py-0.5 rounded-full bg-danger/10 text-danger hover:bg-danger/20 transition-colors"
-                          >
-                            Quitar
-                          </button>
-                        )}
+                        <button
+                          onClick={() => handleRemoveClick(value)}
+                          className="text-label-sm px-2 py-0.5 rounded-full bg-danger/10 text-danger hover:bg-danger/20 transition-colors"
+                        >
+                          Quitar
+                        </button>
                       </div>
                     </div>
                     <div className="flex gap-space-sm">
@@ -538,9 +536,11 @@ export default function SettingsPage() {
               ¿Eliminar moneda {showRemoveConfirm}?
             </h3>
             <p className="text-body-sm text-text-secondary mb-4">
-              {removeCount > 0
-                ? `Se eliminarán ${removeCount} gasto${removeCount === 1 ? '' : 's'} y el presupuesto en ${showRemoveConfirm}. Esta acción no se puede deshacer.`
-                : `Se eliminará el presupuesto en ${showRemoveConfirm}. Esta acción no se puede deshacer.`}
+              {showRemoveConfirm === budget.currency
+                ? `Se eliminarán ${removeCount} gasto${removeCount === 1 ? '' : 's'} en ${showRemoveConfirm}. ${Object.keys(budgets).filter(k => k !== showRemoveConfirm).length > 0 ? 'La siguiente moneda pasará a ser la principal.' : 'No quedarán monedas configuradas.'} Esta acción no se puede deshacer.`
+                : `${removeCount > 0
+                  ? `Se eliminarán ${removeCount} gasto${removeCount === 1 ? '' : 's'} y el presupuesto en ${showRemoveConfirm}. Esta acción no se puede deshacer.`
+                  : `Se eliminará el presupuesto en ${showRemoveConfirm}. Esta acción no se puede deshacer.`}`}
             </p>
             <div className="flex gap-space-sm">
               <button
