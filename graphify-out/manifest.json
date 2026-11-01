@@ -120,9 +120,9 @@
     "semantic_hash": ""
   },
   "src/lib/categories.ts": {
-    "mtime": 1793408020.5555582,
-    "seen": 1793417002.8715708,
-    "ast_hash": "1a91cf106302fdfdd44d96e0002d977a",
+    "mtime": 1793503244.0704246,
+    "seen": 1793503293.1243134,
+    "ast_hash": "0862349e61fb8e6dcdd6db636c0379fc",
     "semantic_hash": ""
   },
   "src/types/index.ts": {
@@ -1350,9 +1350,9 @@
     "semantic_hash": ""
   },
   "docs/architecture/CHECKPOINT_2026_10_29.md": {
-    "mtime": 1793328659.212349,
-    "seen": 1793417002.8719358,
-    "ast_hash": "0d844ffee0071ef26712d53a327b7d2f",
+    "mtime": 1793502324.4058661,
+    "seen": 1793503293.1318395,
+    "ast_hash": "53f85e5439280780ff0e4ef9275d286e",
     "semantic_hash": ""
   },
   "playwright.config.ts": {
@@ -1425,6 +1425,12 @@
     "mtime": 1793500506.0326242,
     "seen": 1793500936.3597164,
     "ast_hash": "de00a1c02fdec3cb361615987c9b5757",
+    "semantic_hash": ""
+  },
+  "docs/bugs/BUG-003_date_timezone_utc.md": {
+    "mtime": 1793502264.7619357,
+    "seen": 1793503293.1319203,
+    "ast_hash": "9f383083f26e50c9c0a09f077fedd4d9",
     "semantic_hash": ""
   }
 }
