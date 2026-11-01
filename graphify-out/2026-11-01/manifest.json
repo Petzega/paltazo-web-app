@@ -234,9 +234,9 @@
     "semantic_hash": ""
   },
   "src/app/dashboard/settings/page.tsx": {
-    "mtime": 1793419552.228886,
-    "seen": 1793419567.8903725,
-    "ast_hash": "369c92d556621d7ee82a5acfa772e8b4",
+    "mtime": 1793560950.7933986,
+    "seen": 1793560966.7650592,
+    "ast_hash": "a8cfe0fd0cea2db1855446abf01aec47",
     "semantic_hash": ""
   },
   "src/components/providers/ServiceWorkerRegistrar.tsx": {
@@ -1344,15 +1344,15 @@
     "semantic_hash": ""
   },
   "docs/bugs/BUG-002_setup_redirect_flash.md": {
-    "mtime": 1793328659.212349,
-    "seen": 1793417002.8719404,
-    "ast_hash": "0f67f09dfa0d265564db8bb6e5fda975",
+    "mtime": 1793548918.8740022,
+    "seen": 1793560966.7751365,
+    "ast_hash": "7f8883bbdbd0603fb4f36a935eec87d7",
     "semantic_hash": ""
   },
   "docs/architecture/CHECKPOINT_2026_10_29.md": {
-    "mtime": 1793548843.5145442,
-    "seen": 1793548848.9232588,
-    "ast_hash": "41e808e5121301a5b492b49835ea41e0",
+    "mtime": 1793548942.9632418,
+    "seen": 1793560966.7750804,
+    "ast_hash": "f49104ba4782ed9c8f9f403c68e00290",
     "semantic_hash": ""
   },
   "playwright.config.ts": {
@@ -1428,15 +1428,15 @@
     "semantic_hash": ""
   },
   "docs/bugs/BUG-003_date_timezone_utc.md": {
-    "mtime": 1793502264.7619357,
-    "seen": 1793503293.1319203,
-    "ast_hash": "9f383083f26e50c9c0a09f077fedd4d9",
+    "mtime": 1793548923.6980352,
+    "seen": 1793560966.775139,
+    "ast_hash": "26566cf9eb6dee82702efec5a6646e02",
     "semantic_hash": ""
   },
   "docs/bugs/BUG-004_remove_primary_currency.md": {
-    "mtime": 1793548830.9144914,
-    "seen": 1793548848.9233146,
-    "ast_hash": "4184e672ffeb59383c7255b6d25e84cd",
+    "mtime": 1793548928.809359,
+    "seen": 1793560966.7751415,
+    "ast_hash": "ea4e2c58f7e77345aa5cce575c0ee963",
     "semantic_hash": ""
   }
 }

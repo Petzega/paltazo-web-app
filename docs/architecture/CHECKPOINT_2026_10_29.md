@@ -21,6 +21,9 @@ Paltazo está al **100% del spec funcional**. Se implementaron 18/21 User Storie
 - BUG-002: Flash redirect a /setup tras recargar — Fix: validación de onboarding (Fase 4)
 - BUG-003: Fechas mostradas como día anterior por UTC — Fix: hora local y parseo T12:00:00 (31 oct 2026)
 - BUG-004: No se puede eliminar moneda principal — Fix: promoción automática + botón Quitar (01 nov 2026)
+- BUG-005: Tabla push_subscriptions sin RLS — Fix: habilitar RLS y crear policies (01 nov 2026)
+- BUG-006: Eliminar moneda no elimina incomes — Fix: RPC actualizada incluye DELETE FROM incomes (01 nov 2026)
+- BUG-007: checkBudgetThreshold UTC bug — Fix: usa date.startsWith(prefix) en lugar de new Date() (01 nov 2026)
 
 ---
 
@@ -37,7 +40,9 @@ supabase/migrations/
 ├── 20261029000001_create_categories.sql ← NUEVO: tabla categories + RLS + seed 5 defaults
 ├── 20261029000002_expenses_category_fk.sql ← NUEVO: FK expenses.category_id, drop CHECK
 ├── 20261029000003_profiles_onboarding.sql ← NUEVO: primary_currency, has_completed_onboarding
-└── 20261029000004_update_trigger_handle_new_user.sql ← NUEVO: trigger ya no crea presupuesto default
+├── 20261029000004_update_trigger_handle_new_user.sql ← NUEVO: trigger ya no crea presupuesto default
+├── 20261101000001_fix_push_subscriptions_rls.sql ← FIX CRÍTICO: habilita RLS en push_subscriptions
+└── 20261101000002_fix_delete_currency_includes_incomes.sql ← FIX CRÍTICO: RPC elimina incomes al borrar moneda
 ```
 
 ### Estructura actual
@@ -268,7 +273,10 @@ docs/
     ├── BUG-001_dashboard_percentage_cap.md (resuelto)
     ├── BUG-002_setup_redirect_flash.md — Fix: validación de onboarding (resuelto)
     ├── BUG-003_date_timezone_utc.md — Fix: hora local y T12:00:00 (resuelto)
-    └── BUG-004_remove_primary_currency.md — Fix: promoción + botón Quitar (resuelto)
+    ├── BUG-004_remove_primary_currency.md — Fix: promoción + botón Quitar (resuelto)
+    ├── BUG-005_push_subscriptions_rls.md — Fix: habilitar RLS y policies (resuelto)
+    ├── BUG-006_delete_currency_includes_incomes.md — Fix: RPC elimina incomes (resuelto)
+    └── BUG-007_checkBudgetThreshold_UTC.md — Fix: date.startsWith(prefix) (resuelto)
 ```
 
 ---

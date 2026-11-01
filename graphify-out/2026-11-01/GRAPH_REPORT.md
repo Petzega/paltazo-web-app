@@ -1,7 +1,7 @@
 # Graph Report - paltazo-web-app  (2026-11-01)
 
 ## Corpus Check
-- 245 files · ~144,066 words
+- 245 files · ~144,137 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 9 file(s) not represented in the graph (top: (none) 4, .example 2, .canvas 1)
 
@@ -27,7 +27,7 @@
 - shadcn/ui / Radix UI
 - Tailwind CSS
 - TypeScript (Strict Mode)
-- BUG-004: No se puede eliminar la moneda principal (bloquea promoción de moneda secundaria)
+- BUG-004: No se puede eliminar moneda principal — Fix: promoción automática de moneda secundaria
 - compilerOptions
 - Casos de Uso: Autenticación
 - UC-XXX: Nombre
@@ -187,7 +187,7 @@
 - security-rls-basics.md
 - security-rls-performance.md
 - references/_template.md
-- BUG-002: Flash de redirect a /setup tras completar onboarding y recargar página
+- BUG-002: Flash de redirect a /setup tras completar onboarding — Fix: validación de onboarding completado en el guard
 - CU-009: Listar gastos del mes
 - CU-011: Eliminar gasto
 - 1. Eliminating Waterfalls
@@ -249,7 +249,7 @@
 - DatePicker.tsx
 - Common issues by impact
 - Testing checklist
-- BUG-003: Fechas mostradas como día anterior por zona horaria UTC
+- BUG-003: Fechas mostradas como día anterior por zona horaria UTC — Fix: uso de hora local y parseo con T12:00:00
 - store.tsx
 - @supabase/ssr
 - next
@@ -317,9 +317,9 @@ Nodes (5): Paltazo Design Tokens, Wireframes Agent, Mobile-to-Desktop Layout Ada
 Cohesion: 0.67
 Nodes (3): Efficient Context Principle, Graphify Knowledge Graph, Minimalism & Safe Change Principle
 
-### Community 11 - "BUG-004: No se puede eliminar la moneda principal (bloquea promoción de moneda secundaria)"
+### Community 11 - "BUG-004: No se puede eliminar moneda principal — Fix: promoción automática de moneda secundaria"
 Cohesion: 0.12
-Nodes (15): Archivos afectados, BUG-004: No se puede eliminar la moneda principal (bloquea promoción de moneda secundaria), Causa raíz, Comportamiento actual (antes del fix), Comportamiento esperado, Fix aplicado, Flujo de promoción de moneda principal, Lecciones aprendidas (+7 more)
+Nodes (15): Archivos afectados, BUG-004: No se puede eliminar moneda principal — Fix: promoción automática de moneda secundaria, Causa raíz, Comportamiento actual (antes del fix), Comportamiento esperado, Fix aplicado, Flujo de promoción de moneda principal, Lecciones aprendidas (+7 more)
 
 ### Community 12 - "compilerOptions"
 Cohesion: 0.11
@@ -521,9 +521,9 @@ Nodes (15): Actor principal, Actores secundarios, Alcance, Criterios de aceptaci
 Cohesion: 0.08
 Nodes (25): 1. Estado actual consolidado, 2. Historias implementadas (15/21), 3. Brechas técnicas críticas (P0 & P1), 4. Historias propuestas sin release (3 US), 5. Historias futuras v1.2 (out of scope inmediato), 6. Fases de ejecución sugeridas, 7. Criterios de "app al 100%", 8. Notas técnicas (+17 more)
 
-### Community 174 - "BUG-002: Flash de redirect a /setup tras completar onboarding y recargar página"
+### Community 174 - "BUG-002: Flash de redirect a /setup tras completar onboarding — Fix: validación de onboarding completado en el guard"
 Cohesion: 0.11
-Nodes (19): Análisis preliminar, Archivos involucrados, BUG-002: Flash de redirect a /setup tras completar onboarding y recargar página, Comportamiento actual, Comportamiento esperado, Criterios de resolución, Hipótesis 2: Delay en propagación de Supabase, Hipótesis 3: Closure stale en `applySession` (+11 more)
+Nodes (19): Análisis preliminar, Archivos involucrados, BUG-002: Flash de redirect a /setup tras completar onboarding — Fix: validación de onboarding completado en el guard, Comportamiento actual, Comportamiento esperado, Criterios de resolución, Hipótesis 2: Delay en propagación de Supabase, Hipótesis 3: Closure stale en `applySession` (+11 more)
 
 ### Community 175 - "CU-009: Listar gastos del mes"
 Cohesion: 0.14
@@ -761,7 +761,7 @@ Nodes (4): Common issues by impact, Critical (fix immediately), Moderate (fix so
 Cohesion: 0.67
 Nodes (3): Automated testing, Manual testing, Testing checklist
 
-### Community 237 - "BUG-003: Fechas mostradas como día anterior por zona horaria UTC"
+### Community 237 - "BUG-003: Fechas mostradas como día anterior por zona horaria UTC — Fix: uso de hora local y parseo con T12:00:00"
 Cohesion: 0.09
 Nodes (21): 1. `src/lib/expenseConstants.ts`, 2. `src/app/dashboard/add-expense/page.tsx`, 3. `src/app/dashboard/add-income/page.tsx`, 4. `src/app/dashboard/expenses/page.tsx`, 5. `src/app/dashboard/incomes/page.tsx`, 6. `src/app/dashboard/page.tsx`, 7. `src/components/ui/DatePicker.tsx`, Archivos afectados y fixes aplicados (+13 more)
 

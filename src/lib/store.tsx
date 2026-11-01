@@ -472,12 +472,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (notificationPermission !== 'granted') return
     const currentBudget = budgets[currency]
     if (!currentBudget?.monthlyLimit) return
+    const now = new Date()
+    const prefix = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`
     const monthlySpent = expenses
-      .filter((e) => {
-        const expDate = new Date(e.date)
-        const now = new Date()
-        return e.currency === currency && expDate.getMonth() === now.getMonth() && expDate.getFullYear() === now.getFullYear()
-      })
+      .filter((e) => e.currency === currency && e.date.startsWith(prefix))
       .reduce((sum, e) => sum + e.amount, 0)
     const newTotal = monthlySpent + amount
     const threshold = currentBudget.monthlyLimit * 0.8
