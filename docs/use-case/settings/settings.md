@@ -270,10 +270,10 @@ Ninguna de negocio.
 
 ## CU-023: Quitar moneda
 
-> **Estado: PROPUESTO** — comportamiento previsto, NO implementado. ⚠️ Incluye eliminación definitiva de datos, decisión explícita del usuario.
+> **Estado: ✅ IMPLEMENTADO** — comportamiento implementado y corregido (BUG-004, BUG-006).
 
 ### Objetivo
-Permitir al usuario dejar de usar una moneda secundaria que ya no necesita, eliminando sus datos asociados.
+Permitir al usuario dejar de usar una moneda (incluyendo la moneda principal), eliminando sus datos asociados. Si se elimina la moneda principal, la siguiente moneda disponible sePromueve automáticamente a principal.
 
 ### Alcance
 Módulo de configuración, sección de monedas en `/dashboard/settings`.
@@ -290,41 +290,59 @@ Ninguno.
 
 ### Precondiciones
 - Usuario autenticado.
-- La moneda está activa y NO es la moneda principal.
+- La moneda está activa.
+- Existe al menos una otra moneda configurada (si se elimina la última, el usuario queda sin monedas).
 
 ### Disparador
-El usuario pulsa "Quitar" sobre una moneda activa.
+El usuario pulsa "Quitar" sobre una moneda activa (incluyendo la moneda principal).
 
 ### Flujo principal
-1. El sistema calcula los datos asociados: cantidad de gastos y presupuesto en esa moneda.
-2. El sistema muestra modal de confirmación: *"Se eliminarán N gastos y el presupuesto en {moneda}. Esta acción no se puede deshacer."*
+1. El sistema calcula los datos asociados: cantidad de gastos, ingresos y presupuesto en esa moneda.
+2. El sistema muestra modal de confirmación:
+   - Si NO es moneda principal: *"Se eliminarán N gastos, M ingresos y el presupuesto en {moneda}. Esta acción no se puede deshacer."*
+   - Si ES moneda principal: *"Se eliminarán N gastos, M ingresos y el presupuesto en {moneda}. La próxima moneda disponible se configurará como principal. Esta acción no se puede deshacer."*
 3. El usuario confirma.
-4. El sistema elimina los gastos y el presupuesto de esa moneda y la desactiva.
-5. El sistema actualiza selectores, historial y dashboard, que dejan de mostrar esa moneda.
+4. El sistema llama a `deleteCurrencyWithPurge(userId, currency)` (RPC atómica):
+   - Elimina expenses de esa moneda
+   - Elimina incomes de esa moneda (fix BUG-006)
+   - Elimina budgets de esa moneda
+5. Si la moneda eliminada era la principal (`budget.currency`), el sistemaPromueve la siguiente moneda disponible (primera en `budgets` o primera moneda con gastos) a principal.
+6. El sistema actualiza el estado local: `setIncomes(filter)`, `setExpenses(filter)`, `setBudgets(delete)`.
+7. El sistema actualiza selectores, historial y dashboard, que dejan de mostrar esa moneda.
 
 ### Flujos alternativos
 - **Paso 3a — El usuario cancela:** no se elimina nada.
-- **Paso 1a — Moneda sin datos asociados:** mismo modal con N = 0 (confirmación obligatoria por convención de acciones destructivas).
+- **Paso 1a — Moneda sin datos asociados:** mismo modal con N = 0, M = 0 (confirmación obligatoria por convención de acciones destructivas).
+- **Paso 5a — Se elimina la moneda principal y hay otras monedas:** la siguiente moneda en `budgets` (o la primera con gastos/incomes) sePromueve automáticamente a `budget.currency`. El perfil del usuario se actualiza con `primary_currency` = nueva moneda.
+- **Paso 5b — Se eliminan todas las monedas:** el usuario queda sin monedas configuradas. El dashboard muestra empty state: "No tienes monedas configuradas" + botón "⚙️ Configurar moneda" → `/dashboard/settings`.
 
 ### Excepciones
-- **Fallo durante la eliminación (paso 4):** mensaje de error y estado sin cambios: o se eliminan todos los datos asociados o ninguno.
+- **Fallo durante la eliminación (paso 4):** mensaje de error y estado sin cambios: o se eliminan todos los datos asociados o ninguno (transacción atómica vía RPC `delete_currency_purging_data`).
 
 ### Postcondiciones
-- **En éxito:** no quedan gastos ni presupuesto en esa moneda; la moneda puede volver a agregarse (CU-022) partiendo de cero.
+- **En éxito:** no quedan gastos, ingresos ni presupuesto en esa moneda; la moneda puede volver a agregarse (CU-022) partiendo de cero. Si era la moneda principal, la siguiente disponible sePromueve automáticamente. Si era la última moneda, el dashboard muestra empty state.
 - **En fallo:** moneda y datos quedan intactos.
 
 ### Reglas de negocio
-- (PROPUESTO) La moneda principal no se puede quitar; siempre existe al menos una moneda activa.
-- (PROPUESTO) La eliminación de gastos y presupuesto es definitiva y siempre requiere confirmación explícita informando la cantidad de gastos.
+- **✅ IMPLEMENTADO:** Cualquier moneda puede quitarse, incluyendo la moneda principal (fix BUG-004).
+- **✅ IMPLEMENTADO:** La eliminación de gastos, ingresos y presupuesto es definitiva y siempre requiere confirmación explícita informando la cantidad de datos (fix BUG-006).
+- **✅ IMPLEMENTADO:** Si se elimina la moneda principal, la siguiente disponible sePromueve automáticamente.
+- **✅ IMPLEMENTADO:** Si se eliminan todas las monedas, el dashboard muestra empty state con botón a settings.
 
 ### Criterios de aceptación
-- El modal informa la cantidad de gastos antes de confirmar.
-- Cancelar no modifica ningún dato.
-- Tras confirmar, no quedan registros en esa moneda ni aparece en selectores, historial o dashboard.
-- No es posible quitar la moneda principal.
+- ✅ El modal informa la cantidad de gastos e ingresos antes de confirmar.
+- ✅ El modal indica si se eliminará la moneda principal y que otra moneda sePromoverá.
+- ✅ Cancelar no modifica ningún dato.
+- ✅ Tras confirmar, no quedan registros en esa moneda ni aparece en selectores, historial o dashboard.
+- ✅ La RPC atómica elimina expenses, incomes y budgets en una transacción (fix BUG-006).
+- ✅ Si se elimina la moneda principal, la siguiente disponible sePromueve automáticamente (fix BUG-004).
+- ✅ Si se eliminan todas las monedas, el dashboard muestra empty state.
 
 ### Preguntas pendientes
-Ninguna de negocio.
+Ninguna. Todas las decisiones cerradas:
+- ~~¿La moneda principal se puede quitar?~~ → **Sí, conPromoción automática (BUG-004).**
+- ~~¿Se eliminan solo gastos y presupuesto?~~ → **No, también incomes (BUG-006).**
+- ~~¿Qué pasa si se eliminan todas las monedas?~~ → **Dashboard muestra empty state.**
 
 ---
 ## Notas técnicas

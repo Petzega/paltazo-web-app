@@ -17,8 +17,8 @@ La lista vigente de trabajo pendiente (código, implementación de CUs propuesto
 |--------|---------|-------|--------|
 | Autenticación | [`auth/auth.md`](auth/auth.md) | CU-001 a CU-007 | ✅ Implementado |
 | Gastos | [`expenses/expenses.md`](expenses/expenses.md) | CU-008 a CU-011 | ✅ Implementado |
-| Dashboard | [`dashboard/dashboard.md`](dashboard/dashboard.md) | CU-012 a CU-014 | ✅ Implementado (BUG-001 documentado) |
-| Configuración | [`settings/settings.md`](settings/settings.md) | CU-015 a CU-017, CU-022, CU-023 | ✅ Implementado · 📝 2 propuestos |
+| Dashboard | [`dashboard/dashboard.md`](dashboard/dashboard.md) | CU-012 a CU-014, CU-034 | ✅ Implementado · Empty state sin monedas (01 nov 2026) |
+| Configuración | [`settings/settings.md`](settings/settings.md) | CU-015 a CU-017, CU-022, CU-023 | ✅ Implementado · CU-023 permite eliminar moneda principal (01 nov 2026) |
 | Onboarding | [`onboarding/onboarding.md`](onboarding/onboarding.md) | CU-018, CU-021 | ✅ Implementado · 📝 1 propuesto |
 | Categorías | [`categories/categories.md`](categories/categories.md) | CU-024 a CU-026 | 📝 PROPUESTO |
 | Features futuras | [`future/future.md`](future/future.md) | CU-019, CU-020 | 🔜 Futuro v1.2 |

@@ -47,8 +47,9 @@ function BalanceSection() {
 
   const currencySummaries: CurrencySummary[] = useMemo(() => {
     const activeCurrencies = new Set(monthlyExpenses.map((e) => e.currency))
-    activeCurrencies.add(budget.currency)
+    // Solo agregar budget.currency si hay presupuestos configurados (evita mostrar DEFAULT_BUDGET cuando no hay monedas)
     if (Object.keys(budgets).length > 0) {
+      activeCurrencies.add(budget.currency)
       Object.keys(budgets).forEach((c) => activeCurrencies.add(c))
     }
 
@@ -84,8 +85,9 @@ function BalanceSection() {
 
   const balanceSummaries: BalanceSummary[] = useMemo(() => {
     const activeCurrencies = new Set([...monthlyExpenses.map((e) => e.currency), ...monthlyIncomes.map((i) => i.currency)])
-    activeCurrencies.add(budget.currency)
+    // Solo agregar budget.currency si hay presupuestos configurados
     if (Object.keys(budgets).length > 0) {
+      activeCurrencies.add(budget.currency)
       Object.keys(budgets).forEach((c) => activeCurrencies.add(c))
     }
 
@@ -172,70 +174,93 @@ function BalanceSection() {
               Presupuestos mensuales
             </span>
           </div>
-          <span className="text-label-sm px-2 py-0.5 rounded-full bg-secondary/15 text-secondary font-medium">
-            {currencySummaries.length} {currencySummaries.length === 1 ? 'moneda' : 'monedas'}
-          </span>
+          {currencySummaries.length > 0 && (
+            <span className="text-label-sm px-2 py-0.5 rounded-full bg-secondary/15 text-secondary font-medium">
+              {currencySummaries.length} {currencySummaries.length === 1 ? 'moneda' : 'monedas'}
+            </span>
+          )}
         </div>
 
-        <div className="space-y-4 mb-space-lg">
-          {currencySummaries.map((summary) => (
-            <div key={summary.currency} className="bg-surface-container-lowest rounded-2xl p-4 shadow-sm">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-headline-sm font-bold text-on-surface">
-                  {summary.currency} {summary.monthlyLimit.toFixed(2)}
-                </span>
-                <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-label-sm ${
-                  summary.percentage >= 100
-                    ? 'bg-danger/15 text-danger'
-                    : summary.percentage >= 80
-                    ? 'bg-warning/15 text-warning'
-                    : summary.monthlyLimit > 0
-                    ? 'bg-primary/15 text-primary'
-                    : 'bg-surface-container text-text-secondary'
-                }`}>
-                  {summary.monthlyLimit > 0 ? `${summary.percentage.toFixed(0)}%` : 'Sin límite'}
-                </span>
-              </div>
-              {summary.monthlyLimit > 0 && (
-                <>
-                  <div className="w-full h-2.5 bg-surface-container-highest rounded-full overflow-hidden mb-2">
-                    <div
-                      className={`h-full rounded-full transition-all duration-700 ease-out ${
-                        summary.percentage >= 100 ? 'bg-danger' : summary.percentage >= 80 ? 'bg-warning' : 'bg-primary'
-                      }`}
-                      style={{ width: `${summary.percentage}%` }}
-                    />
-                  </div>
-                  <div className="flex justify-between items-center text-body-sm">
-                    <span className="text-on-surface-variant">
-                      {summary.currency} {summary.totalExpenses.toFixed(2)} gastados
-                    </span>
-                    <span className="text-text-secondary">
-                      {summary.currency} {summary.remaining.toFixed(2)} restantes
-                    </span>
-                  </div>
-                </>
-              )}
-              {summary.monthlyLimit === 0 && summary.totalExpenses > 0 && (
-                <div className="text-body-sm text-on-surface-variant">
-                  {summary.currency} {summary.totalExpenses.toFixed(2)} registrados (sin presupuesto configurado)
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-
-        <div className="p-space-md rounded-2xl bg-surface-container-lowest flex items-center justify-between shadow-sm">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-primary-fixed flex items-center justify-center text-primary shrink-0">
-              📅
-            </div>
-            <div>
-              <span className="text-label-sm text-text-secondary block">Días restantes del mes</span>
-              <span className="text-headline-sm text-secondary font-bold">{daysRemaining} días</span>
-            </div>
+        {currencySummaries.length === 0 ? (
+          <div className="text-center py-space-lg">
+            <span className="text-5xl mb-3 block opacity-50">💰</span>
+            <p className="text-body-md text-on-surface-variant mb-2">
+              No tienes monedas configuradas
+            </p>
+            <p className="text-body-sm text-text-secondary mb-4">
+              Agrega una moneda y configura tu presupuesto mensual para comenzar a registrar gastos
+            </p>
+            <button
+              onClick={() => router.push('/dashboard/settings')}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-on-primary text-label-md font-semibold hover:bg-secondary transition-colors"
+            >
+              <span>⚙️</span>
+              <span>Configurar moneda</span>
+            </button>
           </div>
-        </div>
+        ) : (
+          <>
+            <div className="space-y-4 mb-space-lg">
+              {currencySummaries.map((summary) => (
+                <div key={summary.currency} className="bg-surface-container-lowest rounded-2xl p-4 shadow-sm">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-headline-sm font-bold text-on-surface">
+                      {summary.currency} {summary.monthlyLimit.toFixed(2)}
+                    </span>
+                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-label-sm ${
+                      summary.percentage >= 100
+                        ? 'bg-danger/15 text-danger'
+                        : summary.percentage >= 80
+                        ? 'bg-warning/15 text-warning'
+                        : summary.monthlyLimit > 0
+                        ? 'bg-primary/15 text-primary'
+                        : 'bg-surface-container text-text-secondary'
+                    }`}>
+                      {summary.monthlyLimit > 0 ? `${summary.percentage.toFixed(0)}%` : 'Sin límite'}
+                    </span>
+                  </div>
+                  {summary.monthlyLimit > 0 && (
+                    <>
+                      <div className="w-full h-2.5 bg-surface-container-highest rounded-full overflow-hidden mb-2">
+                        <div
+                          className={`h-full rounded-full transition-all duration-700 ease-out ${
+                            summary.percentage >= 100 ? 'bg-danger' : summary.percentage >= 80 ? 'bg-warning' : 'bg-primary'
+                          }`}
+                          style={{ width: `${summary.percentage}%` }}
+                        />
+                      </div>
+                      <div className="flex justify-between items-center text-body-sm">
+                        <span className="text-on-surface-variant">
+                          {summary.currency} {summary.totalExpenses.toFixed(2)} gastados
+                        </span>
+                        <span className="text-text-secondary">
+                          {summary.currency} {summary.remaining.toFixed(2)} restantes
+                        </span>
+                      </div>
+                    </>
+                  )}
+                  {summary.monthlyLimit === 0 && summary.totalExpenses > 0 && (
+                    <div className="text-body-sm text-on-surface-variant">
+                      {summary.currency} {summary.totalExpenses.toFixed(2)} registrados (sin presupuesto configurado)
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div className="p-space-md rounded-2xl bg-surface-container-lowest flex items-center justify-between shadow-sm">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-primary-fixed flex items-center justify-center text-primary shrink-0">
+                  📅
+                </div>
+                <div>
+                  <span className="text-label-sm text-text-secondary block">Días restantes del mes</span>
+                  <span className="text-headline-sm text-secondary font-bold">{daysRemaining} días</span>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
 
         <div className="grid grid-cols-2 gap-space-sm mt-space-md">
           <button

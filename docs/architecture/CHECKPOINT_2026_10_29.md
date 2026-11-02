@@ -25,6 +25,12 @@ Paltazo está al **100% del spec funcional**. Se implementaron 18/21 User Storie
 - BUG-006: Eliminar moneda no elimina incomes — Fix: RPC actualizada incluye DELETE FROM incomes (01 nov 2026)
 - BUG-007: checkBudgetThreshold UTC bug — Fix: usa date.startsWith(prefix) en lugar de new Date() (01 nov 2026)
 
+**Mejoras implementadas (01 nov 2026):**
+- Dashboard: título con fecha local "Sábado, 31 de octubre" (formato RAE, sin año)
+- Dashboard: empty state cuando no hay monedas configuradas (mensaje + botón a settings)
+- CU-023: ahora permite eliminar moneda principal (con promoción automática)
+- CU-023: modal de confirmación incluye ingresos en el conteo (no solo gastos)
+
 ---
 
 ## 2. Estado de la Base de Datos

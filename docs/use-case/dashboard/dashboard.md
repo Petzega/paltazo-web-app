@@ -32,7 +32,8 @@ Usuario navega a `/dashboard` (ruta raíz post-login).
 1. Sistema obtiene fecha actual (`new Date()`): `currentMonth`, `currentYear`, `daysInMonth`, `currentDay`, `daysRemaining`
 2. Sistema filtra `expenses` al mes actual usando prefijo `YYYY-MM` → `monthlyExpenses`
 3. Sistema construye `currencySummaries`:
-   - Recolecta monedas activas: monedas con gastos en el mes + moneda principal + monedas en `budgets`
+   - Recolecta monedas activas: monedas con gastos en el mes + monedas en `budgets`
+   - **Solo incluye `budget.currency` si `Object.keys(budgets).length > 0`** (evita mostrar DEFAULT_BUDGET fantasma cuando el usuario eliminó todas las monedas)
    - Para cada moneda calcula:
      - `monthlyLimit`: presupuesto asignado (0 si no existe)
      - `totalExpenses`: suma de gastos en esa moneda
@@ -41,15 +42,15 @@ Usuario navega a `/dashboard` (ruta raíz post-login).
      - `alertLevel`: `safe | warning | critical | exceeded`
      - `alertMessage`: texto contextual según nivel
 4. Sistema ordena monedas: `S/` primero, luego alfabético
-5. Sistema identifica `primarySummary` (moneda principal o primera disponible)
+5. Sistema identifica `primarySummary` (primera moneda disponible)
 6. Vista renderiza:
-   - **Header:** Saludo "¡Hola! 👋" + subtítulo "Mantén tu economía tan fresca como una palta"
+   - **Header:** Saludo "¡Hola! 👋" + subtítulo con fecha local: `"Sábado, 31 de octubre"` (formato `{weekday}, {day} de {month}`, sin año, con coma según RAE)
    - **Card de alerta contextual:** `primarySummary.alertMessage` + badge "Quedan X días"
    - **Bloque "Presupuestos mensuales":**
-     - Badge con count de monedas
-     - Una sub-card por moneda: monto límite, barra de progreso, gastado/restante
+     - Badge con count de monedas (oculto si `currencySummaries.length === 0`)
+     - **Empty state** (si no hay monedas): emoji 💰 + mensaje "No tienes monedas configuradas" + botón "⚙️ Configurar moneda" → `/dashboard/settings`
+     - Si hay monedas: una sub-card por moneda con monto límite, barra de progreso, gastado/restante
      - **Días restantes del mes:** integrado dentro de este bloque (no es card separada)
-     - Botones "📊 Ver reporte" → `/dashboard/expenses` y "⚙️ Ajustes" → `/dashboard/settings`
    - **Gráfico de barras** de los últimos 7 días (→ CU-014)
    - **Listado de gastos** del día seleccionado en la barra
    - **Tip motivacional inferior:** "💡 Consejo Paltazo del día"
@@ -59,6 +60,16 @@ Usuario navega a `/dashboard` (ruta raíz post-login).
 **Paso 3 — Usuario sin presupuesto configurado (`monthlyLimit = 0`):**
 - Condición: `monthlyLimit === 0`
 - Comportamiento: Sub-card muestra "Sin límite" y total gastado sin barra de progreso. Mensaje: "{currency} {amount} registrados (sin presupuesto configurado)"
+
+**Paso 3 — Usuario sin monedas configuradas (empty state):**
+- Condición: `currencySummaries.length === 0` (usuario eliminó todas las monedas desde settings)
+- Comportamiento: Sección "Presupuestos mensuales" muestra empty state con:
+  - Emoji 💰 (opacity 50%)
+  - Mensaje principal: "No tienes monedas configuradas"
+  - Mensaje secundario: "Agrega una moneda y configura tu presupuesto mensual para comenzar a registrar gastos"
+  - Botón "⚙️ Configurar moneda" que navega a `/dashboard/settings`
+  - Badge de count de monedas se oculta
+  - Sección de balance (`balanceSummaries`) también se oculta (no muestra "S/ +0.00 -0.00" ficticio)
 
 **Paso 3 — Moneda sin gastos y sin presupuesto:**
 - Condición: Moneda no tiene gastos en el mes ni presupuesto
