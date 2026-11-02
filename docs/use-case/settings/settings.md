@@ -75,16 +75,18 @@ Usuario accede a la sección de presupuestos en la página de ajustes.
 - El presupuesto principal (`budget.currency`) se usa como referencia para alertas de umbral en CU-013.
 
 ### Criterios de aceptación
-- Usuario puede ver y modificar presupuestos de cada moneda activa de forma independiente (código actual: S/ y $).
-- Input muestra símbolo de moneda como prefijo visual.
-- Badge "Principal" aparece solo en la moneda configurada como principal (`budget.currency`).
-- Badge "Configurado" aparece en monedas secundarias que ya tienen un presupuesto definido.
-- Botón "Guardar" se deshabilita si el valor está vacío o es ≤ 0.
-- Tras guardar exitosamente, botón muestra "✓" por 2 segundos como feedback.
-- Cambios se reflejan inmediatamente en el dashboard (CU-012).
+- ✅ Usuario puede ver y modificar presupuestos de cada moneda activa de forma independiente.
+- ✅ Input muestra símbolo de moneda como prefijo visual.
+- ✅ Badge "Principal" aparece solo en la moneda configurada como principal (`budget.currency`).
+- ✅ Badge "Configurado" aparece en monedas secundarias que ya tienen un presupuesto definido.
+- ✅ Botón "Guardar" se deshabilita si el valor está vacío o es ≤ 0.
+- ✅ Tras guardar exitosamente, botón muestra "✓" por 2 segundos como feedback.
+- ✅ Cambios se reflejan inmediatamente en el dashboard (CU-012).
+- ✅ **BUG-009 resuelto:** Monedas se muestran en orden de configuración (no orden fijo).
 
 ### Preguntas pendientes
-- Impacto técnico al implementar CU-021 a CU-023: esta sección deja de iterar el `CURRENCY_OPTIONS` fijo y pasa a iterar las monedas activas del usuario.
+- ~~Impacto técnico al implementar CU-021 a CU-023~~ → **Resuelto:** ahora itera sobre monedas activas del usuario.
+- ~~BUG-009~~ → **Resuelto:** iterar sobre `Object.keys(budgets)` en lugar de `SUPPORTED_CURRENCIES`.
 
 ---
 

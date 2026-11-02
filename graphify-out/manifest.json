@@ -90,9 +90,9 @@
     "semantic_hash": ""
   },
   "src/app/dashboard/page.tsx": {
-    "mtime": 1793576556.9723728,
-    "seen": 1793576566.5176983,
-    "ast_hash": "13776d0de49f4f5aa7fc87071702e027",
+    "mtime": 1793592313.4016695,
+    "seen": 1793592329.5019393,
+    "ast_hash": "b289c186371deb7f08469bf326118f22",
     "semantic_hash": ""
   },
   "src/app/login/page.tsx": {
@@ -234,9 +234,9 @@
     "semantic_hash": ""
   },
   "src/app/dashboard/settings/page.tsx": {
-    "mtime": 1793560950.7933986,
-    "seen": 1793560966.7650592,
-    "ast_hash": "a8cfe0fd0cea2db1855446abf01aec47",
+    "mtime": 1793594252.5786266,
+    "seen": 1793594327.5839446,
+    "ast_hash": "1380c7f0ca6100b57637b84fb5b21f4e",
     "semantic_hash": ""
   },
   "src/components/providers/ServiceWorkerRegistrar.tsx": {
@@ -1254,9 +1254,9 @@
     "semantic_hash": ""
   },
   "docs/use-case/dashboard/dashboard.md": {
-    "mtime": 1793577394.41383,
-    "seen": 1793577539.3105874,
-    "ast_hash": "aee77c46c4927e9156b22b044e9e6bee",
+    "mtime": 1793592409.8309946,
+    "seen": 1793592416.8719711,
+    "ast_hash": "794c2a1c0e3a208740a3f93f11f1e226",
     "semantic_hash": ""
   },
   "docs/use-case/expenses/expenses.md": {
@@ -1266,9 +1266,9 @@
     "semantic_hash": ""
   },
   "docs/use-case/settings/settings.md": {
-    "mtime": 1793577431.8183582,
-    "seen": 1793577539.3107488,
-    "ast_hash": "e39e529aaa04ce7300546034c2e02cc2",
+    "mtime": 1793594312.692513,
+    "seen": 1793594327.5937161,
+    "ast_hash": "f70beb776be17d20e24a3bf69af462b7",
     "semantic_hash": ""
   },
   ".agents/skills/use-case-writer/SKILL.md": {
@@ -1350,9 +1350,9 @@
     "semantic_hash": ""
   },
   "docs/architecture/CHECKPOINT_2026_10_29.md": {
-    "mtime": 1793577500.4413276,
-    "seen": 1793577539.3100553,
-    "ast_hash": "c8b9e6317056c0c6e95c0cfd72ee5bca",
+    "mtime": 1793631193.1880937,
+    "seen": 1793631211.084978,
+    "ast_hash": "17b829b7c359532139498efda76981cb",
     "semantic_hash": ""
   },
   "playwright.config.ts": {
@@ -1470,9 +1470,39 @@
     "semantic_hash": ""
   },
   "docs/bugs/README.md": {
-    "mtime": 1793577529.7327418,
-    "seen": 1793577539.3103123,
-    "ast_hash": "8aa7aaeb2dc3f64e697925f0254e2944",
+    "mtime": 1793594279.4490228,
+    "seen": 1793594327.5932178,
+    "ast_hash": "b0969585e07739b1b00b8244bc6f52a3",
+    "semantic_hash": ""
+  },
+  ".agents/db-cleaner/wipe.sh": {
+    "mtime": 1793585864.156679,
+    "seen": 1793587370.9441946,
+    "ast_hash": "d8c842478ce1ec475394610e18cea028",
+    "semantic_hash": ""
+  },
+  ".agents/db-cleaner/AGENT.md": {
+    "mtime": 1793587013.0906332,
+    "seen": 1793587370.9460251,
+    "ast_hash": "939cc6d5c7d3461e84c97a485377382d",
+    "semantic_hash": ""
+  },
+  ".agents/db-cleaner/SKILL.md": {
+    "mtime": 1793587004.725522,
+    "seen": 1793587370.9460282,
+    "ast_hash": "6b07430ce34e92f3f0b673dfc7855dd0",
+    "semantic_hash": ""
+  },
+  "docs/bugs/BUG-008_dashboard_soles_ghost.md": {
+    "mtime": 1793592335.4469721,
+    "seen": 1793592416.871597,
+    "ast_hash": "3586446b6b7a2cef0c8383de41af1e11",
+    "semantic_hash": ""
+  },
+  "docs/bugs/BUG-009_currency_display_order.md": {
+    "mtime": 1793594268.544862,
+    "seen": 1793594327.5932143,
+    "ast_hash": "23e9d42e01a3228dbda316886731795e",
     "semantic_hash": ""
   }
 }

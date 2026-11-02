@@ -4,8 +4,8 @@
 
 ## Estado actual
 
-**Total:** 7 bugs documentados  
-**Resueltos:** 7/7 (100%)  
+**Total:** 9 bugs documentados  
+**Resueltos:** 9/9 (100%)  
 **Última actualización:** 01 nov 2026
 
 ---
@@ -21,6 +21,8 @@
 | [BUG-005](BUG-005_push_subscriptions_rls.md) | push_subscriptions sin RLS | Critical | ✅ Resuelto | 01 nov 2026 |
 | [BUG-006](BUG-006_delete_currency_includes_incomes.md) | Eliminar moneda no elimina incomes | Critical | ✅ Resuelto | 01 nov 2026 |
 | [BUG-007](BUG-007_checkBudgetThreshold_UTC.md) | checkBudgetThreshold UTC bug | High | ✅ Resuelto | 01 nov 2026 |
+| [BUG-008](BUG-008_dashboard_soles_ghost.md) | Dashboard muestra S/ fantasma | High | ✅ Resuelto | 01 nov 2026 |
+| [BUG-009](BUG-009_currency_display_order.md) | Monedas en orden fijo en Settings | Medium | ✅ Resuelto | 01 nov 2026 |
 
 ---
 

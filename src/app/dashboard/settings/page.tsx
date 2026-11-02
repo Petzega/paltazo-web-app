@@ -46,7 +46,6 @@ export default function SettingsPage() {
   const availableCurrencies = SUPPORTED_CURRENCIES.filter(
     (c) => !activeCurrencies.includes(c.value)
   )
-
   const handleSaveBudget = async (currency: string) => {
     const val = parseFloat(budgetInputs[currency] || '0')
     if (val <= 0) return
@@ -244,12 +243,13 @@ export default function SettingsPage() {
               Configura un límite mensual independiente para cada moneda.
             </p>
             <div className="space-y-space-md">
-              {SUPPORTED_CURRENCIES.filter(c => activeCurrencies.includes(c.value)).map(({ value, label }) => {
-                const currentValue = budgetInputs[value] || ''
-                const existingBudget = budgets[value]
-                const isPrimary = value === budget.currency
+              {activeCurrencies.map((currency) => {
+                const { value, label } = SUPPORTED_CURRENCIES.find(c => c.value === currency) || { value: currency, label: currency }
+                const currentValue = budgetInputs[currency] || ''
+                const existingBudget = budgets[currency]
+                const isPrimary = currency === budget.currency
                 return (
-                  <div key={value} className="flex flex-col gap-space-sm p-space-md rounded-xl bg-surface-container-lowest">
+                  <div key={currency} className="flex flex-col gap-space-sm p-space-md rounded-xl bg-surface-container-lowest">
                     <div className="flex items-center justify-between">
                       <span className="text-label-lg text-on-surface font-semibold">
                         {label}
@@ -266,7 +266,7 @@ export default function SettingsPage() {
                           </span>
                         )}
                         <button
-                          onClick={() => handleRemoveClick(value)}
+                          onClick={() => handleRemoveClick(currency)}
                           className="text-label-sm px-2 py-0.5 rounded-full bg-danger/10 text-danger hover:bg-danger/20 transition-colors"
                         >
                           Quitar
@@ -282,17 +282,17 @@ export default function SettingsPage() {
                           type="number"
                           step="0.01"
                           value={currentValue}
-                          onChange={(e) => setBudgetInputs((prev) => ({ ...prev, [value]: e.target.value }))}
+                          onChange={(e) => setBudgetInputs((prev) => ({ ...prev, [currency]: e.target.value }))}
                           className="w-full pl-10 pr-3 py-3 rounded-xl bg-surface-container border border-outline text-on-surface text-body-md focus:outline-none focus:border-primary transition-colors"
                           placeholder="0.00"
                         />
                       </div>
                       <button
-                        onClick={() => handleSaveBudget(value)}
+                        onClick={() => handleSaveBudget(currency)}
                         disabled={!currentValue || parseFloat(currentValue) <= 0}
                         className="px-5 py-3 rounded-xl bg-primary text-on-primary text-label-md font-semibold hover:bg-secondary transition-colors disabled:opacity-50"
                       >
-                        {saved === value ? '✓' : 'Guardar'}
+                        {saved === currency ? '✓' : 'Guardar'}
                       </button>
                     </div>
                   </div>

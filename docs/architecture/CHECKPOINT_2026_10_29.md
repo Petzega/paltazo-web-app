@@ -1,7 +1,7 @@
-# CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)
+# CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)
 
-> **Estado:** Roadmap 100% completado + bugs críticos corregidos
-> **Última actualización:** 31 oct 2026
+> **Estado:** 100% spec funcional + 9/9 bugs corregidos  
+> **Última actualización:** 02 nov 2026  
 > **Próximo dev:** Este documento es tu punto de partida
 
 ---
@@ -24,12 +24,20 @@ Paltazo está al **100% del spec funcional**. Se implementaron 18/21 User Storie
 - BUG-005: Tabla push_subscriptions sin RLS — Fix: habilitar RLS y crear policies (01 nov 2026)
 - BUG-006: Eliminar moneda no elimina incomes — Fix: RPC actualizada incluye DELETE FROM incomes (01 nov 2026)
 - BUG-007: checkBudgetThreshold UTC bug — Fix: usa date.startsWith(prefix) en lugar de new Date() (01 nov 2026)
+- BUG-008: Dashboard muestra S/ fantasma — Fix: solo agregar monedas existentes en budgets (01 nov 2026)
+- BUG-009: Monedas en orden fijo en Settings — Fix: iterar sobre activeCurrencies en lugar de SUPPORTED_CURRENCIES (01 nov 2026)
 
-**Mejoras implementadas (01 nov 2026):**
-- Dashboard: título con fecha local "Sábado, 31 de octubre" (formato RAE, sin año)
-- Dashboard: empty state cuando no hay monedas configuradas (mensaje + botón a settings)
-- CU-023: ahora permite eliminar moneda principal (con promoción automática)
-- CU-023: modal de confirmación incluye ingresos en el conteo (no solo gastos)
+**Bugs pendientes:**
+Ninguno
+
+**Mejoras implementadas:**
+- **01 nov 2026:** Dashboard título con fecha local "Sábado, 31 de octubre" (formato RAE, sin año)
+- **01 nov 2026:** Dashboard empty state cuando no hay monedas configuradas (mensaje + botón a settings)
+- **01 nov 2026:** `currencySummaries` y `balanceSummaries` solo incluyen monedas que existen en `budgets` (fix BUG-008)
+- **01 nov 2026:** Sort alfabético en dashboard (sin priorizar S/ sobre otras monedas)
+- **01 nov 2026:** CU-023 permite eliminar moneda principal (con promoción automática)
+- **01 nov 2026:** CU-023 modal de confirmación incluye ingresos en el conteo
+- **02 nov 2026:** BUG-009 fix: Settings itera sobre `Object.keys(budgets)` en lugar de `SUPPORTED_CURRENCIES` (monedas en orden de configuración)
 
 ---
 
@@ -43,13 +51,18 @@ supabase/migrations/
 ├── 20261009020000_create_budgets.sql
 ├── 20261015000000_drop_budget_alerts.sql
 ├── 20261018000000_fix_budgets_trigger.sql
-├── 20261029000001_create_categories.sql ← NUEVO: tabla categories + RLS + seed 5 defaults
-├── 20261029000002_expenses_category_fk.sql ← NUEVO: FK expenses.category_id, drop CHECK
-├── 20261029000003_profiles_onboarding.sql ← NUEVO: primary_currency, has_completed_onboarding
-├── 20261029000004_update_trigger_handle_new_user.sql ← NUEVO: trigger ya no crea presupuesto default
+├── 20261029000001_create_categories.sql — tabla categories + RLS + seed 5 defaults
+├── 20261029000002_expenses_category_fk.sql — FK expenses.category_id, drop CHECK
+├── 20261029000003_profiles_onboarding.sql — primary_currency, has_completed_onboarding
+├── 20261029000004_update_trigger_handle_new_user.sql — trigger ya no crea presupuesto default
+├── 20261029000005_create_atomic_functions.sql — delete_currency_purging_data (ACTUALIZADA por migración 2)
+├── 20261029000006_create_income_categories.sql — tabla income_categories
+├── 20261029000007_create_push_subscriptions.sql — tabla push_subscriptions (ACTUALIZADA con RLS por migración 1)
 ├── 20261101000001_fix_push_subscriptions_rls.sql ← FIX CRÍTICO: habilita RLS en push_subscriptions
 └── 20261101000002_fix_delete_currency_includes_incomes.sql ← FIX CRÍTICO: RPC elimina incomes al borrar moneda
 ```
+
+**Nota:** Las migraciones 1 y 2 de nov fueron aplicadas manualmente vía `docker exec` porque el proyecto no estaba linkeado a Supabase cloud. Para producción: `supabase link` + `supabase db push`.
 
 ### Estructura actual
 
@@ -59,8 +72,8 @@ id UUID PRIMARY KEY
 display_name TEXT
 monthly_budget DECIMAL (legacy, no usar)
 currency TEXT (legacy, no usar)
-primary_currency TEXT ← NUEVO: moneda elegida en setup
-has_completed_onboarding BOOLEAN ← NUEVO: flag de onboarding completado
+primary_currency TEXT — moneda elegida en setup
+has_completed_onboarding BOOLEAN — flag de onboarding completado
 created_at TIMESTAMPTZ
 ```
 
@@ -72,7 +85,7 @@ name TEXT NOT NULL
 icon TEXT NOT NULL (emoji)
 color TEXT NOT NULL (red|orange|amber|emerald|teal|blue|indigo|purple)
 is_default BOOLEAN
-is_protected BOOLEAN ← "Otros" es protegida
+is_protected BOOLEAN — "Otros" es protegida
 created_at TIMESTAMPTZ
 updated_at TIMESTAMPTZ
 UNIQUE(user_id, name)
@@ -86,7 +99,7 @@ amount DECIMAL
 description TEXT
 date DATE
 currency TEXT
-category_id UUID FK categories.id ← NUEVO: reemplaza category TEXT
+category_id UUID FK categories.id — reemplaza category TEXT
 created_at TIMESTAMPTZ
 synced_at TIMESTAMPTZ
 ```
@@ -101,6 +114,8 @@ created_at TIMESTAMPTZ
 updated_at TIMESTAMPTZ
 UNIQUE(user_id, currency)
 ```
+
+**Nota:** La tabla `budgets` NO tiene campo `created_at` con hora de inserción preservada de forma confiable desde el cliente. El orden de monedas se preserva vía `Object.keys(budgets)` (orden de inserción ES2015+).
 
 ### Datos seed
 
@@ -151,9 +166,11 @@ export interface Budget {
 ```typescript
 {
   expenses: Expense[]
+  incomes: Income[]
   budget: Budget // presupuesto principal
   budgets: Record<string, Budget> // presupuestos por moneda
   categories: Category[]
+  incomeCategories: IncomeCategory[]
   hasCompletedOnboarding: boolean
   isLoggedIn: boolean
   userId: string | null
@@ -166,15 +183,27 @@ export interface Budget {
 addExpense(expense: Omit<Expense, 'id' | 'createdAt' | 'userId'>)
 updateExpense(id: string, changes: Partial<Expense>)
 deleteExpense(id: string)
+addIncome(income: Omit<Income, 'id' | 'createdAt' | 'updatedAt' | 'userId'>)
+updateIncome(id: string, changes: Partial<Income>)
+deleteIncome(id: string)
 setBudget(monthlyLimit: number, currency?: string)
 addCategory(cat: { name: string; icon: string; color: string })
 updateCategory(id: string, changes: Partial<Pick<Category, 'name' | 'icon' | 'color'>>)
 deleteCategory(id: string)
+addIncomeCategory(cat: { name: string; icon: string; color: string })
+updateIncomeCategory(id: string, changes: Partial<Pick<IncomeCategory, 'name' | 'icon' | 'color'>>)
+deleteIncomeCategory(id: string)
 addCurrency(currency: string)
 removeCurrency(currency: string)
 completeOnboarding(currency: string, monthlyLimit: number)
 logout(): Promise<{ error: string | null }>
 ```
+
+**Métodos privados importantes:**
+- `loadUserData(id)` — carga expenses, incomes, budgets, categories, incomeCategories, profile
+- `checkBudgetThreshold(currency, amount)` — dispara notificación si cruza 80% del límite
+- `syncPending()` — sincroniza cola offline con Supabase
+- `requestNotificationPermission()` — solicita permisos de push
 
 ### Repositories (src/lib/supabase/repositories.ts)
 
@@ -194,9 +223,11 @@ Queries disponibles para categorías, gastos, presupuestos, y perfil de onboardi
 7. Ingresos posteriores → `OnboardingGuard` permite acceso directo
 
 ### Gestión de Monedas (CU-022, CU-023)
-- **Agregar moneda:** Settings → botón "+ Dólares ($)" → crea budget con monthlyLimit=0
-- **Quitar moneda:** Settings → botón "Quitar" → modal de confirmación → elimina gastos + presupuesto de esa moneda
-- **Regla:** moneda principal no borrable
+- **Agregar moneda:** Settings → botón "+ Dólares ($)" o "+ Euros (€)" → crea budget con monthlyLimit=0
+- **Quitar moneda:** Settings → botón "Quitar" → modal de confirmación → elimina gastos + ingresos + presupuesto de esa moneda
+- **Eliminar moneda principal:** Permitido (fix BUG-004). La siguiente moneda disponible sePromueve automáticamente a principal. Si era la última moneda, el dashboard muestra empty state.
+- **Orden de visualización:** Monedas se muestran en el orden en que fueron configuradas (fix BUG-009)
+- **Monedas soportadas:** S/, $, € (SUPPORTED_CURRENCIES en settings/page.tsx)
 
 ### Gestión de Categorías (CU-024, CU-025, CU-026)
 - **Crear:** Settings → "+ Nueva categoría" → modal con nombre, icono (16 emojis), color (8 colores)
@@ -225,7 +256,10 @@ Queries disponibles para categorías, gastos, presupuestos, y perfil de onboardi
 
 ### Monedas
 - **A demanda:** usuario elige qué monedas activar (S/, $, €)
-- **Eliminación destructiva:** al quitar moneda, se eliminan gastos + presupuesto de esa moneda
+- **Eliminación destructiva:** al quitar moneda, se eliminan gastos + ingresos + presupuesto (RPC atómica `delete_currency_purging_data`, fix BUG-006)
+- **Moneda principal eliminable:** si se elimina, la siguiente moneda disponible sePromueve a principal (fix BUG-004)
+- **Orden de visualización:** `Object.keys(budgets)` preserva orden de inserción (ES2015+). Fix BUG-009: Settings itera sobre `activeCurrencies` en lugar de `SUPPORTED_CURRENCIES`
+- **DefaultBudget fantasma:** `DEFAULT_BUDGET` hardcodea `S/`. Fix BUG-008: dashboard no agrega `budget.currency` automáticamente si no existe en `budgets`
 - **Transacción:** operaciones secuenciales en repositories (no hay transacciones nativas en Supabase JS)
 
 ---
@@ -235,54 +269,77 @@ Queries disponibles para categorías, gastos, presupuestos, y perfil de onboardi
 ```
 src/
 ├── app/
-│   ├── setup/page.tsx ← NUEVO: pantalla de setup inicial
-│   ├── session-closed/page.tsx ← NUEVO: pantalla post-logout
+│   ├── setup/page.tsx — pantalla de setup inicial
+│   ├── session-closed/page.tsx — pantalla post-logout
 │   └── dashboard/
-│       ├── layout.tsx ← modificado: integra OnboardingGuard
-│       ├── OnboardingGuard.tsx ← NUEVO: redirect si onboarding incompleto
-│       ├── page.tsx ← modificado: usa findCategory(categories, categoryId), getLocalDate()
-│       ├── add-expense/page.tsx ← modificado: selector dinámico + modal "+ Nueva", DatePicker custom, getLocalDate()
-│       ├── add-income/page.tsx ← modificado: selector dinámico + modal "+ Nueva", DatePicker custom, getLocalDate()
-│       ├── expenses/page.tsx ← modificado: usa categorías dinámicas, fix UTC en display
-│       └── settings/page.tsx ← modificado: gestión de monedas + CRUD categorías
+│       ├── layout.tsx — integra OnboardingGuard
+│       ├── OnboardingGuard.tsx — redirect si onboarding incompleto
+│       ├── page.tsx — dashboard: fecha local, empty state, sort alfabético
+│       ├── add-expense/page.tsx — selector dinámico, DatePicker custom, getLocalDate()
+│       ├── add-income/page.tsx — selector dinámico, DatePicker custom, getLocalDate()
+│       ├── expenses/page.tsx — lista con categorías dinámicas, fix UTC
+│       ├── incomes/page.tsx — lista de ingresos
+│       └── settings/page.tsx — gestión monedas (orden configuración) + CRUD categorías
 ├── components/
 │   ├── ui/
-│   │   ├── DatePicker.tsx ← NUEVO: calendario custom con navegación de mes/año
+│   │   ├── DatePicker.tsx — calendario custom con navegación de mes/año
 │   │   └── ... (otros componentes)
 │   └── providers/
 ├── lib/
-│   ├── store.tsx ← modificado: categorías, onboarding, CRUD methods, fix sync queue, fix budget threshold
-│   ├── categories.ts ← modificado: findCategory, getCategoryColorClass dinámicos
-│   ├── expenseConstants.ts ← NUEVO: formatAmount, CATEGORY_EMOJIS, CATEGORY_COLORS, getLocalDate()
-│   ├── offline.ts ← modificado: cache de conexión IndexedDB
+│   ├── store.tsx — estado global: incomes, categorías, fix sync/budgetThreshold
+│   ├── categories.ts — findCategory, getColorClass con mapa estático
+│   ├── expenseConstants.ts — formatAmount, CATEGORY_EMOJIS/COLORS, getLocalDate()
+│   ├── offline.ts — cache de conexión IndexedDB
 │   └── supabase/
 │       ├── client.ts
 │       ├── auth.ts
-│       └── repositories.ts ← modificado: queries categories, onboarding, fix auth server route
+│       └── repositories.ts — queries, fix auth server route, RPC wrappers
 └── types/
-    └── index.ts ← modificado: Category interface, Expense.categoryId
+    └── index.ts — interfaces Expense, Income, Budget, Category, IncomeCategory
 
 supabase/migrations/
-└── 20261029000001-000004 ← NUEVO: categorías, FK, onboarding, trigger
+├── 20261008182458_create_schema.sql
+├── 20261008190000_add_currency_to_expenses.sql
+├── 20261009020000_create_budgets.sql
+├── 20261015000000_drop_budget_alerts.sql
+├── 20261018000000_fix_budgets_trigger.sql
+├── 20261029000001_create_categories.sql
+├── 20261029000002_expenses_category_fk.sql
+├── 20261029000003_profiles_onboarding.sql
+├── 20261029000004_update_trigger_handle_new_user.sql
+├── 20261029000005_create_atomic_functions.sql
+├── 20261029000006_create_income_categories.sql
+├── 20261029000007_create_push_subscriptions.sql
+├── 20261101000001_fix_push_subscriptions_rls.sql
+└── 20261101000002_fix_delete_currency_includes_incomes.sql
 
 docs/
 ├── architecture/
 │   ├── ARCHITECTURE_SPEC.md
 │   ├── IMPLEMENTATION_ROADMAP.md
 │   └── CHECKPOINT_2026_10_29.md ← ESTE DOCUMENTO
+├── bugs/
+│   ├── README.md ← índice de todos los bugs
+│   ├── BUG-001_dashboard_percentage_cap.md (resuelto)
+│   ├── BUG-002_setup_redirect_flash.md (resuelto)
+│   ├── BUG-003_date_timezone_utc.md (resuelto)
+│   ├── BUG-004_remove_primary_currency.md (resuelto)
+│   ├── BUG-005_push_subscriptions_rls.md (resuelto)
+│   ├── BUG-006_delete_currency_includes_incomes.md (resuelto)
+│   ├── BUG-007_checkBudgetThreshold_UTC.md (resuelto)
+│   ├── BUG-008_dashboard_soles_ghost.md (resuelto)
+│   └── BUG-009_currency_display_order.md (resuelto)
 ├── use-case/
-│   ├── USER_STORY_MAP.md
-│   ├── categories/categories.md ← catálogo de emojis y colores
+│   ├── README.md ← índice de casos de uso
+│   ├── auth/auth.md
+│   ├── dashboard/dashboard.md — CU-012 a CU-014, CU-034
+│   ├── expenses/expenses.md
+│   ├── incomes/incomes.md
+│   ├── settings/settings.md — CU-015 a CU-017, CU-022, CU-023
+│   ├── categories/categories.md
 │   ├── onboarding/onboarding.md
-│   └── settings/settings.md
-└── bugs/
-    ├── BUG-001_dashboard_percentage_cap.md (resuelto)
-    ├── BUG-002_setup_redirect_flash.md — Fix: validación de onboarding (resuelto)
-    ├── BUG-003_date_timezone_utc.md — Fix: hora local y T12:00:00 (resuelto)
-    ├── BUG-004_remove_primary_currency.md — Fix: promoción + botón Quitar (resuelto)
-    ├── BUG-005_push_subscriptions_rls.md — Fix: habilitar RLS y policies (resuelto)
-    ├── BUG-006_delete_currency_includes_incomes.md — Fix: RPC elimina incomes (resuelto)
-    └── BUG-007_checkBudgetThreshold_UTC.md — Fix: date.startsWith(prefix) (resuelto)
+│   └── future/future.md
+└── design/
 ```
 
 ---
@@ -301,75 +358,127 @@ npm run dev
    - Regístrate con nuevo usuario
    - Completa setup (moneda + presupuesto)
    - Verifica que redirige a `/dashboard` sin flash a `/setup`
+   - **Validar:** moneda de setup aparece como "Principal" en Settings
 
 2. **Gestión de monedas:**
-   - Ve a Ajustes
-   - Agrega moneda ($ o €)
-   - Configura presupuesto
-   - Quita moneda (verifica modal de confirmación)
+   - Ve a Ajustes → "Presupuestos por moneda"
+   - **Orden:** monedas deben aparecer en el orden en que se configuraron (no orden fijo S/, $, €)
+   - Agrega moneda ($ o €) → aparece al final, no como principal
+   - Configura presupuesto → botón muestra "✓" feedback
+   - Quita moneda → modal debe contar gastos + ingresos
+   - **Eliminar moneda principal:** permitido, la siguiente moneda sePromueve automáticamente
+   - **Eliminar última moneda:** dashboard muestra empty state "No tienes monedas configuradas"
 
-3. **Gestión de categorías:**
+3. **Dashboard con múltiples monedas:**
+   - Registra gastos en diferentes monedas
+   - Verifica que dashboard NO muestra monedas que no estén en `budgets` (fix BUG-008)
+   - Verifica que las monedas se ordenan alfabéticamente en dashboard (fix BUG-008)
+   - Verifica fecha en formato local: "Sábado, 2 de noviembre" (fix BUG-003)
+
+4. **Gestión de categorías:**
    - Ve a Ajustes → Categorías
    - Crea categoría custom (nombre, emoji, color)
    - Edita categoría (cambia nombre/icono/color)
    - Elimina categoría (verifica reasignación a "Otros")
 
-4. **Gastos con categorías dinámicas:**
-   - Ve a Agregar gasto
-   - Verifica selector de categorías (incluye custom)
-   - Crea gasto con categoría custom
-   - Verifica en historial y dashboard
+5. **Gastos e ingresos:**
+   - Ve a Agregar gasto → selector dinámico de categorías
+   - Crea gasto con categoría custom → verifica en historial y dashboard
+   - Agrega ingreso → verifica en dashboard (sección "Balance del mes")
+   - **Fechas:** verifica que gastos registrados a las 8pm aparecen en el día correcto (no día anterior)
 
-5. **Logout:**
-   - Cierra sesión
+6. **Presupuesto y alertas:**
+   - Configura presupuesto de 1000
+   - Registra gastos hasta 800 → alerta de umbral 80%
+   - Supera 1000 → alerta "Superado" con barra roja (no se queda en 100%)
+   - `checkBudgetThreshold` usa `startsWith(prefix)`, NO `new Date(e.date)`
+
+7. **Logout:**
+   - Cierra sesión desde Settings o sidebar
    - Verifica redirect a `/session-closed`
    - Vuelve a iniciar sesión → no debe aparecer setup
+
+8. **Offline-first (básico):**
+   - Desconecta red → registra gasto → aparece en cola pending
+   - Reconecta → `syncPending()` sincroniza automáticamente
 
 ---
 
 ## 8. Posibles Mejoras Futuras
 
 ### Trabajo pendiente (no crítico)
-- **Test e2e automatizado:** verificar flujos completos con Playwright o Cypress
-- **Optimización de queries:** algunas queries en repositories podrían beneficiarse de índices adicionales
-- **Transacciones reales:** Supabase JS no soporta transacciones nativas, pero las operaciones secuenciales son suficientemente atómicas para el caso de uso actual
+- **Tests unitarios:** funciones no triviales sin test (`formatAmount`, `findCategory`, `getLocalDate`, `checkBudgetThreshold`, `syncPending`)
+- **Tests e2e:** Playwright para flujos completos (registro → setup → gasto → dashboard → logout)
+- **Rate limiting:** endpoint `/api/notifications/subscribe` no tiene rate limit
+- **Service worker versioning:** `public/sw.js` necesita cache-busting al cambiar assets
 
 ### Features futuras (v1.2, fuera de scope actual)
-- US-016: Google OAuth (requiere config en Supabase Dashboard)
-- US-017: Offline-first con cola de sync persistente
-- US-018: Notificaciones push al cruzar umbral de presupuesto
+- **US-016:** Google OAuth (requiere config en Supabase Dashboard)
+- **US-017:** Offline-first con cola de sync persistente en IndexedDB (actual: cola en memoria)
+- **US-018:** Notificaciones push al cruzar umbral de presupuesto (infraestructura lista, falta integración)
+- **US-019:** Exportar datos (CSV/PDF de gastos mensuales)
+- **US-020:** Presupuestos por categoría (no solo por moneda)
 
 ---
 
 ## 9. Notas para el Próximo Dev
 
 ### Lo que funciona bien
-- **Tipado fuerte:** TypeScript atrapa errores de compilación
-- **RLS en Supabase:** aislamiento por usuario garantizado a nivel DB
-- **Estado global limpio:** store expone métodos claros, sin lógica de UI
+- **Tipado fuerte:** TypeScript atrapa errores de compilación. Ejecutar `npx tsc --noEmit` antes de commit.
+- **RLS en Supabase:** aislamiento por usuario garantizado a nivel DB. Todas las tablas con `user_id` tienen RLS.
+- **Estado global limpio:** store expone métodos claros, sin lógica de UI.
+- **Fechas locales:** `getLocalDate()` y `new Date(date + 'T12:00:00')` patrón consistente.
+
+### Convenciones establecidas (NO romper)
+- **Fechas:** nunca usar `new Date(dateString)` sin `T12:00:00`. Siempre `getLocalDate()` para "hoy".
+- **Monedas:** dashboard itera sobre `budgets`, NO sobre `budget.currency` automáticamente (fix BUG-008).
+- **Tailwind:** NO usar clases dinámicas (`bg-${color}-500`). Usar mapa estático con strings completos.
+- **Sort:** dashboard ordena alfabéticamente (no priorizar S/). Settings usa orden de inserción.
 
 ### Puntos de atención
-- **Race conditions:** al actualizar estados asíncronos, asegurar que se batcheen juntos (ver BUG-002)
-- **Eliminación de categorías/monedas:** operaciones destructivas requieren confirmación y reasignación
-- **Validaciones:** nombre de categoría único case-insensitive, monto > 0, moneda no duplicada
+- **DEFAULT_BUDGET hardcodea S/:** es un fallback de inicialización. No usar como referencia de moneda activa.
+- **Race conditions:** `applySession` usa `useCallback([])`. Al actualizar estados, batchear juntos (ver BUG-002).
+- **Eliminación de monedas:** RPC atómica `delete_currency_purging_data` — si agregas otra entidad, actualizar la función.
+- **Supabase local:** proyecto NO linkeado a cloud. Para deploy: `supabase link` + `supabase db push`.
 
-### Recursos útiles
+### Comandos útiles
+```bash
+npm run dev              # Dev server
+npx tsc --noEmit         # Type check
+graphify query "..."     # Explorar código
+graphify update .        # Actualizar grafo tras cambios
+docker ps | grep supabase # Verificar Supabase local
+```
+
+### Agente de documentación
+Hay un agente `docs-keeper` en `.agents/skills/docs-keeper/SKILL.md`. Úsalo con `/docs-update` después de cambios significativos para mantener bugs, casos de uso y checkpoint sincronizados.
+
+### Recursos
+- **Bugs:** `docs/bugs/README.md` — índice completo
+- **Casos de uso:** `docs/use-case/README.md` — spec detallado de cada funcionalidad
+- **Roadmap:** `docs/architecture/IMPLEMENTATION_ROADMAP.md`
 - **Graphify:** `graphify query "<pregunta>"` para explorar el código
-- **Documentación de casos de uso:** `docs/use-case/` tiene spec detallado de cada funcionalidad
-- **Roadmap:** `docs/architecture/IMPLEMENTATION_ROADMAP.md` tiene el plan completo
+- **Supabase:** Studio en `http://localhost:54333`
 
 ---
 
 ## 10. Contacto y Contexto
 
-Este checkpoint fue generado el 29 oct 2026 tras completar la Fase 4 del roadmap. El proyecto está en estado estable y listo para producción (o para continuar con features futuras).
+Este checkpoint fue actualizado el **02 nov 2026** tras corregir 9 bugs (BUG-001 a BUG-009). El proyecto está en estado estable y listo para producción o para continuar con features futuras.
 
 **Stack técnico:**
 - Next.js 14 (App Router)
 - TypeScript
-- Supabase (auth, DB, RLS)
+- Supabase (auth, DB, RLS, Edge Functions)
 - Tailwind CSS
 - React 18 (con automatic batching)
+- IndexedDB (cache offline básico)
+
+**Estado de producción:**
+- [ ] Aplicar migraciones 20261101000001 y 20261101000002 en Supabase cloud
+- [ ] Limpiar incomes huérfanos si hubo eliminaciones antes de BUG-006 (ver BUG-006 docs para query SQL)
+- [ ] Configurar rate limiting en `/api/notifications/subscribe`
+- [ ] Agregar tests unitarios para funciones críticas
 
 **Modo de trabajo:**
 - Caveman + Ponytail ultra activos (respuestas concisas, minimalismo extremo)

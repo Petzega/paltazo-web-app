@@ -90,9 +90,9 @@
     "semantic_hash": ""
   },
   "src/app/dashboard/page.tsx": {
-    "mtime": 1793576556.9723728,
-    "seen": 1793576566.5176983,
-    "ast_hash": "13776d0de49f4f5aa7fc87071702e027",
+    "mtime": 1793592313.4016695,
+    "seen": 1793592329.5019393,
+    "ast_hash": "b289c186371deb7f08469bf326118f22",
     "semantic_hash": ""
   },
   "src/app/login/page.tsx": {
@@ -1230,9 +1230,9 @@
     "semantic_hash": ""
   },
   "docs/use-case/README.md": {
-    "mtime": 1793328659.212349,
-    "seen": 1793417002.8719525,
-    "ast_hash": "f23c665b8f2580a9a65af00573537994",
+    "mtime": 1793577446.258562,
+    "seen": 1793577539.3104773,
+    "ast_hash": "06f62bb8430a20b03f3b3e040d131b4f",
     "semantic_hash": ""
   },
   "docs/use-case/auth/auth.md": {
@@ -1254,9 +1254,9 @@
     "semantic_hash": ""
   },
   "docs/use-case/dashboard/dashboard.md": {
-    "mtime": 1793408020.5443594,
-    "seen": 1793417002.8719616,
-    "ast_hash": "6a7cda0c3247a7f16ff32409d0ca91e3",
+    "mtime": 1793592409.8309946,
+    "seen": 1793592416.8719711,
+    "ast_hash": "794c2a1c0e3a208740a3f93f11f1e226",
     "semantic_hash": ""
   },
   "docs/use-case/expenses/expenses.md": {
@@ -1266,9 +1266,9 @@
     "semantic_hash": ""
   },
   "docs/use-case/settings/settings.md": {
-    "mtime": 1793328659.2131648,
-    "seen": 1793417002.8719723,
-    "ast_hash": "77dfa4aaf4a825b20b707a24af7a1d60",
+    "mtime": 1793577431.8183582,
+    "seen": 1793577539.3107488,
+    "ast_hash": "e39e529aaa04ce7300546034c2e02cc2",
     "semantic_hash": ""
   },
   ".agents/skills/use-case-writer/SKILL.md": {
@@ -1350,9 +1350,9 @@
     "semantic_hash": ""
   },
   "docs/architecture/CHECKPOINT_2026_10_29.md": {
-    "mtime": 1793561634.9421148,
-    "seen": 1793576566.5274048,
-    "ast_hash": "cca174a0a927d30efb746fc06dc8c713",
+    "mtime": 1793592376.2505324,
+    "seen": 1793592416.8712566,
+    "ast_hash": "3e0b5e31af8156c748669f380b701f5a",
     "semantic_hash": ""
   },
   "playwright.config.ts": {
@@ -1455,6 +1455,48 @@
     "mtime": 1793561622.4339337,
     "seen": 1793576566.5275657,
     "ast_hash": "7af0c9cd69b3bf3598d169a1b8887b9e",
+    "semantic_hash": ""
+  },
+  ".agents/skills/docs-keeper/SKILL.md": {
+    "mtime": 1793577480.0270388,
+    "seen": 1793577539.3040915,
+    "ast_hash": "4ff48e1361d1ab7a1f8f23ba880abded",
+    "semantic_hash": ""
+  },
+  "docs/bugs/BUG-001_dashboard_percentage_cap.md": {
+    "mtime": 1793577363.4153924,
+    "seen": 1793577539.3100958,
+    "ast_hash": "e717f638255c53af5671ee70e30ba08c",
+    "semantic_hash": ""
+  },
+  "docs/bugs/README.md": {
+    "mtime": 1793592353.7872238,
+    "seen": 1793592416.8716,
+    "ast_hash": "fc0d5e6d20ea3693cace7e1602e8e0e4",
+    "semantic_hash": ""
+  },
+  ".agents/db-cleaner/wipe.sh": {
+    "mtime": 1793585864.156679,
+    "seen": 1793587370.9441946,
+    "ast_hash": "d8c842478ce1ec475394610e18cea028",
+    "semantic_hash": ""
+  },
+  ".agents/db-cleaner/AGENT.md": {
+    "mtime": 1793587013.0906332,
+    "seen": 1793587370.9460251,
+    "ast_hash": "939cc6d5c7d3461e84c97a485377382d",
+    "semantic_hash": ""
+  },
+  ".agents/db-cleaner/SKILL.md": {
+    "mtime": 1793587004.725522,
+    "seen": 1793587370.9460282,
+    "ast_hash": "6b07430ce34e92f3f0b673dfc7855dd0",
+    "semantic_hash": ""
+  },
+  "docs/bugs/BUG-008_dashboard_soles_ghost.md": {
+    "mtime": 1793592335.4469721,
+    "seen": 1793592416.871597,
+    "ast_hash": "3586446b6b7a2cef0c8383de41af1e11",
     "semantic_hash": ""
   }
 }

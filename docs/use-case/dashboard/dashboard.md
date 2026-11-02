@@ -33,7 +33,7 @@ Usuario navega a `/dashboard` (ruta raíz post-login).
 2. Sistema filtra `expenses` al mes actual usando prefijo `YYYY-MM` → `monthlyExpenses`
 3. Sistema construye `currencySummaries`:
    - Recolecta monedas activas: monedas con gastos en el mes + monedas en `budgets`
-   - **Solo incluye `budget.currency` si `Object.keys(budgets).length > 0`** (evita mostrar DEFAULT_BUDGET fantasma cuando el usuario eliminó todas las monedas)
+   - **NO agrega `budget.currency` automáticamente** (puede ser DEFAULT_BUDGET fantasma si no existe en `budgets`)
    - Para cada moneda calcula:
      - `monthlyLimit`: presupuesto asignado (0 si no existe)
      - `totalExpenses`: suma de gastos en esa moneda
@@ -41,7 +41,7 @@ Usuario navega a `/dashboard` (ruta raíz post-login).
      - `remaining`: `max(monthlyLimit - totalExpenses, 0)`
      - `alertLevel`: `safe | warning | critical | exceeded`
      - `alertMessage`: texto contextual según nivel
-4. Sistema ordena monedas: `S/` primero, luego alfabético
+4. Sistema ordena monedas alfabéticamente (sin priorizar S/, fix BUG-008)
 5. Sistema identifica `primarySummary` (primera moneda disponible)
 6. Vista renderiza:
    - **Header:** Saludo "¡Hola! 👋" + subtítulo con fecha local: `"Sábado, 31 de octubre"` (formato `{weekday}, {day} de {month}`, sin año, con coma según RAE)
@@ -62,7 +62,7 @@ Usuario navega a `/dashboard` (ruta raíz post-login).
 - Comportamiento: Sub-card muestra "Sin límite" y total gastado sin barra de progreso. Mensaje: "{currency} {amount} registrados (sin presupuesto configurado)"
 
 **Paso 3 — Usuario sin monedas configuradas (empty state):**
-- Condición: `currencySummaries.length === 0` (usuario eliminó todas las monedas desde settings)
+- Condición: `currencySummaries.length === 0` (usuario no tiene presupuestos configurados ni gastos en el mes)
 - Comportamiento: Sección "Presupuestos mensuales" muestra empty state con:
   - Emoji 💰 (opacity 50%)
   - Mensaje principal: "No tienes monedas configuradas"
@@ -297,12 +297,14 @@ Cualquier cambio en `expenses` o `incomes` (recálculo reactivo).
 
 ### Flujo principal
 1. Sistema obtiene fecha actual y filtra `incomes` al mes actual.
-2. Sistema construye `incomeSummaries` por moneda:
+2. Sistema construye `balanceSummaries` por moneda:
+   - Recolecta monedas activas: monedas con gastos o ingresos en el mes + monedas en `budgets`
+   - **NO agrega `budget.currency` automáticamente** (fix BUG-008)
    - Para cada moneda activa calcula:
      - `totalIncome`: suma de ingresos en esa moneda.
      - `totalExpense`: suma de gastos en esa moneda (ya calculado en CU-012).
      - `balance`: `totalIncome - totalExpense`.
-3. Sistema ordena monedas: moneda principal primero, luego alfabético.
+3. Sistema ordena monedas alfabéticamente (sin priorizar S/, fix BUG-008).
 4. Vista renderiza nueva sección "💵 Balance del mes":
    - Badge con count de monedas.
    - Una sub-card por moneda con: total ingresado (emerald), total gastado (red), balance neto.

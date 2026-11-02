@@ -47,14 +47,12 @@ function BalanceSection() {
 
   const currencySummaries: CurrencySummary[] = useMemo(() => {
     const activeCurrencies = new Set(monthlyExpenses.map((e) => e.currency))
-    // Solo agregar budget.currency si hay presupuestos configurados (evita mostrar DEFAULT_BUDGET cuando no hay monedas)
-    if (Object.keys(budgets).length > 0) {
-      activeCurrencies.add(budget.currency)
-      Object.keys(budgets).forEach((c) => activeCurrencies.add(c))
-    }
+    // Solo agregar monedas que tengan presupuesto configurado en budgets
+    Object.keys(budgets).forEach((c) => activeCurrencies.add(c))
+    // NO agregar budget.currency automáticamente (puede ser DEFAULT_BUDGET fantasma si no existe en budgets)
 
     const summaries = Array.from(activeCurrencies).map((currency) => {
-      const budgetForCurrency = budgets[currency] || (currency === budget.currency ? budget : null)
+      const budgetForCurrency = budgets[currency] || null
       const monthlyLimit = budgetForCurrency?.monthlyLimit || 0
       const totalExpenses = monthlyExpenses
         .filter((e) => e.currency === currency)
@@ -74,22 +72,16 @@ function BalanceSection() {
       return { currency, monthlyLimit, totalExpenses, percentage, remaining, alertLevel, alertMessage }
     })
 
-    summaries.sort((a, b) => {
-      if (a.currency === 'S/') return -1
-      if (b.currency === 'S/') return 1
-      return a.currency.localeCompare(b.currency)
-    })
+    summaries.sort((a, b) => a.currency.localeCompare(b.currency))
 
     return summaries
   }, [monthlyExpenses, budget, budgets])
 
   const balanceSummaries: BalanceSummary[] = useMemo(() => {
     const activeCurrencies = new Set([...monthlyExpenses.map((e) => e.currency), ...monthlyIncomes.map((i) => i.currency)])
-    // Solo agregar budget.currency si hay presupuestos configurados
-    if (Object.keys(budgets).length > 0) {
-      activeCurrencies.add(budget.currency)
-      Object.keys(budgets).forEach((c) => activeCurrencies.add(c))
-    }
+    // Solo agregar monedas que tengan presupuesto configurado en budgets
+    Object.keys(budgets).forEach((c) => activeCurrencies.add(c))
+    // NO agregar budget.currency automáticamente (puede ser DEFAULT_BUDGET fantasma)
 
     const summaries = Array.from(activeCurrencies).map((currency) => {
       const totalIncome = monthlyIncomes
@@ -102,14 +94,10 @@ function BalanceSection() {
       return { currency, totalIncome, totalExpense, balance }
     })
 
-    summaries.sort((a, b) => {
-      if (a.currency === 'S/') return -1
-      if (b.currency === 'S/') return 1
-      return a.currency.localeCompare(b.currency)
-    })
+    summaries.sort((a, b) => a.currency.localeCompare(b.currency))
 
     return summaries
-  }, [monthlyExpenses, monthlyIncomes, budget, budgets])
+  }, [monthlyExpenses, monthlyIncomes, budgets])
 
   return (
     <div className="grid md:grid-cols-2 md:gap-space-lg">

@@ -1,17 +1,17 @@
 # Graph Report - paltazo-web-app  (2026-11-01)
 
 ## Corpus Check
-- 250 files · ~146,337 words
+- 257 files · ~150,512 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 9 file(s) not represented in the graph (top: (none) 4, .example 2, .canvas 1)
 
 ## Summary
-- 2062 nodes · 2165 edges · 250 communities (125 shown, 125 thin omitted)
-- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 66 edges (avg confidence: 0.95)
+- 2126 nodes · 2235 edges · 266 communities (137 shown, 129 thin omitted)
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 69 edges (avg confidence: 0.95)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6f1ad387`
+- Built from commit: `dd4e3898`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -203,7 +203,7 @@
 - CU-004: Establecer nueva contraseña con token de recuperación
 - CU-002: Registrarse con email y contraseña
 - signOut
-- Checkpoint: Paltazo — Documentación funcional y estado técnico
+- A. Código — bugs y brechas entre documentación e implementación
 - CU-031: Crear categoría de ingreso
 - middleware.ts
 - CU-013: Alertas de umbral
@@ -231,12 +231,12 @@
 - CU-030: Listar ingresos del mes
 - CU-012: Visualizar dashboard mensual
 - 3. Diagramas de Secuencia para Flujos Críticos
-- signOut
-- Colors
+- CU-005: Cerrar sesión
+- Checkpoint: Paltazo — Documentación funcional y estado técnico
 - CU-014: Consultar actividad de los últimos 7 días
 - ref_next_navigation
-- CU-025: Editar categoría
-- CU-026: Eliminar categoría
+- Docs Keeper — Guardián de la Documentación
+- Bugs Documentados — Paltazo
 - CU-028: Editar ingreso
 - store.tsx
 - BUG-006: Eliminar moneda no elimina incomes — Fix: RPC actualizada incluye DELETE FROM incomes
@@ -259,9 +259,24 @@
 - apply-migrations.sh
 - dependencies
 - DatePicker.tsx
-- Casos de Uso: Dashboard
+- CU-025: Editar categoría
+- BUG-001: Dashboard percentage cap — Fix: eliminar Math.min de 100%
 - @playwright/test
 - tailwindcss
+- CU-026: Eliminar categoría
+- DB Cleaner — Agente de Limpieza de Base de Datos Local
+- DB Cleaner Agent — Paltazo
+- login/page.tsx
+- Casos de Uso: Ingresos
+- wipe.sh
+- signOut
+- 4. Flujo de la Aplicación
+- USER_STORY_MAP.md
+- 6. Brechas conocidas en el código (priorizadas)
+- 5. Decisiones Técnicas Tomadas
+- 9. Notas para el Próximo Dev
+- 4. Funcionalidad nueva propuesta (decisiones cerradas)
+- Casos de Uso: Dashboard
 
 ## God Nodes (most connected - your core abstractions)
 1. `useAppState()` - 26 edges
@@ -295,7 +310,7 @@
 - **Paltazo AI Agent Team** — docs_design_agentes_paltazo_wireframes_agent, docs_design_agentes_paltazo_frontend_agent, docs_design_agentes_paltazo_backend_agent, docs_necesidad_proyecto_paltazo_product_agent [EXTRACTED 1.00]
 - **Paltazo Database Schema Tables** — docs_stack_tecnologico_paltazo_profiles_table, docs_stack_tecnologico_paltazo_expenses_table, docs_stack_tecnologico_paltazo_budget_alerts_table, docs_stack_tecnologico_paltazo_push_subscriptions_table [EXTRACTED 1.00]
 
-## Communities (250 total, 125 thin omitted)
+## Communities (266 total, 129 thin omitted)
 
 ### Community 0 - "Paltazo Application"
 Cohesion: 0.08
@@ -326,7 +341,7 @@ Cohesion: 0.11
 Nodes (18): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, lib, module (+10 more)
 
 ### Community 13 - "Casos de Uso: Autenticación"
-Cohesion: 0.29
+Cohesion: 0.25
 Nodes (7): 1. Naming "dashboard" vs "home", 2. Ruta concreta de la pantalla "Sesión cerrada", 3. Alcance del rol admin, 4. Discrepancia de moneda: `'PEN'` (documentación) vs `'S/'` (código) — REEMPLAZADA, 5. Trigger `handle_new_user` tolerante a fallos, Casos de Uso: Autenticación, Decisiones pendientes
 
 ### Community 14 - "UC-XXX: Nombre"
@@ -338,8 +353,8 @@ Cohesion: 0.07
 Nodes (29): 3.10 Use after() for Non-Blocking Operations, 3.1 Authenticate Server Actions Like API Routes, 3.2 Avoid Duplicate Serialization in RSC Props, 3.3 Avoid Shared Module State for Request Data, 3.4 Cross-Request LRU Caching, 3.5 Hoist Static I/O to Module Level, 3.6 Minimize Serialization at RSC Boundaries, 3.7 Parallel Data Fetching with Component Composition (+21 more)
 
 ### Community 16 - "Paltazo — Bitácora de Avance"
-Cohesion: 0.06
-Nodes (34): 20261008182458_create_schema.sql, 20261008190000_add_currency_to_expenses.sql, Archivos clave, Auditoría aplicada, Auditoría de código — Actualización 2026-10-15, Auditoría de código — Actualización 2026-10-16, Avances 2026-10-17/18, Base de datos (+26 more)
+Cohesion: 0.05
+Nodes (40): 20261008182458_create_schema.sql, 20261008190000_add_currency_to_expenses.sql, Archivos clave, Auditoría aplicada, Auditoría de código — Actualización 2026-10-15, Auditoría de código — Actualización 2026-10-16, Avances 2026-10-17/18, Base de datos (+32 more)
 
 ### Community 18 - "manifest.json"
 Cohesion: 0.20
@@ -474,8 +489,8 @@ Cohesion: 0.20
 Nodes (9): Best Practices for Performance, Bundle Size Optimization, Content Path Best Practices, CSS Optimization Techniques, Development Performance (v4.1+), Minification, Production Build Optimization, PurgeCSS Configuration (+1 more)
 
 ### Community 54 - "Tailwind CSS Layout Patterns"
-Cohesion: 0.15
-Nodes (12): Container & Max Width, Flexbox Layouts, Font Size & Weight, Grid Layouts, Layout Utilities, Line Height & Letter Spacing, Padding & Margin, Responsive Breakpoints Reference (+4 more)
+Cohesion: 0.12
+Nodes (16): Background Colors, Colors, Container & Max Width, Flexbox Layouts, Font Size & Weight, Grid Layouts, Layout Utilities, Line Height & Letter Spacing (+8 more)
 
 ### Community 55 - "2. Actividad A — Acceder a la aplicación"
 Cohesion: 0.15
@@ -522,12 +537,12 @@ Cohesion: 0.08
 Nodes (25): 1. Estado actual consolidado, 2. Historias implementadas (15/21), 3. Brechas técnicas críticas (P0 & P1), 4. Historias propuestas sin release (3 US), 5. Historias futuras v1.2 (out of scope inmediato), 6. Fases de ejecución sugeridas, 7. Criterios de "app al 100%", 8. Notas técnicas (+17 more)
 
 ### Community 174 - "BUG-002: Flash de redirect a /setup tras completar onboarding — Fix: validación de onboarding completado en el guard"
-Cohesion: 0.10
-Nodes (21): Análisis preliminar, Archivos involucrados, BUG-002: Flash de redirect a /setup tras completar onboarding — Fix: validación de onboarding completado en el guard, Comportamiento actual, Comportamiento esperado, Criterios de resolución, Hipótesis 1: Race condition en el estado de loading, Hipótesis 2: Delay en propagación de Supabase (+13 more)
+Cohesion: 0.07
+Nodes (32): Análisis preliminar, Archivos involucrados, BUG-002: Flash de redirect a /setup tras completar onboarding — Fix: validación de onboarding completado en el guard, Comportamiento actual, Comportamiento esperado, Criterios de resolución, Hipótesis 1: Race condition en el estado de loading, Hipótesis 2: Delay en propagación de Supabase (+24 more)
 
 ### Community 175 - "CU-009: Listar gastos del mes"
-Cohesion: 0.12
-Nodes (15): Actor principal, Alcance, Casos de Uso: Gastos, Criterios de aceptación, CU-009: Listar gastos del mes, Disparador, Excepciones, Flujo principal (+7 more)
+Cohesion: 0.14
+Nodes (14): Actor principal, Alcance, Criterios de aceptación, CU-009: Listar gastos del mes, Disparador, Excepciones, Flujo principal, Flujos alternativos (+6 more)
 
 ### Community 176 - "CU-011: Eliminar gasto"
 Cohesion: 0.14
@@ -550,8 +565,8 @@ Cohesion: 0.40
 Nodes (5): 4.1 Deduplicate Global Event Listeners, 4.2 Use Passive Event Listeners for Scrolling Performance, 4.3 Use SWR for Automatic Deduplication, 4.4 Version and Minimize localStorage Data, 4. Client-Side Data Fetching
 
 ### Community 181 - "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)"
-Cohesion: 0.06
-Nodes (31): 10. Contacto y Contexto, 1. Resumen Ejecutivo, 2. Estado de la Base de Datos, 3. Estado del Código TypeScript, 4. Flujo de la Aplicación, 5. Decisiones Técnicas Tomadas, 6. Estructura de Archivos Clave, 7. Cómo Ejecutar y Probar (+23 more)
+Cohesion: 0.11
+Nodes (18): 10. Contacto y Contexto, 1. Resumen Ejecutivo, 2. Estado de la Base de Datos, 3. Estado del Código TypeScript, 6. Estructura de Archivos Clave, 7. Cómo Ejecutar y Probar, 8. Posibles Mejoras Futuras, CHECKPOINT: Estado Actual de Paltazo (31 oct 2026) (+10 more)
 
 ### Community 182 - "CU-007: Iniciar sesión con Google (OAuth) — shortcut"
 Cohesion: 0.12
@@ -577,9 +592,9 @@ Nodes (15): Actor principal, Actores secundarios, Alcance, Criterios de aceptaci
 Cohesion: 0.14
 Nodes (14): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-017: Cerrar sesión desde ajustes, Disparador, Excepciones, Flujo principal (+6 more)
 
-### Community 190 - "Checkpoint: Paltazo — Documentación funcional y estado técnico"
-Cohesion: 0.04
-Nodes (45): 10. Archivos modificados en esta sesión, 11. Convenciones para el siguiente dev, 1. Estado en una mirada, 2. Qué se completó en esta sesión (29 oct 2026), 3. Documentación por módulo, 4.1 Monedas — CU-021 a CU-023, 4.2 Categorías — CU-024 a CU-026 (`categories`, módulo nuevo), 4.3 Decisiones de producto tomadas (+37 more)
+### Community 190 - "A. Código — bugs y brechas entre documentación e implementación"
+Cohesion: 0.08
+Nodes (26): 0. Resumen ejecutivo, A1. 🔴 P0-1 — Logout ignora errores de Supabase, A2. 🔴 P0-2 — Falta la pantalla `/session-closed`, A3. 🟡 P1-1 — BUG-001: nivel `exceeded` inalcanzable, A4. 🟡 P1-2 — Categorías hardcodeadas y `CHECK` restrictivo, A5. 🟡 P1-3 — Trigger crea presupuesto y moneda por defecto, A6. 🟡 P1-4 — Falta el flujo de configuración inicial (`/setup`), A7. 🟢 Discrepancias menores doc↔código (+18 more)
 
 ### Community 191 - "CU-031: Crear categoría de ingreso"
 Cohesion: 0.12
@@ -678,8 +693,8 @@ Cohesion: 0.14
 Nodes (14): Actor principal, Alcance, Criterios de aceptación, CU-029: Eliminar ingreso, Disparador, Excepciones, Flujo principal, Flujos alternativos (+6 more)
 
 ### Community 215 - "CU-030: Listar ingresos del mes"
-Cohesion: 0.12
-Nodes (15): Actor principal, Alcance, Casos de Uso: Ingresos, Criterios de aceptación, CU-030: Listar ingresos del mes, Disparador, Excepciones, Flujo principal (+7 more)
+Cohesion: 0.14
+Nodes (14): Actor principal, Alcance, Criterios de aceptación, CU-030: Listar ingresos del mes, Disparador, Excepciones, Flujo principal, Flujos alternativos (+6 more)
 
 ### Community 216 - "CU-012: Visualizar dashboard mensual"
 Cohesion: 0.14
@@ -689,13 +704,13 @@ Nodes (14): Actor principal, Alcance, Criterios de aceptación, CU-012: Visualiz
 Cohesion: 0.14
 Nodes (13): 1. Diagrama de Entidad-Relación (ERD), 2. Diagrama de Arquitectura de Componentes y Flujo de Datos, 3. Diagramas de Secuencia para Flujos Críticos, 5. Plan de Ejecución por Fases, Especificación de Arquitectura Técnica y Diagramación — Paltazo, Flujo 1: Registro + Onboarding Inicial (CU-002 -> CU-021), Flujo 2: Registro de Gasto con Categoría Dinámica y Modal '+ Nueva' (CU-008, CU-024), Flujo 3: Registro de Ingreso con Categoría Dinámica y Modal '+ Nueva' (CU-027, CU-031) (+5 more)
 
-### Community 218 - "signOut"
-Cohesion: 0.08
-Nodes (35): Bug 5: Middleware no redirige después de logout (2026-10-08), Bug 6: Vector (analytics) no arranca en Windows (2026-10-08), Error 1: `login is not a function` en `src/app/login/page.tsx:14`, Error 2: `Database error saving new user` (HTTP 500 en `/auth/v1/signup`), Error 3: `Uncaught SyntaxError: Invalid or unexpected token (at layout.js:728:29)`, Error 4: `relation "pg_log" does not exist` en Supabase, Errores y soluciones, Protección de rutas (+27 more)
+### Community 218 - "CU-005: Cerrar sesión"
+Cohesion: 0.15
+Nodes (13): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-005: Cerrar sesión, Disparador, Flujo principal, Fuente (+5 more)
 
-### Community 219 - "Colors"
-Cohesion: 0.50
-Nodes (4): Background Colors, Colors, Opacity, Text Colors
+### Community 219 - "Checkpoint: Paltazo — Documentación funcional y estado técnico"
+Cohesion: 0.20
+Nodes (10): 10. Archivos modificados en esta sesión, 11. Convenciones para el siguiente dev, 1. Estado en una mirada, 2. Qué se completó en esta sesión (29 oct 2026), 3. Documentación por módulo, 5. Impacto técnico pendiente (NO implementado), 7. Pendientes de producto y diseño, 8. Próximos pasos recomendados (en orden) (+2 more)
 
 ### Community 220 - "CU-014: Consultar actividad de los últimos 7 días"
 Cohesion: 0.14
@@ -705,13 +720,13 @@ Nodes (14): Actor principal, Alcance, Criterios de aceptación, CU-014: Consulta
 Cohesion: 0.23
 Nodes (15): ref_next_navigation, AddExpensePage(), AddIncomePage(), ExpensesPage(), IncomesPage(), BalanceSummary, DashboardPage(), AddExpenseFab() (+7 more)
 
-### Community 222 - "CU-025: Editar categoría"
-Cohesion: 0.13
-Nodes (15): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-025: Editar categoría, Disparador, Excepciones, Flujo principal (+7 more)
+### Community 222 - "Docs Keeper — Guardián de la Documentación"
+Cohesion: 0.17
+Nodes (11): Comandos útiles, Cuando se cambia un comportamiento existente, Cuando se corrige un bug, Cuando se implementa una feature nueva, Docs Keeper — Guardián de la Documentación, Ejemplos de uso, Estructura de documentación, Flujo de trabajo (+3 more)
 
-### Community 223 - "CU-026: Eliminar categoría"
-Cohesion: 0.13
-Nodes (15): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-026: Eliminar categoría, Disparador, Excepciones, Flujo principal (+7 more)
+### Community 223 - "Bugs Documentados — Paltazo"
+Cohesion: 0.17
+Nodes (12): Bugs Documentados — Paltazo, Convenciones de documentación, Cálculos de negocio (BUG-001), Cómo documentar un nuevo bug, Eliminación de datos (BUG-004, BUG-006), Estado actual, Fechas y zonas horarias (BUG-003, BUG-007), Lecciones generales aprendidas (+4 more)
 
 ### Community 225 - "CU-028: Editar ingreso"
 Cohesion: 0.15
@@ -722,7 +737,7 @@ Cohesion: 0.36
 Nodes (9): Fase 3: Contratos TypeScript y estado global, AppContext, AppState, DEFAULT_BUDGET, Budget, Category, Expense, Income (+1 more)
 
 ### Community 227 - "BUG-006: Eliminar moneda no elimina incomes — Fix: RPC actualizada incluye DELETE FROM incomes"
-Cohesion: 0.17
+Cohesion: 0.18
 Nodes (11): Aplicar el fix, Archivos afectados, BUG-006: Eliminar moneda no elimina incomes — Fix: RPC actualizada incluye DELETE FROM incomes, Causa raíz, Datos huérfanos existentes, Fix aplicado, Flujo del bug, Lecciones aprendidas (+3 more)
 
 ### Community 228 - "Accessibility Code Patterns"
@@ -739,7 +754,7 @@ Nodes (7): 6.3 Historias propuestas — Módulo de ingresos (30 oct 2026), US-02
 
 ### Community 231 - "use-case/README.md"
 Cohesion: 0.20
-Nodes (7): Casos de Uso: Categorías, Casos de Uso: Onboarding, Casos de Uso — Paltazo, Convenciones, Módulos, Pendientes, Visualización
+Nodes (6): Casos de Uso: Gastos, Casos de Uso — Paltazo, Convenciones, Módulos, Pendientes, Visualización
 
 ### Community 232 - "Common ARIA patterns"
 Cohesion: 0.25
@@ -750,7 +765,7 @@ Cohesion: 0.25
 Nodes (8): Accessible authentication (3.3.8) — new in 2.2, Consistent help (3.2.6) — new in 2.2, Consistent navigation (3.2.3), Error handling (3.3.1, 3.3.3), Form labels (3.3.2), Page language (3.1.1), Redundant entry (3.3.7) — new in 2.2, Understandable
 
 ### Community 234 - "BUG-007: checkBudgetThreshold UTC bug — Fix: usa date.startsWith(prefix) en lugar de new Date"
-Cohesion: 0.18
+Cohesion: 0.20
 Nodes (10): Archivos afectados, BUG-007: checkBudgetThreshold UTC bug — Fix: usa date.startsWith(prefix) en lugar de new Date(), Causa raíz, Ejemplo del bug, Fix aplicado, Lecciones aprendidas, Referencias, Resumen (+2 more)
 
 ### Community 235 - "Common issues by impact"
@@ -762,7 +777,7 @@ Cohesion: 0.67
 Nodes (3): Automated testing, Manual testing, Testing checklist
 
 ### Community 237 - "BUG-003: Fechas mostradas como día anterior por zona horaria UTC — Fix: uso de hora local y parseo con T12:00:00"
-Cohesion: 0.09
+Cohesion: 0.10
 Nodes (21): 1. `src/lib/expenseConstants.ts`, 2. `src/app/dashboard/add-expense/page.tsx`, 3. `src/app/dashboard/add-income/page.tsx`, 4. `src/app/dashboard/expenses/page.tsx`, 5. `src/app/dashboard/incomes/page.tsx`, 6. `src/app/dashboard/page.tsx`, 7. `src/components/ui/DatePicker.tsx`, Archivos afectados y fixes aplicados (+13 more)
 
 ### Community 238 - "BUG-005: Tabla push_subscriptions sin RLS — Fix: habilitar RLS y crear policies"
@@ -797,24 +812,72 @@ Nodes (6): dependencies, next, react, react-dom, @supabase/ssr, @supabase/supaba
 Cohesion: 0.36
 Nodes (7): DatePicker(), DatePickerProps, DAYS, formatDay(), getLocalToday(), MONTHS, parseDate()
 
+### Community 247 - "CU-025: Editar categoría"
+Cohesion: 0.13
+Nodes (15): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-025: Editar categoría, Disparador, Excepciones, Flujo principal (+7 more)
+
+### Community 248 - "BUG-001: Dashboard percentage cap — Fix: eliminar Math.min de 100%"
+Cohesion: 0.20
+Nodes (9): Archivos afectados, BUG-001: Dashboard percentage cap — Fix: eliminar Math.min de 100%, Causa raíz, Ejemplo del bug, Fix aplicado, Lecciones aprendidas, Referencias, Resumen (+1 more)
+
+### Community 252 - "CU-026: Eliminar categoría"
+Cohesion: 0.13
+Nodes (15): Actor principal, Actores secundarios, Alcance, Criterios de aceptación, CU-026: Eliminar categoría, Disparador, Excepciones, Flujo principal (+7 more)
+
+### Community 253 - "DB Cleaner — Agente de Limpieza de Base de Datos Local"
+Cohesion: 0.18
+Nodes (10): 1. Reglas de Seguridad Innegociables, 2. Flujo de Trabajo, 3. Validación Obligatoria, 4. Reporte de Cierre, DB Cleaner — Agente de Limpieza de Base de Datos Local, Opción A: Script Automatizado (Recomendado), Opción B: Vía Supabase CLI, Opción C: Vía SQL TRUNCATE (Si no se desea reiniciar contenedores) (+2 more)
+
+### Community 254 - "DB Cleaner Agent — Paltazo"
+Cohesion: 0.50
+Nodes (3): Archivos del agente, DB Cleaner Agent — Paltazo, Uso rápido
+
+### Community 255 - "login/page.tsx"
+Cohesion: 0.47
+Nodes (7): Error 1: `login is not a function` en `src/app/login/page.tsx:14`, LoginPage(), resetPassword(), signIn(), signInWithGoogle(), signUp(), client
+
+### Community 258 - "signOut"
+Cohesion: 0.28
+Nodes (9): Protección de rutas, Anexo: Notas técnicas, Excepciones, Flujos alternativos, Flujos alternativos, AppProvider(), getSession(), onAuthStateChange() (+1 more)
+
+### Community 259 - "4. Flujo de la Aplicación"
+Cohesion: 0.40
+Nodes (5): 4. Flujo de la Aplicación, Gastos, Gestión de Categorías (CU-024, CU-025, CU-026), Gestión de Monedas (CU-022, CU-023), Registro y Setup (CU-021)
+
+### Community 261 - "6. Brechas conocidas en el código (priorizadas)"
+Cohesion: 0.40
+Nodes (5): 6. Brechas conocidas en el código (priorizadas), Decisiones de UX aún abiertas, P0 — Logout ignora errores de Supabase, P1 — BUG-001: nivel `exceeded` inalcanzable, P1 — Otras discrepancias documentación/código
+
+### Community 262 - "5. Decisiones Técnicas Tomadas"
+Cohesion: 0.50
+Nodes (4): 5. Decisiones Técnicas Tomadas, Categorías, Monedas, Onboarding
+
+### Community 263 - "9. Notas para el Próximo Dev"
+Cohesion: 0.50
+Nodes (4): 9. Notas para el Próximo Dev, Lo que funciona bien, Puntos de atención, Recursos útiles
+
+### Community 264 - "4. Funcionalidad nueva propuesta (decisiones cerradas)"
+Cohesion: 0.50
+Nodes (4): 4.1 Monedas — CU-021 a CU-023, 4.2 Categorías — CU-024 a CU-026 (`categories`, módulo nuevo), 4.3 Decisiones de producto tomadas, 4. Funcionalidad nueva propuesta (decisiones cerradas)
+
 ## Knowledge Gaps
-- **1405 isolated node(s):** `$schema`, `apply-migrations.sh script`, `nextConfig`, `name`, `version` (+1400 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1583 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **125 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **1447 isolated node(s):** `wipe.sh script`, `$schema`, `apply-migrations.sh script`, `nextConfig`, `name` (+1442 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1622 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **129 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Casos de Uso: Autenticación` connect `Casos de Uso: Autenticación` to `use-case/README.md`, `signOut`, `CU-006: Proteger rutas con middleware`, `CU-007: Iniciar sesión con Google (OAuth) — shortcut`, `CU-005: Cerrar sesión`, `CU-003: Solicitar enlace de recuperación de contraseña`, `CU-004: Establecer nueva contraseña con token de recuperación`, `CU-002: Registrarse con email y contraseña`?**
-  _High betweenness centrality (0.090) - this node is a cross-community bridge._
-- **Why does `signOut()` connect `signOut` to `store.tsx`, `CU-012: Visualizar dashboard mensual`, `CU-006: Proteger rutas con middleware`, `Paltazo — Bitácora de Avance`, `repositories.ts`, `Checkpoint: Paltazo — Documentación funcional y estado técnico`?**
-  _High betweenness centrality (0.083) - this node is a cross-community bridge._
-- **Why does `Anexo: Notas técnicas` connect `signOut` to `Casos de Uso: Autenticación`?**
-  _High betweenness centrality (0.051) - this node is a cross-community bridge._
+- **Why does `Casos de Uso: Autenticación` connect `Casos de Uso: Autenticación` to `signOut`, `CU-005: Cerrar sesión`, `CU-006: Proteger rutas con middleware`, `CU-007: Iniciar sesión con Google (OAuth) — shortcut`, `CU-005: Cerrar sesión`, `CU-003: Solicitar enlace de recuperación de contraseña`, `CU-004: Establecer nueva contraseña con token de recuperación`, `CU-002: Registrarse con email y contraseña`?**
+  _High betweenness centrality (0.075) - this node is a cross-community bridge._
+- **Why does `signOut()` connect `signOut` to `store.tsx`, `CU-012: Visualizar dashboard mensual`, `6. Brechas conocidas en el código (priorizadas)`, `CU-006: Proteger rutas con middleware`, `Paltazo — Bitácora de Avance`, `repositories.ts`, `A. Código — bugs y brechas entre documentación e implementación`, `login/page.tsx`?**
+  _High betweenness centrality (0.072) - this node is a cross-community bridge._
+- **Why does `Casos de Uso: Ingresos` connect `Casos de Uso: Ingresos` to `CU-028: Editar ingreso`, `CU-027: Registrar ingreso`, `CU-032: Editar categoría de ingreso`, `CU-033: Eliminar categoría de ingreso`, `CU-029: Eliminar ingreso`, `CU-030: Listar ingresos del mes`, `CU-031: Crear categoría de ingreso`?**
+  _High betweenness centrality (0.046) - this node is a cross-community bridge._
 - **Are the 12 inferred relationships involving `signOut()` (e.g. with `Auditoría de código — Actualización 2026-10-16` and `Bug 5: Middleware no redirige después de logout (2026-10-08)`) actually correct?**
   _`signOut()` has 12 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `$schema`, `apply-migrations.sh script`, `nextConfig` to the rest of the system?**
-  _1405 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `wipe.sh script`, `$schema`, `apply-migrations.sh script` to the rest of the system?**
+  _1447 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Paltazo Application` be split into smaller, more focused modules?**
   _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
 - **Should `app/layout.tsx` be split into smaller, more focused modules?**
