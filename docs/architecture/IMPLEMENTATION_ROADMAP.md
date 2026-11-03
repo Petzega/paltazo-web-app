@@ -1,6 +1,6 @@
 # Roadmap de Implementación — Paltazo
 
-> **Fecha:** 29 oct 2026
+> **Fecha:** 29 oct 2026 (actualizado 02 nov 2026)
 > **Fuentes:** `docs/use-case/` (21 US, 26 CU) + `docs/architecture/ARCHITECTURE_SPEC.md`
 > **Estado:** Plan de ejecución para llevar la app al 100% del spec.
 
@@ -10,14 +10,14 @@
 
 | Estado | Cantidad | Detalle |
 |--------|----------|---------|
-| ✅ Implementado | 15 US | Auth, gastos, dashboard, settings, onboarding marketing |
+| ✅ Implementado | 16 US | Auth, gastos, dashboard, settings, onboarding marketing, monedas a demanda (US-020) |
 | ⚠️ Hecho con brecha P0 | 2 US | Logout (redirect incorrecto), alertas (cap 100%) |
-| 📝 Propuesto sin release | 3 US | Setup inicial, monedas a demanda, categorías custom |
+| 📝 Propuesto sin release | 2 US | Setup inicial, categorías custom |
 | 🔜 Futuro v1.2 | 3 US | Google OAuth, offline-first, push notifications |
 
 ---
 
-## 2. Historias implementadas (15/21)
+## 2. Historias implementadas (16/21)
 
 ### Auth
 - **US-001** Registro básico → CU-002 ✅
@@ -43,6 +43,9 @@
 
 ### Onboarding marketing
 - **CU-018** Visualizar pantalla de onboarding → `/onboarding` ✅
+
+### Monedas a demanda
+- **US-020** Gestión de monedas a demanda → CU-022, CU-023 ✅ *(fix BUG-009, 02 nov 2026: orden por `created_at ASC`, primera moneda = principal, promoción de más antigua al eliminar)*
 
 ---
 
@@ -75,7 +78,7 @@
 
 ---
 
-## 4. Historias propuestas sin release (3 US)
+## 4. Historias propuestas sin release (2 US)
 
 ### US-019: Selección de moneda y presupuesto en primer ingreso (CU-021)
 - **Qué:** pantalla `/setup` post-registro, selector S/,$,€ + monto presupuesto.
@@ -83,13 +86,6 @@
 - **Middleware:** redirige a `/setup` si flag=false.
 - **Trigger:** deja de crear presupuesto default.
 - **Archivos:** `src/app/setup/page.tsx` (nuevo), `src/middleware.ts`, `src/lib/store.tsx`, `supabase/migrations/`.
-
-### US-020: Gestión de monedas a demanda (CU-022, CU-023)
-- **Qué:** agregar/quitar monedas (S/,$,€) desde settings.
-- **Agregar (CU-022):** botón "+ Agregar moneda" con selector de moneda no activa.
-- **Quitar (CU-023):** acción destructiva, modal de confirmación con conteo de gastos afectados, purge transaccional de `budgets` + `expenses` de esa moneda.
-- **Regla:** moneda principal no borrable.
-- **Archivos:** `src/app/dashboard/settings/page.tsx`, `src/lib/store.tsx`.
 
 ### US-021: Categorías personalizables (CU-024, CU-025, CU-026)
 - **Qué:** CRUD de categorías con nombre, icono (16 emojis), color (8 tokens Tailwind).
@@ -136,14 +132,15 @@
 - Store: CRUD de categorías, flag `hasCompletedOnboarding`, método `completeOnboarding(currency, budget)`.
 
 ### Fase 4: Componentes UI y flujos funcionales
-**Objetivo:** implementar pantallas y modales para US-019, US-020, US-021.
+**Objetivo:** implementar pantallas y modales para US-019, US-021.
 **Archivos:** `src/app/setup/page.tsx` (nuevo), `src/app/dashboard/settings/page.tsx`, `src/app/dashboard/add-expense/page.tsx`.
 **Entregables:**
 - Pantalla `/setup` (CU-021): selector moneda + monto presupuesto, redirige a `/dashboard` tras completar.
-- Settings: gestión de monedas (CU-022, CU-023) con modal destructivo para quitar.
 - Settings: panel CRUD categorías (CU-024, CU-025, CU-026).
 - Add-expense: modal rápido "+ Nueva categoría" (CU-024), selector dinámico de categorías.
 - Pruebas end-to-end de flujos críticos (registro → setup → gasto → eliminar categoría).
+
+**Nota:** US-020 (gestión monedas) ✅ implementada en Fase 3 (02 nov 2026).
 
 ---
 
@@ -153,9 +150,9 @@ La app se considera 100% del spec cuando:
 - [ ] Todas las brechas P0 y P1 están resueltas (Fase 1).
 - [ ] Migraciones SQL aplicadas en Supabase (Fase 2).
 - [ ] Store y tipos soportan categorías y onboarding (Fase 3).
-- [ ] Pantallas `/setup`, gestión monedas y CRUD categorías funcionan (Fase 4).
-- [ ] 18/21 US implementadas (US-019, US-020, US-021 completadas).
-- [ ] Documentación actualizada: `USER_STORY_MAP.md` marca US-019→021 como ✅, ARCHITECTURE_SPEC.md marca P0/P1 como resueltas.
+- [ ] Pantallas `/setup` y CRUD categorías funcionan (Fase 4).
+- [ ] 20/21 US implementadas (US-019, US-021 completadas; US-020 ✅ implementado 02 nov 2026).
+- [ ] Documentación actualizada: `USER_STORY_MAP.md` marca US-019, US-021 como ✅, ARCHITECTURE_SPEC.md marca P0/P1 como resueltas.
 
 **Excluido:** US-016 (Google OAuth), US-017 (offline-first), US-018 (push) quedan para v1.2.
 

@@ -65,7 +65,7 @@ Usuario accede a la sección de presupuestos en la página de ajustes.
 —
 
 ### Postcondiciones
-- **En éxito:** Registro en `budgets` actualizado con nuevo `monthlyLimit` y `currency`. Si la moneda modificada es la principal (`budget.currency`), el objeto `budget` también se actualiza. Dashboard recalcula `currencySummaries` con nuevo `monthlyLimit` (afecta CU-013 alertas de umbral).
+- **En éxito:** Registro en `budgets` actualizado con nuevo `monthlyLimit` y `currency`. Si la moneda modificada es la principal (`budget.currency`), el objeto `budget` también se actualiza. Si es la primera moneda (`monthlyLimit === 0` en `budget` inicial), `budgetState` se actualiza inmediatamente para mostrar badge "Principal" (fix BUG-009, 02 nov 2026). Dashboard recalcula `currencySummaries` con nuevo `monthlyLimit` (afecta CU-013 alertas de umbral).
 - **En fallo:** Estado local y Supabase permanecen sin cambios.
 
 ### Reglas de negocio
@@ -82,7 +82,8 @@ Usuario accede a la sección de presupuestos en la página de ajustes.
 - ✅ Botón "Guardar" se deshabilita si el valor está vacío o es ≤ 0.
 - ✅ Tras guardar exitosamente, botón muestra "✓" por 2 segundos como feedback.
 - ✅ Cambios se reflejan inmediatamente en el dashboard (CU-012).
-- ✅ **BUG-009 resuelto:** Monedas se muestran en orden de configuración (no orden fijo).
+- ✅ **BUG-009 resuelto:** Monedas se muestran en orden de configuración (`created_at ASC`), no orden fijo.
+- ✅ **BUG-009 resuelto:** Al guardar primera moneda en onboarding, badge "Principal" aparece inmediatamente (sin recargar).
 
 ### Preguntas pendientes
 - ~~Impacto técnico al implementar CU-021 a CU-023~~ → **Resuelto:** ahora itera sobre monedas activas del usuario.
@@ -214,7 +215,7 @@ Usuario hace clic en el botón "Cerrar sesión" en la parte inferior de la pági
 
 ## CU-022: Agregar moneda
 
-> **Estado: PROPUESTO** — comportamiento previsto, NO implementado.
+> **Estado: ✅ IMPLEMENTADO** — comportamiento implementado y corregido (BUG-009 fix 02 nov 2026).
 
 ### Objetivo
 Permitir al usuario activar una moneda adicional (de S/, $, €) cuando la necesite, en lugar de mostrar todas las monedas siempre.
@@ -230,40 +231,46 @@ Ninguno.
 
 ### Fuente
 - Requisito de producto comunicado por el usuario (28–29 oct 2026): monedas agregables a demanda desde configuraciones.
-- Comportamiento previsto, NO implementado. Reemplaza la decisión del handoff "Monedas: S/ y $ hardcoded, no configurables por usuario".
+- **✅ IMPLEMENTADO:** `addCurrency()` en `src/lib/store.tsx`.
 
 ### Precondiciones
-- Usuario autenticado con configuración inicial completada (CU-021).
+- Usuario autenticado.
 - Existe al menos una moneda soportada que el usuario no tiene activa.
 
 ### Disparador
-El usuario pulsa "Agregar moneda" en ajustes.
+El usuario pulsa "+ {moneda}" en la sección de presupuestos de ajustes.
 
 ### Flujo principal
-1. El sistema muestra únicamente las monedas soportadas que el usuario no tiene activas.
-2. El usuario selecciona una y confirma.
-3. El sistema activa la moneda y la incorpora a los selectores de gastos y a la sección de presupuestos, sin presupuesto configurado inicialmente.
+1. El sistema muestra únicamente las monedas soportadas que el usuario no tiene activas (botones "+ Soles (S/)", "+ Dólares ($)", "+ Euros (€)").
+2. El usuario selecciona una moneda.
+3. El sistema activa la moneda:
+   - Crea registro en tabla `budgets` con `monthly_limit = 0`.
+   - Si es la **primera moneda** del usuario, la setea como principal (`primary_currency` en `profiles`) y actualiza `budgetState`.
+4. La moneda aparece en la lista de presupuestos con badge "Configurado" (si tiene límite) o sin presupuesto inicial.
+5. La moneda queda disponible para registrar gastos (CU-008) y configurar presupuesto (CU-015).
 
 ### Flujos alternativos
-- **Paso 1a — Todas las monedas ya activas:** no se muestra la acción "Agregar moneda".
-- **Paso 2a — El usuario cancela:** sin cambios.
+- **Paso 1a — Todas las monedas ya activas:** no se muestran botones "Agregar moneda".
+- **Paso 2a — Moneda ya existe:** `addCurrency()` retorna sin hacer nada (idempotente).
 
 ### Excepciones
 - **Error al activar (paso 3):** mensaje de error; la moneda no queda activa.
 
 ### Postcondiciones
-- **En éxito:** la moneda queda disponible para registrar gastos (CU-008) y configurar presupuesto (CU-015); persiste entre sesiones.
+- **En éxito:** la moneda queda disponible para registrar gastos (CU-008) y configurar presupuesto (CU-015); persiste entre sesiones. Si es la primera moneda, se setea como principal.
 - **En fallo:** sin cambios.
 
 ### Reglas de negocio
-- (PROPUESTO) Monedas soportadas limitadas a S/, $, €.
-- (PROPUESTO) No se puede activar dos veces la misma moneda.
-- (PROPUESTO) Agregar una moneda no crea presupuesto automáticamente; el usuario lo define con CU-015.
+- **✅ IMPLEMENTADO:** Monedas soportadas limitadas a S/, $, €.
+- **✅ IMPLEMENTADO:** No se puede activar dos veces la misma moneda (idempotente).
+- **✅ IMPLEMENTADO:** Agregar una moneda no crea presupuesto automáticamente; el usuario lo define con CU-015.
+- **✅ IMPLEMENTADO:** Si es la primera moneda, se setea automáticamente como principal (fix BUG-009, 02 nov 2026).
 
 ### Criterios de aceptación
-- Solo se ofrecen monedas no activas.
-- Tras agregar, la moneda aparece en alta de gasto y en presupuestos.
-- La activación persiste entre sesiones.
+- ✅ Solo se ofrecen monedas no activas.
+- ✅ Tras agregar, la moneda aparece en la lista de presupuestos.
+- ✅ La activación persiste entre sesiones (ordenada por `created_at ASC`).
+- ✅ Si es la primera moneda, aparece con badge "Principal".
 
 ### Preguntas pendientes
 Ninguna de negocio.
@@ -301,22 +308,22 @@ El usuario pulsa "Quitar" sobre una moneda activa (incluyendo la moneda principa
 ### Flujo principal
 1. El sistema calcula los datos asociados: cantidad de gastos, ingresos y presupuesto en esa moneda.
 2. El sistema muestra modal de confirmación:
-   - Si NO es moneda principal: *"Se eliminarán N gastos, M ingresos y el presupuesto en {moneda}. Esta acción no se puede deshacer."*
-   - Si ES moneda principal: *"Se eliminarán N gastos, M ingresos y el presupuesto en {moneda}. La próxima moneda disponible se configurará como principal. Esta acción no se puede deshacer."*
+   - Si NO es moneda principal: *"Se eliminarán N gastos y el presupuesto en {moneda}. Esta acción no se puede deshacer."*
+   - Si ES moneda principal: *"Se eliminarán N gastos, M ingresos y el presupuesto en {moneda}. La moneda más antigua se configurará como principal. Esta acción no se puede deshacer."*
 3. El usuario confirma.
 4. El sistema llama a `deleteCurrencyWithPurge(userId, currency)` (RPC atómica):
    - Elimina expenses de esa moneda
    - Elimina incomes de esa moneda (fix BUG-006)
    - Elimina budgets de esa moneda
-5. Si la moneda eliminada era la principal (`budget.currency`), el sistemaPromueve la siguiente moneda disponible (primera en `budgets` o primera moneda con gastos) a principal.
+5. Si la moneda eliminada era la principal (`budget.currency`), el sistemaPromueve la moneda más antigua (por `created_at ASC`) a principal y persiste en `profiles.primary_currency` (fix BUG-009, 02 nov 2026).
 6. El sistema actualiza el estado local: `setIncomes(filter)`, `setExpenses(filter)`, `setBudgets(delete)`.
 7. El sistema actualiza selectores, historial y dashboard, que dejan de mostrar esa moneda.
 
 ### Flujos alternativos
 - **Paso 3a — El usuario cancela:** no se elimina nada.
 - **Paso 1a — Moneda sin datos asociados:** mismo modal con N = 0, M = 0 (confirmación obligatoria por convención de acciones destructivas).
-- **Paso 5a — Se elimina la moneda principal y hay otras monedas:** la siguiente moneda en `budgets` (o la primera con gastos/incomes) sePromueve automáticamente a `budget.currency`. El perfil del usuario se actualiza con `primary_currency` = nueva moneda.
-- **Paso 5b — Se eliminan todas las monedas:** el usuario queda sin monedas configuradas. El dashboard muestra empty state: "No tienes monedas configuradas" + botón "⚙️ Configurar moneda" → `/dashboard/settings`.
+- **Paso 5a — Se elimina la moneda principal y hay otras monedas:** la moneda más antigua (por `created_at ASC`) sePromueve automáticamente a `budget.currency`. El perfil del usuario se actualiza con `primary_currency` = nueva moneda (fix BUG-009, 02 nov 2026).
+- **Paso 5b — Se eliminan todas las monedas:** el usuario queda sin monedas configuradas. `primary_currency` se limpia a NULL. El dashboard muestra empty state: "No tienes monedas configuradas" + botón "⚙️ Configurar moneda" → `/dashboard/settings`.
 
 ### Excepciones
 - **Fallo durante la eliminación (paso 4):** mensaje de error y estado sin cambios: o se eliminan todos los datos asociados o ninguno (transacción atómica vía RPC `delete_currency_purging_data`).
@@ -328,17 +335,17 @@ El usuario pulsa "Quitar" sobre una moneda activa (incluyendo la moneda principa
 ### Reglas de negocio
 - **✅ IMPLEMENTADO:** Cualquier moneda puede quitarse, incluyendo la moneda principal (fix BUG-004).
 - **✅ IMPLEMENTADO:** La eliminación de gastos, ingresos y presupuesto es definitiva y siempre requiere confirmación explícita informando la cantidad de datos (fix BUG-006).
-- **✅ IMPLEMENTADO:** Si se elimina la moneda principal, la siguiente disponible sePromueve automáticamente.
-- **✅ IMPLEMENTADO:** Si se eliminan todas las monedas, el dashboard muestra empty state con botón a settings.
+- **✅ IMPLEMENTADO:** Si se elimina la moneda principal, la moneda más antigua (por `created_at ASC`) sePromueve automáticamente y se persiste en `profiles.primary_currency` (fix BUG-009, 02 nov 2026).
+- **✅ IMPLEMENTADO:** Si se eliminan todas las monedas, el dashboard muestra empty state y `primary_currency` se limpia a NULL.
 
 ### Criterios de aceptación
 - ✅ El modal informa la cantidad de gastos e ingresos antes de confirmar.
-- ✅ El modal indica si se eliminará la moneda principal y que otra moneda sePromoverá.
+- ✅ El modal indica si se eliminará la moneda principal y que la moneda más antigua sePromoverá.
 - ✅ Cancelar no modifica ningún dato.
 - ✅ Tras confirmar, no quedan registros en esa moneda ni aparece en selectores, historial o dashboard.
 - ✅ La RPC atómica elimina expenses, incomes y budgets en una transacción (fix BUG-006).
-- ✅ Si se elimina la moneda principal, la siguiente disponible sePromueve automáticamente (fix BUG-004).
-- ✅ Si se eliminan todas las monedas, el dashboard muestra empty state.
+- ✅ Si se elimina la moneda principal, la moneda más antigua (por `created_at ASC`) sePromueve automáticamente y se persiste en DB (fix BUG-004, BUG-009).
+- ✅ Si se eliminan todas las monedas, el dashboard muestra empty state y `primary_currency` se limpia a NULL.
 
 ### Preguntas pendientes
 Ninguna. Todas las decisiones cerradas:
@@ -349,22 +356,30 @@ Ninguna. Todas las decisiones cerradas:
 ---
 ## Notas técnicas
 
-**Monedas soportadas (hardcoded):**
-> Estado actual del código. Será reemplazado por CU-021 a CU-023 (PROPUESTO): selección inicial y gestión a demanda de S/, $ y €.
+**Monedas soportadas:**
 ```ts
-const CURRENCY_OPTIONS = [
+const SUPPORTED_CURRENCIES = [
   { value: 'S/', label: 'Soles (S/)' },
   { value: '$', label: 'Dólares ($)' },
+  { value: '€', label: 'Euros (€)' },
 ]
 ```
 
 **Estado global afectado:**
 - `budget`: `{ monthlyLimit, currency }` — presupuesto principal
-- `budgets`: `Record<string, { monthlyLimit, currency }>` — presupuestos por moneda
+- `budgets`: `Record<string, { monthlyLimit, currency }>` — presupuestos por moneda (ordenado por `created_at ASC` desde 02 nov 2026)
 
 **Persistencia:**
 - `setBudget(amount, currency)` en `src/lib/store.tsx` llama a `upsertBudget()` en `src/lib/supabase/repositories.ts`
+- `addCurrency(currency)` en `src/lib/store.tsx` crea budget y setea principal si es primera moneda (fix BUG-009, 02 nov 2026)
+- `removeCurrency(currency)` en `src/lib/store.tsx` elimina y Promueve la más antigua (fix BUG-009, 02 nov 2026)
+- `updatePrimaryCurrency(userId, currency)` en `src/lib/supabase/repositories.ts` persiste `primary_currency` en `profiles` (nueva función, 02 nov 2026)
 - Supabase RLS garantiza que cada usuario solo modifica sus propios budgets
+
+**Orden de monedas:**
+- `getBudgets()` ordena por `created_at ASC` (fix BUG-009, 02 nov 2026)
+- Monedas se muestran en el orden en que el usuario las configuró
+- Primera moneda configurada = moneda principal (si no hay `primary_currency` en perfil)
 
 **Responsive:**
 - Mobile: secciones apiladas, padding `px-gutter`

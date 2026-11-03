@@ -5,7 +5,6 @@ import * as db from '@/lib/supabase/repositories'
 import { onAuthStateChange, getSession, signOut } from '@/lib/supabase/auth'
 import type { Expense, Income, Budget, Category, IncomeCategory } from '@/types'
 import * as offline from '@/lib/offline'
-
 interface AppState {
   expenses: Expense[]
   incomes: Income[]
@@ -106,6 +105,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
           if (primaryBudget) {
             setBudgetState(primaryBudget)
           } else if (bs.length > 0) {
+            // shortcut: fallback a la moneda más antigua por created_at (ya ordenada en getBudgets)
             setBudgetState(bs[0])
           }
           setIsLoading(false)
@@ -275,7 +275,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
     await db.upsertBudget(updated)
     setBudgets((prev) => ({ ...prev, [targetCurrency]: updated }))
-    if (targetCurrency === budget.currency) {
+    if (targetCurrency === budget.currency || budget.monthlyLimit === 0) {
       setBudgetState(updated)
     }
   }
@@ -283,6 +283,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const addCurrency = async (currency: string) => {
     if (!userId) return
     if (budgets[currency]) return // Ya existe
+    const isFirst = Object.keys(budgets).length === 0
     const newBudget: Budget = {
       userId,
       monthlyLimit: 0,
@@ -291,6 +292,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
     await db.upsertBudget(newBudget)
     setBudgets((prev) => ({ ...prev, [currency]: newBudget }))
+    if (isFirst) {
+      await db.updatePrimaryCurrency(userId, currency)
+      setBudgetState(newBudget)
+    }
   }
 
   const removeCurrency = async (currency: string) => {
@@ -305,13 +310,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setBudgets(nextBudgets)
     setExpenses((prev) => prev.filter((e) => e.currency !== currency))
     setIncomes((prev) => prev.filter((i) => i.currency !== currency))
-    // Si se eliminó la moneda principal, promover la siguiente disponible
     if (currency === budget.currency) {
-      const nextCurrency = Object.keys(nextBudgets)[0]
-      if (nextCurrency && nextBudgets[nextCurrency]) {
-        setBudgetState(nextBudgets[nextCurrency])
+      const nextKeys = Object.keys(nextBudgets)
+      if (nextKeys.length > 0) {
+        // Promover la más antigua (primer budget del array ordenado por created_at)
+        const promoted = nextBudgets[nextKeys[0]]
+        setBudgetState(promoted)
+        await db.updatePrimaryCurrency(userId, promoted.currency)
       } else {
         setBudgetState(DEFAULT_BUDGET)
+        await db.updatePrimaryCurrency(userId, null)
       }
     }
   }

@@ -750,6 +750,18 @@
       "source_location": "L7"
     },
     {
+      "id": "src_app_dashboard_page_balancesection",
+      "label": "BalanceSection()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 212,
+      "community_name": "useAppState",
+      "file_type": "code",
+      "norm_label": "balancesection()",
+      "source_file": "src/app/dashboard/page.tsx",
+      "source_location": "L27"
+    },
+    {
       "id": "src_app_onboarding_page_onboardingpage",
       "label": "OnboardingPage()",
       "_callable": true,
@@ -808,6 +820,18 @@
       "norm_label": "button()",
       "source_file": "src/components/ui/Button.tsx",
       "source_location": "L18"
+    },
+    {
+      "id": "src_components_ui_connectionindicator_connectionindicator",
+      "label": "ConnectionIndicator()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 212,
+      "community_name": "useAppState",
+      "file_type": "code",
+      "norm_label": "connectionindicator()",
+      "source_file": "src/components/ui/ConnectionIndicator.tsx",
+      "source_location": "L5"
     },
     {
       "id": "src_components_ui_sidebar_sidebar",
@@ -990,18 +1014,6 @@
       "source_location": "L9"
     },
     {
-      "id": "src_app_dashboard_page_balancesection",
-      "label": "BalanceSection()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 221,
-      "community_name": "ref_next_navigation",
-      "file_type": "code",
-      "norm_label": "balancesection()",
-      "source_file": "src/app/dashboard/page.tsx",
-      "source_location": "L27"
-    },
-    {
       "id": "src_app_dashboard_page_dashboardpage",
       "label": "DashboardPage()",
       "_callable": true,
@@ -1131,18 +1143,6 @@
       "file_type": "code",
       "norm_label": "serviceworkerregistrar()",
       "source_file": "src/components/providers/ServiceWorkerRegistrar.tsx",
-      "source_location": "L5"
-    },
-    {
-      "id": "src_components_ui_connectionindicator_connectionindicator",
-      "label": "ConnectionIndicator()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 240,
-      "community_name": "app/layout.tsx",
-      "file_type": "code",
-      "norm_label": "connectionindicator()",
-      "source_file": "src/components/ui/ConnectionIndicator.tsx",
       "source_location": "L5"
     },
     {
@@ -6530,7 +6530,7 @@
       "label": "CHECKPOINT_2026_10_29.md",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "page",
       "norm_label": "checkpoint_2026_10_29.md",
@@ -6542,19 +6542,19 @@
       "label": "10. Contacto y Contexto",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "10. contacto y contexto",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L370"
+      "source_location": "L465"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_1_resumen_ejecutivo",
       "label": "1. Resumen Ejecutivo",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "1. resumen ejecutivo",
@@ -6566,348 +6566,372 @@
       "label": "2. Estado de la Base de Datos",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "2. estado de la base de datos",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L41"
+      "source_location": "L44"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_3_estado_del_c\u00f3digo_typescript",
       "label": "3. Estado del C\u00f3digo TypeScript",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "3. estado del codigo typescript",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L118"
+      "source_location": "L128"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_4_flujo_de_la_aplicaci\u00f3n",
       "label": "4. Flujo de la Aplicaci\u00f3n",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "4. flujo de la aplicacion",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L190"
+      "source_location": "L214"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_5_decisiones_t\u00e9cnicas_tomadas",
       "label": "5. Decisiones T\u00e9cnicas Tomadas",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "5. decisiones tecnicas tomadas",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L220"
+      "source_location": "L246"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_6_estructura_de_archivos_clave",
       "label": "6. Estructura de Archivos Clave",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "6. estructura de archivos clave",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L238"
+      "source_location": "L267"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_7_c\u00f3mo_ejecutar_y_probar",
       "label": "7. C\u00f3mo Ejecutar y Probar",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "7. como ejecutar y probar",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L297"
+      "source_location": "L347"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_8_posibles_mejoras_futuras",
       "label": "8. Posibles Mejoras Futuras",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "8. posibles mejoras futuras",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L337"
+      "source_location": "L407"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_9_notas_para_el_pr\u00f3ximo_dev",
       "label": "9. Notas para el Pr\u00f3ximo Dev",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "9. notas para el proximo dev",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L351"
+      "source_location": "L424"
+    },
+    {
+      "id": "docs_architecture_checkpoint_2026_10_29_agente_de_documentaci\u00f3n",
+      "label": "Agente de documentaci\u00f3n",
+      "_origin": "ast",
+      "community": 181,
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "agente de documentacion",
+      "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
+      "source_location": "L453"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_categor\u00edas",
       "label": "Categor\u00edas",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "categorias",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L226"
+      "source_location": "L252"
     },
     {
-      "id": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_31_oct_2026",
-      "label": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "id": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_02_nov_2026",
+      "label": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "checkpoint: estado actual de paltazo (31 oct 2026)",
+      "norm_label": "checkpoint: estado actual de paltazo (02 nov 2026)",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
       "source_location": "L1"
+    },
+    {
+      "id": "docs_architecture_checkpoint_2026_10_29_comandos_\u00fatiles",
+      "label": "Comandos \u00fatiles",
+      "_origin": "ast",
+      "community": 181,
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "comandos utiles",
+      "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
+      "source_location": "L444"
+    },
+    {
+      "id": "docs_architecture_checkpoint_2026_10_29_convenciones_establecidas_no_romper",
+      "label": "Convenciones establecidas (NO romper)",
+      "_origin": "ast",
+      "community": 181,
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "convenciones establecidas (no romper)",
+      "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
+      "source_location": "L432"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_datos_seed",
       "label": "Datos seed",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "datos seed",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L110"
+      "source_location": "L120"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_estructura_actual",
       "label": "Estructura actual",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "estructura actual",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L59"
+      "source_location": "L67"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_features_futuras_v1_2_fuera_de_scope_actual",
       "label": "Features futuras (v1.2, fuera de scope actual)",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "features futuras (v1.2, fuera de scope actual)",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L344"
+      "source_location": "L415"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_gastos",
       "label": "Gastos",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "gastos",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L213"
+      "source_location": "L239"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_gesti\u00f3n_de_categor\u00edas_cu_024_cu_025_cu_026",
       "label": "Gesti\u00f3n de Categor\u00edas (CU-024, CU-025, CU-026)",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "gestion de categorias (cu-024, cu-025, cu-026)",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L206"
+      "source_location": "L232"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_gesti\u00f3n_de_monedas_cu_022_cu_023",
       "label": "Gesti\u00f3n de Monedas (CU-022, CU-023)",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "gestion de monedas (cu-022, cu-023)",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L201"
+      "source_location": "L225"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_lo_que_funciona_bien",
       "label": "Lo que funciona bien",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "lo que funciona bien",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L353"
+      "source_location": "L426"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_migraciones_aplicadas",
       "label": "Migraciones aplicadas",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "migraciones aplicadas",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L43"
+      "source_location": "L46"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_monedas",
       "label": "Monedas",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "monedas",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L231"
+      "source_location": "L257"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_onboarding",
       "label": "Onboarding",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "onboarding",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L222"
+      "source_location": "L248"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_probar_flujo_completo",
       "label": "Probar flujo completo",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "probar flujo completo",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L305"
+      "source_location": "L355"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_puntos_de_atenci\u00f3n",
       "label": "Puntos de atenci\u00f3n",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "puntos de atencion",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L358"
+      "source_location": "L438"
     },
     {
-      "id": "docs_architecture_checkpoint_2026_10_29_recursos_\u00fatiles",
-      "label": "Recursos \u00fatiles",
+      "id": "docs_architecture_checkpoint_2026_10_29_recursos",
+      "label": "Recursos",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "recursos utiles",
+      "norm_label": "recursos",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L363"
+      "source_location": "L456"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_registro_y_setup_cu_021",
       "label": "Registro y Setup (CU-021)",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "registro y setup (cu-021)",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L192"
+      "source_location": "L216"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_repositories_src_lib_supabase_repositories_ts",
       "label": "Repositories (src/lib/supabase/repositories.ts)",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "repositories (src/lib/supabase/repositories.ts)",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L184"
+      "source_location": "L208"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_setup_inicial",
       "label": "Setup inicial",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "setup inicial",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L299"
+      "source_location": "L349"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_store_src_lib_store_tsx",
       "label": "Store (src/lib/store.tsx)",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "store (src/lib/store.tsx)",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L153"
+      "source_location": "L163"
     },
     {
       "id": "docs_architecture_checkpoint_2026_10_29_tipos_src_types_index_ts",
       "label": "Tipos (src/types/index.ts)",
       "_origin": "ast",
       "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
+      "community_name": "CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "tipos (src/types/index.ts)",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L120"
-    },
-    {
-      "id": "docs_architecture_checkpoint_2026_10_29_trabajo_pendiente_no_cr\u00edtico",
-      "label": "Trabajo pendiente (no cr\u00edtico)",
-      "_origin": "ast",
-      "community": 181,
-      "community_name": "CHECKPOINT: Estado Actual de Paltazo (31 oct 2026)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "trabajo pendiente (no critico)",
-      "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L339"
+      "source_location": "L130"
     },
     {
       "id": "docs_use_case_auth_auth_actor_principal_436",
@@ -8791,64 +8815,172 @@
       "source_location": "L177"
     },
     {
-      "id": "docs_use_case_readme_casos_de_uso_paltazo",
-      "label": "Casos de Uso \u2014 Paltazo",
+      "id": "docs_use_case_onboarding_onboarding_actor_principal",
+      "label": "Actor principal",
       "_origin": "ast",
       "community": 194,
-      "community_name": "Casos de Uso \u2014 Paltazo",
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "casos de uso \u2014 paltazo",
-      "source_file": "docs/use-case/README.md",
-      "source_location": "L1"
+      "norm_label": "actor principal",
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L16"
     },
     {
-      "id": "docs_use_case_readme_convenciones",
-      "label": "Convenciones",
+      "id": "docs_use_case_onboarding_onboarding_alcance",
+      "label": "Alcance",
       "_origin": "ast",
       "community": 194,
-      "community_name": "Casos de Uso \u2014 Paltazo",
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "convenciones",
-      "source_file": "docs/use-case/README.md",
+      "norm_label": "alcance",
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L13"
+    },
+    {
+      "id": "docs_use_case_onboarding_onboarding_criterios_de_aceptaci\u00f3n",
+      "label": "Criterios de aceptaci\u00f3n",
+      "_origin": "ast",
+      "community": 194,
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "criterios de aceptacion",
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L62"
+    },
+    {
+      "id": "docs_use_case_onboarding_onboarding_cu_018_visualizar_pantalla_de_onboarding",
+      "label": "CU-018: Visualizar pantalla de onboarding",
+      "_origin": "ast",
+      "community": 194,
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "cu-018: visualizar pantalla de onboarding",
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L8"
+    },
+    {
+      "id": "docs_use_case_onboarding_onboarding_disparador",
+      "label": "Disparador",
+      "_origin": "ast",
+      "community": 194,
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "disparador",
+      "source_file": "docs/use-case/onboarding/onboarding.md",
       "source_location": "L26"
     },
     {
-      "id": "docs_use_case_readme_m\u00f3dulos",
-      "label": "M\u00f3dulos",
+      "id": "docs_use_case_onboarding_onboarding_excepciones",
+      "label": "Excepciones",
       "_origin": "ast",
       "community": 194,
-      "community_name": "Casos de Uso \u2014 Paltazo",
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "modulos",
-      "source_file": "docs/use-case/README.md",
-      "source_location": "L14"
+      "norm_label": "excepciones",
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L50"
     },
     {
-      "id": "docs_use_case_readme_pendientes",
-      "label": "Pendientes",
+      "id": "docs_use_case_onboarding_onboarding_flujo_principal",
+      "label": "Flujo principal",
       "_origin": "ast",
       "community": 194,
-      "community_name": "Casos de Uso \u2014 Paltazo",
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "pendientes",
-      "source_file": "docs/use-case/README.md",
+      "norm_label": "flujo principal",
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L29"
+    },
+    {
+      "id": "docs_use_case_onboarding_onboarding_flujos_alternativos",
+      "label": "Flujos alternativos",
+      "_origin": "ast",
+      "community": 194,
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "flujos alternativos",
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L43"
+    },
+    {
+      "id": "docs_use_case_onboarding_onboarding_fuente",
+      "label": "Fuente",
+      "_origin": "ast",
+      "community": 194,
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "fuente",
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L19"
+    },
+    {
+      "id": "docs_use_case_onboarding_onboarding_objetivo",
+      "label": "Objetivo",
+      "_origin": "ast",
+      "community": 194,
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "objetivo",
+      "source_file": "docs/use-case/onboarding/onboarding.md",
       "source_location": "L10"
     },
     {
-      "id": "docs_use_case_readme_visualizaci\u00f3n",
-      "label": "Visualizaci\u00f3n",
+      "id": "docs_use_case_onboarding_onboarding_postcondiciones",
+      "label": "Postcondiciones",
       "_origin": "ast",
       "community": 194,
-      "community_name": "Casos de Uso \u2014 Paltazo",
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "visualizacion",
-      "source_file": "docs/use-case/README.md",
-      "source_location": "L6"
+      "norm_label": "postcondiciones",
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L53"
+    },
+    {
+      "id": "docs_use_case_onboarding_onboarding_precondiciones",
+      "label": "Precondiciones",
+      "_origin": "ast",
+      "community": 194,
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "precondiciones",
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L22"
+    },
+    {
+      "id": "docs_use_case_onboarding_onboarding_preguntas_pendientes",
+      "label": "Preguntas pendientes",
+      "_origin": "ast",
+      "community": 194,
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "preguntas pendientes",
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L69"
+    },
+    {
+      "id": "docs_use_case_onboarding_onboarding_reglas_de_negocio",
+      "label": "Reglas de negocio",
+      "_origin": "ast",
+      "community": 194,
+      "community_name": "CU-018: Visualizar pantalla de onboarding",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "reglas de negocio",
+      "source_file": "docs/use-case/onboarding/onboarding.md",
+      "source_location": "L57"
     },
     {
       "id": "docs_use_case_categories_categories_actor_principal",
@@ -10028,18 +10160,6 @@
       "source_location": "L10"
     },
     {
-      "id": "docs_use_case_onboarding_onboarding_actor_principal",
-      "label": "Actor principal",
-      "_origin": "ast",
-      "community": 202,
-      "community_name": "CU-021: Seleccionar moneda principal y presupuesto en el primer ingreso",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "actor principal",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L16"
-    },
-    {
       "id": "docs_use_case_onboarding_onboarding_actor_principal_88",
       "label": "Actor principal",
       "_origin": "ast",
@@ -10064,18 +10184,6 @@
       "source_location": "L91"
     },
     {
-      "id": "docs_use_case_onboarding_onboarding_alcance",
-      "label": "Alcance",
-      "_origin": "ast",
-      "community": 202,
-      "community_name": "CU-021: Seleccionar moneda principal y presupuesto en el primer ingreso",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "alcance",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L13"
-    },
-    {
       "id": "docs_use_case_onboarding_onboarding_alcance_85",
       "label": "Alcance",
       "_origin": "ast",
@@ -10086,18 +10194,6 @@
       "norm_label": "alcance",
       "source_file": "docs/use-case/onboarding/onboarding.md",
       "source_location": "L85"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_criterios_de_aceptaci\u00f3n",
-      "label": "Criterios de aceptaci\u00f3n",
-      "_origin": "ast",
-      "community": 202,
-      "community_name": "CU-021: Seleccionar moneda principal y presupuesto en el primer ingreso",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "criterios de aceptacion",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L62"
     },
     {
       "id": "docs_use_case_onboarding_onboarding_criterios_de_aceptaci\u00f3n_129",
@@ -10112,18 +10208,6 @@
       "source_location": "L129"
     },
     {
-      "id": "docs_use_case_onboarding_onboarding_cu_018_visualizar_pantalla_de_onboarding",
-      "label": "CU-018: Visualizar pantalla de onboarding",
-      "_origin": "ast",
-      "community": 202,
-      "community_name": "CU-021: Seleccionar moneda principal y presupuesto en el primer ingreso",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "cu-018: visualizar pantalla de onboarding",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L8"
-    },
-    {
       "id": "docs_use_case_onboarding_onboarding_cu_021_seleccionar_moneda_principal_y_presupuesto_en_el_primer_ingreso",
       "label": "CU-021: Seleccionar moneda principal y presupuesto en el primer ingreso",
       "_origin": "ast",
@@ -10134,18 +10218,6 @@
       "norm_label": "cu-021: seleccionar moneda principal y presupuesto en el primer ingreso",
       "source_file": "docs/use-case/onboarding/onboarding.md",
       "source_location": "L78"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_disparador",
-      "label": "Disparador",
-      "_origin": "ast",
-      "community": 202,
-      "community_name": "CU-021: Seleccionar moneda principal y presupuesto en el primer ingreso",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "disparador",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L26"
     },
     {
       "id": "docs_use_case_onboarding_onboarding_disparador_102",
@@ -10160,18 +10232,6 @@
       "source_location": "L102"
     },
     {
-      "id": "docs_use_case_onboarding_onboarding_excepciones",
-      "label": "Excepciones",
-      "_origin": "ast",
-      "community": 202,
-      "community_name": "CU-021: Seleccionar moneda principal y presupuesto en el primer ingreso",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "excepciones",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L50"
-    },
-    {
       "id": "docs_use_case_onboarding_onboarding_excepciones_116",
       "label": "Excepciones",
       "_origin": "ast",
@@ -10182,18 +10242,6 @@
       "norm_label": "excepciones",
       "source_file": "docs/use-case/onboarding/onboarding.md",
       "source_location": "L116"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_flujo_principal",
-      "label": "Flujo principal",
-      "_origin": "ast",
-      "community": 202,
-      "community_name": "CU-021: Seleccionar moneda principal y presupuesto en el primer ingreso",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "flujo principal",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L29"
     },
     {
       "id": "docs_use_case_onboarding_onboarding_flujo_principal_105",
@@ -10208,18 +10256,6 @@
       "source_location": "L105"
     },
     {
-      "id": "docs_use_case_onboarding_onboarding_flujos_alternativos",
-      "label": "Flujos alternativos",
-      "_origin": "ast",
-      "community": 202,
-      "community_name": "CU-021: Seleccionar moneda principal y presupuesto en el primer ingreso",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "flujos alternativos",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L43"
-    },
-    {
       "id": "docs_use_case_onboarding_onboarding_flujos_alternativos_112",
       "label": "Flujos alternativos",
       "_origin": "ast",
@@ -10230,18 +10266,6 @@
       "norm_label": "flujos alternativos",
       "source_file": "docs/use-case/onboarding/onboarding.md",
       "source_location": "L112"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_fuente",
-      "label": "Fuente",
-      "_origin": "ast",
-      "community": 202,
-      "community_name": "CU-021: Seleccionar moneda principal y presupuesto en el primer ingreso",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "fuente",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L19"
     },
     {
       "id": "docs_use_case_onboarding_onboarding_fuente_94",
@@ -10256,18 +10280,6 @@
       "source_location": "L94"
     },
     {
-      "id": "docs_use_case_onboarding_onboarding_objetivo",
-      "label": "Objetivo",
-      "_origin": "ast",
-      "community": 202,
-      "community_name": "CU-021: Seleccionar moneda principal y presupuesto en el primer ingreso",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "objetivo",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L10"
-    },
-    {
       "id": "docs_use_case_onboarding_onboarding_objetivo_82",
       "label": "Objetivo",
       "_origin": "ast",
@@ -10278,18 +10290,6 @@
       "norm_label": "objetivo",
       "source_file": "docs/use-case/onboarding/onboarding.md",
       "source_location": "L82"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_postcondiciones",
-      "label": "Postcondiciones",
-      "_origin": "ast",
-      "community": 202,
-      "community_name": "CU-021: Seleccionar moneda principal y presupuesto en el primer ingreso",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "postcondiciones",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L53"
     },
     {
       "id": "docs_use_case_onboarding_onboarding_postcondiciones_119",
@@ -10304,18 +10304,6 @@
       "source_location": "L119"
     },
     {
-      "id": "docs_use_case_onboarding_onboarding_precondiciones",
-      "label": "Precondiciones",
-      "_origin": "ast",
-      "community": 202,
-      "community_name": "CU-021: Seleccionar moneda principal y presupuesto en el primer ingreso",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "precondiciones",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L22"
-    },
-    {
       "id": "docs_use_case_onboarding_onboarding_precondiciones_98",
       "label": "Precondiciones",
       "_origin": "ast",
@@ -10328,18 +10316,6 @@
       "source_location": "L98"
     },
     {
-      "id": "docs_use_case_onboarding_onboarding_preguntas_pendientes",
-      "label": "Preguntas pendientes",
-      "_origin": "ast",
-      "community": 202,
-      "community_name": "CU-021: Seleccionar moneda principal y presupuesto en el primer ingreso",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "preguntas pendientes",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L69"
-    },
-    {
       "id": "docs_use_case_onboarding_onboarding_preguntas_pendientes_135",
       "label": "Preguntas pendientes",
       "_origin": "ast",
@@ -10350,18 +10326,6 @@
       "norm_label": "preguntas pendientes",
       "source_file": "docs/use-case/onboarding/onboarding.md",
       "source_location": "L135"
-    },
-    {
-      "id": "docs_use_case_onboarding_onboarding_reglas_de_negocio",
-      "label": "Reglas de negocio",
-      "_origin": "ast",
-      "community": 202,
-      "community_name": "CU-021: Seleccionar moneda principal y presupuesto en el primer ingreso",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "reglas de negocio",
-      "source_file": "docs/use-case/onboarding/onboarding.md",
-      "source_location": "L57"
     },
     {
       "id": "docs_use_case_onboarding_onboarding_reglas_de_negocio_123",
@@ -11778,6 +11742,17 @@
       "norm_label": "variants",
       "source_file": "src/components/ui/Button.tsx",
       "source_location": "L11"
+    },
+    {
+      "id": "src_components_ui_connectionindicator",
+      "label": "ConnectionIndicator.tsx",
+      "_origin": "ast",
+      "community": 212,
+      "community_name": "useAppState",
+      "file_type": "code",
+      "norm_label": "connectionindicator.tsx",
+      "source_file": "src/components/ui/ConnectionIndicator.tsx",
+      "source_location": "L1"
     },
     {
       "id": "src_components_ui_sidebar",
@@ -13892,6 +13867,18 @@
       "source_location": "L14"
     },
     {
+      "id": "docs_architecture_checkpoint_2026_10_29_trabajo_pendiente_no_cr\u00edtico",
+      "label": "Trabajo pendiente (no cr\u00edtico)",
+      "_origin": "ast",
+      "community": 221,
+      "community_name": "ref_next_navigation",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "trabajo pendiente (no critico)",
+      "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
+      "source_location": "L409"
+    },
+    {
       "id": "agents_skills_docs_keeper_skill",
       "label": "docs-keeper/SKILL.md",
       "_origin": "ast",
@@ -14871,27 +14858,27 @@
       "source_location": "L1"
     },
     {
-      "id": "docs_use_case_expenses_expenses",
-      "label": "expenses.md",
+      "id": "docs_use_case_dashboard_dashboard",
+      "label": "dashboard.md",
       "_origin": "ast",
       "community": 231,
       "community_name": "use-case/README.md",
       "file_type": "document",
       "node_kind": "page",
-      "norm_label": "expenses.md",
-      "source_file": "docs/use-case/expenses/expenses.md",
+      "norm_label": "dashboard.md",
+      "source_file": "docs/use-case/dashboard/dashboard.md",
       "source_location": "L1"
     },
     {
-      "id": "docs_use_case_expenses_expenses_casos_de_uso_gastos",
-      "label": "Casos de Uso: Gastos",
+      "id": "docs_use_case_dashboard_dashboard_casos_de_uso_dashboard",
+      "label": "Casos de Uso: Dashboard",
       "_origin": "ast",
       "community": 231,
       "community_name": "use-case/README.md",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "casos de uso: gastos",
-      "source_file": "docs/use-case/expenses/expenses.md",
+      "norm_label": "casos de uso: dashboard",
+      "source_file": "docs/use-case/dashboard/dashboard.md",
       "source_location": "L1"
     },
     {
@@ -14929,6 +14916,66 @@
       "norm_label": "use-case/readme.md",
       "source_file": "docs/use-case/README.md",
       "source_location": "L1"
+    },
+    {
+      "id": "docs_use_case_readme_casos_de_uso_paltazo",
+      "label": "Casos de Uso \u2014 Paltazo",
+      "_origin": "ast",
+      "community": 231,
+      "community_name": "use-case/README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "casos de uso \u2014 paltazo",
+      "source_file": "docs/use-case/README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_use_case_readme_convenciones",
+      "label": "Convenciones",
+      "_origin": "ast",
+      "community": 231,
+      "community_name": "use-case/README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "convenciones",
+      "source_file": "docs/use-case/README.md",
+      "source_location": "L26"
+    },
+    {
+      "id": "docs_use_case_readme_m\u00f3dulos",
+      "label": "M\u00f3dulos",
+      "_origin": "ast",
+      "community": 231,
+      "community_name": "use-case/README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "modulos",
+      "source_file": "docs/use-case/README.md",
+      "source_location": "L14"
+    },
+    {
+      "id": "docs_use_case_readme_pendientes",
+      "label": "Pendientes",
+      "_origin": "ast",
+      "community": 231,
+      "community_name": "use-case/README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "pendientes",
+      "source_file": "docs/use-case/README.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "docs_use_case_readme_visualizaci\u00f3n",
+      "label": "Visualizaci\u00f3n",
+      "_origin": "ast",
+      "community": 231,
+      "community_name": "use-case/README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "visualizacion",
+      "source_file": "docs/use-case/README.md",
+      "source_location": "L6"
     },
     {
       "id": "docs_use_case_user_story_map",
@@ -15363,90 +15410,6 @@
       "source_location": "L405"
     },
     {
-      "id": "docs_bugs_bug_003_date_timezone_utc_1_src_lib_expenseconstants_ts",
-      "label": "1. `src/lib/expenseConstants.ts`",
-      "_origin": "ast",
-      "community": 237,
-      "community_name": "BUG-003: Fechas mostradas como d\u00eda anterior por zona horaria UTC \u2014 Fix: uso de hora local y parseo con T12:00:00",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "1. `src/lib/expenseconstants.ts`",
-      "source_file": "docs/bugs/BUG-003_date_timezone_utc.md",
-      "source_location": "L93"
-    },
-    {
-      "id": "docs_bugs_bug_003_date_timezone_utc_2_src_app_dashboard_add_expense_page_tsx",
-      "label": "2. `src/app/dashboard/add-expense/page.tsx`",
-      "_origin": "ast",
-      "community": 237,
-      "community_name": "BUG-003: Fechas mostradas como d\u00eda anterior por zona horaria UTC \u2014 Fix: uso de hora local y parseo con T12:00:00",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "2. `src/app/dashboard/add-expense/page.tsx`",
-      "source_file": "docs/bugs/BUG-003_date_timezone_utc.md",
-      "source_location": "L96"
-    },
-    {
-      "id": "docs_bugs_bug_003_date_timezone_utc_3_src_app_dashboard_add_income_page_tsx",
-      "label": "3. `src/app/dashboard/add-income/page.tsx`",
-      "_origin": "ast",
-      "community": 237,
-      "community_name": "BUG-003: Fechas mostradas como d\u00eda anterior por zona horaria UTC \u2014 Fix: uso de hora local y parseo con T12:00:00",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "3. `src/app/dashboard/add-income/page.tsx`",
-      "source_file": "docs/bugs/BUG-003_date_timezone_utc.md",
-      "source_location": "L101"
-    },
-    {
-      "id": "docs_bugs_bug_003_date_timezone_utc_4_src_app_dashboard_expenses_page_tsx",
-      "label": "4. `src/app/dashboard/expenses/page.tsx`",
-      "_origin": "ast",
-      "community": 237,
-      "community_name": "BUG-003: Fechas mostradas como d\u00eda anterior por zona horaria UTC \u2014 Fix: uso de hora local y parseo con T12:00:00",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "4. `src/app/dashboard/expenses/page.tsx`",
-      "source_file": "docs/bugs/BUG-003_date_timezone_utc.md",
-      "source_location": "L106"
-    },
-    {
-      "id": "docs_bugs_bug_003_date_timezone_utc_5_src_app_dashboard_incomes_page_tsx",
-      "label": "5. `src/app/dashboard/incomes/page.tsx`",
-      "_origin": "ast",
-      "community": 237,
-      "community_name": "BUG-003: Fechas mostradas como d\u00eda anterior por zona horaria UTC \u2014 Fix: uso de hora local y parseo con T12:00:00",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "5. `src/app/dashboard/incomes/page.tsx`",
-      "source_file": "docs/bugs/BUG-003_date_timezone_utc.md",
-      "source_location": "L109"
-    },
-    {
-      "id": "docs_bugs_bug_003_date_timezone_utc_6_src_app_dashboard_page_tsx",
-      "label": "6. `src/app/dashboard/page.tsx`",
-      "_origin": "ast",
-      "community": 237,
-      "community_name": "BUG-003: Fechas mostradas como d\u00eda anterior por zona horaria UTC \u2014 Fix: uso de hora local y parseo con T12:00:00",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "6. `src/app/dashboard/page.tsx`",
-      "source_file": "docs/bugs/BUG-003_date_timezone_utc.md",
-      "source_location": "L112"
-    },
-    {
-      "id": "docs_bugs_bug_003_date_timezone_utc_archivos_afectados_y_fixes_aplicados",
-      "label": "Archivos afectados y fixes aplicados",
-      "_origin": "ast",
-      "community": 237,
-      "community_name": "BUG-003: Fechas mostradas como d\u00eda anterior por zona horaria UTC \u2014 Fix: uso de hora local y parseo con T12:00:00",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "archivos afectados y fixes aplicados",
-      "source_file": "docs/bugs/BUG-003_date_timezone_utc.md",
-      "source_location": "L91"
-    },
-    {
       "id": "docs_bugs_bug_003_date_timezone_utc_bug_003_fechas_mostradas_como_d\u00eda_anterior_por_zona_horaria_utc_fix_uso_de_hora_local_y_parseo_con_t12_00_00",
       "label": "BUG-003: Fechas mostradas como d\u00eda anterior por zona horaria UTC \u2014 Fix: uso de hora local y parseo con T12:00:00",
       "_origin": "ast",
@@ -15818,6 +15781,28 @@
       "source_location": "L136"
     },
     {
+      "id": "next_config",
+      "label": "next.config.ts",
+      "_origin": "ast",
+      "community": 240,
+      "community_name": "app/layout.tsx",
+      "file_type": "code",
+      "norm_label": "next.config.ts",
+      "source_file": "next.config.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "next_config_nextconfig",
+      "label": "nextConfig",
+      "_origin": "ast",
+      "community": 240,
+      "community_name": "app/layout.tsx",
+      "file_type": "code",
+      "norm_label": "nextconfig",
+      "source_file": "next.config.ts",
+      "source_location": "L3"
+    },
+    {
       "id": "src_app_layout",
       "label": "app/layout.tsx",
       "_origin": "ast",
@@ -15873,15 +15858,15 @@
       "source_location": "L1"
     },
     {
-      "id": "src_components_ui_connectionindicator",
-      "label": "ConnectionIndicator.tsx",
+      "id": "ref_next",
+      "label": "next",
       "_origin": "ast",
       "community": 240,
       "community_name": "app/layout.tsx",
-      "file_type": "code",
-      "norm_label": "connectionindicator.tsx",
-      "source_file": "src/components/ui/ConnectionIndicator.tsx",
-      "source_location": "L1"
+      "file_type": "concept",
+      "norm_label": "next",
+      "source_file": "package.json",
+      "source_location": "L23"
     },
     {
       "id": "package",
@@ -16016,37 +16001,28 @@
       "source_location": "L35"
     },
     {
-      "id": "next_config",
-      "label": "next.config.ts",
+      "id": "docs_use_case_expenses_expenses",
+      "label": "expenses.md",
       "_origin": "ast",
       "community": 242,
-      "community_name": "next",
-      "file_type": "code",
-      "norm_label": "next.config.ts",
-      "source_file": "next.config.ts",
+      "community_name": "Casos de Uso: Gastos",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "expenses.md",
+      "source_file": "docs/use-case/expenses/expenses.md",
       "source_location": "L1"
     },
     {
-      "id": "next_config_nextconfig",
-      "label": "nextConfig",
+      "id": "docs_use_case_expenses_expenses_casos_de_uso_gastos",
+      "label": "Casos de Uso: Gastos",
       "_origin": "ast",
       "community": 242,
-      "community_name": "next",
-      "file_type": "code",
-      "norm_label": "nextconfig",
-      "source_file": "next.config.ts",
-      "source_location": "L3"
-    },
-    {
-      "id": "ref_next",
-      "label": "next",
-      "_origin": "ast",
-      "community": 242,
-      "community_name": "next",
-      "file_type": "concept",
-      "norm_label": "next",
-      "source_file": "package.json",
-      "source_location": "L23"
+      "community_name": "Casos de Uso: Gastos",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "casos de uso: gastos",
+      "source_file": "docs/use-case/expenses/expenses.md",
+      "source_location": "L1"
     },
     {
       "id": "package_devdependencies",
@@ -16277,6 +16253,78 @@
       "source_location": "L13"
     },
     {
+      "id": "docs_bugs_bug_003_date_timezone_utc_1_src_lib_expenseconstants_ts",
+      "label": "1. `src/lib/expenseConstants.ts`",
+      "_origin": "ast",
+      "community": 246,
+      "community_name": "DatePicker.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "1. `src/lib/expenseconstants.ts`",
+      "source_file": "docs/bugs/BUG-003_date_timezone_utc.md",
+      "source_location": "L93"
+    },
+    {
+      "id": "docs_bugs_bug_003_date_timezone_utc_2_src_app_dashboard_add_expense_page_tsx",
+      "label": "2. `src/app/dashboard/add-expense/page.tsx`",
+      "_origin": "ast",
+      "community": 246,
+      "community_name": "DatePicker.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2. `src/app/dashboard/add-expense/page.tsx`",
+      "source_file": "docs/bugs/BUG-003_date_timezone_utc.md",
+      "source_location": "L96"
+    },
+    {
+      "id": "docs_bugs_bug_003_date_timezone_utc_3_src_app_dashboard_add_income_page_tsx",
+      "label": "3. `src/app/dashboard/add-income/page.tsx`",
+      "_origin": "ast",
+      "community": 246,
+      "community_name": "DatePicker.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "3. `src/app/dashboard/add-income/page.tsx`",
+      "source_file": "docs/bugs/BUG-003_date_timezone_utc.md",
+      "source_location": "L101"
+    },
+    {
+      "id": "docs_bugs_bug_003_date_timezone_utc_4_src_app_dashboard_expenses_page_tsx",
+      "label": "4. `src/app/dashboard/expenses/page.tsx`",
+      "_origin": "ast",
+      "community": 246,
+      "community_name": "DatePicker.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "4. `src/app/dashboard/expenses/page.tsx`",
+      "source_file": "docs/bugs/BUG-003_date_timezone_utc.md",
+      "source_location": "L106"
+    },
+    {
+      "id": "docs_bugs_bug_003_date_timezone_utc_5_src_app_dashboard_incomes_page_tsx",
+      "label": "5. `src/app/dashboard/incomes/page.tsx`",
+      "_origin": "ast",
+      "community": 246,
+      "community_name": "DatePicker.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "5. `src/app/dashboard/incomes/page.tsx`",
+      "source_file": "docs/bugs/BUG-003_date_timezone_utc.md",
+      "source_location": "L109"
+    },
+    {
+      "id": "docs_bugs_bug_003_date_timezone_utc_6_src_app_dashboard_page_tsx",
+      "label": "6. `src/app/dashboard/page.tsx`",
+      "_origin": "ast",
+      "community": 246,
+      "community_name": "DatePicker.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "6. `src/app/dashboard/page.tsx`",
+      "source_file": "docs/bugs/BUG-003_date_timezone_utc.md",
+      "source_location": "L112"
+    },
+    {
       "id": "docs_bugs_bug_003_date_timezone_utc_7_src_components_ui_datepicker_tsx",
       "label": "7. `src/components/ui/DatePicker.tsx`",
       "_origin": "ast",
@@ -16287,6 +16335,18 @@
       "norm_label": "7. `src/components/ui/datepicker.tsx`",
       "source_file": "docs/bugs/BUG-003_date_timezone_utc.md",
       "source_location": "L116"
+    },
+    {
+      "id": "docs_bugs_bug_003_date_timezone_utc_archivos_afectados_y_fixes_aplicados",
+      "label": "Archivos afectados y fixes aplicados",
+      "_origin": "ast",
+      "community": 246,
+      "community_name": "DatePicker.tsx",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "archivos afectados y fixes aplicados",
+      "source_file": "docs/bugs/BUG-003_date_timezone_utc.md",
+      "source_location": "L91"
     },
     {
       "id": "docs_use_case_categories_categories_actor_principal_105",
@@ -18108,30 +18168,6 @@
       "norm_label": "xml sitemap",
       "source_file": ".agents/skills/seo/SKILL.md",
       "source_location": "L84"
-    },
-    {
-      "id": "docs_use_case_dashboard_dashboard",
-      "label": "dashboard.md",
-      "_origin": "ast",
-      "community": 265,
-      "community_name": "Casos de Uso: Dashboard",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "dashboard.md",
-      "source_file": "docs/use-case/dashboard/dashboard.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_use_case_dashboard_dashboard_casos_de_uso_dashboard",
-      "label": "Casos de Uso: Dashboard",
-      "_origin": "ast",
-      "community": 265,
-      "community_name": "Casos de Uso: Dashboard",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "casos de uso: dashboard",
-      "source_file": "docs/use-case/dashboard/dashboard.md",
-      "source_location": "L1"
     },
     {
       "id": "agents_skills_accessibility_skill_accessibility_a11y",
@@ -38154,7 +38190,7 @@
     },
     {
       "source": "docs_architecture_checkpoint_2026_10_29",
-      "target": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_31_oct_2026",
+      "target": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_02_nov_2026",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -38171,7 +38207,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L110",
+      "source_location": "L120",
       "weight": 1.0
     },
     {
@@ -38182,7 +38218,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L43",
+      "source_location": "L46",
       "weight": 1.0
     },
     {
@@ -38193,7 +38229,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L59",
+      "source_location": "L67",
       "weight": 1.0
     },
     {
@@ -38204,7 +38240,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L120",
+      "source_location": "L130",
       "weight": 1.0
     },
     {
@@ -38215,7 +38251,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L153",
+      "source_location": "L163",
       "weight": 1.0
     },
     {
@@ -38226,7 +38262,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L184",
+      "source_location": "L208",
       "weight": 1.0
     },
     {
@@ -38237,7 +38273,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L192",
+      "source_location": "L216",
       "weight": 1.0
     },
     {
@@ -38248,7 +38284,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L201",
+      "source_location": "L225",
       "weight": 1.0
     },
     {
@@ -38259,7 +38295,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L206",
+      "source_location": "L232",
       "weight": 1.0
     },
     {
@@ -38270,7 +38306,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L213",
+      "source_location": "L239",
       "weight": 1.0
     },
     {
@@ -38281,7 +38317,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L222",
+      "source_location": "L248",
       "weight": 1.0
     },
     {
@@ -38292,7 +38328,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L226",
+      "source_location": "L252",
       "weight": 1.0
     },
     {
@@ -38303,7 +38339,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L231",
+      "source_location": "L257",
       "weight": 1.0
     },
     {
@@ -38314,7 +38350,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L299",
+      "source_location": "L349",
       "weight": 1.0
     },
     {
@@ -38325,7 +38361,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L305",
+      "source_location": "L355",
       "weight": 1.0
     },
     {
@@ -38336,7 +38372,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L339",
+      "source_location": "L409",
       "weight": 1.0
     },
     {
@@ -38347,7 +38383,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L344",
+      "source_location": "L415",
       "weight": 1.0
     },
     {
@@ -38358,7 +38394,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L353",
+      "source_location": "L426",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_architecture_checkpoint_2026_10_29_9_notas_para_el_pr\u00f3ximo_dev",
+      "target": "docs_architecture_checkpoint_2026_10_29_convenciones_establecidas_no_romper",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
+      "source_location": "L432",
       "weight": 1.0
     },
     {
@@ -38369,121 +38416,143 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L358",
+      "source_location": "L438",
       "weight": 1.0
     },
     {
       "source": "docs_architecture_checkpoint_2026_10_29_9_notas_para_el_pr\u00f3ximo_dev",
-      "target": "docs_architecture_checkpoint_2026_10_29_recursos_\u00fatiles",
+      "target": "docs_architecture_checkpoint_2026_10_29_comandos_\u00fatiles",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L363",
+      "source_location": "L444",
       "weight": 1.0
     },
     {
-      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_31_oct_2026",
+      "source": "docs_architecture_checkpoint_2026_10_29_9_notas_para_el_pr\u00f3ximo_dev",
+      "target": "docs_architecture_checkpoint_2026_10_29_agente_de_documentaci\u00f3n",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
+      "source_location": "L453",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_architecture_checkpoint_2026_10_29_9_notas_para_el_pr\u00f3ximo_dev",
+      "target": "docs_architecture_checkpoint_2026_10_29_recursos",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
+      "source_location": "L456",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_02_nov_2026",
       "target": "docs_architecture_checkpoint_2026_10_29_3_estado_del_c\u00f3digo_typescript",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L118",
+      "source_location": "L128",
       "weight": 1.0
     },
     {
-      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_31_oct_2026",
+      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_02_nov_2026",
       "target": "docs_architecture_checkpoint_2026_10_29_4_flujo_de_la_aplicaci\u00f3n",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L190",
+      "source_location": "L214",
       "weight": 1.0
     },
     {
-      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_31_oct_2026",
+      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_02_nov_2026",
       "target": "docs_architecture_checkpoint_2026_10_29_5_decisiones_t\u00e9cnicas_tomadas",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L220",
+      "source_location": "L246",
       "weight": 1.0
     },
     {
-      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_31_oct_2026",
+      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_02_nov_2026",
       "target": "docs_architecture_checkpoint_2026_10_29_6_estructura_de_archivos_clave",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L238",
+      "source_location": "L267",
       "weight": 1.0
     },
     {
-      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_31_oct_2026",
+      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_02_nov_2026",
       "target": "docs_architecture_checkpoint_2026_10_29_7_c\u00f3mo_ejecutar_y_probar",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L297",
+      "source_location": "L347",
       "weight": 1.0
     },
     {
-      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_31_oct_2026",
+      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_02_nov_2026",
       "target": "docs_architecture_checkpoint_2026_10_29_8_posibles_mejoras_futuras",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L337",
+      "source_location": "L407",
       "weight": 1.0
     },
     {
-      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_31_oct_2026",
+      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_02_nov_2026",
       "target": "docs_architecture_checkpoint_2026_10_29_9_notas_para_el_pr\u00f3ximo_dev",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L351",
+      "source_location": "L424",
       "weight": 1.0
     },
     {
-      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_31_oct_2026",
-      "target": "docs_architecture_checkpoint_2026_10_29_10_contacto_y_contexto",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L370",
-      "weight": 1.0
-    },
-    {
-      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_31_oct_2026",
+      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_02_nov_2026",
       "target": "docs_architecture_checkpoint_2026_10_29_2_estado_de_la_base_de_datos",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L41",
+      "source_location": "L44",
       "weight": 1.0
     },
     {
-      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_31_oct_2026",
+      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_02_nov_2026",
+      "target": "docs_architecture_checkpoint_2026_10_29_10_contacto_y_contexto",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
+      "source_location": "L465",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_architecture_checkpoint_2026_10_29_checkpoint_estado_actual_de_paltazo_02_nov_2026",
       "target": "docs_architecture_checkpoint_2026_10_29_1_resumen_ejecutivo",
       "relation": "contains",
       "_origin": "ast",
@@ -50401,7 +50470,7 @@
       "confidence_score": 0.95,
       "context": "OnboardingGuard",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L223",
+      "source_location": "L249",
       "weight": 1.0
     },
     {
@@ -50413,7 +50482,7 @@
       "confidence_score": 0.95,
       "context": "OnboardingGuard",
       "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
-      "source_location": "L196",
+      "source_location": "L220",
       "weight": 1.0
     },
     {
@@ -50537,6 +50606,30 @@
       "weight": 1.0
     },
     {
+      "source": "docs_architecture_checkpoint_2026_10_29_trabajo_pendiente_no_cr\u00edtico",
+      "target": "src_lib_categories_findcategory",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "findCategory",
+      "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
+      "source_location": "L410",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_architecture_checkpoint_2026_10_29_trabajo_pendiente_no_cr\u00edtico",
+      "target": "src_lib_expenseconstants_formatamount",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "formatAmount",
+      "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
+      "source_location": "L410",
+      "weight": 1.0
+    },
+    {
       "source": "bitacora_auditor\u00eda_de_c\u00f3digo_actualizaci\u00f3n_2026_10_16",
       "target": "src_lib_categories_getcategorycolorclass",
       "relation": "references",
@@ -50570,6 +50663,42 @@
       "context": "getIncomes()",
       "source_file": "docs/architecture/ARCHITECTURE_SPEC.md",
       "source_location": "L386",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_architecture_checkpoint_2026_10_29_trabajo_pendiente_no_cr\u00edtico",
+      "target": "src_lib_expenseconstants_getlocaldate",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "getLocalDate",
+      "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
+      "source_location": "L410",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_architecture_checkpoint_2026_10_29_convenciones_establecidas_no_romper",
+      "target": "src_lib_expenseconstants_getlocaldate",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "getLocalDate()",
+      "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
+      "source_location": "L433",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_architecture_checkpoint_2026_10_29_lo_que_funciona_bien",
+      "target": "src_lib_expenseconstants_getlocaldate",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "getLocalDate()",
+      "source_file": "docs/architecture/CHECKPOINT_2026_10_29.md",
+      "source_location": "L430",
       "weight": 1.0
     },
     {

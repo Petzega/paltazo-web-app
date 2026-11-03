@@ -47,9 +47,9 @@
 └────────────────────────────────────────────────────────────────────────────────────┘
 
 ┌────────────────────────────────────────────────────────────────────────────────────┐
-│ RELEASE 4 — PROPUESTA (sin release asignada): monedas a demanda y categorías       │
+│ RELEASE 4 — v1.1: monedas a demanda (US-020) + setup inicial (US-019, US-021)      │
 ├────────────────────────────────────────────────────────────────────────────────────┤
-│ [US-019] [US-020] [US-021]                                                         │
+│ [US-019] [US-020✅] [US-021]                                                        │
 └────────────────────────────────────────────────────────────────────────────────────┘
 
 ┌────────────────────────────────────────────────────────────────────────────────────┐
@@ -59,7 +59,7 @@
 └────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-> **Tareas añadidas por la release propuesta (US-019 a US-021, 29 oct 2026):** A1 incluye la configuración inicial de moneda y presupuesto en el primer ingreso (CU-021); D4 Gestionar monedas a demanda (CU-022, CU-023); D5 Gestionar categorías personalizables (CU-024 a CU-026).
+> **Tareas añadidas por la release propuesta (US-019 a US-021, 29 oct 2026):** A1 incluye la configuración inicial de moneda y presupuesto en el primer ingreso (CU-021); D4 Gestionar monedas a demanda (CU-022, CU-023) — **✅ US-020 implementado** (02 nov 2026); D5 Gestionar categorías personalizables (CU-024 a CU-026).
 
 ---
 
@@ -366,7 +366,7 @@
 
 ### US-020: Gestión de monedas a demanda
 **Como** usuario, **quiero** agregar monedas (S/, $, €) desde ajustes solo cuando las necesite y quitarlas cuando deje de usarlas **para** trabajar únicamente con las monedas relevantes para mí.
-**Ref:** [`CU-022`](settings/settings.md#cu-022-agregar-moneda), [`CU-023`](settings/settings.md#cu-023-quitar-moneda) · **Status:** 📝 PROPUESTO · Quitar elimina gastos y presupuesto asociados con confirmación explícita (decisión del usuario); la moneda principal no se puede quitar.
+**Ref:** [`CU-022`](settings/settings.md#cu-022-agregar-moneda), [`CU-023`](settings/settings.md#cu-023-quitar-moneda) · **Status:** ✅ IMPLEMENTADO · Primera moneda se setea automáticamente como principal (fix BUG-009, 02 nov 2026). Quitar elimina gastos, ingresos y presupuesto asociados con confirmación explícita; si se elimina la principal, la más antigua sePromueve (fix BUG-004, BUG-009).
 
 ### US-021: Categorías personalizables
 **Como** usuario, **quiero** crear, editar y eliminar categorías con nombre, icono y color de fondo **para** clasificar mis gastos según mis necesidades.
@@ -427,7 +427,7 @@
 | US-017 | B | B1 Offline-first | v1.2 | CU-019 | 🔜 pendiente |
 | US-018 | C | C3 Push notifications | v1.2 | CU-020 | 🔜 pendiente |
 | US-019 | A | A1 Primer ingreso | Propuesta | CU-021 | 📝 propuesto |
-| US-020 | D | D4 Gestionar monedas | Propuesta | CU-022, CU-023 | 📝 propuesto |
+| US-020 | D | D4 Gestionar monedas | v1.1 | CU-022, CU-023 | ✅ |
 | US-021 | D | D5 Gestionar categorías | Propuesta | CU-024, CU-025, CU-026 | 📝 propuesto |
 | US-022 | B | B5 Registrar ingreso | Propuesta | CU-027 | 📝 propuesto |
 | US-023 | B | B6 Editar ingreso | Propuesta | CU-028 | 📝 propuesto |
@@ -436,7 +436,7 @@
 | US-026 | D | D6 Gestionar categorías de ingreso | Propuesta | CU-031, CU-032, CU-033 | 📝 propuesto |
 | US-027 | C | C5 Consultar balance real | Propuesta | CU-034 | 📝 propuesto |
 
-**Total:** 27 historias · 15 implementadas · 3 futuras (v1.2) · 9 propuestas (sin release asignada).
+**Total:** 27 historias · 16 implementadas · 3 futuras (v1.2) · 8 propuestas (sin release asignada).
 
 ---
 

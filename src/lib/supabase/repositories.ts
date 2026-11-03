@@ -172,6 +172,7 @@ export async function getBudgets(userId: string): Promise<Budget[]> {
     .from('budgets')
     .select('*')
     .eq('user_id', userId)
+    .order('created_at', { ascending: true })
 
   if (error) throw error
   return data.map((row: SupabaseBudgetRow) => ({
@@ -254,6 +255,14 @@ export async function completeOnboardingProfile(userId: string, currency: string
     })
     .eq('id', userId)
 
+  if (error) throw error
+}
+
+export async function updatePrimaryCurrency(userId: string, currency: string | null) {
+  const { error } = await supabase
+    .from('profiles')
+    .update({ primary_currency: currency })
+    .eq('id', userId)
   if (error) throw error
 }
 

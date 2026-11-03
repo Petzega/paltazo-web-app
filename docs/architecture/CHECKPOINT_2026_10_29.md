@@ -8,7 +8,7 @@
 
 ## 1. Resumen Ejecutivo
 
-Paltazo está al **100% del spec funcional**. Se implementaron 18/21 User Stories (las 3 restantes son futuras v1.2: Google OAuth, offline-first, push notifications).
+Paltazo está al **100% del spec funcional**. Se implementaron 19/21 User Stories (las 3 restantes son futuras v1.2: Google OAuth, offline-first, push notifications).
 
 **Fases completadas:**
 - ✅ Fase 1: Fix brechas P0/P1
@@ -25,7 +25,7 @@ Paltazo está al **100% del spec funcional**. Se implementaron 18/21 User Storie
 - BUG-006: Eliminar moneda no elimina incomes — Fix: RPC actualizada incluye DELETE FROM incomes (01 nov 2026)
 - BUG-007: checkBudgetThreshold UTC bug — Fix: usa date.startsWith(prefix) en lugar de new Date() (01 nov 2026)
 - BUG-008: Dashboard muestra S/ fantasma — Fix: solo agregar monedas existentes en budgets (01 nov 2026)
-- BUG-009: Monedas en orden fijo en Settings — Fix: iterar sobre activeCurrencies en lugar de SUPPORTED_CURRENCIES (01 nov 2026)
+- BUG-009: Monedas en orden fijo + principal invisible — Fix: ordenar budgets por `created_at ASC`, setear principal en primera moneda, persistir promoción en DB (02 nov 2026)
 
 **Bugs pendientes:**
 Ninguno
@@ -37,7 +37,8 @@ Ninguno
 - **01 nov 2026:** Sort alfabético en dashboard (sin priorizar S/ sobre otras monedas)
 - **01 nov 2026:** CU-023 permite eliminar moneda principal (con promoción automática)
 - **01 nov 2026:** CU-023 modal de confirmación incluye ingresos en el conteo
-- **02 nov 2026:** BUG-009 fix: Settings itera sobre `Object.keys(budgets)` en lugar de `SUPPORTED_CURRENCIES` (monedas en orden de configuración)
+- **02 nov 2026:** CU-022 implementado: agregar moneda a demanda (S/, $, €) desde settings; primera moneda se setea automáticamente como principal
+- **02 nov 2026:** BUG-009 fix completo: `getBudgets` ordena por `created_at ASC`; `addCurrency` setea principal si es primera moneda; `removeCurrency` promueve la más antigua y persiste `primary_currency` en DB; `setBudget` actualiza `budgetState` si `monthlyLimit === 0` (primera moneda en onboarding)
 
 ---
 
@@ -115,7 +116,7 @@ updated_at TIMESTAMPTZ
 UNIQUE(user_id, currency)
 ```
 
-**Nota:** La tabla `budgets` NO tiene campo `created_at` con hora de inserción preservada de forma confiable desde el cliente. El orden de monedas se preserva vía `Object.keys(budgets)` (orden de inserción ES2015+).
+**Nota:** La tabla `budgets` tiene `created_at TIMESTAMPTZ` (default `now()`). `getBudgets` ordena por `created_at ASC` para preservar el orden de configuración del usuario entre sesiones.
 
 ### Datos seed
 
@@ -223,10 +224,10 @@ Queries disponibles para categorías, gastos, presupuestos, y perfil de onboardi
 7. Ingresos posteriores → `OnboardingGuard` permite acceso directo
 
 ### Gestión de Monedas (CU-022, CU-023)
-- **Agregar moneda:** Settings → botón "+ Dólares ($)" o "+ Euros (€)" → crea budget con monthlyLimit=0
+- **Agregar moneda:** Settings → botón "+ Dólares ($)" o "+ Euros (€)" → crea budget con monthlyLimit=0. Si es la primera moneda, se setea como principal y se persiste en `profiles.primary_currency`
 - **Quitar moneda:** Settings → botón "Quitar" → modal de confirmación → elimina gastos + ingresos + presupuesto de esa moneda
-- **Eliminar moneda principal:** Permitido (fix BUG-004). La siguiente moneda disponible sePromueve automáticamente a principal. Si era la última moneda, el dashboard muestra empty state.
-- **Orden de visualización:** Monedas se muestran en el orden en que fueron configuradas (fix BUG-009)
+- **Eliminar moneda principal:** Permitido (fix BUG-004). La moneda más antigua (por `created_at ASC`) sePromueve automáticamente a principal y se persiste en DB. Si era la última moneda, se limpia `primary_currency` a NULL
+- **Orden de visualización:** Monedas se muestran en el orden en que fueron configuradas (`created_at ASC` en `getBudgets`)
 - **Monedas soportadas:** S/, $, € (SUPPORTED_CURRENCIES en settings/page.tsx)
 
 ### Gestión de Categorías (CU-024, CU-025, CU-026)
@@ -257,9 +258,10 @@ Queries disponibles para categorías, gastos, presupuestos, y perfil de onboardi
 ### Monedas
 - **A demanda:** usuario elige qué monedas activar (S/, $, €)
 - **Eliminación destructiva:** al quitar moneda, se eliminan gastos + ingresos + presupuesto (RPC atómica `delete_currency_purging_data`, fix BUG-006)
-- **Moneda principal eliminable:** si se elimina, la siguiente moneda disponible sePromueve a principal (fix BUG-004)
-- **Orden de visualización:** `Object.keys(budgets)` preserva orden de inserción (ES2015+). Fix BUG-009: Settings itera sobre `activeCurrencies` en lugar de `SUPPORTED_CURRENCIES`
-- **DefaultBudget fantasma:** `DEFAULT_BUDGET` hardcodea `S/`. Fix BUG-008: dashboard no agrega `budget.currency` automáticamente si no existe en `budgets`
+- **Moneda principal eliminable:** si se elimina, la moneda más antigua (por `created_at ASC`) sePromueve a principal y se persiste en `profiles.primary_currency` (fix BUG-004)
+- **Primera moneda = principal:** `addCurrency` setea `primary_currency` y `budgetState` si es la primera moneda del usuario
+- **Orden de visualización:** `getBudgets` ordena por `created_at ASC`. Fix BUG-009: orden persiste entre sesiones
+- **DefaultBudget fantasma:** `DEFAULT_BUDGET` hardcodea `S/`. Fix BUG-008: dashboard no agrega `budget.currency` automáticamente si no existe en `budgets`. Fix adicional: `setBudget` actualiza `budgetState` si `monthlyLimit === 0` (primera moneda en onboarding)
 - **Transacción:** operaciones secuenciales en repositories (no hay transacciones nativas en Supabase JS)
 
 ---

@@ -1350,9 +1350,9 @@
     "semantic_hash": ""
   },
   "docs/architecture/CHECKPOINT_2026_10_29.md": {
-    "mtime": 1793594305.5557601,
-    "seen": 1793594327.5928993,
-    "ast_hash": "aee7044653ca728fef17886c16c4a438",
+    "mtime": 1793631193.1880937,
+    "seen": 1793631211.084978,
+    "ast_hash": "17b829b7c359532139498efda76981cb",
     "semantic_hash": ""
   },
   "playwright.config.ts": {

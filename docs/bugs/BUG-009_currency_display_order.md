@@ -3,261 +3,181 @@
 > **Estado:** ✅ Resuelto  
 > **Severidad:** Medium (UX, no respeta preferencia del usuario)  
 > **Fase donde se detectó:** Post-audit (01 nov 2026)  
-> **Resuelto:** 01 nov 2026
+> **Resuelto:** 02 nov 2026
 
 ---
 
 ## Resumen
 
-Cuando un usuario agrega monedas en un orden específico (ej: primero USD, luego S/), la página de Settings siempre las muestra en orden fijo `S/, $, €` en lugar del orden en que se configuraron. Adicionalmente, la moneda recién agregada se marca como "Principal" aunque ya existía otra moneda principal configurada.
+Cuando un usuario agrega monedas en un orden específico (ej: primero USD, luego S/), la página de Settings siempre las muestra en orden fijo `S/, $, €` en lugar del orden en que se configuraron. Adicionalmente:
+- La primera moneda configurada no siempre queda como principal (dependía de `DEFAULT_BUDGET` hardcodeado a S/)
+- Al eliminar la moneda principal, la promoción no se persistía en `profiles.primary_currency`
+- En onboarding, `setBudget` no actualizaba `budgetState` si `budget.currency` no coincidía (siempre S/ inicial), dejando el badge "Principal" invisible hasta recargar
 
 **Impacto:**
 - Usuario pierde el orden de preferencia al configurar monedas
 - La moneda "Principal" cambia inesperadamente al agregar una nueva
-- Inconsistencia entre configuración del usuario y visualización
+- Badge "Principal" no aparece hasta recargar la página
+- La moneda principal no se persiste si se elimina la actual
 
 ---
 
 ## Pasos para reproducir
 
 1. Registrarse como nuevo usuario
-2. En setup inicial, seleccionar **USD** como moneda principal con presupuesto de 950
-3. Ir a Settings → "Presupuestos por moneda"
-4. Hacer clic en **"+ Soles (S/)"** para agregar Soles
-5. **Comportamiento observado:** Soles aparece en primera posición y marcado como "Principal", USD aparece en segunda posición
-6. **Comportamiento esperado:** USD debería mantenerse en primera posición como principal, Soles en segunda posición
+2. En setup inicial, seleccionar **USD** como moneda principal con presupuesto de 5867
+3. Ver Settings → "Presupuestos por moneda"
+4. **Comportamiento observado:** USD aparece sin badge "Principal", al guardar presupuesto sigue sin aparecer
+5. Agregar S/ → S/ aparece como "Principal"
+6. Recargar página → recién ahí USD se muestra como principal
 
 ---
 
 ## Causa raíz
 
-**Problema 1: Settings itera sobre SUPPORTED_CURRENCIES en orden fijo**
-
-```tsx
-// src/app/dashboard/settings/page.tsx:247
-{SUPPORTED_CURRENCIES.filter(c => activeCurrencies.includes(c.value)).map(({ value, label }) => {
-  // ...
-})}
-```
-
-`SUPPORTED_CURRENCIES` está definido en orden fijo:
-```ts
-const SUPPORTED_CURRENCIES = [
-  { value: 'S/', label: 'Soles (S/)' },
-  { value: '$', label: 'Dólares ($)' },
-  { value: '€', label: 'Euros (€)' },
-]
-```
-
-**Problema 2: No se preserva el orden de creación de monedas**
-
-El store usa `Record<string, Budget>` (objeto) para `budgets`, que no garantiza orden de inserción en todos los casos. Además, no hay un campo `createdAt` o `order` en la entidad Budget para rastrear cuándo se agregó cada moneda.
-
-**Problema 3: Moneda principal se asigna incorrectamente**
-
-Al agregar una nueva moneda, el código no verifica si ya existe una moneda principal configurada. Si `budget.currency` no coincide con ninguna moneda en `budgets` (caso raro pero posible), la UI puede mostrar la primera moneda del array como "Principal".
-
----
-
-## Flujo del bug
-
-```
-1. Usuario se registra → completeOnboarding('USD', 950)
-   - budgets = { 'USD': { monthlyLimit: 950, currency: 'USD' } }
-   - budget.currency = 'USD' ✅
-
-2. Usuario agrega S/ → addCurrency('S/')
-   - budgets = { 'USD': {...}, 'S/': { monthlyLimit: 0, currency: 'S/' } }
-   - budget.currency = 'USD' ✅ (debería mantenerse)
-
-3. Settings renderiza:
-   - SUPPORTED_CURRENCIES.filter(c => activeCurrencies.includes(c.value))
-   - activeCurrencies = ['USD', 'S/']
-   - Filtro: S/ (índice 0 en SUPPORTED_CURRENCIES), USD (índice 1)
-   - Orden resultante: ['S/', 'USD'] ❌
-
-4. Settings muestra:
-   - S/ en primera posición con badge "Principal" ❌
-   - USD en segunda posición ❌
-```
-
-**¿Por qué S/ se marca como "Principal"?**
-
-Si `budget.currency === 'USD'` pero S/ se renderiza primero, el badge "Principal" debería aparecer solo en USD. Sin embargo, si hay un bug en la lógica de `isPrimary`:
-
-```tsx
-const isPrimary = value === budget.currency
-```
-
-Esto debería funcionar correctamente... **a menos que** `budget.currency` se haya actualizado a 'S/' en algún momento.
-
-**Hipótesis:** ¿`addCurrency` actualiza `budget.currency`?
+**Problema 1: `getBudgets` sin orden**
 
 ```ts
-// src/lib/store.tsx:283-294
-const addCurrency = async (currency: string) => {
-  if (!userId) return
-  if (budgets[currency]) return
-  const newBudget: Budget = {
-    userId,
-    monthlyLimit: 0,
-    currency,
-    updatedAt: new Date().toISOString(),
-  }
-  await db.upsertBudget(newBudget)
-  setBudgets((prev) => ({ ...prev, [currency]: newBudget }))
-  // ❌ NO actualiza budget.currency, debería mantener el existente
+// src/lib/supabase/repositories.ts:170-177
+export async function getBudgets(userId: string): Promise<Budget[]> {
+  const { data, error } = await supabase
+    .from('budgets')
+    .select('*')
+    .eq('user_id', userId)
+    // ❌ Sin order → orden indeterminado de Supabase
+```
+
+`bs[0]` como fallback en `applySession` no garantiza la moneda más antigua.
+
+**Problema 2: `setBudget` no actualiza `budgetState` para primera moneda**
+
+```ts
+// src/lib/store.tsx:278-280
+if (targetCurrency === budget.currency) {
+  setBudgetState(updated)
 }
 ```
 
-`addCurrency` NO actualiza `budget.currency`, así que el badge "Principal" debería aparecer correctamente en USD.
+En onboarding: `budget.currency = 'S/'` (DEFAULT_BUDGET), `targetCurrency = '$'` → condición falsa → `budgetState` nunca se actualiza → badge "Principal" invisible.
 
-**Conclusión:** El bug principal es el **orden de visualización** (S/ siempre primero), no la asignación de moneda principal.
+**Problema 3: `addCurrency` no setea principal para primera moneda**
+
+```ts
+// src/lib/store.tsx:283-293
+const addCurrency = async (currency: string) => {
+  // ...
+  await db.upsertBudget(newBudget)
+  setBudgets((prev) => ({ ...prev, [currency]: newBudget }))
+  // ❌ No verifica si es primera moneda → no setea primary_currency
+}
+```
+
+**Problema 4: `removeCurrency` no persiste promoción en DB**
+
+```ts
+// src/lib/store.tsx:296-316
+if (currency === budget.currency) {
+  const nextCurrency = Object.keys(nextBudgets)[0]
+  if (nextCurrency && nextBudgets[nextCurrency]) {
+    setBudgetState(nextBudgets[nextCurrency])
+    // ❌ No llama updatePrimaryCurrency → promoción solo en memoria
+  }
+}
+```
 
 ---
 
 ## Fix aplicado
 
-### `src/app/dashboard/settings/page.tsx`
+### 1. `src/lib/supabase/repositories.ts`
 
-**Antes (línea 246):**
-```tsx
-{SUPPORTED_CURRENCIES.filter(c => activeCurrencies.includes(c.value)).map(({ value, label }) => {
-  // ...
-})}
-```
-
-**Después:**
-```tsx
-{activeCurrencies.map((currency) => {
-  const { value, label } = SUPPORTED_CURRENCIES.find(c => c.value === currency) || { value: currency, label: currency }
-  // ...
-})}
-```
-
-**Explicación:**
-- `activeCurrencies = Object.keys(budgets)` mantiene el orden de inserción en JavaScript ES2015+
-- En lugar de iterar sobre `SUPPORTED_CURRENCIES` (orden fijo), ahora iteramos sobre las monedas del usuario en el orden en que se agregaron
-- Para cada moneda, buscamos el `label` correspondiente en `SUPPORTED_CURRENCIES`
-- Si la moneda no está en `SUPPORTED_CURRENCIES` (moneda custom), usamos el `currency` como fallback
-
-**Resultado:** Las monedas ahora se muestran en el orden en que el usuario las configuró.
-
-```sql
--- Migración: agregar created_at a budgets
-ALTER TABLE budgets ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ DEFAULT now();
-```
+**a) Ordenar budgets por `created_at ASC`:**
 
 ```ts
-// En settings/page.tsx
-const activeCurrenciesSorted = Object.entries(budgets)
-  .sort(([, a], [, b]) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
-  .map(([currency]) => currency)
-
-{activeCurrenciesSorted.map((currency) => {
-  const { label } = SUPPORTED_CURRENCIES.find(c => c.value === currency) || {}
-  // ...
-})}
+export async function getBudgets(userId: string): Promise<Budget[]> {
+  const { data, error } = await supabase
+    .from('budgets')
+    .select('*')
+    .eq('user_id', userId)
+    .order('created_at', { ascending: true })  // ← Agregado
 ```
 
-**Ventajas:**
-- Orden preciso basado en fecha de creación
-- Persistente entre sesiones
-
-**Desventajas:**
-- Requiere migración de base de datos
-- Monedas existentes no tendrán `createdAt` (usar `updated_at` como fallback)
-
-### Opción B: Usar array ordenado en lugar de Record
+**b) Nueva función `updatePrimaryCurrency`:**
 
 ```ts
-// En store.tsx
-interface AppState {
-  budgets: Budget[]  // ❌ Antes: Record<string, Budget>
-  budgetOrder: string[]  // NUEVO: orden de monedas
+export async function updatePrimaryCurrency(userId: string, currency: string | null) {
+  const { error } = await supabase
+    .from('profiles')
+    .update({ primary_currency: currency })
+    .eq('id', userId)
+  if (error) throw error
 }
 ```
 
-**Ventajas:**
-- Orden explícito y controlado
+### 2. `src/lib/store.tsx`
 
-**Desventajas:**
-- Cambio grande en estructura de datos
-- Requiere actualizar múltiples lugares
-
-### Opción C: Ordenar por orden de inserción en el objeto (orden de iteración)
+**a) `setBudget` — actualizar estado si es primera moneda (`monthlyLimit === 0`):**
 
 ```ts
-// En settings/page.tsx
-const activeCurrencies = Object.keys(budgets)  // Mantiene orden de inserción en V8
-
-{activeCurrencies.map((currency) => {
-  const { label } = SUPPORTED_CURRENCIES.find(c => c.value === currency) || {}
-  // ...
-})}
+if (targetCurrency === budget.currency || budget.monthlyLimit === 0) {
+  setBudgetState(updated)
+}
 ```
 
-**Ventajas:**
-- Fix mínimo, sin migraciones
-- JavaScript mantiene orden de inserción en objetos desde ES2015
+**b) `addCurrency` — si es primera moneda, setea principal:**
 
-**Desventajas:**
-- Orden de inserción puede no ser confiable si se recarga desde Supabase
-- Necesita validación: ¿`loadUserData` preserva el orden?
+```ts
+const addCurrency = async (currency: string) => {
+  if (!userId) return
+  if (budgets[currency]) return
+  const isFirst = Object.keys(budgets).length === 0
+  const newBudget: Budget = { /* ... */ }
+  await db.upsertBudget(newBudget)
+  setBudgets((prev) => ({ ...prev, [currency]: newBudget }))
+  if (isFirst) {
+    await db.updatePrimaryCurrency(userId, currency)
+    setBudgetState(newBudget)
+  }
+}
+```
 
-**Recomendación:** Opción C + agregar `created_at` en migración para persistencia robusta.
+**c) `removeCurrency` — promueve la más antigua y persiste en DB:**
+
+```ts
+if (currency === budget.currency) {
+  const nextKeys = Object.keys(nextBudgets)
+  if (nextKeys.length > 0) {
+    const promoted = nextBudgets[nextKeys[0]]
+    setBudgetState(promoted)
+    await db.updatePrimaryCurrency(userId, promoted.currency)
+  } else {
+    setBudgetState(DEFAULT_BUDGET)
+    await db.updatePrimaryCurrency(userId, null)
+  }
+}
+```
 
 ---
 
 ## Archivos afectados
 
-- `src/app/dashboard/settings/page.tsx:247` — iteración sobre SUPPORTED_CURRENCIES
-- `src/lib/store.tsx:283-294` — addCurrency no actualiza budget.currency
-- `src/types/index.ts` — interfaz Budget (agregar createdAt?)
-- `supabase/migrations/` — nueva migración para agregar created_at
-
----
-
-## Ejemplo del bug
-
-```
-Usuario configura:
-1. USD (moneda principal, presupuesto 950)
-2. S/ (segunda moneda, sin presupuesto)
-
-Settings muestra (❌ INCORRECTO):
-┌─────────────────────────────────┐
-│ Soles (S/)         Principal     │
-│ S/ [1522]          [Guardar]     │
-├─────────────────────────────────┤
-│ Dólares ($)        Configurado   │
-│ $ [750]            [Guardar]     │
-└─────────────────────────────────┘
-
-Settings debería mostrar (✅ CORRECTO):
-┌─────────────────────────────────┐
-│ Dólares ($)        Principal     │
-│ $ [950]            [Guardar]     │
-├─────────────────────────────────┤
-│ Soles (S/)         Configurado   │
-│ S/ [0]             [Guardar]     │
-└─────────────────────────────────┘
-```
+- `src/lib/supabase/repositories.ts` — `getBudgets` ordena por `created_at ASC`; nueva función `updatePrimaryCurrency`
+- `src/lib/store.tsx` — `setBudget`, `addCurrency`, `removeCurrency`, `applySession`
 
 ---
 
 ## Lecciones aprendidas
 
-1. **No iterar sobre arrays de configuración en orden fijo:** Si el usuario configura monedas en un orden específico, ese orden debe respetarse.
-2. **Agregar timestamps de creación:** Todas las entidades que pueden tener orden significativo deberían tener `created_at`.
-3. **Validar que budget.currency no cambie al agregar monedas:** Agregar tests para verificar que `addCurrency` no modifica la moneda principal.
+1. **`DEFAULT_BUDGET` hardcodeado a S/** contamina cualquier lógica que dependa de `budget.currency` antes de que exista un presupuesto real. Condición `monthlyLimit === 0` como proxy confiable de "no hay presupuesto real".
+2. **`Record<string, Budget>` no garantiza orden.** El orden de inserción en JS objects se mantiene en V8, pero Supabase no retorna filas en orden de inserción sin `ORDER BY`.
+3. **Persistir `primary_currency` en DB** es necesario, no solo en estado React. Al eliminar la moneda principal, la promoción debe escribirse en `profiles.primary_currency`.
 4. **JavaScript object order no es confiable para persistencia:** El orden de inserción en objetos JS se mantiene en memoria, pero no necesariamente al serializar/deserializar desde DB.
 
 ---
 
 ## Referencias
 
-- `docs/bugs/BUG-008_dashboard_soles_ghost.md` — bug relacionado con orden de monedas en dashboard
-- `src/app/dashboard/settings/page.tsx:247` — línea problemática
-- `src/lib/store.tsx:283-294` — función addCurrency
-- `src/types/index.ts` — interfaz Budget
+- `docs/bugs/BUG-008_dashboard_soles_ghost.md` — bug relacionado con `DEFAULT_BUDGET` hardcodeado a S/
+- `src/lib/supabase/repositories.ts:170` — `getBudgets`
+- `src/lib/store.tsx:265-316` — `setBudget`, `addCurrency`, `removeCurrency`
+- `supabase/migrations/20261029000003_profiles_onboarding.sql` — tabla `profiles` con `primary_currency`
