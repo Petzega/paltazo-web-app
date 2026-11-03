@@ -90,9 +90,9 @@
     "semantic_hash": ""
   },
   "src/app/dashboard/page.tsx": {
-    "mtime": 1793680683.3893878,
-    "seen": 1793680716.2375355,
-    "ast_hash": "4a3e2d1cb25a07e2b3cb31a3af9a8a8f",
+    "mtime": 1793682115.5615876,
+    "seen": 1793682151.5258844,
+    "ast_hash": "874d8d215bb5ac0e63c0fcd29ffcb345",
     "semantic_hash": ""
   },
   "src/app/login/page.tsx": {
@@ -246,9 +246,9 @@
     "semantic_hash": ""
   },
   "src/components/ui/BottomNav.tsx": {
-    "mtime": 1791419872.5608623,
-    "seen": 1793680716.2375495,
-    "ast_hash": "b17f2281eb2047e157c51147cdd954a4",
+    "mtime": 1793680927.30904,
+    "seen": 1793682151.526175,
+    "ast_hash": "5304d33cd16187185c3fc798fe88bfba",
     "semantic_hash": ""
   },
   "src/components/ui/Sidebar.tsx": {
@@ -1230,9 +1230,9 @@
     "semantic_hash": ""
   },
   "docs/use-case/README.md": {
-    "mtime": 1793676757.4586852,
-    "seen": 1793680716.2378125,
-    "ast_hash": "d6db0c2464b782c59c7f683df2cfa862",
+    "mtime": 1793682603.5589266,
+    "seen": 1793682701.5586896,
+    "ast_hash": "675a2a59a7f8af5b6aab078eaaf58782",
     "semantic_hash": ""
   },
   "docs/use-case/auth/auth.md": {
@@ -1248,15 +1248,15 @@
     "semantic_hash": ""
   },
   "docs/use-case/USER_STORY_MAP.md": {
-    "mtime": 1793676757.4593108,
-    "seen": 1793680716.2378137,
-    "ast_hash": "8cbb43a30e61bff9cf65252ac5ec782c",
+    "mtime": 1793682695.0503023,
+    "seen": 1793682701.558691,
+    "ast_hash": "3fd335db67cc9363bd6b79a24facf3aa",
     "semantic_hash": ""
   },
   "docs/use-case/dashboard/dashboard.md": {
-    "mtime": 1793592409.8309946,
-    "seen": 1793680716.237818,
-    "ast_hash": "794c2a1c0e3a208740a3f93f11f1e226",
+    "mtime": 1793682536.4279168,
+    "seen": 1793682701.5587292,
+    "ast_hash": "70f693d18b6b6a3ece672819218e3fca",
     "semantic_hash": ""
   },
   "docs/use-case/expenses/expenses.md": {
@@ -1308,9 +1308,9 @@
     "semantic_hash": ""
   },
   "docs/architecture/ARCHITECTURE_SPEC.md": {
-    "mtime": 1793408020.543792,
-    "seen": 1793680716.2377913,
-    "ast_hash": "f0b13ed2dcc796b3f449f5ead4edfcb3",
+    "mtime": 1793682687.8231938,
+    "seen": 1793682701.5584223,
+    "ast_hash": "404a26ff9bae9bf88aeed3838fea04f0",
     "semantic_hash": ""
   },
   "src/app/session-closed/page.tsx": {
@@ -1350,9 +1350,9 @@
     "semantic_hash": ""
   },
   "docs/architecture/CHECKPOINT_2026_10_29.md": {
-    "mtime": 1793676757.4586852,
-    "seen": 1793680716.2377925,
-    "ast_hash": "d1f77aa060433f0a5c3462248e3e8b65",
+    "mtime": 1793682660.785787,
+    "seen": 1793682701.5584242,
+    "ast_hash": "8091dc320e8739ce401668ce49e71c67",
     "semantic_hash": ""
   },
   "playwright.config.ts": {
@@ -1521,6 +1521,12 @@
     "mtime": 1793676757.4582396,
     "seen": 1793680716.237584,
     "ast_hash": "c4121e5e9d7edc43eee569eefe206012",
+    "semantic_hash": ""
+  },
+  "src/lib/tips.ts": {
+    "mtime": 1793682134.0308652,
+    "seen": 1793682151.5265322,
+    "ast_hash": "0375bf052d821867972e4ddcedc8a9f2",
     "semantic_hash": ""
   }
 }

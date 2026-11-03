@@ -1,11 +1,12 @@
 ﻿'use client'
 
 import { useRouter } from 'next/navigation'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useAppState } from '@/lib/store'
 import { findCategory, getCategoryColorClass } from '@/lib/categories'
 import { AddExpenseFab } from '@/components/ui/AddExpenseFab'
 import { getLocalDate } from '@/lib/expenseConstants'
+import { getTipOfDay, loadTips } from '@/lib/tips'
 
 interface CurrencySummary {
   currency: string
@@ -271,6 +272,9 @@ export default function DashboardPage() {
   const now = new Date()
   const todayStr = getLocalDate()
   const [selectedBarDate, setSelectedBarDate] = useState(todayStr)
+  const [tips, setTips] = useState<string[]>([])
+
+  useEffect(() => { loadTips().then(setTips) }, [])
 
   const last7Days = useMemo(() => {
     const today = new Date()
@@ -329,6 +333,18 @@ export default function DashboardPage() {
         <p className="text-body-sm text-text-secondary mt-0.5 md:hidden">
           Mantén tu economía tan fresca como una palta
         </p>
+
+        <div className="mt-space-md mb-space-lg p-space-md rounded-2xl bg-surface-container flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+            💡
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-label-md font-semibold text-on-surface">Consejo Paltazo del día</p>
+            <p className="text-body-sm text-on-surface-variant line-clamp-2">
+              {getTipOfDay(tips)}
+            </p>
+          </div>
+        </div>
 
         <BalanceSection />
 
@@ -488,18 +504,6 @@ export default function DashboardPage() {
               </div>
             </>
           )}
-        </div>
-
-        <div className="mt-space-lg p-space-md rounded-2xl bg-surface-container flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
-            💡
-          </div>
-          <div className="min-w-0 flex-1">
-            <p className="text-label-md font-semibold text-on-surface">Consejo Paltazo del día</p>
-            <p className="text-body-sm text-on-surface-variant line-clamp-1">
-              Anotar tus gastos de inmediato reduce el gasto impulsivo en un 22%.
-            </p>
-          </div>
         </div>
 
         <AddExpenseFab />

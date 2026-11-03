@@ -1,7 +1,7 @@
-# CHECKPOINT: Estado Actual de Paltazo (02 nov 2026)
+# CHECKPOINT: Estado Actual de Paltazo (03 nov 2026)
 
 > **Estado:** 100% spec funcional + 9/9 bugs corregidos  
-> **Última actualización:** 02 nov 2026  
+> **Última actualización:** 03 nov 2026  
 > **Próximo dev:** Este documento es tu punto de partida
 
 ---
@@ -39,6 +39,9 @@ Ninguno
 - **01 nov 2026:** CU-023 modal de confirmación incluye ingresos en el conteo
 - **02 nov 2026:** CU-022 implementado: agregar moneda a demanda (S/, $, €) desde settings; primera moneda se setea automáticamente como principal
 - **02 nov 2026:** BUG-009 fix completo: `getBudgets` ordena por `created_at ASC`; `addCurrency` setea principal si es primera moneda; `removeCurrency` promueve la más antigua y persiste `primary_currency` en DB; `setBudget` actualiza `budgetState` si `monthlyLimit === 0` (primera moneda en onboarding)
+- **03 nov 2026:** CU-034 refactor: "Balance del mes" → **"Saldo disponible"** (chanchito histórico total, no mensual). `balanceSummaries` usa todo el histórico (`expenses` e `incomes` sin filtro de fecha).
+- **03 nov 2026:** Tabla `tips` en DB (migración 20261102000001). 30 consejos con rotación barajada sin repetición vía `localStorage`. Fallback a array hardcoded.
+- **03 nov 2026:** Navbar inferior: 4 pestañas (Inicio, Ingresos, Gastos, Ajustes). Antes eran 3.
 
 ---
 
@@ -60,7 +63,8 @@ supabase/migrations/
 ├── 20261029000006_create_income_categories.sql — tabla income_categories
 ├── 20261029000007_create_push_subscriptions.sql — tabla push_subscriptions (ACTUALIZADA con RLS por migración 1)
 ├── 20261101000001_fix_push_subscriptions_rls.sql ← FIX CRÍTICO: habilita RLS en push_subscriptions
-└── 20261101000002_fix_delete_currency_includes_incomes.sql ← FIX CRÍTICO: RPC elimina incomes al borrar moneda
+├── 20261101000002_fix_delete_currency_includes_incomes.sql ← FIX CRÍTICO: RPC elimina incomes al borrar moneda
+└── 20261102000001_create_tips.sql ← tabla tips (30 consejos, lectura pública, seed incluido)
 ```
 
 **Nota:** Las migraciones 1 y 2 de nov fueron aplicadas manualmente vía `docker exec` porque el proyecto no estaba linkeado a Supabase cloud. Para producción: `supabase link` + `supabase db push`.
@@ -115,6 +119,16 @@ created_at TIMESTAMPTZ
 updated_at TIMESTAMPTZ
 UNIQUE(user_id, currency)
 ```
+
+**tips:**
+```sql
+id UUID PRIMARY KEY
+content TEXT NOT NULL
+is_active BOOLEAN NOT NULL DEFAULT true
+sort_order INT NOT NULL DEFAULT 0
+created_at TIMESTAMPTZ
+```
+> Lectura pública (RLS `USING (true)`). INSERT/UPDATE/DELETE bloqueados por defecto (sin política).
 
 **Nota:** La tabla `budgets` tiene `created_at TIMESTAMPTZ` (default `now()`). `getBudgets` ordena por `created_at ASC` para preservar el orden de configuración del usuario entre sesiones.
 
@@ -284,6 +298,7 @@ src/
 │       └── settings/page.tsx — gestión monedas (orden configuración) + CRUD categorías
 ├── components/
 │   ├── ui/
+│   │   ├── BottomNav.tsx — navbar inferior 4 pestañas (Inicio, Ingresos, Gastos, Ajustes)
 │   │   ├── DatePicker.tsx — calendario custom con navegación de mes/año
 │   │   └── ... (otros componentes)
 │   └── providers/
@@ -292,6 +307,7 @@ src/
 │   ├── categories.ts — findCategory, getColorClass con mapa estático
 │   ├── expenseConstants.ts — formatAmount, CATEGORY_EMOJIS/COLORS, getLocalDate()
 │   ├── offline.ts — cache de conexión IndexedDB
+│   ├── tips.ts — array 30 consejos + `loadTips()` (Supabase) + `getTipOfDay()` (rotación barajada, localStorage)
 │   └── supabase/
 │       ├── client.ts
 │       ├── auth.ts
@@ -313,7 +329,8 @@ supabase/migrations/
 ├── 20261029000006_create_income_categories.sql
 ├── 20261029000007_create_push_subscriptions.sql
 ├── 20261101000001_fix_push_subscriptions_rls.sql
-└── 20261101000002_fix_delete_currency_includes_incomes.sql
+├── 20261101000002_fix_delete_currency_includes_incomes.sql
+└── 20261102000001_create_tips.sql
 
 docs/
 ├── architecture/
@@ -372,10 +389,12 @@ npm run dev
    - **Eliminar última moneda:** dashboard muestra empty state "No tienes monedas configuradas"
 
 3. **Dashboard con múltiples monedas:**
-   - Registra gastos en diferentes monedas
+   - Registra gastos e ingresos en diferentes monedas
    - Verifica que dashboard NO muestra monedas que no estén en `budgets` (fix BUG-008)
    - Verifica que las monedas se ordenan alfabéticamente en dashboard (fix BUG-008)
    - Verifica fecha en formato local: "Sábado, 2 de noviembre" (fix BUG-003)
+   - **Saldo disponible (chanchito):** debe mostrar total histórico de ingresos − gastos, no solo del mes
+   - **Tips del día:** cambia cada día (barajado sin repetición). Verifica con `localStorage.removeItem('paltazo:tips-v1')` + refresh
 
 4. **Gestión de categorías:**
    - Ve a Ajustes → Categorías
@@ -386,7 +405,7 @@ npm run dev
 5. **Gastos e ingresos:**
    - Ve a Agregar gasto → selector dinámico de categorías
    - Crea gasto con categoría custom → verifica en historial y dashboard
-   - Agrega ingreso → verifica en dashboard (sección "Balance del mes")
+   - Agrega ingreso → verifica en dashboard (sección "Saldo disponible" acumula histórico)
    - **Fechas:** verifica que gastos registrados a las 8pm aparecen en el día correcto (no día anterior)
 
 6. **Presupuesto y alertas:**
@@ -430,6 +449,7 @@ npm run dev
 - **RLS en Supabase:** aislamiento por usuario garantizado a nivel DB. Todas las tablas con `user_id` tienen RLS.
 - **Estado global limpio:** store expone métodos claros, sin lógica de UI.
 - **Fechas locales:** `getLocalDate()` y `new Date(date + 'T12:00:00')` patrón consistente.
+- **Tips rotativos:** tabla `tips` en DB con RLS pública. Cliente baraja sin repetición vía localStorage. Personalización futura habilitada (favoritos, segmentos).
 
 ### Convenciones establecidas (NO romper)
 - **Fechas:** nunca usar `new Date(dateString)` sin `T12:00:00`. Siempre `getLocalDate()` para "hoy".
@@ -466,7 +486,7 @@ Hay un agente `docs-keeper` en `.agents/skills/docs-keeper/SKILL.md`. Úsalo con
 
 ## 10. Contacto y Contexto
 
-Este checkpoint fue actualizado el **02 nov 2026** tras corregir 9 bugs (BUG-001 a BUG-009). El proyecto está en estado estable y listo para producción o para continuar con features futuras.
+Este checkpoint fue actualizado el **03 nov 2026** tras refactor CU-034 (saldo disponible histórico), agregar tabla `tips` (03 nov 2026), y expandir navbar a 4 pestañas (Inicio, Ingresos, Gastos, Ajustes).
 
 **Stack técnico:**
 - Next.js 14 (App Router)

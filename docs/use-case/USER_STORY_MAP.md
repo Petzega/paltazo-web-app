@@ -400,7 +400,7 @@
 
 ### US-027: Consultar balance real
 **Como** usuario, **quiero** ver ingresos vs gastos vs balance neto en el dashboard **para** saber cuánto me queda realmente.
-**Ref:** [`CU-034`](dashboard/dashboard.md#cu-034-visualizar-balance-real-en-dashboard) · **Status:** 📝 PROPUESTO · Sección "💵 Balance del mes" antes de "Presupuestos mensuales". Balance por moneda.
+**Ref:** [`CU-034`](dashboard/dashboard.md#cu-034-visualizar-saldo-disponible-en-dashboard) · **Status:** ✅ IMPLEMENTADO (03 nov 2026) · Sección "💰 Saldo disponible" histórico total (chanchito) por moneda, antes de "Presupuestos mensuales".
 
 ---
 

@@ -1,7 +1,7 @@
 # Casos de Uso: Dashboard
 
 > Panel principal post-login. Responde la pregunta del producto:
-> *¿cuánto he gastado este mes y cuánto me queda antes del paltazo?*
+> *¿cuánto dinero tengo disponible ahora y cuánto he gastado este mes?*
 > Soporta múltiples monedas simultáneas, con la moneda principal del usuario como foco.
 
 ---
@@ -19,7 +19,9 @@ Usuario autenticado
 
 ### Fuente
 - `src/app/dashboard/page.tsx` (comportamiento implementado)
-- `src/lib/store.tsx` → `expenses`, `budget`, `budgets`
+- `src/lib/store.tsx` → `expenses`, `incomes`, `budget`, `budgets`
+- `src/lib/tips.ts` → `TIPS`, `loadTips()`, `getTipOfDay()` (rotación barajada)
+- `src/components/ui/BottomNav.tsx` → navegación inferior (Inicio, Ingresos, Gastos, Ajustes)
 
 ### Precondiciones
 - Usuario autenticado (`userId ≠ null`)
@@ -44,16 +46,12 @@ Usuario navega a `/dashboard` (ruta raíz post-login).
 4. Sistema ordena monedas alfabéticamente (sin priorizar S/, fix BUG-008)
 5. Sistema identifica `primarySummary` (primera moneda disponible)
 6. Vista renderiza:
-   - **Header:** Saludo "¡Hola! 👋" + subtítulo con fecha local: `"Sábado, 31 de octubre"` (formato `{weekday}, {day} de {month}`, sin año, con coma según RAE)
-   - **Card de alerta contextual:** `primarySummary.alertMessage` + badge "Quedan X días"
-   - **Bloque "Presupuestos mensuales":**
-     - Badge con count de monedas (oculto si `currencySummaries.length === 0`)
-     - **Empty state** (si no hay monedas): emoji 💰 + mensaje "No tienes monedas configuradas" + botón "⚙️ Configurar moneda" → `/dashboard/settings`
-     - Si hay monedas: una sub-card por moneda con monto límite, barra de progreso, gastado/restante
-     - **Días restantes del mes:** integrado dentro de este bloque (no es card separada)
+   - **Header:** Saludo "¡Hola! 👋" + subtítulo con fecha local (formato RAE, sin año).
+   - **Tip Paltazo del día:** `src/lib/tips.ts` → `getTipOfDay(tips)`. Lista desde Supabase (tabla `tips`, lectura pública) con fallback a 30 consejos hardcoded. Rotación barajada sin repetición vía `localStorage` (`paltazo:tips-v1`): un tip por día, se baraja al agotar. Ubicado justo debajo del header.
+   - **"💰 Saldo disponible":** ver CU-034. Muestra saldo histórico total (chanchito) por moneda. Reemplaza el antiguo "Balance del mes".
+   - **"Presupuestos mensuales":** CU-012 clásico (mensual, con barra de progreso, días restantes).
    - **Gráfico de barras** de los últimos 7 días (→ CU-014)
    - **Listado de gastos** del día seleccionado en la barra
-   - **Tip motivacional inferior:** "💡 Consejo Paltazo del día"
 
 ### Flujos alternativos
 
@@ -270,13 +268,13 @@ Dashboard carga datos iniciales.
 
 ---
 
-## CU-034: Visualizar balance real en dashboard
+## CU-034: Visualizar saldo disponible en dashboard
 
 ### Objetivo
-Mostrar ingresos totales, gastos totales y balance neto (ingresos − gastos) por moneda, complementando la vista de presupuesto existente. Responde: *¿cuánto entró, cuánto salió y cuánto me queda realmente?*
+Mostrar el **saldo histórico total** (acumulado) por moneda: la suma de todos los ingresos menos la suma de todos los gastos registrados desde el primer día. Responde: *¿cuánto dinero tengo disponible ahora (mi "chanchito")?* Complementa "Presupuestos mensuales", que sigue siendo mensual.
 
 ### Alcance
-Dashboard principal (`/dashboard`). Extensión de CU-012. Sección nueva ubicada **antes** del bloque "Presupuestos mensuales".
+Dashboard principal (`/dashboard`). Extensión de CU-012. Sección superior ubicada **antes** del bloque "Presupuestos mensuales".
 
 ### Actor principal
 Usuario autenticado.
@@ -285,8 +283,7 @@ Usuario autenticado.
 Ninguno.
 
 ### Fuente
-- Requisito de producto (30 oct 2026): "mejor calidad de los datos financieros" al registrar ingresos.
-- Comportamiento previsto, NO implementado.
+- Requisito de producto (03 nov 2026): "mapear todos los ingresos (salario, deuda, préstamo, etc.) como un chanchito que se reduce con los gastos".
 
 ### Precondiciones
 - Dashboard renderizado (CU-012).
@@ -296,35 +293,33 @@ Ninguno.
 Cualquier cambio en `expenses` o `incomes` (recálculo reactivo).
 
 ### Flujo principal
-1. Sistema obtiene fecha actual y filtra `incomes` al mes actual.
-2. Sistema construye `balanceSummaries` por moneda:
-   - Recolecta monedas activas: monedas con gastos o ingresos en el mes + monedas en `budgets`
+1. Sistema construye `balanceSummaries` por moneda, **sin filtro de fecha**:
+   - Recolecta monedas activas: monedas con gastos o ingresos en cualquier fecha + monedas en `budgets`
    - **NO agrega `budget.currency` automáticamente** (fix BUG-008)
    - Para cada moneda activa calcula:
-     - `totalIncome`: suma de ingresos en esa moneda.
-     - `totalExpense`: suma de gastos en esa moneda (ya calculado en CU-012).
+     - `totalIncome`: suma de **todos** los ingresos en esa moneda (histórico absoluto).
+     - `totalExpense`: suma de **todos** los gastos en esa moneda (histórico absoluto).
      - `balance`: `totalIncome - totalExpense`.
-3. Sistema ordena monedas alfabéticamente (sin priorizar S/, fix BUG-008).
-4. Vista renderiza nueva sección "💵 Balance del mes":
-   - Badge con count de monedas.
-   - Una sub-card por moneda con: total ingresado (emerald), total gastado (red), balance neto.
-   - Balance positivo → texto `emerald` con indicador "↑".
-   - Balance negativo → texto `red` con indicador "↓".
-   - Balance cero → texto neutro.
-5. Sección incluye botón "Ver todos →" que navega a `/dashboard/incomes`.
-6. Sección se ubica **entre** la card de alerta contextual superior y el bloque "Presupuestos mensuales".
+2. Sistema ordena monedas alfabéticamente (sin priorizar S/, fix BUG-008).
+3. Vista renderiza sección "💰 Saldo disponible":
+   - Título de sección (sin badge de count de monedas).
+   - Una sub-card por moneda con: total ingresado (emerald), total gastado (red), **saldo neto destacado** (headline-lg, color emerald/rojo/neutro según signo).
+   - Saldo positivo → texto `emerald` con signo `+`.
+   - Saldo negativo → texto `red`.
+   - Saldo cero → texto neutro.
+4. Sección incluye botón "📥 Ver todos →" que navega a `/dashboard/incomes`.
 
 ### Flujos alternativos
 
-**Paso 2 — Usuario sin ingresos en el mes:**
-- Condición: No hay `incomes` en el mes actual.
-- Comportamiento: Sub-cards muestran "Sin ingresos" por moneda. Balance = − total gastado.
+**Paso 1 — Usuario sin ingresos registrados:**
+- Condición: No hay `incomes` en el histórico.
+- Comportamiento: Sub-cards muestran ingresos en 0. Balance = − total gastado.
 
-**Paso 2 — Moneda con ingresos pero sin gastos:**
-- Condición: Moneda tiene ingresos pero no gastos en el mes.
-- Comportamiento: Balance = + total ingresado. Gastos muestra "S/ 0.00".
+**Paso 1 — Moneda con ingresos pero sin gastos:**
+- Condición: Moneda tiene ingresos pero no gastos en el histórico.
+- Comportamiento: Balance = + total ingresado. Gastos muestra `0.00`.
 
-**Paso 4 — Usuario sin monedas activas:**
+**Paso 3 — Usuario sin monedas activas:**
 - Condición: No hay monedas configuradas (caso borde, no debería ocurrir post-onboarding).
 - Comportamiento: Sección no se renderiza.
 
@@ -332,24 +327,27 @@ Cualquier cambio en `expenses` o `incomes` (recálculo reactivo).
 Ninguna.
 
 ### Postcondiciones
-- **En éxito:** usuario tiene visión completa de su balance mensual por moneda.
+- **En éxito:** usuario ve su dinero disponible acumulado por moneda, independiente del mes.
 - Recálculo reactivo tras cualquier cambio en ingresos o gastos.
 
 ### Reglas de negocio
 - Cálculos puramente client-side sobre datos del store.
-- Balance por moneda (no se mezclan monedas).
-- Sección complementa (no reemplaza) bloque de presupuestos.
+- **Balance por moneda (no se mezclan monedas, no se usa tipo de cambio).**
+- **Histórico absoluto**: no se reinicia cada mes, no usa filtro `YYYY-MM`.
+- Sección complementa (no reemplaza) bloque de presupuestos (que sí es mensual).
 - Moneda principal siempre visible, incluso sin ingresos.
 
 ### Criterios de aceptación
-- Sección "💵 Balance del mes" visible en dashboard.
-- Se ubica antes de "Presupuestos mensuales".
-- Una sub-card por moneda activa.
-- Balance con color según signo (emerald positivo, red negativo, neutro cero).
-- Recalcula reactivamente al agregar/editar/eliminar ingreso o gasto.
-- Botón "Ver todos →" navega a `/dashboard/incomes`.
+- ✅ Sección "💰 Saldo disponible" visible en dashboard.
+- ✅ Se ubica antes de "Presupuestos mensuales".
+- ✅ Una sub-card por moneda activa.
+- ✅ Saldo con color según signo (emerald positivo, red negativo, neutro cero).
+- ✅ Saldo suma todo el histórico (no solo el mes).
+- ✅ Recalcula reactivamente al agregar/editar/eliminar ingreso o gasto.
+- ✅ Botón "📥 Ver todos →" navega a `/dashboard/incomes`.
 
 ### Preguntas pendientes
 Ninguna. Decisiones cerradas:
-- ~~¿Ubicación?~~ → **Antes de Presupuestos mensuales.**
-- ~~¿Reemplaza alerta?~~ → **No.** Complementa.
+- ~~¿Mensual o histórico?~~ → **Histórico absoluto (chanchito).**
+- ~~¿Por moneda o unificado?~~ → **Por moneda (sin tipo de cambio).**
+- ~~¿Reemplaza "Balance del mes"?~~ → **Sí, lo sustituye.**

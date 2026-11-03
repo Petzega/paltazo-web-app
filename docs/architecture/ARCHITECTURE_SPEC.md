@@ -386,9 +386,9 @@ sequenceDiagram
 | **P2-6** | **Media (P2)** | `src/lib/supabase/repositories.ts` | Faltan queries para ingresos. | Agregar funciones: `getIncomes()`, `addIncome()`, `updateIncome()`, `deleteIncome()`, `getIncomeCategories()`, `addIncomeCategory()`, `updateIncomeCategory()`, `deleteIncomeCategory()` (con reasignación a 'Otros'). |
 | **P2-7** | **Media (P2)** | `src/app/dashboard/add-income/page.tsx` | Pantalla de registro de ingresos no existe. | Crear formulario análogo a `add-expense` (CU-027): selector de categorías de ingreso, monto, moneda, fecha, descripción. Sin presets rápidos. Botón `+ Nueva categoría` inline (CU-031). |
 | **P2-8** | **Media (P2)** | `src/app/dashboard/incomes/page.tsx` | Vista de listado de ingresos no existe. | Crear pantalla análoga a `expenses` (CU-030): tabla desktop, cards mobile, agrupado por fecha, edición inline (CU-028), eliminación con confirmación (CU-029). |
-| **P2-9** | **Media (P2)** | `src/app/dashboard/page.tsx` | Dashboard no muestra balance real. | Agregar sección "💵 Balance del mes" antes de "Presupuestos mensuales" (CU-034): sub-cards por moneda con total ingresado, gastado y balance neto. |
+| **P2-9** | **Media (P2)** | `src/app/dashboard/page.tsx` | Dashboard no muestra saldo disponible histórico. | Sección "💰 Saldo disponible" antes de "Presupuestos mensuales" (CU-034): saldo histórico total (chanchito) por moneda. ✅ IMPLEMENTADO 03 nov 2026. |
 | **P2-10** | **Media (P2)** | `src/app/dashboard/settings/page.tsx` | Settings no gestiona categorías de ingreso. | Agregar sección "Categorías de ingreso" (paralela a "Categorías de gasto"): CRUD completo (CU-031, CU-032, CU-033) con modal de reasignación a 'Otros'. |
-| **P2-11** | **Media (P2)** | FAB y botones de navegación | No hay acceso rápido a ingresos. | Agregar opción `+ Ingreso` en FAB del dashboard. Agregar botón "Ver todos →" en sección Balance que navega a `/dashboard/incomes`. No modificar BottomNav. |
+| **P2-11** | **Media (P2)** | FAB y botones de navegación | No hay acceso rápido a ingresos. | Agregar pestaña "Ingresos" al BottomNav inferior. ✅ IMPLEMENTADO 03 nov 2026 (4 pestañas: Inicio, Ingresos, Gastos, Ajustes). |
 
 ---
 
@@ -435,7 +435,7 @@ Fase 5: Módulo de Ingresos (PROPUESTO — pendiente de implementación)
 │   ├── CRUD completo con modal de reasignación a 'Otros'
 │   └── Botón "+ Nueva categoría" inline en selector de add-income
 ├── 5.5 Dashboard: Balance Real (P2-9)
-│   ├── Agregar sección "💵 Balance del mes" antes de "Presupuestos mensuales"
+│   ├── Sección "💰 Saldo disponible" antes de "Presupuestos mensuales" (CU-034, ✅ implementado)
 │   ├── Sub-cards por moneda: total ingresado, gastado, balance neto
 │   └── Botón "Ver todos →" que navega a /dashboard/incomes
 └── 5.6 Pruebas y Documentación
