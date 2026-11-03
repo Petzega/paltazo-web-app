@@ -4,8 +4,8 @@ Este directorio contiene las instrucciones y herramientas del agente **db-seeder
 
 ## Archivos del agente
 
-- [SKILL.md](file:///d:/Documents/Workspace/Owner/ia_projects/paltazo-web-app/.agents/db-seeder/SKILL.md): Especificación completa del agente, reglas de seguridad, parámetros y flujo de trabajo.
-- [seed.js](file:///d:/Documents/Workspace/Owner/ia_projects/paltazo-web-app/.agents/db-seeder/seed.js): Script en Node.js que consulta la configuración real del usuario (monedas y categorías) y genera transacciones entre 1 y 15 registros por día.
+- [SKILL.md](./SKILL.md): Especificación completa del agente, reglas de seguridad, parámetros y flujo de trabajo.
+- [seed.js](./seed.js): Script en Node.js que consulta la configuración real del usuario (monedas y categorías) y genera transacciones entre 1 y 15 registros por día.
 
 ## Uso rápido
 

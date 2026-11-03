@@ -4,6 +4,7 @@ import { usePathname, useRouter } from 'next/navigation'
 
 const tabs = [
   { label: 'Inicio', icon: '🏠', path: '/dashboard' },
+  { label: 'Ingresos', icon: '📥', path: '/dashboard/incomes' },
   { label: 'Gastos', icon: '🧾', path: '/dashboard/expenses' },
   { label: 'Ajustes', icon: '⚙️', path: '/dashboard/settings' },
 ]

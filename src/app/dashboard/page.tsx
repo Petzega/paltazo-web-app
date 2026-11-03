@@ -40,10 +40,7 @@ function BalanceSection() {
     return expenses.filter((exp) => exp.date.startsWith(prefix))
   }, [expenses, currentMonth, currentYear])
 
-  const monthlyIncomes = useMemo(() => {
-    const prefix = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}`
-    return incomes.filter((inc) => inc.date.startsWith(prefix))
-  }, [incomes, currentMonth, currentYear])
+  // Presupuesto es mensual, pero el saldo disponible suma TODO el historial
 
   const currencySummaries: CurrencySummary[] = useMemo(() => {
     const activeCurrencies = new Set(monthlyExpenses.map((e) => e.currency))
@@ -78,16 +75,14 @@ function BalanceSection() {
   }, [monthlyExpenses, budget, budgets])
 
   const balanceSummaries: BalanceSummary[] = useMemo(() => {
-    const activeCurrencies = new Set([...monthlyExpenses.map((e) => e.currency), ...monthlyIncomes.map((i) => i.currency)])
-    // Solo agregar monedas que tengan presupuesto configurado en budgets
+    const activeCurrencies = new Set([...expenses.map((e) => e.currency), ...incomes.map((i) => i.currency)])
     Object.keys(budgets).forEach((c) => activeCurrencies.add(c))
-    // NO agregar budget.currency automáticamente (puede ser DEFAULT_BUDGET fantasma)
 
     const summaries = Array.from(activeCurrencies).map((currency) => {
-      const totalIncome = monthlyIncomes
+      const totalIncome = incomes
         .filter((i) => i.currency === currency)
         .reduce((sum, i) => sum + i.amount, 0)
-      const totalExpense = monthlyExpenses
+      const totalExpense = expenses
         .filter((e) => e.currency === currency)
         .reduce((sum, e) => sum + e.amount, 0)
       const balance = totalIncome - totalExpense
@@ -95,54 +90,52 @@ function BalanceSection() {
     })
 
     summaries.sort((a, b) => a.currency.localeCompare(b.currency))
-
     return summaries
-  }, [monthlyExpenses, monthlyIncomes, budgets])
+  }, [expenses, incomes, budgets])
 
   return (
     <div className="grid md:grid-cols-2 md:gap-space-lg">
       <div className="relative overflow-hidden rounded-3xl bg-surface-container-low p-space-lg shadow-sm mb-space-lg md:mb-0">
         <div className="absolute -right-8 -bottom-10 w-44 h-44 rounded-full bg-emerald-fixed/20 blur-2xl pointer-events-none" />
         <div className="flex items-center justify-between mb-space-md">
-          <div>
-            <span className="text-label-sm text-text-secondary uppercase tracking-wider block">
-              💵 Balance del mes
-            </span>
-          </div>
-          <span className="text-label-sm px-2 py-0.5 rounded-full bg-emerald/15 text-emerald font-medium">
-            {balanceSummaries.length} {balanceSummaries.length === 1 ? 'moneda' : 'monedas'}
+          <span className="text-label-sm text-text-secondary uppercase tracking-wider">
+            💰 Saldo disponible
           </span>
         </div>
 
         <div className="space-y-4 mb-space-lg">
-          {balanceSummaries.map((summary) => (
-            <div key={summary.currency} className="bg-surface-container-lowest rounded-2xl p-4 shadow-sm">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-headline-sm font-bold text-on-surface">
-                  {summary.currency}
-                </span>
-                <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-label-sm ${
-                  summary.balance > 0
-                    ? 'bg-emerald/15 text-emerald'
-                    : summary.balance < 0
-                    ? 'bg-danger/15 text-danger'
-                    : 'bg-surface-container text-text-secondary'
-                }`}>
-                  {summary.balance > 0 ? '+' : ''}{summary.balance.toFixed(2)}
-                </span>
-              </div>
-              <div className="grid grid-cols-2 gap-2 text-body-sm">
-                <div>
-                  <span className="text-on-surface-variant block">Ingresos</span>
-                  <span className="text-emerald font-semibold">+{summary.totalIncome.toFixed(2)}</span>
+          {balanceSummaries.map((summary) => {
+            const isPositive = summary.balance > 0
+            const isNegative = summary.balance < 0
+            return (
+              <div key={summary.currency} className="bg-surface-container-lowest rounded-2xl p-5 shadow-sm">
+                <div className="flex items-baseline justify-between mb-4">
+                  <span className="text-headline-sm font-bold text-on-surface">
+                    {summary.currency}
+                  </span>
+                  <span className={`text-headline-lg font-bold ${
+                    isPositive ? 'text-emerald' : isNegative ? 'text-danger' : 'text-on-surface-variant'
+                  }`}>
+                    {isPositive ? '+' : ''}{summary.balance.toFixed(2)}
+                  </span>
                 </div>
-                <div>
-                  <span className="text-on-surface-variant block">Gastos</span>
-                  <span className="text-danger font-semibold">-{summary.totalExpense.toFixed(2)}</span>
+                <div className="grid grid-cols-2 gap-4 pt-3 border-t border-surface-container-high">
+                  <div>
+                    <span className="text-label-xs text-on-surface-variant block">Ingresos</span>
+                    <span className="text-body-md text-emerald font-semibold block mt-0.5">
+                      +{summary.totalIncome.toFixed(2)}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-label-xs text-on-surface-variant block">Gastos</span>
+                    <span className="text-body-md text-danger font-semibold block mt-0.5">
+                      -{summary.totalExpense.toFixed(2)}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         <button
