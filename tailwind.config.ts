@@ -59,6 +59,7 @@ const config: Config = {
         'outline-variant': '#c3c9b6',
         warning: '#F59E0B',
         danger: '#EF4444',
+        emerald: '#2E7D32',
         error: {
           DEFAULT: '#ba1a1a',
           container: '#ffdad6',

@@ -97,7 +97,7 @@ function BalanceSection() {
   return (
     <div className="grid md:grid-cols-2 md:gap-space-lg">
       <div className="relative overflow-hidden rounded-3xl bg-surface-container-low p-space-lg shadow-sm mb-space-lg md:mb-0">
-        <div className="absolute -right-8 -bottom-10 w-44 h-44 rounded-full bg-emerald-fixed/20 blur-2xl pointer-events-none" />
+        <div className="absolute -right-8 -bottom-10 w-44 h-44 rounded-full bg-emerald/20 blur-2xl pointer-events-none" />
         <div className="flex items-center justify-between mb-space-md">
           <span className="text-label-sm text-text-secondary uppercase tracking-wider">
             💰 Saldo disponible
@@ -110,7 +110,7 @@ function BalanceSection() {
             const isNegative = summary.balance < 0
             return (
               <div key={summary.currency} className="bg-surface-container-lowest rounded-2xl p-5 shadow-sm">
-                <div className="flex items-baseline justify-between mb-4">
+                <div className="flex items-baseline justify-end gap-2 mb-4">
                   <span className="text-headline-sm font-bold text-on-surface">
                     {summary.currency}
                   </span>
@@ -120,7 +120,7 @@ function BalanceSection() {
                     {isPositive ? '+' : ''}{summary.balance.toFixed(2)}
                   </span>
                 </div>
-                <div className="grid grid-cols-2 gap-4 pt-3 border-t border-surface-container-high">
+                <div className="flex justify-between pt-3 border-t border-surface-container-high">
                   <div>
                     <span className="text-label-xs text-on-surface-variant block">Ingresos</span>
                     <span className="text-body-md text-emerald font-semibold block mt-0.5">
@@ -212,7 +212,7 @@ function BalanceSection() {
                         />
                       </div>
                       <div className="flex justify-between items-center text-body-sm">
-                        <span className="text-on-surface-variant">
+                        <span className="text-danger">
                           {summary.currency} {summary.totalExpenses.toFixed(2)} gastados
                         </span>
                         <span className="text-text-secondary">
@@ -222,7 +222,7 @@ function BalanceSection() {
                     </>
                   )}
                   {summary.monthlyLimit === 0 && summary.totalExpenses > 0 && (
-                    <div className="text-body-sm text-on-surface-variant">
+                    <div className="text-body-sm text-danger">
                       {summary.currency} {summary.totalExpenses.toFixed(2)} registrados (sin presupuesto configurado)
                     </div>
                   )}
@@ -452,7 +452,7 @@ export default function DashboardPage() {
                           <td className="px-4 py-3 text-body-md text-on-surface-variant">
                             {expense.description || '—'}
                           </td>
-                          <td className="px-4 py-3 text-right text-label-lg font-bold text-on-surface">
+                          <td className="px-4 py-3 text-right text-label-lg font-bold text-danger">
                             - {expense.currency} {expense.amount.toFixed(2)}
                           </td>
                           <td className="px-4 py-3 text-right">
@@ -494,7 +494,7 @@ export default function DashboardPage() {
                         </div>
                       </div>
                       <div className="text-right shrink-0">
-                        <span className="text-label-lg font-bold text-on-surface">
+                        <span className="text-label-lg font-bold text-danger">
                           - {expense.currency} {expense.amount.toFixed(2)}
                         </span>
                       </div>

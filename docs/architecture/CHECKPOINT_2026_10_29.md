@@ -1,7 +1,7 @@
 # CHECKPOINT: Estado Actual de Paltazo (03 nov 2026)
 
 > **Estado:** 100% spec funcional + 9/9 bugs corregidos  
-> **Última actualización:** 03 nov 2026  
+> **Última actualización:** 03 nov 2026 (mejoras visuales: colores ingresos/gastos + layout saldo)  
 > **Próximo dev:** Este documento es tu punto de partida
 
 ---
@@ -9,6 +9,11 @@
 ## 1. Resumen Ejecutivo
 
 Paltazo está al **100% del spec funcional**. Se implementaron 19/21 User Stories (las 3 restantes son futuras v1.2: Google OAuth, offline-first, push notifications).
+
+**Últimos cambios (03 nov 2026):**
+- Colores globales: ingresos en verde (`#2E7D32`), gastos en rojo (`#EF4444`) en toda la app
+- Layout mejorado en "Saldo disponible" del dashboard
+- `emerald` agregado al tema Tailwind
 
 **Fases completadas:**
 - ✅ Fase 1: Fix brechas P0/P1
@@ -42,6 +47,8 @@ Ninguno
 - **03 nov 2026:** CU-034 refactor: "Balance del mes" → **"Saldo disponible"** (chanchito histórico total, no mensual). `balanceSummaries` usa todo el histórico (`expenses` e `incomes` sin filtro de fecha).
 - **03 nov 2026:** Tabla `tips` en DB (migración 20261102000001). 30 consejos con rotación barajada sin repetición vía `localStorage`. Fallback a array hardcoded.
 - **03 nov 2026:** Navbar inferior: 4 pestañas (Inicio, Ingresos, Gastos, Ajustes). Antes eran 3.
+- **03 nov 2026:** Colores globales para ingresos y gastos: verde (`#2E7D32`, `text-emerald`) para ingresos, rojo (`#EF4444`, `text-danger`) para gastos. Aplica en: dashboard (saldo disponible + presupuestos + actividad 7 días), página de ingresos, página de gastos. `emerald` agregado al tema en `tailwind.config.ts`.
+- **03 nov 2026:** Layout mejorado en "Saldo disponible": moneda y monto alineados a la derecha, ingresos/gastos ocupan ancho completo con `flex justify-between`.
 
 ---
 
@@ -290,11 +297,11 @@ src/
 │   └── dashboard/
 │       ├── layout.tsx — integra OnboardingGuard
 │       ├── OnboardingGuard.tsx — redirect si onboarding incompleto
-│       ├── page.tsx — dashboard: fecha local, empty state, sort alfabético
+│       ├── page.tsx — dashboard: saldo disponible (verde/rojo), presupuestos, tips, actividad 7 días
 │       ├── add-expense/page.tsx — selector dinámico, DatePicker custom, getLocalDate()
 │       ├── add-income/page.tsx — selector dinámico, DatePicker custom, getLocalDate()
-│       ├── expenses/page.tsx — lista con categorías dinámicas, fix UTC
-│       ├── incomes/page.tsx — lista de ingresos
+│       ├── expenses/page.tsx — lista gastos (montos en rojo), categorías dinámicas, fix UTC
+│       ├── incomes/page.tsx — lista ingresos (montos en verde)
 │       └── settings/page.tsx — gestión monedas (orden configuración) + CRUD categorías
 ├── components/
 │   ├── ui/
@@ -314,6 +321,8 @@ src/
 │       └── repositories.ts — queries, fix auth server route, RPC wrappers
 └── types/
     └── index.ts — interfaces Expense, Income, Budget, Category, IncomeCategory
+
+tailwind.config.ts — tema: primary, secondary, danger (#EF4444), emerald (#2E7D32, verde dinero)
 
 supabase/migrations/
 ├── 20261008182458_create_schema.sql
@@ -456,6 +465,7 @@ npm run dev
 - **Monedas:** dashboard itera sobre `budgets`, NO sobre `budget.currency` automáticamente (fix BUG-008).
 - **Tailwind:** NO usar clases dinámicas (`bg-${color}-500`). Usar mapa estático con strings completos.
 - **Sort:** dashboard ordena alfabéticamente (no priorizar S/). Settings usa orden de inserción.
+- **Colores:** ingresos siempre en verde (`text-emerald`, `#2E7D32`), gastos siempre en rojo (`text-danger`, `#EF4444`). Aplica en dashboard, lista de gastos, lista de ingresos.
 
 ### Puntos de atención
 - **DEFAULT_BUDGET hardcodea S/:** es un fallback de inicialización. No usar como referencia de moneda activa.

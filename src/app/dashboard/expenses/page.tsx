@@ -82,7 +82,7 @@ export default function ExpensesPage() {
           <div className="flex justify-between items-center">
             <div>
               <span className="text-label-sm text-text-secondary block">Total gastado ({budget.currency})</span>
-              <span className="text-headline-sm text-on-surface font-bold">
+              <span className="text-headline-sm text-danger font-bold">
                 {budget.currency} {monthlyTotal.toFixed(2)}
               </span>
             </div>
@@ -195,7 +195,7 @@ export default function ExpensesPage() {
                         <td className="px-4 py-3 text-body-md text-on-surface-variant">
                           {expense.description || '—'}
                         </td>
-                        <td className="px-4 py-3 text-right text-label-lg font-bold text-on-surface">
+                        <td className="px-4 py-3 text-right text-label-lg font-bold text-danger">
                            -{expense.currency} {expense.amount.toFixed(2)}
                         </td>
                         <td className="px-4 py-3 text-right">
@@ -305,7 +305,7 @@ export default function ExpensesPage() {
                             </div>
                           </div>
                           <div className="flex items-center gap-2 shrink-0">
-                            <span className="text-label-lg font-bold text-on-surface">
+                            <span className="text-label-lg font-bold text-danger">
                               -{expense.currency} {expense.amount.toFixed(2)}
                             </span>
                             <div className="flex flex-col gap-0.5">

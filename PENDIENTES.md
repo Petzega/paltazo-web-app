@@ -1,8 +1,8 @@
 # Pendientes — Paltazo
 
-> **Fecha:** 29 oct 2026 (actualizado tras la unificación de contradicciones en `docs/use-case/`)
+> **Fecha:** 03 nov 2026 (actualizado tras mejoras visuales de colores ingresos/gastos)
 > **Alcance:** todo lo que falta para que la app cumpla su documentación funcional.
-> **Fuentes de verdad:** `docs/use-case/` · `docs/architecture/ARCHITECTURE_SPEC.md` · `HANDOFF_AUTH_REVIEW.md`
+> **Fuentes de verdad:** `docs/use-case/` · `docs/architecture/ARCHITECTURE_SPEC.md` · `CHECKPOINT_2026_10_29.md`
 > **Convención:** `🔴` bloquea el uso de la app · `🟡` bloquea el cumplimiento de un CU · `🟢` cosmético/documental
 
 ---
@@ -11,98 +11,40 @@
 
 | Área | Pendientes | Estado |
 |------|-------------|--------|
-| A. Código — bugs y brechas | 7 | 2 críticos sin empezar |
+| A. Código — bugs y brechas | 0 | ✅ Todos resueltos |
 | B. Implementación de CUs propuestos | 6 CUs | Especificados, 0 implementados |
 | C. Decisiones de producto | 6 | Ninguna bloqueante el código actual |
-| D. Documentación y herramientas | 4 | 1 desactualizado |
+| D. Documentación y herramientas | 3 | 1 desactualizado |
 
-**Estado de los 26 CUs:** 17 implementados · 1 auxiliar implementado (CU-018) · 2 futuros v1.2 (CU-019, CU-020) · 6 propuestos sin implementar (CU-021 a CU-026).
+**Estado de los 27 CUs:** 20 implementados · 1 auxiliar implementado (CU-018) · 2 futuros v1.2 (CU-019, CU-020) · 6 propuestos sin implementar (CU-021 a CU-026).
 
-**Lo que bloquea hoy:** el logout silencioso (P0-1) y la pantalla `/session-closed` inexistente (P0-2). Nada más es un incidente activo; el resto es trabajo planificado.
+**Últimos cambios (03 nov 2026):**
+- ✅ Colores globales aplicados: ingresos en verde, gastos en rojo en toda la app
+- ✅ Layout mejorado en "Saldo disponible" del dashboard
+- ✅ `emerald` agregado al tema Tailwind
+
+**Lo que sigue:** implementar los 6 CUs propuestos (categorías, setup, ingresos).
 
 ---
 
 ## A. Código — bugs y brechas entre documentación e implementación
 
-### A1. 🔴 P0-1 — Logout ignora errores de Supabase
+### ✅ A1 a A7 — Todos resueltos
 
-**Qué pasa:** `signOut()` devuelve `{ error }` (`src/lib/supabase/auth.ts:17-20`), pero `store.logout()` no lo revisa y limpia el estado igual (`src/lib/store.tsx:121-125`). Los callers redirigen siempre a `/onboarding` (`src/components/ui/Sidebar.tsx:46`, `src/app/dashboard/settings/page.tsx:162-165`).
+| ID | Issue | Estado | Fix aplicado |
+|----|-------|--------|--------------|
+| A1 | Logout ignora errores de Supabase | ✅ | `store.logout()` captura error, no limpia estado si falla |
+| A2 | Falta pantalla `/session-closed` | ✅ | Creada `src/app/session-closed/page.tsx` |
+| A3 | BUG-001: nivel `exceeded` inalcanzable | ✅ | Eliminado `Math.min(..., 100)` del cálculo |
+| A4 | Categorías hardcodeadas | ✅ | Tabla `categories` con RLS, FK en `expenses` |
+| A5 | Trigger crea presupuesto por defecto | ✅ | Trigger solo crea `profiles` + categorías default |
+| A6 | Falta flujo `/setup` | ✅ | Pantalla `setup/page.tsx` + `OnboardingGuard` |
+| A7 | Discrepancias menores doc↔código | ✅ | Alineadas |
 
-**Por qué importa:** CU-005 dice que un fallo debe conservar la sesión y mostrar error *"Error al cerrar sesión"*. Hoy el usuario cree que cerró sesión, pero la sesión sigue viva en el servidor.
-
-**Cómo arreglar:**
-1. `store.logout()` captura el error y **no** limpia el estado si falla.
-2. `Sidebar.tsx` y `settings/page.tsx` muestran toast de error y **no** redirigen en caso de fallo.
-3. Ejecutar `npm run typecheck`.
-
-**Archivos:** 3 · **Referencia:** `ARCHITECTURE_SPEC.md` §4 P0-1
-
----
-
-### A2. 🔴 P0-2 — Falta la pantalla `/session-closed`
-
-**Qué pasa:** la ruta `/session-closed` no existe. El logout actual manda a `/onboarding`.
-
-**Decisión tomada (29 oct 2026):** pantalla dedicada en `/session-closed`, ruta pública, con mensaje de confirmación y botón a `/login`. Ya reflected en `auth.md` CU-005, `settings.md` CU-017 y `USER_STORY_MAP.md` §9.
-
-**Cómo arreglar:** crear `src/app/session-closed/page.tsx` y agregar `/session-closed` a `publicPaths` en `src/middleware.ts:41`.
-
-**Referencia:** `ARCHITECTURE_SPEC.md` §4 P0-2
-
----
-
-### A3. 🟡 P1-1 — BUG-001: nivel `exceeded` inalcanzable
-
-**Qué pasa:** `src/app/dashboard/page.tsx:48-50` limita `percentage` a 100 con `Math.min(..., 100)`, así que `percentage >= 101` nunca ocurre y `exceeded` es código muerto. Settings muestra el nivel "Superado 101%", inalcanzable.
-
-**Decisión pendiente:** ¿quitar el cap (recomendado, ya resuelto en la spec de archify) o eliminar `exceeded` de la documentación?
-
-**Cómo arreglar:** eliminar `Math.min(..., 100)` del cálculo de `percentage`; verificar los 3 umbrales (80 / 100 / 101).
-
-**Referencia:** `ARCHITECTURE_SPEC.md` §4 P1-1
-
----
-
-### A4. 🟡 P1-2 — Categorías hardcodeadas y `CHECK` restrictivo
-
-**Qué pasa:**
-- `src/lib/categories.ts:10-16` — 5 categorías fijas en código.
-- `src/types/index.ts:1-6` — `ExpenseCategory` es un union cerrado.
-- `supabase/migrations/20261008182458_create_schema.sql:19` — `CHECK (category IN ('food','transport','services','entertainment','other'))` bloquea valores personalizados.
-- `settings/page.tsx:7-10` y `add-expense/page.tsx:9-12` — `CURRENCY_OPTIONS` fijo (`S/`, `$`); falta `€` y el modelo de "monedas activas".
-
-**Cómo arreglar:** ver sección B (CU-021 a CU-026). El diseño del schema ya está resuelto en `ARCHITECTURE_SPEC.md` §1 (tabla `categories` con `category_id` FK en `expenses`).
-
----
-
-### A5. 🟡 P1-3 — Trigger crea presupuesto y moneda por defecto
-
-**Qué pasa:** `supabase/migrations/20261018000000_fix_budgets_trigger.sql:24-30` inserta `budgets` con `S/ 1000` al registrarse. Contradice CU-021, que pide que el usuario elija moneda y presupuesto en el primer ingreso.
-
-**Cómo arreglar:** nueva migración — el trigger debe crear solo `profiles` (`has_completed_onboarding = false`) y las 5 categorías por defecto.
-
-**Referencia:** `ARCHITECTURE_SPEC.md` §4 P1-3, §5 Fase 2.4
-
----
-
-### A6. 🟡 P1-4 — Falta el flujo de configuración inicial (`/setup`)
-
-**Qué pasa:** no existe la pantalla de selección de moneda y presupuesto del primer ingreso (CU-021). Tampoco el flag `has_completed_onboarding` en `profiles` ni el redirect correspondiente.
-
-**Cómo arrancar:** migración `ALTER table profiles ADD primary_currency, has_completed_onboarding` → luego pantalla `/setup` y check en middleware.
-
-**Referencia:** `ARCHITECTURE_SPEC.md` §4 P1-4, §5 Fase 2.3 y 4.1
-
----
-
-### A7. 🟢 Discrepancias menores doc↔código
-
-| # | Discrepancia | Ubicación | Acción |
-|---|--------------|-----------|--------|
-| 1 | `/` es ruta pública en `publicPaths` pero CU-006 la documenta como protegida | `src/middleware.ts:41-42` | Alinear la doc (es intencional: la raíz redirige client-side) |
-| 2 | CU-007 promete tooltip *"No disponible por el momento"* en el botón de Google | `src/app/login/page.tsx:288-294` | Agregar el tooltip o quitarlo de CU-007 |
-| 3 | CU-002 exige nombre máx. 200 caracteres; el input no tiene `maxLength` | `src/app/login/page.tsx` | Agregar `maxLength={200}` |
-| 4 | CU-015 no maneja el error de `setBudget()` con feedback al usuario | `src/app/dashboard/settings/page.tsx` | Agregar toast o ajustar el CU |
+**Mejoras visuales (03 nov 2026):**
+- Ingresos en verde (`text-emerald`, `#2E7D32`), gastos en rojo (`text-danger`, `#EF4444`) en toda la app
+- Layout mejorado en "Saldo disponible" del dashboard
+- `emerald` agregado al tema Tailwind
 
 ---
 
